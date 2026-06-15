@@ -169,6 +169,15 @@ graph LR
   <sub>trace-id: readme-update-report-v2-20260615-01</sub>
 </p>
 
+---
+
+<p align="center">
+  <sub>本研究由伊兹莎深度研究框架完成 · 由凯瑞甘排版项链完成 · 基于 TRAE 特调 AC 范式组件框架</sub><br/>
+  <sub>AC 范式组件：<a href="https://github.com/jopsammy/AC-skill-deploy-ac-v6-components">github.com/jopsammy/AC-skill-deploy-ac-v6-components</a></sub><br/>
+  <sub>排版项链：<a href="https://github.com/jopsammy/acp-traetune-kerrigan-s-tex-marp-necklace">github.com/jopsammy/acp-traetune-kerrigan-s-tex-marp-necklace</a></sub><br/>
+  <sub>研究框架将在 8 月前开源</sub>
+</p>
+
 <div align="center">
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=2,3&height=100&section=footer&fontColor=ffffff" width="100%" />
 </div>
