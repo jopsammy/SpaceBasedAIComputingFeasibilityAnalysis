@@ -1,0 +1,330 @@
+% sections/06_commercial.tex
+% Chapter 6: Commercial Feasibility
+
+\section{Commercial Feasibility: Three-Branch TCO with Scenario Stratification}
+
+Having established physical feasibility (Chapter~4) and engineering constructability (Chapter~5), this chapter answers the final question: is it commercially worth investing? This chapter replaces a single-number specification with scenario stratification---there is no ``correct'' TCO figure, only a TCO figure ``under given assumptions.'' See the tables in this chapter and the script routing in Appendix~D for complete breakdowns and substitution values of all cost figures; see Appendix~B for the evidence tier and verdict record for each cost parameter.
+
+\subsection{Comparison Baseline: This Report's Unified Cost Model}
+
+\subsubsection{Total Cost Formula}
+
+\noindent\textbf{Declaration required:} This chapter's TCO is positioned as a ``comparable engineering cost model under unified specifications,'' not a complete financial model. Non-recurring engineering (NRE), satellite manufacturing value insurance, financing costs, dedicated ground segment construction, and post-failure replenishment strategies are not incorporated into the primary baseline. \$764.98M should be understood as the 10yr-GaAs baseline output using SpaceX's publicly stated 120~kW sustained IT as the satellite-count denominator and after LEO orbital power chain closure; figures such as \$1,341.26M are analogously model results under given scenario assumptions.
+
+This report's three-branch TCO model uses the following unified formula. All values are computed by independent Python modeling (see Appendix~D~\S\ref{sec:script-entry} for the calculation scripts, to be open-sourced on GitHub subsequently); readers may independently recompute and verify:
+
+\begin{multline}
+\text{TCO}_{10\text{yr}} = \sum \Bigl(\text{Manufacturing Cost} + \text{Launch Cost} \\
++ \text{Insurance} + \text{Operations} + \text{Decommissioning}\Bigr)
+\end{multline}
+
+where:
+\begin{itemize}[leftmargin=*]
+    \item Manufacturing Cost = single-satellite manufacturing cost $\times$ single-generation satellite equivalent (8.33) $\times$ total generations
+    \item Launch Cost = single-satellite total mass $\times$ single-generation satellite equivalent $\times$ launch unit cost $\times$ total generations
+    \item Insurance = satellite manufacturing value $\times$ 3--5\% + launch cost $\times$ 8\% (Note: the current model only includes launch cost $\times$ 8\% as a lower-bound estimate; insurance on satellite manufacturing value is not included, so actual insurance costs should be higher)
+    \item Operations = \$5M/yr $\times$ 10 years
+    \item Decommissioning = \$3M/generation $\times$ total generations
+    \item Single-generation satellite equivalent = 1\;MW sustained IT / 120\;kW sustained IT = 8.33 satellites
+\end{itemize}
+
+\subsubsection{Unified Assumptions}
+
+\begin{table}[H]
+\centering
+\caption{Unified Assumptions for the Three-Branch TCO Model}
+\label{tab:unified_assumptions}
+\begin{tabular}{p{5.0cm}p{4.0cm}p{4.0cm}}
+\toprule
+\textbf{Parameter} & \textbf{Value} & \textbf{Notes} \\
+\midrule
+Target sustained IT load   & 1\;MW              & Common denominator \\
+Total window               & 10 years           & All branches normalized to the same window \\
+Launch unit cost           & \$200/kg           & Baseline; sensitivity analysis covers \$100--500/kg \\
+Operations                 & \$5M/yr            & Ground TT\&C + constellation management \\
+Insurance                  & Launch cost $\times$ 8\% & Space insurance industry practice \\
+Decommissioning/re-entry   & \$3M/generation    & Controlled re-entry \\
+Architecture baseline      & Blackwell (GB300 NVL72) & Unified primary chain \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{10yr-GaAs Primary Chain: Complete TCO Breakdown}
+
+The 10yr-GaAs branch is the only single-generation primary chain for which this report can currently give a complete 10-year total cost. This branch assumes: (1) GaAs photovoltaic route; (2) 10-year lifetime (10yr Li-ion NMC battery, DoD 25\%); (3) single generation, no re-launch. Table~\ref{tab:gaas10_tco} presents the complete subsystem-level TCO breakdown.
+
+\begin{table}[H]
+\centering
+\caption{10yr-GaAs Primary Chain Complete TCO Breakdown (1\;MW sustained IT / 10-year total window / \$200/kg)}
+\label{tab:gaas10_tco}
+\footnotesize
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.8cm}rrr}
+\toprule
+\textbf{Subsystem / Cost Item} & \textbf{Single-Sat. Mass (kg)} & \textbf{Single-Sat. Cost (\$M)} & \textbf{10-Year Total Cost (\$M)} \\
+\midrule
+\multicolumn{4}{>{\raggedright\arraybackslash}p{\textwidth}}{\textit{Manufacturing sub-items (single-sat. \$83.61M $\times$ 8.33 satellites $\times$ 1 generation)}} \\
+\quad Compute payload        & 1,500 & 7.20  & 59.98 \\
+\quad Heat dissipation system & 550   & 0.66  & 5.50 \\
+\quad Photovoltaic array      & 938   & 46.27 & 385.58 \\
+\quad Battery                 & 1,573 & 0.06  & 0.50 \\
+\quad PCDU                    & 419   & 1.05  & 8.75 \\
+\quad Bus/Structure           & 1,743 & 6.27  & 52.25 \\
+\quad Propulsion              & 350   & 1.30  & 10.83 \\
+\quad Comm/Laser links        & 300   & 2.50  & 20.83 \\
+\quad System margin/redundancy/add'l & 1,106 & 18.29 & 152.50 \\
+\midrule
+\textbf{Manufacturing subtotal}  & \textbf{8,479} & \textbf{83.61} & \textbf{696.72} \\
+\midrule
+\multicolumn{4}{>{\raggedright\arraybackslash}p{\textwidth}}{\textit{Non-manufacturing cost items}} \\
+\quad Launch cost             & -- & 1.70  & 14.13 \\
+\quad Insurance               & -- & 0.14  & 1.13 \\
+\quad Operations (10 yr)      & -- & --    & 50.00 \\
+\quad Decommissioning/re-entry & -- & --    & 3.00 \\
+\midrule
+\textbf{10-Year Total Cost}   & \textbf{--} & \textbf{--} & \textbf{764.98} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Core findings from the cost structure}:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{The photovoltaic array (\$385.58M, 50.4\% of total cost) is the absolutely dominant item.} This means that the TCO of space-based AI computing is highly sensitive to photovoltaic technology route and price---any technological advance that reduces the cost of space-grade GaAs arrays (such as mass production scale effects, COTS commercial-off-the-shelf strategies) is the single largest leverage point for improving commercial prospects.
+    \item \textbf{Launch cost accounts for only 1.8\%}---this overturns the intuitive judgment that ``launch cost is the primary obstacle to the economics of space-based AI computing.'' A further reduction in launch unit cost (e.g., from \$200/kg to \$100/kg) would affect total cost by only about 0.9\%.
+    \item \textbf{System margin/redundancy/additional (\$152.50M, 20.0\%) is the second-largest cost item,} and is entirely Tier-4 inference. This cost item covers redundant hardware, system mass growth allowance, and integration additional mass (corresponding to the 1,106\;kg in the engineering chapter's Table~\ref{tab:full_satellite_breakdown}), reflecting costs at the NASA-class spacecraft level (CDR/PDR review, redundancy design, environmental testing)---if SpaceX's Starlink mass production experience can significantly compress this cost (e.g., from ``NASA-class'' to ``Starlink-class''), commercial prospects would see material improvement.
+    \item \textbf{Battery cost is extremely low (\$0.50M, 0.07\%)}---this is not a calculation error, but a factual consequence of Starlink's NMC battery pack (\$200/kWh) already being a space battery.
+\end{enumerate}
+
+\subsection{Comparison Branch Contrast}
+
+\subsubsection{5yr-GaAs: The Cost of Shortened Lifetime}
+
+The only difference between the 5yr-GaAs branch and the primary chain is that the service lifetime is shortened from 10 years to 5 years, requiring one re-launch within the 10-year window (2 generations). All other assumptions (GaAs photovoltaic, NMC battery DoD 40\%) remain unchanged.
+
+\begin{table}[H]
+\centering
+\caption{5yr-GaAs Comparison Branch TCO Overview}
+\label{tab:gaas5_tco}
+\begin{tabular}{p{5.0cm}rr}
+\toprule
+\textbf{Item} & \textbf{10yr-GaAs (Primary)} & \textbf{5yr-GaAs (Comparison)} \\
+\midrule
+Single-satellite mass              & 8.48\;t           & 7.10\;t \\
+Single-satellite manufacturing cost & \$83.61M          & \$75.58M \\
+Total generations                   & 1                 & 2 \\
+10-year total manufacturing cost    & \$696.72M         & \$1,259.69M \\
+10-year total launch cost           & \$14.13M          & \$23.68M \\
+10-year total cost                  & \textbf{\$764.98M} & \textbf{\$1,341.26M} \\
+Difference                          & Baseline              & +\$576.27M (+75.3\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+5yr-GaAs is approximately 75\% more expensive than the primary chain, with the difference coming almost entirely from the near-doubling of manufacturing cost due to dual-generation re-launch. \textbf{This comparison reveals a key economic mechanism: on-orbit lifetime is a far more important economic lever than launch cost.} The cost ``saving'' from extending lifetime from 5 to 10 years (\$576M) is equivalent to the effect of reducing launch unit cost from \$200/kg to approximately \$0/kg---further supporting the Chapter~5 judgment that ``on-orbit lifetime is a more important economic lever than launch cost.''
+
+\subsubsection{5yr-HJT: Cost Constraints of the Parallel Route}
+
+The complete total cost of the 5yr-HJT branch can currently only be given as a lower bound (the closure of the HJT array procurement price chain is lower than that of GaAs), but after multi-anchor interval reconciliation, a sufficiently reliable estimate for engineering judgment can be provided.
+
+\begin{table}[H]
+\centering
+\small
+\caption{5yr-HJT Cost Comparison (Lower Bound vs.\ Reconciled Estimate)}
+\label{tab:hjt5_tco}
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.4cm}>{\centering\arraybackslash}p{2.6cm}>{\centering\arraybackslash}p{2.4cm}}
+\toprule
+\textbf{Item} & \textbf{Lower Bound (determinable items only)} & \textbf{Reconciled Estimate} \\
+\midrule
+Single-satellite mass              & 9.13\;t              & 9.13\;t \\
+Single-satellite manufacturing cost & $\ge$\$23.05M       & $\sim$\$55M \\
+Total generations                   & 2                    & 2 \\
+10-year total manufacturing cost    & $\ge$\$384.13M      & $\sim$\$916M \\
+10-year total launch cost           & \$30.44M             & \$30.44M \\
+10-year total cost                  & \textbf{$\ge$\$473.01M} & \textbf{$\sim$\$1,005M} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In the reconciled estimate, the HJT array system cost is taken at $\sim$\$15M/satellite (a conservative composite interval from three independent anchors: space-grade HJT cells \$2--3/W; Starlink-class array system \$3,500--4,200/m\textsuperscript{2}; ground-to-space 10--15$\times$ amplification). Even at the extremely optimistic \$5M/satellite array cost, the 5yr-HJT total cost would still be approximately \$850M+---still higher than the 10yr-GaAs figure of approximately \$0.77B (range \$0.55B--\$1.1B).
+
+\textbf{The conclusion will not flip}: HJT cells themselves are 70--100$\times$ cheaper than GaAs, but the combined penalty of 2.07$\times$ area amplification + 1.59$\times$ mass amplification + dual-generation re-launch cost makes them inferior to 10yr-GaAs under the AI1 70~m wingspan constraint and 10-year window comparison denominator, whether in cost or in engineering terms (Chapter~5 geometric exclusion).
+
+\subsection{Three-Branch TCO Overview and Ranking}
+
+\begin{figure}[H]
+\centering
+\input{figures/tco_branches}
+\caption{Three-branch TCO composition comparison---manufacturing cost dominates absolutely in all branches; launch cost accounts for a minimal share (1.8\%--3.0\%). The rightmost fourth bar is the terrestrial IDC reference ($\sim$\$64.6M/MW/10yr); the space/ground TCO multiple is approximately 11.8$\times$.}
+\label{fig:tco_branches}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Three-Branch TCO Ranking (1\;MW sustained IT / 10-year total window / \$200/kg)}
+\label{tab:tco_ranking}
+\begin{tabularx}{\textwidth}{
+  >{\raggedright\arraybackslash}p{2.9cm}
+  >{\centering\arraybackslash}p{2.3cm}
+  >{\centering\arraybackslash}p{2.7cm}
+  >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Branch} & \textbf{10-Year Total Cost} & \textbf{vs.\ GaAs Primary} & \textbf{Deployability} \\
+\midrule
+10yr-GaAs (primary) & \$764.98M   & Baseline              & Deployable (70~m wingspan constraint satisfied) \\
+5yr-HJT (reconciled)   & $\sim$\$1,005M & +\$240M (+31.4\%)  & \textbf{Not deployable} (geometrically excluded by 70~m wingspan) \\
+5yr-GaAs (comparison)  & \$1,341.26M & +\$576M (+75.3\%)  & Deployable (lifetime sensitivity comparison) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Quantified Impact of Specification Differences: Launch Unit Cost Sensitivity}
+
+To intuitively demonstrate the conclusion that ``launch cost accounts for a very small share of total cost,'' Table~\ref{tab:launch_sensitivity} presents the total cost variation of the 10yr-GaAs primary chain at different launch unit costs:
+
+\begin{table}[H]
+\centering
+\small
+\caption{Launch Unit Cost Sensitivity Analysis (10yr-GaAs Primary Chain)}
+\label{tab:launch_sensitivity}
+\begin{tabular}{lcrr}
+\toprule
+\textbf{Launch Unit Cost} & \textbf{Launch Cost Share} & \textbf{10-Year Total Cost} & \textbf{Change vs.\ \$200/kg} \\
+\midrule
+\$100/kg  & 0.9\%  & \$757.92M & $-$0.9\% \\
+\$200/kg  & 1.8\%  & \$764.98M & Baseline \\
+\$500/kg  & 4.4\%  & \$786.17M & +2.8\% \\
+\$1,000/kg & 8.5\% & \$825.53M & +7.9\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Even under the extremely optimistic \$50/kg scenario, total cost is still approximately \$751M---a reduction in launch cost alone cannot flip commercial viability. The true dominant factor consistently remains manufacturing cost (particularly the photovoltaic array, system margin/redundancy, and bus structure).
+
+\subsection{Flip-Condition Analysis: Which Parameter Combinations Would Change the Direction of Conclusions}
+
+This section answers the question ``under what assumptions could space-based AI computing become more competitive than terrestrial alternatives.'' Taking the 10-year TCO of a terrestrial 1~MW-class AI cluster as approximately \$64.6M (median estimate; GPU hardware approximately 40--50\%, supporting power/cooling approximately 20--30\%, building/operations approximately 20--30\%; this \$64.6M/MW is an indicative reference for NVIDIA DGX/HGX-class configurations; actual TCO fluctuates $\pm$15\% due to cluster scale, cooling scheme, geographic location, etc.) as a reference, the 10yr-GaAs figure of approximately \$0.77B (range \$0.55B--\$1.1B, depending on variation in key assumptions) is approximately 11.8$\times$ ground cost. This multiple is used to characterize the magnitude of the competitive gap; approaching comparability would require simultaneously satisfying the following conditions:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Photovoltaic array cost reduction of 10$\times$}: from the current \$200/W\_BOL to \$20/W\_BOL, reducing single-satellite manufacturing cost from \$83.61M to approximately \$37M.
+    \item \textbf{Launch cost reduced to <\$100/kg}: so that launch cost savings are no longer overwhelmingly dominated by manufacturing cost.
+    \item \textbf{On-orbit lifetime stably reaching 10 years}: avoiding the cost-doubling effect of dual-generation re-launch.
+    \item \textbf{Mass production compressing AIT cost by 5$\times$}: from ``NASA-class'' spacecraft integration and testing to ``Starlink mass-production-class.''
+\end{enumerate}
+
+The \emph{simultaneous} probability of these four conditions being met is assessed as low before 2035. Based on a Bayesian chain derivation under independent assumptions (see Chapter~7~\S 7.3--\S 7.4 for details), the independent probability of each of the four parameters improving to the target value within 10 years is respectively: lifetime $\geq$7 years ($\sim$70\%), photovoltaic array cost <\$50/W\_BOL ($\sim$40\%), AIT compressed to Starlink-class ($\sim$50\%), launch cost <\$100/kg ($\sim$60\%). The independent joint probability is approximately 8.4\%. Accounting for the positive correlation arising from SpaceX's synchronous advancement across multiple parameters, the joint probability is subjectively adjusted upward to approximately 15--20\%. The conservative upper bound of <25\% is taken as the baseline---this is not a technological difficulty issue for any single parameter, but rather the inherent fact that the synchronized improvement probability of four independent parameters is naturally lower than the improvement probability of a single parameter.
+
+\subsection{Commercial Divergence Between Training and Inference}
+
+The above analysis adopted ``1\;MW sustained IT'' as a unified comparison denominator, implicitly treating all compute as a homogeneous computational load. However, actual AI computing loads can be clearly divided into training and inference---which have fundamentally different requirements for interconnect bandwidth, latency tolerance, and geographic distribution. Incorporating this distinction into the commercial analysis reveals cost differences between scenarios more clearly.
+
+\subsubsection{Training Scenario: Orbital Compute Competitiveness Is Even Weaker}
+
+Large-scale distributed training (such as LLM pre-training) imposes extremely high demands on inter-node interconnect:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{High-bandwidth, low-latency interconnect is a hard requirement.} Current terrestrial data centers use NVLink/NVSwitch-class inter-node interconnect ($\sim$900\;GB/s bidirectional bandwidth, $\mu$s-scale latency), and training efficiency is highly sensitive to communication latency---each step of All-Reduce collective communication is constrained by the slowest link.
+    \item \textbf{Inter-satellite laser links cannot match training requirements.} LEO constellation inter-satellite laser links involve millisecond-scale propagation delays (same-plane adjacent satellites $\sim$0.5\;ms, cross-plane $\sim$2--10\;ms), and the topology continuously changes with orbital motion---the equivalent interconnect bandwidth and stability are far below those of terrestrial fixed-topology fiber/copper interconnects.
+    \item \textbf{Distributed training efficiency will be significantly lower than on the ground.} Under inter-satellite link constraints, the effective Model FLOPs Utilization (MFU) of multi-satellite distributed training may be only a fraction of that of a terrestrial data center. Even without accounting for cost differences, the actual useful compute output of orbital training would be substantially degraded by interconnect bottlenecks.
+    \item \textbf{Communication infrastructure imposes further limitations.} Ground gateway bandwidth, total inter-satellite link capacity, and data uplink/downlink bandwidth together form multiple layers of bottlenecks---uploading large-scale training datasets is itself a bandwidth-intensive task.
+\end{itemize}
+
+\textbf{Qualitative conclusion for the training scenario}: Under the training scenario, the commercial competitiveness of orbital computing is even weaker than what the homogeneous TCO comparison suggests ($\sim$11.8$\times$ ground). If the training efficiency discount (MFU only 1/2--1/3 of ground) is factored in, the effective training cost would be >12$\times$ ground---or even higher.
+
+\subsubsection{Inference Scenario: Global Low Latency Has Relative Advantages, But Scale Is Limited}
+
+Inference workloads are fundamentally different from training:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{LEO global coverage with $\sim$20--30\;ms latency has genuine advantages.} For inference tasks requiring global low-latency response (such as real-time voice assistants, autonomous driving remote decision-making, edge AI services), LEO satellites can provide uniform low-latency inference nodes without the need to lay global fiber.
+    \item \textbf{But the advantaged scenarios are limited to edge inference, not large-scale inference farms.} The mainstay of the current inference market is high-throughput batch inference within data centers, which is latency-insensitive but extremely cost-sensitive---orbital computing has no advantage in this scenario. The true advantage scenarios are \emph{low-latency edge inference}, whose market size is far smaller than batch inference.
+    \item \textbf{Single-satellite inference capacity is limited, making it difficult to absorb large-scale inference demand.} The inference throughput of a single 120\;kW IT satellite is limited; matching the scale of terrestrial inference farms would require coordination of large numbers of satellites---which returns to the problems of inter-satellite interconnect bottlenecks and cost superposition.
+\end{itemize}
+
+\textbf{Qualitative conclusion for the inference scenario}: Under the inference scenario, the competitiveness of orbital computing is relatively stronger than under the training scenario (estimated at approximately 8--10$\times$ ground cost, rather than 11.8$\times$), but a significant gap still exists. Advantages are confined to specific niches (global low-latency edge inference) and do not offer universal commercial substitutability.
+
+\subsubsection{Qualitative Directional Comparison of Training/Inference Divergence}
+
+\begin{table}[H]
+\centering
+\caption{Orbital Compute Competitiveness Comparison: Training vs.\ Inference Scenarios}
+\label{tab:train_vs_infer}
+\begin{tabular}{p{2.5cm}p{4.5cm}p{4.5cm}}
+\toprule
+\textbf{Dimension} & \textbf{Training} & \textbf{Inference} \\
+\midrule
+Interconnect requirement     & Extremely high (NVLink/NVSwitch class) & Low (nodes independent) \\
+Inter-satellite link fit     & Mismatch (ms latency + topology variation) & Acceptable \\
+Effective compute utilization & Significant discount (MFU $<$ 1/2 ground) & Near nominal \\
+Latency advantage            & Not needed & Needed (global $\sim$20--30\;ms) \\
+Target market                & LLM pre-training/fine-tuning & Global low-latency edge inference \\
+vs.\ ground cost              & >12$\times$ (including MFU discount) & 8--10$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Core conclusion}: After distinguishing training from inference, the training scenario is the weakest sub-scenario for orbital compute competitiveness (triple superposition: interconnect bottleneck + MFU discount + communication constraints); the inference scenario, while having the unique advantage of global low latency, has a limited niche scale, and the absolute cost gap remains at 8--10$\times$. Any discussion of the ``commercial feasibility of space-based AI computing'' that does not distinguish training from inference is liable to overestimate the actual competitiveness of orbital compute.
+
+\subsection{GPU Failure Rate TCO Sensitivity Analysis}
+
+The foregoing TCO analysis implicitly assumes that all 150 Blackwell GPUs survive the full 10-year window and consistently deliver 1\;MW sustained IT load. However, the reality of on-orbit hardware is far harsher than terrestrial data centers---once an on-orbit GPU fails, controlled repair is infeasible under current technology. This section incorporates GPU failure rate into the TCO model, correcting the ``effective compute'' specification.
+
+\subsubsection{Failure Model and Assumptions}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Annual failure rate}: Assumed GPU on-orbit annual failure rates of 5\%, 10\%, and 15\% (terrestrial data center GPU annual failure rates are typically 1--3\%; failure rates in the space radiation environment are expected to be significantly higher).
+    \item \textbf{No-replacement strategy}: On-orbit servicing is infeasible; failed GPUs are permanently lost; the constellation does not launch replacement satellites (replacement would significantly increase TCO, essentially equivalent to the dual-generation/multi-generation re-launch branch analysis).
+    \item \textbf{Decay calculation}: Equivalent surviving GPU count = $150 \times (1 - \text{annual failure rate})^{10}$. Equivalent sustained IT = nominal 1\;MW $\times$ (surviving GPU count / 150).
+\end{itemize}
+
+\subsubsection{Sensitivity Calculation Results}
+
+\begin{table}[H]
+\centering
+\small
+\caption{GPU Annual Failure Rate Sensitivity on Effective TCO}
+\label{tab:gpu_failure_sensitivity}
+\begin{tabularx}{\textwidth}{
+  >{\raggedright\arraybackslash}p{1.9cm}
+  >{\centering\arraybackslash}p{2.4cm}
+  >{\centering\arraybackslash}p{2.3cm}
+  >{\centering\arraybackslash}p{2.7cm}
+  >{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Annual Failure Rate} & \textbf{10-Year Surviving GPUs} & \textbf{Equivalent Sustained IT (MW)} & \textbf{Effective \$M/Eff.\ MW} & \textbf{vs.\ Ground Multiple} \\
+\midrule
+0\% (baseline) & 150   & 1.00 & $\sim$\$765M/MW  & $\sim$11.8$\times$ \\
+5\%         & $\sim$90 & 0.60 & $\sim$\$1,275M/MW & $\sim$20$\times$ \\
+10\%        & $\sim$52 & 0.35 & $\sim$\$2,186M/MW & $\sim$34$\times$ \\
+15\%        & $\sim$30 & 0.20 & $\sim$\$3,825M/MW & $\sim$60$\times$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\smallskip
+\textit{Note: The terrestrial baseline takes a 1~MW-class AI cluster 10-year TCO of approximately \$64.6M (median estimate). Effective \$M/Effective MW is the 10-year total cost of \$764.98M divided by the corresponding equivalent sustained IT (nominal 1~MW $\times$ survival fraction). The vs.\ ground multiple is Effective \$M/Effective MW divided by the terrestrial baseline of \$64.6M/MW.}
+
+\subsubsection{Interpretation and Conclusions}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{At 5\% annual failure rate, effective compute is approximately 60\% of nominal}---\$764.98M buys not 1\;MW of constant compute, but equivalent compute that decays year by year. Equivalent sustained IT is only approximately 0.60\;MW, and effective \$M/MW rises to approximately \$1,275M ($\sim$20$\times$ ground).
+    \item \textbf{At 10\% annual failure rate, equivalent compute falls to approximately 35\% of nominal}---after ten years, the surviving GPU count is only approximately 52. The effective per-unit compute cost rises to approximately 34$\times$ ground.
+    \item \textbf{At 15\% annual failure rate, only approximately 30 GPUs survive after ten years}---equivalent sustained IT is only approximately 0.20\;MW. The effective per-unit compute cost soars to approximately 60$\times$ ground.
+    \item \textbf{Failure rate is a far stronger TCO amplifier than launch cost.} Contrast with launch unit cost sensitivity (Table~\ref{tab:launch_sensitivity}): raising launch unit cost from \$200/kg to \$1,000/kg increases total cost by only 7.9\%; raising annual failure rate from 5\% to 15\% increases effective per-unit compute cost by 3$\times$ (from $\sim$\$1,275M/MW to $\sim$\$3,825M/MW).
+\end{enumerate}
+
+\textbf{Core conclusion}: At 5\% annual failure rate, effective compute is approximately 60\% of nominal; at 15\%, only about 20\%. The higher the failure rate, the higher the effective per-unit compute cost. The true level of GPU on-orbit failure rate remains an unclosed Key-Open-Issue in this report (see Chapter~7 for details), but its leverage effect on TCO is already clear: even at the most optimistic 5\% annual failure rate, effective TCO has already reached approximately 20$\times$ ground---far exceeding the 11.8$\times$ suggested by the nominal TCO comparison.
+
+\subsection{Final Judgment on Commercial Feasibility}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{The 10yr-GaAs primary chain TCO is approximately \$765M}---this is the best-evidenced primary chain result that can currently be fully specified. Manufacturing cost accounts for approximately 91.1\% of total cost, far exceeding the sum of launch, insurance, operations, and decommissioning; the photovoltaic array is absolutely dominant (50.4\% of total cost).
+    \item \textbf{Launch cost has a small share (1.8\%) and should not receive disproportionate attention.} Reducing launch cost from \$200/kg to \$50/kg improves total cost far less than reducing photovoltaic array cost by 2$\times$ or extending lifetime by 2$\times$.
+    \item \textbf{The commercial competitiveness gap is substantial ($\sim$12$\times$ ground)}, and improvement requires \emph{synchronized} multi-parameter progress rather than a single breakthrough. The probability of synchronized multi-parameter improvement is insufficient to support a near-term definitive commercial viability commitment.
+    \item \textbf{A single figure cannot cover all scenarios}: Commercial conclusions differ significantly across different scenarios (10yr/5yr, GaAs/HJT); judgments must be read together with specific assumptions.
+\end{enumerate}
+
+(See the tables in this chapter for the breakdown and substitution values of all cost figures; see Appendix~B for the source tier and verdict record of each cost parameter; see Appendix~D~\S script routing for the Python script recomputation entry point.)
+
+\endinput

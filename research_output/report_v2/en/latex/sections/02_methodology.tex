@@ -1,0 +1,150 @@
+% sections/02_methodology.tex
+% Chapter 2: Analytical Methods and Comparison Baselines
+
+\section{Analytical Methods and Comparison Baselines}
+
+The feasibility analysis of space-based AI computing spans multiple disciplines---thermal physics, aerospace engineering, photovoltaic technology, battery chemistry, launch vehicles, semiconductor manufacturing---and the discussants (Musk, Jensen Huang, third-party analysts) frequently use different specifications and assumptions, producing superficially incompatible numbers. Before entering the specific analysis, this chapter establishes a unified analytical framework and terminology for the full report, ensuring that readers will not misunderstand subsequent chapters due to specification confusion.
+
+\subsection{Three-Tier Progressive Analytical Framework}
+
+This report's analysis proceeds along three progressive tiers---physical $\to$ engineering $\to$ commercial---with each tier unfolding on the premise that the preceding tier's conclusions hold:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Physical Feasibility (Chapter~4)}: Judgment is made using only physical laws and publicly verifiable physical constants. If the Stefan--Boltzmann law indicates that the required heat dissipation area is unacceptable, or if the LEO thermal environment renders the effective heat dissipation flux far below a workable level, then the engineering and commercial analyses lose their premise. \emph{Criterion: Is it physically possible?}
+    \item \textbf{Engineering Feasibility (Chapter~5)}: Under the premise of physical feasibility, the analysis examines whether it can be realized from an engineering standpoint---how heavy the satellite is, whether it can fit into a rocket, whether it can sustain continuous on-orbit operation, and whether it can be repaired after failure. \emph{Criterion: Can it be built and operated continuously?}
+    \item \textbf{Commercial Feasibility (Chapter~6)}: Under the premise of engineering feasibility, the analysis examines whether it is worth investing---TCO (Total Cost of Ownership) comparison against terrestrial data centers, and which parameter combinations would change the directional conclusion. \emph{Criterion: Is it commercially worthwhile?}
+\end{enumerate}
+
+The core value of this progressive framework is avoiding ``cross-tier confusion'': physical feasibility does not imply engineering feasibility (e.g., the heat dissipation area requires only 0.71\;km\textsuperscript{2} physically, but engineering the precise deep-space pointing of $\sim$6,400 satellites' radiator surfaces is an entirely different problem); engineering feasibility does not imply commercial feasibility (e.g., even if every satellite can be built, the total cost may render them economically uncompetitive against terrestrial alternatives).
+
+\subsection{Definitions of the Five Unified Specifications}
+
+All figures in this report are based on the following unified specifications. The rationale for each specification choice is explained in each sub-entry.
+
+\subsubsection{Power Specification}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{GPU/Compute-side nominal peak (150\;kW)}: The ``150 kW of GPU power'' stated in SpaceX's public materials refers to the peak DC input power at the GPU level, widely propagated as AI1's core identifying number [Tier~2$\cdot$authoritative source, cross-validated by three independent media outlets: Inkl/Tom's Hardware, Knightli, and Indexbox]\cite{spacex2026ai1}. This report uses 150\;kW as the public-discourse anchor in its narrative; the power system's engineering closure (array area, PCDU mass, photovoltaic cost) is still derived from LEO orbital energy balance, not estimated directly from 150\;kW.
+
+          150\;kW and 120\;kW/210\;kW are not the same physical quantity: 150\;kW is ``how much the satellite's compute side can nominally run at'' as a peak figure; after traversing the full energy chain of photovoltaic array$\to$battery$\to$PCDU$\to$GPU, LEO orbital physics only supports approximately 86\;kW of sustained IT load. The forward physical requirement corresponding to 120\;kW sustained IT is approximately 210\;kW array EOL output (full derivation in the Chapter~5 subsection ``Power Specification Clarification'' and Appendix~C~\S C.2). To clearly distinguish these figures, Table~\ref{tab:power_layers} presents the complete four-layer power specification hierarchy.
+    \item \textbf{Sustained IT load (120\;kW)}: The power value corresponding to AI1's sustained computing capacity, as officially disclosed by SpaceX\cite{spacex2026ai1}. This report uses 120\;kW as the conversion denominator for the number of satellites required for 1\;MW deployment (1\;MW / 120\;kW $\approx$ 8.33 satellites). Under the actual constraint of LEO orbital energy balance (150\;kW peak corresponds to only $\sim$86\;kW sustained), a 1\;MW deployment would require approximately 12 satellites (rather than 8.3), with a correspondingly higher TCO.
+    \item \textbf{IT load power (1\;MW sustained, common denominator)}: The usable power ultimately delivered to computing hardware. This report selects 1\;MW sustained IT load as the comparison denominator for three reasons: (1) the figure is large enough to be meaningful for economic discussion; (2) it lands exactly within the integer-multiple scaling range of AI1 (120\;kW/satellite) at approximately 8.33 satellites; (3) mature public TCO data exist for terrestrial 1\;MW-class AI clusters as a comparison reference.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{AI1 Power Specification Hierarchy---Physical Meanings at Different Electrical Nodes}
+\label{tab:power_layers}
+\footnotesize
+\begin{tabular}{p{3.8cm}>{\centering\arraybackslash}p{2.0cm}p{3.0cm}p{4.0cm}}
+\toprule
+\textbf{Specification} & \textbf{Value} & \textbf{Physical Location} & \textbf{Usage in This Report} \\
+\midrule
+GPU/compute-side nominal peak & 150 kW & GPU DC input / compute payload side & Aligned with SpaceX public statements; public memory anchor and thermal peak reference \\
+Sustained IT load & 120 kW & Orbit-average load actually delivered to computing hardware & 1 MW conversion denominator: 1 MW/120 kW $\approx$ 8.33 satellites \\
+Array EOL output requirement & $\approx$210 kW & Photovoltaic array / upstream PCDU output & Power system, PV area, PCDU mass, array cost calculations \\
+Array BOL nominal requirement & $\approx$230 kW & Photovoltaic array output at beginning of life & PV cost and area verification reference \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In one sentence: 150\;kW is ``how much the satellite's compute side can nominally run at'' as a peak figure; 210\;kW is ``the power that the photovoltaic array must deliver at end of life to sustain 120\;kW of sustained IT load over the long term''---the two are not the same physical quantity, spanning the full energy conversion chain (photovoltaic array$\to$battery$\to$PCDU$\to$GPU) and must not be conflated as the same specification.
+
+\subsubsection{Deep Explanation of the Power Specification: Why the 150 kW Official Figure Is Retained}
+
+AI1's ``150\;kW'' has become the core identifying number in public discourse. If this report were to immediately replace it in the main narrative with the array requirement power under LEO energy balance ($\sim$210\;kW), it would easily divert the discussion into specification disputes prematurely. Therefore, this report retains 150\;kW in the main narrative as SpaceX's publicly claimed compute-side nominal peak, and uses 120\;kW sustained IT load as the 1\;MW conversion denominator; the engineering chapters then provide the complete LEO power system closure calculation.
+
+Power system calculations are still performed via LEO orbital sunlit/eclipse energy balance closure: to sustain 120\;kW of sustained IT load, accounting for eclipse power supply, battery recharge, conversion losses, and end-of-life degradation, the array EOL output requirement is approximately 210\;kW. Consequently, this report's photovoltaic area, PCDU mass, and photovoltaic cost are not estimated at 150\;kW array output, but rather at the physically closed $\sim$210\;kW array requirement. See the Chapter~5 subsection ``Power Specification Clarification'' and Appendix~C~\S C.2 for the complete energy chain derivation.
+
+In other words, 150\;kW in this report is the ``public-discourse anchor'' and ``compute-side peak reference,'' not the power system's closure power. If 150\;kW were interpreted as the array peak, it would support only about 86\;kW of sustained IT load in LEO, and both the required satellite count and TCO would increase (see the Chapter~5 subsection ``Misreading Check'' for the misreading verification table).
+
+\subsubsection{Time Window Specification}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{5-year branch}: A single-generation satellite serves on orbit for 5 years and then de-orbits. Under the comparison denominator of a 10-year total window, this means 2 generations of satellites must be launched (1st generation + 1 re-launch). The rationale for selecting 5 years: LEO satellite atmospheric drag lifetime, battery cycle life, and hardware degradation rate at 600\;km orbit indicate that 5 years is a reasonable conservative estimate based on engineering practice.
+    \item \textbf{10-year branch}: A single-generation satellite serves on orbit for 10 years (no full-satellite re-launch). This is an optimistic but not unreasonable engineering target---requiring a shift in battery chemistry from NMC to longer-lived alternatives (see Chapter~5 battery three-branch analysis for details).
+    \item \textbf{Comparison denominator}: 10-year total window. All branches' TCO is normalized to the same 10-year window, so that the re-launch cost of the 5-year branch is explicitly included rather than implicitly ignored.
+\end{itemize}
+
+\subsubsection{Architecture Generation Specification}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Primary architecture: NVIDIA Blackwell (GB300 NVL72)}. This is the latest NVIDIA GPU architecture that has been publicly released with independently verifiable specifications as of mid-2026. Detailed GB300 NVL72 compute tray specifications are sourced from the Lenovo product guide (29\;kg/tray, 4 GPU + 2 CPU) [Tier~2$\cdot$authoritative source]\cite{lenovo2025gb300}, providing an A1-grade ground hardware anchor for the compute payload mass chain.
+    \item \textbf{Rubin not adopted as primary}: Although the NVIDIA Vera Rubin architecture has been announced (GTC 2026), the full satellite BOM, space-grade parameters, and first-hand public specifications are still insufficient; at present only architectural efficiency remapping is possible (see Chapter~5 for details), and it cannot serve as the primary chain for a complete commercial analysis.
+    \item \textbf{H100 not adopted as primary}: Previous-generation architecture, with significantly lower efficiency and compute density compared to the current discussion.
+\end{itemize}
+
+\subsubsection{Cost Boundary Specification}
+
+This report's cost model covers the following items, each with a complete definition and boundary conditions:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Manufacturing cost}: Comprising 9 subsystems---compute payload, heat dissipation system, photovoltaic array, battery, power electronics/distribution (PCDU), bus/structure, propulsion, communication/laser links, system margin/redundancy/additional (AIT margin: covering redundant hardware, system mass growth allowance, and integration additional mass). Each item is annotated with its evidence tier.
+    \item \textbf{Launch cost}: \$200/kg baseline (Starship V3 full-reuse target), sensitivity analysis covering \$100--500/kg. The basis for this value is given in Chapter~6 ``Launch Unit Cost Sensitivity Analysis'' and this chapter's ``Launch Unit Cost Specification Notes.''
+    \item \textbf{Insurance cost}: 8\% of launch cost (based on space insurance industry practice).
+    \item \textbf{Operations cost}: \$5M/yr (ground TT\&C, constellation management, and software updates).
+    \item \textbf{Decommissioning cost}: \$3M/generation (controlled re-entry).
+    \item \textbf{Not included}: Ground gateway/user segment, spectrum licensing fees, non-recurring engineering (NRE)---these either are highly scenario-dependent or lack public data, making them impossible to include in a unified comparison framework.
+\end{itemize}
+
+\subsubsection{Launch Unit Cost Specification}
+
+\$200/kg is used as the baseline launch unit cost. This selection is based on three tiers of evidence: (1) Historical tier---launch costs have fallen by approximately 100$\times$ over the past 15 years (from Shuttle $\sim$\$54,500/kg to Falcon 9 reusable $\sim$\$2,720/kg)\cite{nasalaunch2018}; (2) Economic threshold tier---\textless\$200/kg is widely regarded as the critical threshold for making large-scale LEO deployment enter an economically viable regime; (3) Engineering target tier---Starship V3's ``100+ tons full reuse'' target corresponds to a marginal cost of approximately \$100--200/kg\cite{33fg2026starship}. This report positions \$200/kg as a ``mature reuse engineering target'' rather than a ``currently achieved value,'' and covers a broader \$100--500/kg range in the Chapter~6 sensitivity analysis.
+
+\subsection{Specification Alignment Matrix (Abridged Version)}
+
+Table~\ref{tab:alignment_brief} presents a simplified comparison of this report's primary chain against major external specifications. The physical meaning of ``the same MW'' differs radically under different specifications---if two analyses use different time windows, power definitions, or architecture generations, directly comparing their TCO figures is methodologically invalid.
+
+\begin{figure}[H]
+\centering
+\input{figures/alignment_chart}
+\caption{\protect\parbox{0.92\textwidth}{\centering Specification alignment schematic---figures under different specification assumptions are not directly comparable; all comparisons in this report are based on a unified baseline (Blackwell architecture, 10-year window, 1 MW sustained IT, \$200/kg launch).}}
+\label{fig:alignment_chart}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Specification Alignment Matrix (abridged)---values and comparability across key dimensions for each specification}
+\label{tab:alignment_brief}
+\footnotesize
+\begin{tabular}{p{2.0cm}p{1.8cm}p{1.8cm}p{1.8cm}p{1.8cm}p{1.8cm}}
+\toprule
+\textbf{Dimension} & \textbf{Primary Chain} & \textbf{Musk Public} & \textbf{Huang Public} & \textbf{Prior Industry} & \textbf{Common Media} \\
+\midrule
+Time window & 10 yr & Unspecified & ``Several years'' & 10 yr & 5 yr \\
+Power spec. & 1\;MW sustained IT & GW-class deployment & Unquantified & 1\;MW IT & 1\;MW \\
+Architecture gen. & Blackwell & Unspecified & Rubin & Blackwell & Unspecified \\
+PV route & GaAs primary & AI1 (undisclosed) & Undisclosed & GaAs & HJT \\
+Launch cost & \$200/kg & Optimistic & Not addressed & \$200/kg & \$50--100/kg \\
+Lifetime assumption & 10yr single-gen & Unspecified & Reserved & 10 yr & 5 yr \\
+Comparability & Baseline & Comparable after conversion & Partially comparable & Partially comparable & Comparable after conversion \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+See Appendix~A for the complete specification alignment matrix (7 scenarios $\times$ 9 dimensions, with source annotations and quantitative impact analysis).
+
+\subsection{Why Specification Differences Matter}
+
+Before reading the subsequent chapters, it is necessary to clarify a core methodological point: the vast majority of contradictions between different figures in this report are not calculation errors, but specification differences. For example:
+
+\begin{itemize}[leftmargin=*]
+    \item One analysis yields ``10-year total cost \$765M,'' another yields ``\$1,341M''---the difference primarily arises from the former assuming a 10-year lifetime and the latter assuming a 5-year lifetime (requiring one re-launch). Both could be ``correct,'' but the comparison requires an explicit declaration of the lifetime assumption.
+    \item One analysis says ``launch cost can fall to \$50/kg,'' another says ``\$200/kg''---the former may implicitly assume learning-curve effects across thousands of launches; the latter may consider only the initial FAA-approved cap of 69 launches/yr. The two are discussing different scenarios at different points in time.
+    \item One analysis says ``HJT is 70--100$\times$ cheaper than GaAs,'' another says ``GaAs is the only viable route''---the former starts from cell-level component cost; the latter starts from full-satellite wingspan and deployment constraints. Both are valid within their respective local scopes, but the global optimum requires integrated consideration of all constraints.
+\end{itemize}
+
+This report's approach is to decompose the divergence into independently parameterizable dimensions (lifetime, battery, power route, mass chain, price chain), verify each dimension, and show how conclusions change when each dimension's parameters are varied independently. This methodology shrinks the ``space of disagreement'' from fuzzy positional opposition to quantifiable parameter sensitivity intervals.
+
+\subsection{Methodology Statement: First-Principles Bottom-Up Verification}
+
+The analytical methodology adopted in this report---from physical laws (Stefan--Boltzmann) and engineering hardware anchors (NVIDIA GB300 NVL72 official specifications) to a complete computational chain via independent Python modeling---follows the methodology of first-principles bottom-up verification. This methodology ensures that:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Primary conclusions are traced back as far as possible to publicly and independently verifiable original sources}---most key conclusions can be traced from the main-text conclusion back to original URLs or physical formulas along the five-tier routing in Appendix~D; a minority of links (approximately 30\% of Tier-4 inference parameters) still rely on internal verdict records and scripts pending open-source release.
+    \item \textbf{Even if Tier-4 parameter values (14 reasonably inferred parameters) undergo variation, no order-of-magnitude conclusion flip will occur}---because in the TCO cost structure, the photovoltaic array ($\sim$50\%) is cross-anchored via Tier-2/Tier-3 evidence; AIT margin remains a dominant cost item ($\sim$20\%), though its value still carries Tier-4 inference attributes.
+    \item \textbf{Unlike ``generic estimation'' methods based on simple proportional extrapolation or linear scaling}, this report's estimates explicitly annotate the evidence tier, inferential basis, and failure risk at every step.
+    \item \textbf{This report pursues not predictive precision ``to the decimal point'' but robustness---the property that directional conclusions do not flip even when parameters vary within reasonable intervals.}
+\end{enumerate}
+
+\endinput

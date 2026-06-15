@@ -1,0 +1,116 @@
+% sections/02_science.tex
+% 科学层分析：Q1--Q3
+
+\section{科学层：散热物理可行性验证}
+
+科学层的任务是回答一个基础性问题：马斯克设想的太空算力集群，是否符合已知物理定律？我们以斯特藩-玻尔兹曼定律（Stefan-Boltzmann Law）为核心工具，交叉验证AI1卫星的公开数据，并评估将散热规模扩展至GW量级时面临的物理边界。
+
+\subsection{斯特藩-玻尔兹曼定律：T\textsuperscript{4}的非线性约束}
+
+辐射冷却的基本方程为：
+\begin{equation}
+q = \varepsilon\sigma T^{4}
+\end{equation}
+其中：$q$——散热通量（\unitWpm{}）；$\varepsilon$——表面发射率（$0<\varepsilon\leq 1$，$\varepsilon=1$为理想黑体）；$\sigma=5.67\times10^{-8}$\,W\,m$^{-2}$\,K$^{-4}$为斯特藩-玻尔兹曼常数；$T$——辐射面温度（K）。
+
+该方程的核心含义：散热能力与温度的四次方成正比。这意味着温度从300\,K提升至400\,K（仅33\%），散热能力翻倍。但代价是GPU结温同步升高，进而导致漏电流增加与器件老化加速。
+
+图~\ref{fig:sb_t4} 绘制了不同发射率下的散热曲线。AI1卫星设计工作点（$T\approx342.5$\,K，$q\approx1400$\,\unitWpm{}，$\varepsilon\approx 0.92$）位于$\varepsilon=0.90$与$\varepsilon=0.95$曲线之间，处于工程可实现范围内，但余量有限。
+
+\begin{figure}[H]
+\centering
+\input{figures/sb_t4_curve.tex}
+\caption{斯特藩-玻尔兹曼 T\textsuperscript{4} 散热曲线与AI1工作点}
+\label{fig:sb_t4}
+\end{figure}
+
+从图~\ref{fig:sb_t4} 中可直观看到T\textsuperscript{4}增长效应：在350\,K附近，温度每升高10\,K，散热通量增加约12\%--13\%；而在450\,K以上，同样的10\,K增量带来的散热增量已接近20\%。这意味着在高温段，散热效率本身不是问题，问题变成了GPU能否承受对应的高结温。
+
+\subsection{AI1卫星1400\,\unitWpm{}散热密度验证}
+
+SpaceX公布的AI1卫星散热密度约为1400\,\unitWpm{}\cite{spacex2026ai1}。我们使用黑体辐射方程$T=(q/\varepsilon\sigma)^{1/4}$反算。
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{AI1散热密度（1400\,\unitWpm{}）反算验证}
+\label{tab:ai1_verify}
+\begin{tabular}{cccc}
+\toprule
+$\varepsilon$ & $T$ (K) & $T$ (\unitC{}) & 验证结论 \\
+\midrule
+1.00（黑体）& 397 & 124 & 低于AI1公开温度 $\rightarrow$ 排除纯黑体 \\
+0.95          & 402 & 129 & 接近但偏高 \\
+\textbf{0.92} & \textbf{405} & \textbf{132} & \textbf{与AI1设计温度一致} $\checkmark$ \\
+0.85          & 412 & 139 & 偏高 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+反算结果（表~\ref{tab:ai1_verify}）显示，1400\,\unitWpm{}对应$\varepsilon\approx 0.92$、$T\approx 405$\,K（132\,\unitC{}），与SpaceX公开的AI1散热设计参数一致，表明该工作点在物理上成立，发射率参数也在当前航天热控涂层技术水平之内\cite{nasa1993thermal}。
+
+\subsection{1\,GW规模散热面积推算}
+
+马斯克提出的1\,GW年部署量\cite{musk2026terafab}意味着什么？我们进行简单的面积换算。
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{不同散热密度下1\,GW的散热面积需求}
+\label{tab:gw_area}
+\begin{tabular}{ccc}
+\toprule
+散热密度 $q$（\unitWpm{}） & 所需面积（m\textsuperscript{2}） & 可视化参考 \\
+\midrule
+1400（AI1基准） & $7.14\times 10^{5}$ & 100个标准足球场 \\
+2000（高温方案） & $5.00\times 10^{5}$ & 70个标准足球场 \\
+4000（尖端材料\cite{kanti2025graphene}） & $2.50\times 10^{5}$ & 35个标准足球场 \\
+6000（理论极限） & $1.67\times 10^{5}$ & 23个标准足球场 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+在AI1基准散热密度下，1\,GW集群需要约71万平方米的辐射散热面——相当于100个标准足球场的面积。即使采用最乐观的尖端石墨烯复合材料方案\cite{kanti2025graphene}（$q\approx4000$\,\unitWpm{}），仍需约25万平方米。这不是材料层面的"能否制造"问题，而是航天器在轨展开、姿态控制与遮挡管理的系统工程挑战。
+
+\subsection{LEO轨道热环境：太空不是"理想冷沉"}
+
+"太空是巨大的冷沉"这一直觉描述在传播中产生了误导。图~\ref{fig:leo_thermal} 展示了低地球轨道的真实热环境。
+
+\begin{figure}[H]
+\centering
+\input{figures/leo_thermal_env.tex}
+\caption{LEO轨道热环境分析：太阳直射、地球红外辐射与反照}
+\label{fig:leo_thermal}
+\end{figure}
+
+LEO轨道卫星面临三个主要热源：(1) 太阳直射（1361\,\unitWpm{}，定向后可降至约5\%吸收）；(2) 地球红外辐射（约240\,\unitWpm{}）；(3) 地球反照（约480\,\unitWpm{}）。三源合计即使经优化，仍对散热板形成约160--240\,\unitWpm{}的"寄生热流"。这意味着轨道散热不是"往冷空间一丢了之"，而是需要精确的热设计——散热面必须定向避开地球，太阳入射需通过刀口式（knife-edge）散热板最小化吸收面积。深空2.7\,K冷背景确实存在，但散热效率受限于中间介质——散热板的发射率、导热路径的热阻、以及热源（GPU）与辐射面之间的温度梯度。
+
+\subsection{PUE视角：轨道与地面的能效对比}
+
+传统数据中心用PUE（Power Usage Effectiveness）衡量能效。轨道数据中心PUE的等效估算见表~\ref{tab:pue}。
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{轨道与地面数据中心PUE等效对比}
+\label{tab:pue}
+\begin{tabular}{lcc}
+\toprule
+\textbf{指标} & \textbf{轨道数据中心} & \textbf{地面数据中心（2026）} \\
+\midrule
+散热方式 & 被动辐射（零能耗） & 制冷机+冷塔（机械） \\
+PUE（散热部分） & $\sim$1.00 & $\sim$1.05--1.10 \\
+\addlinespace
+供电方式 & 光伏+储能 & 双路电网 \\
+PUE（供电部分） & $\sim$1.30--1.50 & $\sim$1.02--1.03 \\
+\addlinespace
+\textbf{综合等效PUE} & $\sim$\textbf{1.35} & $\sim$\textbf{1.10（行业平均）} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+轨道数据中心在散热端确实占优——被动辐射冷却不消耗额外能量。但供电端的光伏转换损失（$\sim$30\%）与储能循环损耗使得综合等效PUE反高于地面。这一逆直觉的结论是后续商业分析中轨道TCO偏高的物理根源之一。
+
+\subsection{科学层小结}
+
+物理学层面，太空数据中心散热方案在数学上可行，AI1卫星的工作点经斯特藩-玻尔兹曼方程验证成立。但当规模从单星推至GW集群时，散热面积需求呈线性增长（$A = P/q$），71万平米的辐射面构型超出了当前在轨大型结构的工程经验。PUE等效对比进一步揭示：轨道在散热端省去了机械制冷能耗，但供电端的光伏损失抵消了这一优势。"物理上可以，但余量有限"——这是科学层对马斯克散热主张的总体评价。

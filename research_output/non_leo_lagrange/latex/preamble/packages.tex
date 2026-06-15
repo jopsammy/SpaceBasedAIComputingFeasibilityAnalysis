@@ -1,0 +1,53 @@
+% packages.tex — 宏包清单（无自定义命令）
+% 参考: kerrigan skill latex-guide.md §9 Preamble 组织顺序
+
+% ===== 1. 字体引擎（必须最先加载）=====
+\usepackage{fontspec}
+
+% ===== 2. 语言支持 =====
+\usepackage[UTF8,space=auto]{ctex}
+
+% ===== 3. 底层支持 =====
+\usepackage{expl3}
+
+% ===== 4. 数学支持 =====
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+
+% ===== 5. 表格与浮动体 =====
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{threeparttable}
+
+% ===== 6. 图形与颜色 =====
+\usepackage{graphicx}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{shapes,arrows,positioning,fit,backgrounds,calc,patterns}
+
+% ===== 7. 超链接与参考文献 =====
+\usepackage[style=gb7714-2015,backend=biber,sorting=none]{biblatex}
+\usepackage[hidelinks]{hyperref}
+
+% ===== 8. 文档结构增强 =====
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage{enumitem}
+
+% ===== 9. 代码与工具 =====
+\usepackage{cleveref}
+\usepackage{verbatim}
+\usepackage{ulem}
+
+% ===== 10. 页面布局 =====
+\usepackage[top=2.5cm,bottom=2.5cm,left=2.8cm,right=2.8cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\onehalfspacing

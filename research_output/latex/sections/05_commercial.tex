@@ -1,0 +1,304 @@
+% sections/05_commercial.tex -- Q7/Q8/Q9/Q10/Q11 商业分析与近未来展望
+
+\section{商业分析与近未来展望}
+
+\subsection{Q7：轨道vs地面数据中心TCO全生命周期对比}
+
+\subsubsection{地面数据中心TCO基线}
+
+1 MW IT负载的地面AI数据中心10年TCO结构\cite{cloudzero2026gpu,cgranier2025capex,spheron2026gpu}：
+
+\begin{table}[H]
+\centering
+\caption{地面AI数据中心10年TCO（1 MW IT负载）}
+\label{tab:ground_tco}
+\small
+\begin{tabular}{lrc}
+\toprule
+\textbf{成本项} & \textbf{金额（US\$M）} & \textbf{占比} \\
+\midrule
+基建外壳（土地+建筑+电力+冷却） & \$7--12M & 15--20\% \\
+GPU硬件（GB300 NVL72，$\sim$5柜/MW） & \$22--28M & 55--65\% \\
+网络+存储+其他IT & \$5--8M & 15--20\% \\
+\rowcolor{gray!10} \textbf{总Capex} & \textbf{\$35--48M} & \textbf{100\%} \\
+电力（10年，\$0.05--0.10/kWh） & \$5--10M & -- \\
+冷却能耗（PUE 1.1--1.3） & \$3--5M & -- \\
+运维 & \$3--5M & -- \\
+退役 & \$1--2M & -- \\
+\rowcolor{gray!10} \textbf{10年TCO合计} & \textbf{\$37.8--91.4M} & \textbf{--} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{轨道数据中心TCO——多情景对比}
+
+\begin{table}[H]
+\centering
+\caption{轨道vs地面数据中心10年TCO多情景对比}
+\label{tab:orbital_tco}
+\begin{tabularx}{\textwidth}{lcccc}
+\toprule
+\textbf{情景} & \textbf{轨道TCO} & \textbf{地面低端} & \textbf{地面高端} & \textbf{比值} \\
+\midrule
+乐观（\$50/kg, 溢价2.5x, 寿命7年） & \$261.4M & \$34.6M & \$88.3M & 4.3x \\
+基准（\$200/kg, 溢价3.5x, 寿命5年） & \$681.0M & \$37.8M & \$91.4M & 10.5x \\
+悲观（\$500/kg, 溢价5x, 寿命3年） & \$1,220M & \$42.1M & \$95.8M & 17.7x \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+轨道数据中心10年TCO的构成（基准情景）\cite{note_tco_script}：
+
+\begin{table}[H]
+\centering
+\caption{轨道数据中心10年TCO构成（基准情景 \$200/kg）}
+\label{tab:orbital_detail}
+\begin{tabular}{lrl}
+\toprule
+\textbf{成本项} & \textbf{金额（US\$M）} & \textbf{说明} \\
+\midrule
+发射成本 & \$2.0M & 1次Starship，200t \\
+计算硬件（抗辐射加固） & \$34.0M & 溢价3--5x地面 \\
+散热系统 & \$3.5M & 辐射散热板+液冷回路 \\
+光伏+储能 & \$300.0M & 5,000 m\textsuperscript{2}空间级GaAs \\
+卫星平台 & \$30.0M & 姿态控制+结构+通信 \\
+硬件替换（设备） & \$257.3M & 寿命5年后替换 \\
+硬件替换（发射） & \$1.0M & 替换卫星的发射成本 \\
+地面运维 & \$50.0M & 地面站+测控+运维人员 \\
+退役 & \$3.0M & 受控再入/坟墓轨道 \\
+\rowcolor{gray!10} \textbf{10年TCO合计} & \textbf{\$681.0M} & \textbf{vs地面中位\$64.6M} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\input{figures/tco_breakdown}
+\caption{轨道数据中心 vs 地面数据中心 10年TCO成本构成堆叠对比。左柱：轨道数据中心总TCO \$681M，光伏+储能（\$300M）和硬件替换（\$258M）为最大成本项；右柱：地面数据中心总TCO \$65M，GPU硬件及刷新（\$39M）和网络存储（\$26M）占主导。轨道TCO是地面的$\sim$10.5倍。}
+\label{fig:tco_breakdown}
+\end{figure}
+
+\subsubsection{马斯克"5年内更便宜"的敏感性分析}
+
+使太空TCO与地面持平所需的临界值\cite{pitchbook2026spacex}：
+
+\begin{table}[H]
+\centering
+\caption{关键临界值：太空算力TCO与地面持平的条件}
+\label{tab:threshold}
+\small
+\begin{tabular}{lp{2.5cm}p{1.8cm}p{1.5cm}p{3.5cm}}
+\toprule
+\textbf{参数} & \textbf{当前值} & \textbf{临界值} & \textbf{差距} & \textbf{达成时间估计} \\
+\midrule
+发射成本（\$/kg） & $\sim$\$500--2,700 & $<$\$100/kg & 5--27x & 乐观2028，基准2030+ \\
+轨道硬件成本（\$/W） & $\sim$\$80--200/W & $<$\$20/W & 4--10x & 需大批量生产+标准化 \\
+在轨硬件寿命（年） & 估计3--5 & $>$7年 & $\sim$2x & 未知，待Rubin在轨验证 \\
+GPU能效（TFLOPS/W） & $\sim$7.5（B200 FP4） & $>$20 & -- & Rubin R100已$\sim$21.7 \\
+空间光伏成本（\$/W） & \$200--400 & $<$\$50/W & 4--8x & 需规模化生产 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{条件组合判断}：发射成本$<$\$100/kg + 硬件寿命$>$7年 + 硬件成本溢价$<$3x地面 $\rightarrow$ 轨道TCO为\$408.1M（6.3x地面），即使在翻转条件组合下仍未达到地面水平。乐观估计2029--2032年可达临界可行（概率$<$25\%）。
+
+\subsection{Q8：GPU/ASIC能效的历史演进与近未来外推}
+
+\subsubsection{NVIDIA GPU架构TFLOPS/W历史曲线}
+
+\begin{table}[H]
+\centering
+\caption{NVIDIA数据中心旗舰GPU能效演进（2012--2026）}
+\label{tab:gpu_efficiency}
+\footnotesize
+\begin{tabularx}{\textwidth}{lccccccr}
+\toprule
+\textbf{架构} & \textbf{年份} & \textbf{旗舰} & \textbf{制程} & \textbf{TDP (W)} & \textbf{AI TFLOPS} & \textbf{AI TFLOPS/W} & \textbf{精度} \\
+\midrule
+Kepler & 2012 & K40 & 28nm & 235 & -- & -- & -- \\
+Pascal & 2016 & P100 & 16nm & 300 & 21.2 & 0.071 & FP16 \\
+Volta & 2017 & V100 & 12nm & 300 & 125 & 0.42 & FP16 Tensor \\
+Ampere & 2020 & A100 & 7nm & 400 & 312 & 0.78 & FP16 Tensor \\
+Hopper & 2022 & H100 & 4nm & 700 & 1,979 & 2.83 & FP8 Tensor \\
+Blackwell & 2024 & B200 & 4NP & 1,200 & $\sim$9,000 & 7.5 & FP4 Tensor \\
+\textbf{Rubin} & \textbf{2026} & \textbf{R100} & \textbf{3nm} & \textbf{$\sim$2,300} & \textbf{$\sim$50,000} & \textbf{$\sim$21.7} & \textbf{FP4 Tensor} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{关键趋势}：AI精度能效（FP16$\rightarrow$FP4 Tensor）8年提升约52倍，每代约2.5--3x提升——从Volta的0.42攀升至Rubin的$\sim$21.7。但绝对功耗同步飙升10倍（235~W$\rightarrow$2{,}300~W）
+\cite{nvidia2026rubin,spheron2026rubin,barrack2026rubin}。
+
+\begin{figure}[H]
+\centering
+\input{figures/gpu_paradox}
+\caption{GPU能效悖论：AI TFLOPS/W（左轴，对数刻度，蓝色实线）持续提升$\sim$52倍，但TDP（右轴，红色虚线）同步飙升$\sim$10倍。能效改善每瓦产出，却不能降低每芯片的散热需求——Dennard缩放已失效，对轨道数据中心的散热瓶颈缓解有限。}
+\label{fig:gpu_paradox}
+\end{figure}
+
+\subsubsection{2030年GPU能效推算与热密度影响}
+
+基于台积电工艺路线图（N3$\rightarrow$N2$\rightarrow$A14 1.4nm$\rightarrow$A13/A12 1.2--1.3nm）\cite{tsmc2026symposium,fiisual2026tsmc}，2030年GPU能效预计达$\sim$100--150 TFLOPS/W（FP4），相同算力所需GPU数量减少5--7x。
+
+但\textbf{芯片级热密度仍在增加}（Dennard缩放已失效），轨道散热面积需求与算力几乎成正比。能效提升改善的是每瓦产出而非每芯片散热需求——\textbf{对轨道数据中心的散热瓶颈缓解有限}。
+
+\subsection{Q9：发射成本的历史下降曲线与近未来外推}
+
+\subsubsection{Wright's Law适用性}
+
+SpaceX发射成本15年间下降约100倍（Shuttle \$54,500/kg$\rightarrow$Starship目标$\sim$\$100--200/kg），遵循航空航天领域标准85\%学习率（累计产量翻倍时单位成本降15\%）\cite{nasalaunch2018}。
+
+\textbf{局限性}：Wright's Law仅适用于制造成本。33fg Research（2026）指出，\$/kg渐进线在$\sim$\$10/kg（制造成本极限）+ 燃料/运营$\sim$\$10--20/kg $\rightarrow$ \textbf{物理地板约\$20--30/kg}\cite{33fg2026starship}。
+
+\subsubsection{2030年弹性预估}
+
+\begin{table}[H]
+\centering
+\caption{发射成本2030年弹性预估}
+\label{tab:launch_2030}
+\small
+\begin{tabular}{lp{1.7cm}p{2.2cm}p{5.5cm}p{2.5cm}}
+\toprule
+\textbf{情景} & \textbf{2030 \$/kg} & \textbf{年发射频次} & \textbf{关键假设} & \textbf{概率评估} \\
+\midrule
+乐观 & \$50/kg & 200+/年 & FAA大幅放宽、复用$>$30次/艘、年产$>$500艘 & 低（$<$20\%） \\
+基准 & \$200/kg & 100--150/年 & FAA扩展至100+/年、Block 3成熟、复用10--20次 & 中（$\sim$50\%） \\
+悲观 & \$500/kg & 50--70/年 & FAA维持69/年上限、复用率$<$5次 & 中偏低（$\sim$30\%） \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{核心洞察}：即使发射成本降至\$50/kg（乐观），仅此一项不足以使太空TCO低于地面——硬件成本溢价和寿命短板是同等重要的变量\cite{spaceodyssey2026,exterra2026}。
+
+\subsection{Q10：下一代散热材料与结构设计对辐射散热极限的突破潜力}
+
+\subsubsection{关键技术路线图}
+
+\begin{table}[H]
+\centering
+\caption{下一代空间散热技术路线图}
+\label{tab:thermal_roadmap}
+\small
+\begin{tabular}{p{3.5cm}clp{4.0cm}}
+\toprule
+\textbf{技术方向} & \textbf{TRL} & \textbf{预计部署} & \textbf{关键参数改进} \\
+\midrule
+石墨烯涂层热管 & 4--5 & 2028--2032 & 热导率$>$5,000 W/(m·K)\cite{esa2017graphene,scalia2023graphene} \\
+\hline
+增材制造钛环路热管+可展开辐射板 & 5--6 & 2027--2030 & 热传输$>$10m，面积$\times$2--3\cite{nasa2024tfaws} \\
+\hline
+形状记忆合金自展开辐射器 & 3--4 & 2029--2033 & 被动热驱动展开\cite{pennstate2024sma} \\
+\hline
+FENNEC折叠式CubeSat辐射器 & 5--6 & 2026--2028 & CubeSat散热能力$\times$2--3\cite{esa2024fennec} \\
+\hline
+微结构表面增强辐射率 & 3--5 & 2030--2035 & $\varepsilon$：0.85$\rightarrow$0.95+ \\
+\hline
+空间两相流泵驱动冷却 & 5--6 & 2026--2030 & 等效热导率百倍于固体 \\
+\hline
+折纸式/充气式散热面 & 2--4 & 2032+ & 超高收纳比（$>$10:1） \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{散热密度天花板突破推演}
+
+基于Q3（真实热环境惩罚）和Q10（材料/结构进步）的综合修正\cite{nasa2024sst}：
+
+\begin{table}[H]
+\centering
+\caption{散热密度进化路径与1 GW散热面积修正}
+\label{tab:flux_evolution}
+\small
+\begin{tabular}{p{3.0cm}cccc}
+\toprule
+\textbf{技术组合} & $\varepsilon$ & $T$ (\unitC{}) & \textbf{通量 (W/m\textsuperscript{2})} & \textbf{1 GW面积 (km\textsuperscript{2})} \\
+\midrule
+\textbf{AI1当前（BOL）} & 0.90 & 69.5 & 1,400 & 0.71 \\
+Level 1：高$\varepsilon$涂层+80\unitC{} & 0.93 & 80 & 1,740 & 0.57 \\
+Level 2：+微结构$\varepsilon$=0.96+90\unitC{} & 0.96 & 90 & 2,150 & 0.47 \\
+Level 3：+Ti-石墨辐射翼+120\unitC{} & 0.96 & 120 & 2,970 & 0.34 \\
+Level 4：+折纸展开$\times$5面积 & 0.96 & 100 & $\sim$2,130$\rightarrow\geq$等效10,650 & $\sim$0.09 \\
+\rowcolor{gray!10}
+\textbf{综合2030--32最现实估计} & \textbf{0.93} & \textbf{75--100} & \textbf{1,500--2,000} & \textbf{0.50--0.67} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{结论}：散热密度翻倍（1,400$\rightarrow$2,800+ W/m\textsuperscript{2}）在2035年前的单一技术路径上不可行，但"高温芯片 + 耐久涂层 + 适度展开"的组合路径可在2032年前实现40--50\%改善\cite{nasatfaws2024ti,act2026deployable,kanti2025graphene}。
+
+\subsection{Q11："静态今天"vs"近未来外推"对比元分析}
+
+\subsubsection{结论对比表}
+
+\begin{table}[H]
+\centering
+\caption{静态（2026）vs近未来（2030）结论对比}
+\label{tab:static_vs_future}
+\small
+\begin{tabular}{p{2.5cm}p{4.5cm}p{4.5cm}}
+\toprule
+\textbf{维度} & \textbf{静态结论（2026）} & \textbf{近未来结论（2030）} \\
+\midrule
+发射成本 & \$500--2,700/kg & \$50--200/kg（Starship复用+学习曲线） \\
+GPU能效 & B200 $\sim$7.5 TFLOPS/W & $\sim$100--150 TFLOPS/W（TSMC 3nm$\rightarrow$1.4nm） \\
+散热物理 & $\sim$1,400\unitWpm{}天花板 & 1,500--2,000\unitWpm{}（材料进步20--50\%） \\
+太阳能供电 & 30\%效率GaAs，1MW需$\sim$5,000 m\textsuperscript{2} & 36\%效率五结电池，1MW需$\sim$4,000 m\textsuperscript{2} \\
+硬件可靠性 & 轨道寿命3--5年（估计） & 可能5--7年（Rubin在轨验证+设计迭代） \\
+地面竞争 & 地面TCO \$37.8--91.4M/10年/MW（中位\$64.6M） & 地面也在进步（不是静止参照系） \\
+\rowcolor{gray!10}
+\textbf{总体判断} & \textbf{TCO是地面的10.5倍，不可行} & \textbf{乐观下可接近4.3x，仍显著高于地面} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{关键阈值矩阵：翻转条件组合}
+
+\begin{table}[H]
+\centering
+\caption{太空算力从"不可行"翻转为"可行"的条件组合}
+\label{tab:flip_matrix}
+\footnotesize
+\begin{tabular}{p{1.3cm}p{1.6cm}p{1.5cm}p{1.3cm}p{1.2cm}p{1.1cm}p{1.3cm}p{1.4cm}}
+\toprule
+\textbf{组合} & \textbf{发射成本} & \textbf{GPU能效} & \textbf{散热密度} & \textbf{硬件寿命} & \textbf{硬件溢价} & \textbf{预计时间} & \textbf{概率} \\
+\midrule
+A：最乐观 & $<$\$50/kg & $>$150 TF/W & $>$2,500 & $>$7年 & $<$2x & 2032+ & 极低（$<$10\%） \\
+B：乐观可行 & $<$\$100/kg & $>$100 TF/W & $>$2,000 & $>$5年 & $<$3x & 2030--32 & 低（15--25\%） \\
+C：临界可行 & $<$\$200/kg & $>$80 TF/W & $>$1,800 & $>$5年 & $<$4x & 2032--35 & 中低（25--40\%） \\
+D：仍不可行 & $>$\$200/kg & $<$80 TF/W & $<$1,800 & $<$5年 & $>$4x & 2035+ & 当前状态 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\input{figures/threshold_radar}
+\caption{临界阈值蛛网图：四轴雷达图对比2026基准（红色虚线）与翻转条件（蓝色实线）。四轴分别为GPU能效（TFLOPS/W）、散热密度（W/m\textsuperscript{2}）、发射成本（\$/kg，反向）和硬件寿命（年）。两多边形面积差代表当前不可行区间——需要四个参数同时达到临界值才可能翻转，单一参数突破不足以改变结论。}
+\label{fig:threshold_radar}
+\end{figure}
+
+\subsubsection{黄仁勋vs马斯克判断的独立检验}
+
+\begin{table}[H]
+\centering
+\caption{黄仁勋"务实保留"vs马斯克"5年更便宜"的交叉验证}
+\label{tab:huang_vs_musk}
+\small
+\begin{tabular}{p{2.0cm}p{4.0cm}p{3.5cm}p{4.0cm}}
+\toprule
+\textbf{判断} & \textbf{黄仁勋立场} & \textbf{马斯克立场} & \textbf{本报告独立判断} \\
+\midrule
+散热是瓶颈？ & 是（"需要极大散热面积"） & 部分承认但乐观 & \textbf{同意黄仁勋：不受摩尔定律驱动} \\
+\hline
+5年内成本交叉？ & 不给具体年份 & 明确"4--5年" & \textbf{乐观下可能但概率$<$25\%} \\
+\hline
+硬件可靠性？ & 隐忧 & 未充分讨论 & \textbf{数据严重不足，关键不确定性} \\
+\hline
+当前经济性？ & "不理想" & 未直接否认 & \textbf{同意黄仁勋：10.5x地面} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{核心洞察}：没有任何单一参数的突破能使太空算力翻转——需要发射成本、GPU能效、散热密度、硬件寿命\textbf{四个参数同时}达到临界值。这解释了为什么黄仁勋（从芯片工程视角）比马斯克（从文明能源视角）更保守：黄仁勋看到了多参数耦合的工程难度，马斯克假设所有参数会同步改善。
+
+% end of 05_commercial

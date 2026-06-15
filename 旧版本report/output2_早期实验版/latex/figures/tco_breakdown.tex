@@ -1,0 +1,72 @@
+% figures/tco_breakdown.tex
+% TCO 成本构成堆叠柱状图 —— 轨道 vs 地面
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.95\textwidth,
+    height=8cm,
+    ybar stacked,
+    bar width=55pt,
+    ylabel={\textbf{10年TCO (US\$\,M)}},
+    ymin=0, ymax=750,
+    xtick={1,2},
+    xticklabels={\textbf{轨道数据中心}\\\textbf{\$681M}, \textbf{地面数据中心}\\\textbf{\$65M}},
+    xticklabel style={align=center, font=\footnotesize\bfseries},
+    ytick={0,100,200,300,400,500,600,700},
+    yticklabel style={font=\footnotesize},
+    legend style={
+        at={(0.5,-0.25)},
+        anchor=north,
+        font=\fontsize{6}{8}\selectfont,
+        legend columns=4,
+        cells={anchor=center}
+    },
+    enlarge x limits=0.35,
+]
+
+% 每个 \addplot 同时给出两柱的值
+\addplot[fill=primary!30,  draw=primary!80]  coordinates {(1,300)(2,0)};
+\addlegendentry{光伏+储能 \$300M};
+
+\addplot[fill=primary!50,  draw=primary!80]  coordinates {(1,258)(2,0)};
+\addlegendentry{硬件替换 \$258M};
+
+\addplot[fill=primary!70,  draw=primary!80]  coordinates {(1,34)(2,39)};
+\addlegendentry{计算硬件 \$34M};
+
+\addplot[fill=accent!40,   draw=accent!80]   coordinates {(1,30)(2,10)};
+\addlegendentry{卫星平台 \$30M};
+
+\addplot[fill=accent!60,   draw=accent!80]   coordinates {(1,50)(2,26)};
+\addlegendentry{地面运维 \$50M};
+
+\addplot[fill=accent!80,   draw=accent!80]   coordinates {(1,2)(2,8)};
+\addlegendentry{发射 \$2M};
+
+\addplot[fill=graylight!60,draw=graybase!60] coordinates {(1,7)(2,5)};
+\addlegendentry{其他 \$7M};
+
+\addplot[fill=graybase!30, draw=graybase!60] coordinates {(1,0)(2,2)};
+\addlegendentry{退役};
+
+% 总量标注
+\node[above, font=\footnotesize\bfseries, primary]
+    at (axis cs:1,690) {\$681M};
+\node[above, font=\footnotesize\bfseries, primary]
+    at (axis cs:2,90) {\$65M};
+
+% 右侧柱各段标注
+\node[anchor=west, font=\tiny, text=primary!70]
+    at (axis cs:2.2,18) {GPU硬件及刷新 \$39M};
+\node[anchor=west, font=\tiny, text=accent!40]
+    at (axis cs:2.2,33) {基建 \$10M};
+\node[anchor=west, font=\tiny, text=accent!60]
+    at (axis cs:2.2,53) {网络存储 \$26M};
+\node[anchor=west, font=\tiny, text=accent!80]
+    at (axis cs:2.2,68) {电力 \$8M};
+\node[anchor=west, font=\tiny, text=graybase!60]
+    at (axis cs:2.2,75) {运维 \$5M};
+\node[anchor=west, font=\tiny, text=graybase!40]
+    at (axis cs:2.2,82) {退役 \$2M};
+
+\end{axis}
+\end{tikzpicture}

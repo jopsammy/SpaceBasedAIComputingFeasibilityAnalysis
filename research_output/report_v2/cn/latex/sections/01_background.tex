@@ -1,0 +1,111 @@
+% sections/01_background.tex
+% 第1章：背景与研究对象
+
+\section{背景与研究对象}
+
+\subsection{什么是太空算力}
+
+太空算力（Orbital/space-based AI compute）指部署于地球轨道上的、以 AI 训练或推理为主要工作负载的计算卫星或卫星集群。它不同于传统的通信卫星（如星链 Starlink）——通信卫星以信号中继为主要功能，功耗通常在数百瓦到数千瓦量级；而太空算力卫星的功耗可达几十到上百千瓦，功率密度高 1--2 个数量级，这对散热、供电和在轨可靠性提出了根本性不同的工程挑战。
+
+与地面数据中心相比，太空算力在物理环境上有四个本质区别：
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{散热方式单一}：太空中无空气、无水，不存在传导和对流。所有废热必须通过辐射散入深空——这是斯特藩-玻尔兹曼定律的物理硬约束，也构成了本报告第4章的核心分析对象。
+    \item \textbf{能源来源固定}：太空光伏是唯一可持续的能源形式。LEO 轨道上不存在化石燃料、不接电网，所有电力必须从光伏阵列和电池储能系统中获取。
+    \item \textbf{部署方式特殊}：所有硬件必须通过火箭发射入轨，单次发射的质量和体积受运载火箭约束。发射成本（每千克）直接影响总拥有成本（TCO），但本报告将展示其影响比直觉预期要小。
+    \item \textbf{维护方式受限}：一旦入轨，硬件在物理上不可触及。不能像地面数据中心那样派人换 GPU、加冷却液或更换故障电源模块。在轨维修的经济可行性是一个尚未解决的重要问题。
+\end{enumerate}
+
+\subsection{为什么太空算力被提出}
+
+太空算力的提出并非凭空而来，它回应了地面 AI 基础设施面临的三个日趋紧迫的约束——常被称为"三重墙"：
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{电力墙}：单座 AI 数据中心的电力需求已从几十 MW 快速攀升至 GW 级别。部分区域电网无法满足新建数据中心的供电申请，选址成为瓶颈。
+    \item \textbf{土地墙}：超大规模数据中心占地数百英亩，在人口密集地区面临土地成本和社区反对的双重压力。
+    \item \textbf{冷却墙}：GPU 机架的功率密度持续攀升（GB300 NVL72 单机架可达 140\;kW 以上），液冷正在取代风冷，但冷却基础设施本身消耗大量电力（PUE 通常在 1.1--1.4 之间）和水资源。
+\end{enumerate}
+
+太空算力的支持者认为，轨道环境天然绕开了这些约束：
+\begin{itemize}[leftmargin=*]
+    \item 太阳能 24/7 可用（LEO 轨道没有大气层遮挡日光的"天气"概念，只有短时食影——约 35--37 分钟每 96--97 分钟的轨道周期）。
+    \item 理论上无限的物理扩展空间（近地轨道是三维球壳，部署密度远未达到空间碎片约束的上限）。
+    \item 以辐射方式将废热排入 3\;K 的深空背景，在物理上比地面向 300\;K 大气排热效率更高。
+\end{itemize}
+
+\subsection{关键参与方}
+
+\subsubsection{SpaceX 与埃隆·马斯克}
+
+SpaceX 是轨道 AI 计算最激进的推动者。截至 2026 年 6 月，其主要行动包括：
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{AI1 卫星}：2026 年 6 月 8 日，SpaceX 通过官方视频首次详细披露 AI1 卫星参数——翼展 70\;m、峰值功率 150\;kW、持续功率 120\;kW、LEO 轨道（约 600\;km）、散热密度约 1,400\;W/m\textsuperscript{2}（物理面板面积）。首批 2 颗原型计划 2027 年初发射。这一公开发布使此前完全依赖推测的分析获得了可验证的锚点\cite{spacex2026ai1}。
+    \item \textbf{Starship 超重型运载系统}：Starship 是实现大规模轨道部署的唯一运力依托。V3 版本目标运力为 100+ 吨至 LEO（全复用模式）。SpaceX 已获得 FAA 批准在博卡奇卡（25 次/年）和肯尼迪航天中心 LC-39A（44 次/年）进行 Starship 发射，合计年上限为 69 次\cite{faa2025boca,faa2026ksc}。
+    \item \textbf{FCC 百万颗卫星申请}：2026 年 1 月，SpaceX 向 FCC 提交了部署多达 100 万颗轨道 AI 数据中心卫星的授权申请，轨道范围 500--2,000\;km。该申请的工程可行性将在本报告第5章中讨论\cite{spacex2026fcc}。
+    \item \textbf{S-1 招股书中的轨道 AI 定位}：2026 年 5 月的 SEC S-1/A 文件中，SpaceX 将轨道 AI 算力定位为"仅 SpaceX 能解决的壁垒级难题"，计划 2028 年开始部署，每年 100\;GW 目标。IPO 估值区间为 \$1.75--2\;T\cite{spacex2026s1}。
+    \item \textbf{Terafab 芯片工厂}：2026 年 3 月，马斯克宣布 SpaceX、Tesla 和 xAI 三方合资建设德克萨斯州 Terafab 巨型芯片工厂，投资 \$250\;亿，声称 80\% 算力产出将用于轨道部署\cite{musk2026terafab}。
+\end{itemize}
+
+\subsubsection{NVIDIA 与黄仁勋}
+
+NVIDIA 在太空算力领域的参与方式与 SpaceX 形成鲜明对比：产品驱动而非叙事驱动，在乐观远景中嵌入务实的工程保留。
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Space-1 Vera Rubin 平台}：2026 年 3 月 GTC 大会上，NVIDIA 发布 Space-1 太空计算平台，核心是 Rubin GPU——据 NVIDIA 官方称太空推理性能比 H100 提升 25 倍。平台包括 IGX Thor 边缘计算模块，已与 6 家太空企业建立合作\cite{huang2026gtc}。
+    \item \textbf{黄仁勋的审慎立场}：尽管发布了硬件产品，黄仁勋在多个场合反复强调散热是太空计算的根本瓶颈。他在 2026 年 3 月 All-In Podcast 上的表态——"这需要数年时间。没关系，我有的是时间"——是最接近其真实时间线判断的公开表述\cite{huang2026allin}。
+    \item \textbf{极端协同设计理念}：在 Lex Fridman Podcast 中，黄仁勋阐述了"extreme co-design"理念——芯片、网络、冷却和算法必须联合优化才能让太空算力在工程上成立。这暗示他认为仅靠"把地面 GPU 搬上天"是不够的\cite{huang2026lex}。
+\end{itemize}
+
+\subsubsection{其他相关方}
+
+- \textbf{Exlumina}：专注于太空边缘 AI 计算的初创企业，定位为 LEO 轨道推理服务提供商。
+- \textbf{Google Suncatcher（arXiv preprint, 2025）}：Google 研究团队发表的学术论文，探讨天基 AI 集群的拓扑和带宽需求，给出了 tens of Tbps 星间激光链路（ISL）的需求量级，为本报告通信子系统的质量/成本估计提供了独立参考锚点。
+- \textbf{多家卫星通信企业}：AST SpaceMobile、Telesat 等正在部署的大规模 LEO 星座的工程经验（如可展开天线、卫星平台设计）构成了太空算力的产业技术基础。
+
+\subsection{关键事件时间线}
+
+\begin{table}[H]
+\centering
+\caption{太空算力关键事件时间线（2024--2026）}
+\label{tab:timeline}
+\small
+\begin{tabular}{p{2.0cm}p{3.5cm}p{8.0cm}}
+\toprule
+\textbf{时间} & \textbf{事件} & \textbf{对本报告分析框架的影响} \\
+\midrule
+2024--09 & 马斯克 X 帖：Kardashev 度规 & 首次将太空 AI 与文明能源叙事挂钩，建立了马斯克的论述框架\cite{musk2024kardashev} \\
+2025--11 & 美沙投资论坛：两人首次同台 & 目前最接近"黄仁勋回应马斯克"的公开记录；黄仁勋从硬件重量切入讨论散热\cite{musk_huang2025saudi} \\
+2026--01 & SpaceX FCC 百万颗卫星申请 & 部署规模首次以官方文件形式公开，将讨论从"是否可能"推向"多大规模"\cite{spacex2026fcc} \\
+2026--02 & NVIDIA Q4 财报电话会 & 黄仁勋首次以"经济性不理想"定性太空算力当前阶段\cite{huang2026earnings} \\
+2026--03 & NVIDIA GTC 2026：Space-1 Rubin & NVIDIA 从"评论"进入"产品"，标志着太空算力讨论的分水岭\cite{huang2026gtc} \\
+2026--03 & All-In Podcast & 黄仁勋给出最接近时间线判断的表述："需要数年"\cite{huang2026allin} \\
+2026--03 & Terafab 芯片厂发布 & 马斯克的供应链布局从"送硬件上天"延伸到"芯片自产"\cite{musk2026terafab} \\
+2026--05 & SpaceX S-1 招股书 & 轨道 AI 成为 IPO 核心叙事，2028 年部署起点、每年 100\;GW 目标\cite{spacex2026s1} \\
+2026--06 & AI1 卫星参数发布 & 为本报告提供了最重要的单一可验证锚点：翼展 70\;m、150\;kW 峰值、120\;kW 持续\cite{spacex2026ai1} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{本报告的研究范围}
+
+\subsubsection{研究什么}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{轨道范围}：低地球轨道（LEO，约 600\;km），这是 AI1 的目标轨道，也是当前讨论的焦点。
+    \item \textbf{分析单元}：1\;MW 持续 IT 负载（即最终送达计算硬件的可用功率）、10 年总窗口（含重射成本的分支计算）、NVIDIA Blackwell 架构（GB300 NVL72 为地面硬件锚点）作为基线。
+    \item \textbf{分析维度}：物理可行性（散热是否可能——第4章）、工程可行性（能否造出来并运行——第5章）、商业可行性（是否值得投入——第6章）。
+    \item \textbf{技术路线}：GaAs（砷化镓）III-V 族多结太阳电池为主线（本报告的独立分析表明这几乎是 AI1 的唯一可行路线），HJT（异质结硅电池）为并行比较路线（成本潜力值得关注但受部署约束排除）。
+\end{itemize}
+
+\subsubsection{不研究什么}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{MEO/GEO/深空算力}：尽管马斯克的论述中提及了月球制造和电磁炮发射，但这些超出本报告的分析范围（不排除未来作为延伸研究）。
+    \item \textbf{通信星座基础设施}：太空算力需要星间激光链路（ISL）和地面网关作为配套，但通信系统仅作为卫星子系统在质量和成本维度上纳入 TCO，不作为独立研究主题。
+    \item \textbf{地面数据中心的全面替代分析}：本报告以 \$64.6M USD（10 年总窗口、1\;MW IT 负载）作为地面 AI 数据中心的参照 TCO，但不做地面各项技术的详细拆解对比。
+    \item \textbf{投资建议}：本报告是一份技术可行性分析报告，不构成任何形式的投资推荐。
+    \item \textbf{监管与频谱}：FCC 申请、ITU 频谱协调和空间交通管理等政策维度不在本报告的技术分析范围内。
+\end{itemize}
+
+\endinput

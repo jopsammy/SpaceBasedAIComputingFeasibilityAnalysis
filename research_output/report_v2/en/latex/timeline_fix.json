@@ -1,0 +1,831 @@
+{
+  "script": "acp-traetune-kerrigan-s-tex-marp-necklace/format_guard",
+  "declaration": "本报告仅代表最低限度格式性预检，不替代人工审查，不评价内容质量",
+  "target": "main.tex",
+  "generated_at": "2026-06-15T20:55:37.084469",
+  "files": [
+    {
+      "path": "D:\\2024备份和迁移\\2024备份和迁移\\f复旭文件\\h彗星计划相关\\其他资料\\凯瑞甘的texmarp项链孵化池\\黄仁勋发言调研\\research_output\\report_v2\\en\\latex\\main.tex",
+      "file_type": "latex",
+      "messages": [
+        {
+          "severity": "warning",
+          "code": "TEX001",
+          "message": "缺少推荐宏包：geometry, amsmath, graphicx, booktabs, hyperref（仅警告，不影响编译判定）",
+          "line": null
+        },
+        {
+          "severity": "pass",
+          "code": "TEX005",
+          "message": "文件以 \\end{document} 结尾",
+          "line": null
+        },
+        {
+          "severity": "pass",
+          "code": "TEX006",
+          "message": "\\input{preamble/packages} 路径可解析",
+          "line": 5
+        },
+        {
+          "severity": "pass",
+          "code": "TEX006",
+          "message": "\\input{preamble/macros} 路径可解析",
+          "line": 6
+        },
+        {
+          "severity": "pass",
+          "code": "TEX006",
+          "message": "\\input{sections/00_executive_summary} 路径可解析",
+          "line": 45
+        },
+        {
+          "severity": "pass",
+          "code": "TEX006",
+          "message": "\\input{sections/01_background} 路径可解析",
+          "line": 46
+        },
+        {
+          "severity": "pass",
+          "code": "TEX006",
+          "message": "\\input{sections/02_methodology} 路径可解析",
+          "line": 47
+        },
+        {
+          "severity": "pass",
+          "code": "TEX006",
+          "message": "\\input{sections/03_statements} 路径可解析",
+          "line": 48
+        },
+        {
+          "severity": "pass",
+          "code": "TEX006",
+          "message": "\\input{sections/04_science} 路径可解析",
+          "line": 49
+        },
+        {
+          "severity": "pass",
+          "code": "TEX006",
+          "message": "\\input{sections/05_engineering} 路径可解析",
+          "line": 50
+        },
+        {
+          "severity": "pass",
+          "code": "TEX006",
+          "message": "\\input{sections/06_commercial} 路径可解析",
+          "line": 51
+        },
+        {
+          "severity": "pass",
+          "code": "TEX006",
+          "message": "\\input{sections/07_conclusion} 路径可解析",
+          "line": 52
+        },
+        {
+          "severity": "pass",
+          "code": "TEX006",
+          "message": "\\input{appendices/appendix_a_alignment_matrix} 路径可解析",
+          "line": 61
+        },
+        {
+          "severity": "pass",
+          "code": "TEX006",
+          "message": "\\input{appendices/appendix_b_parameter_verdicts} 路径可解析",
+          "line": 62
+        },
+        {
+          "severity": "pass",
+          "code": "TEX006",
+          "message": "\\input{appendices/appendix_c_calculation_methods} 路径可解析",
+          "line": 63
+        },
+        {
+          "severity": "pass",
+          "code": "TEX006",
+          "message": "\\input{appendices/appendix_d_evidence_routing} 路径可解析",
+          "line": 64
+        },
+        {
+          "severity": "pass",
+          "code": "TEX006",
+          "message": "\\input{appendices/appendix_e_deprecated_chains} 路径可解析",
+          "line": 65
+        },
+        {
+          "severity": "error",
+          "code": "TEX008",
+          "message": ".log 文件中存在溢出信号：Overfull: 311 处（重度(>50pt): 25, 中度(20-50pt): 67, 轻度(<20pt): 215, 未分级: 4）, Underfull: 277 处——重度溢出(>50pt)必须修复",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX016",
+          "message": "已通过 --skip-tikz-overlap 跳过 TikZ 包围盒重叠检测",
+          "line": null
+        }
+      ],
+      "summary": {
+        "errors": 1,
+        "warnings": 1,
+        "passes": 16
+      }
+    },
+    {
+      "path": "D:\\2024备份和迁移\\2024备份和迁移\\f复旭文件\\h彗星计划相关\\其他资料\\凯瑞甘的texmarp项链孵化池\\黄仁勋发言调研\\research_output\\report_v2\\en\\latex\\preamble\\packages.tex",
+      "file_type": "latex",
+      "messages": [
+        {
+          "severity": "warning",
+          "code": "TEX001",
+          "message": "缺少推荐宏包：geometry（仅警告，不影响编译判定）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX002",
+          "message": "hyperref 不是最后加载的宏包（后续还有：biblatex, titlesec, titling, enumitem, longtable, tablefootnote, cleveref, makeidx, verbatim, ulem, etoolbox, colortbl），建议将 hyperref 放在导言区末尾",
+          "line": 36
+        },
+        {
+          "severity": "info",
+          "code": "TEX005",
+          "message": "文件无 \\documentclass，跳过 \\end{document} 检查（视为 \\input 子文件片段）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX007",
+          "message": "使用了 biblatex 但未声明 .bib 资源文件（\\addbibresource 或 \\bibliography）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX009",
+          "message": "未找到 .log 文件，请运行 xelatex 后重检（编译后会在同目录生成 .log）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX016",
+          "message": "已通过 --skip-tikz-overlap 跳过 TikZ 包围盒重叠检测",
+          "line": null
+        }
+      ],
+      "summary": {
+        "errors": 0,
+        "warnings": 3,
+        "passes": 0
+      }
+    },
+    {
+      "path": "D:\\2024备份和迁移\\2024备份和迁移\\f复旭文件\\h彗星计划相关\\其他资料\\凯瑞甘的texmarp项链孵化池\\黄仁勋发言调研\\research_output\\report_v2\\en\\latex\\preamble\\macros.tex",
+      "file_type": "latex",
+      "messages": [
+        {
+          "severity": "warning",
+          "code": "TEX001",
+          "message": "缺少推荐宏包：geometry, amsmath, graphicx, booktabs, hyperref（仅警告，不影响编译判定）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX005",
+          "message": "文件无 \\documentclass，跳过 \\end{document} 检查（视为 \\input 子文件片段）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX009",
+          "message": "未找到 .log 文件，请运行 xelatex 后重检（编译后会在同目录生成 .log）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX016",
+          "message": "已通过 --skip-tikz-overlap 跳过 TikZ 包围盒重叠检测",
+          "line": null
+        }
+      ],
+      "summary": {
+        "errors": 0,
+        "warnings": 1,
+        "passes": 0
+      }
+    },
+    {
+      "path": "D:\\2024备份和迁移\\2024备份和迁移\\f复旭文件\\h彗星计划相关\\其他资料\\凯瑞甘的texmarp项链孵化池\\黄仁勋发言调研\\research_output\\report_v2\\en\\latex\\sections\\00_executive_summary.tex",
+      "file_type": "latex",
+      "messages": [
+        {
+          "severity": "warning",
+          "code": "TEX001",
+          "message": "缺少推荐宏包：geometry, amsmath, graphicx, booktabs, hyperref（仅警告，不影响编译判定）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX004",
+          "message": "使用了 [H] 浮动锚定但未加载 \\usepackage{float}，请确认",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX005",
+          "message": "文件无 \\documentclass，跳过 \\end{document} 检查（视为 \\input 子文件片段）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX009",
+          "message": "未找到 .log 文件，请运行 xelatex 后重检（编译后会在同目录生成 .log）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX014",
+          "message": "tabular 有 8 列且全部使用固定宽度说明符（l/c/r），未使用 p{width} 或 tabularx（溢出高风险）",
+          "line": 26
+        },
+        {
+          "severity": "info",
+          "code": "TEX016",
+          "message": "已通过 --skip-tikz-overlap 跳过 TikZ 包围盒重叠检测",
+          "line": null
+        }
+      ],
+      "summary": {
+        "errors": 0,
+        "warnings": 3,
+        "passes": 0
+      }
+    },
+    {
+      "path": "D:\\2024备份和迁移\\2024备份和迁移\\f复旭文件\\h彗星计划相关\\其他资料\\凯瑞甘的texmarp项链孵化池\\黄仁勋发言调研\\research_output\\report_v2\\en\\latex\\sections\\01_background.tex",
+      "file_type": "latex",
+      "messages": [
+        {
+          "severity": "warning",
+          "code": "TEX001",
+          "message": "缺少推荐宏包：geometry, amsmath, graphicx, booktabs, hyperref（仅警告，不影响编译判定）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX004",
+          "message": "使用了 [H] 浮动锚定但未加载 \\usepackage{float}，请确认",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX005",
+          "message": "文件无 \\documentclass，跳过 \\end{document} 检查（视为 \\input 子文件片段）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX009",
+          "message": "未找到 .log 文件，请运行 xelatex 后重检（编译后会在同目录生成 .log）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX016",
+          "message": "已通过 --skip-tikz-overlap 跳过 TikZ 包围盒重叠检测",
+          "line": null
+        }
+      ],
+      "summary": {
+        "errors": 0,
+        "warnings": 2,
+        "passes": 0
+      }
+    },
+    {
+      "path": "D:\\2024备份和迁移\\2024备份和迁移\\f复旭文件\\h彗星计划相关\\其他资料\\凯瑞甘的texmarp项链孵化池\\黄仁勋发言调研\\research_output\\report_v2\\en\\latex\\sections\\02_methodology.tex",
+      "file_type": "latex",
+      "messages": [
+        {
+          "severity": "warning",
+          "code": "TEX001",
+          "message": "缺少推荐宏包：geometry, amsmath, graphicx, booktabs, hyperref（仅警告，不影响编译判定）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX004",
+          "message": "使用了 [H] 浮动锚定但未加载 \\usepackage{float}，请确认",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX005",
+          "message": "文件无 \\documentclass，跳过 \\end{document} 检查（视为 \\input 子文件片段）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX006",
+          "message": "\\input{figures/alignment_chart} 引用的文件无法解析（请确认文件存在且路径正确）",
+          "line": 100
+        },
+        {
+          "severity": "info",
+          "code": "TEX009",
+          "message": "未找到 .log 文件，请运行 xelatex 后重检（编译后会在同目录生成 .log）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX011",
+          "message": "tabular 列数 6 > 5 且未加载 tabularx 宏包（超宽风险）",
+          "line": 110
+        },
+        {
+          "severity": "info",
+          "code": "TEX016",
+          "message": "已通过 --skip-tikz-overlap 跳过 TikZ 包围盒重叠检测",
+          "line": null
+        }
+      ],
+      "summary": {
+        "errors": 0,
+        "warnings": 4,
+        "passes": 0
+      }
+    },
+    {
+      "path": "D:\\2024备份和迁移\\2024备份和迁移\\f复旭文件\\h彗星计划相关\\其他资料\\凯瑞甘的texmarp项链孵化池\\黄仁勋发言调研\\research_output\\report_v2\\en\\latex\\sections\\03_statements.tex",
+      "file_type": "latex",
+      "messages": [
+        {
+          "severity": "warning",
+          "code": "TEX001",
+          "message": "缺少推荐宏包：geometry, amsmath, graphicx, booktabs, hyperref（仅警告，不影响编译判定）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX004",
+          "message": "使用了 [H] 浮动锚定但未加载 \\usepackage{float}，请确认",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX005",
+          "message": "文件无 \\documentclass，跳过 \\end{document} 检查（视为 \\input 子文件片段）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX009",
+          "message": "未找到 .log 文件，请运行 xelatex 后重检（编译后会在同目录生成 .log）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX016",
+          "message": "已通过 --skip-tikz-overlap 跳过 TikZ 包围盒重叠检测",
+          "line": null
+        }
+      ],
+      "summary": {
+        "errors": 0,
+        "warnings": 2,
+        "passes": 0
+      }
+    },
+    {
+      "path": "D:\\2024备份和迁移\\2024备份和迁移\\f复旭文件\\h彗星计划相关\\其他资料\\凯瑞甘的texmarp项链孵化池\\黄仁勋发言调研\\research_output\\report_v2\\en\\latex\\sections\\04_science.tex",
+      "file_type": "latex",
+      "messages": [
+        {
+          "severity": "warning",
+          "code": "TEX001",
+          "message": "缺少推荐宏包：geometry, amsmath, graphicx, booktabs, hyperref（仅警告，不影响编译判定）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX004",
+          "message": "使用了 [H] 浮动锚定但未加载 \\usepackage{float}，请确认",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX005",
+          "message": "文件无 \\documentclass，跳过 \\end{document} 检查（视为 \\input 子文件片段）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX006",
+          "message": "\\input{figures/sb_causal_chain} 引用的文件无法解析（请确认文件存在且路径正确）",
+          "line": 43
+        },
+        {
+          "severity": "info",
+          "code": "TEX009",
+          "message": "未找到 .log 文件，请运行 xelatex 后重检（编译后会在同目录生成 .log）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX014",
+          "message": "tabular 有 6 列且全部使用固定宽度说明符（l/c/r），未使用 p{width} 或 tabularx（溢出高风险）",
+          "line": 84
+        },
+        {
+          "severity": "info",
+          "code": "TEX016",
+          "message": "已通过 --skip-tikz-overlap 跳过 TikZ 包围盒重叠检测",
+          "line": null
+        }
+      ],
+      "summary": {
+        "errors": 0,
+        "warnings": 4,
+        "passes": 0
+      }
+    },
+    {
+      "path": "D:\\2024备份和迁移\\2024备份和迁移\\f复旭文件\\h彗星计划相关\\其他资料\\凯瑞甘的texmarp项链孵化池\\黄仁勋发言调研\\research_output\\report_v2\\en\\latex\\sections\\05_engineering.tex",
+      "file_type": "latex",
+      "messages": [
+        {
+          "severity": "warning",
+          "code": "TEX001",
+          "message": "缺少推荐宏包：geometry, amsmath, graphicx, booktabs, hyperref（仅警告，不影响编译判定）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX004",
+          "message": "使用了 [H] 浮动锚定但未加载 \\usepackage{float}，请确认",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX005",
+          "message": "文件无 \\documentclass，跳过 \\end{document} 检查（视为 \\input 子文件片段）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX006",
+          "message": "\\input{figures/power_chain} 引用的文件无法解析（请确认文件存在且路径正确）",
+          "line": 303
+        },
+        {
+          "severity": "warning",
+          "code": "TEX006",
+          "message": "\\input{figures/satellite_decomposition} 引用的文件无法解析（请确认文件存在且路径正确）",
+          "line": 343
+        },
+        {
+          "severity": "info",
+          "code": "TEX009",
+          "message": "未找到 .log 文件，请运行 xelatex 后重检（编译后会在同目录生成 .log）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX015",
+          "message": "tabular 不在 table 环境内且缺少 \\centering 或 \\begin{center} 居中机制（可能左偏）",
+          "line": 290
+        },
+        {
+          "severity": "warning",
+          "code": "TEX015",
+          "message": "tabular 不在 table 环境内且缺少 \\centering 或 \\begin{center} 居中机制（可能左偏）",
+          "line": 324
+        },
+        {
+          "severity": "info",
+          "code": "TEX016",
+          "message": "已通过 --skip-tikz-overlap 跳过 TikZ 包围盒重叠检测",
+          "line": null
+        }
+      ],
+      "summary": {
+        "errors": 0,
+        "warnings": 6,
+        "passes": 0
+      }
+    },
+    {
+      "path": "D:\\2024备份和迁移\\2024备份和迁移\\f复旭文件\\h彗星计划相关\\其他资料\\凯瑞甘的texmarp项链孵化池\\黄仁勋发言调研\\research_output\\report_v2\\en\\latex\\sections\\06_commercial.tex",
+      "file_type": "latex",
+      "messages": [
+        {
+          "severity": "warning",
+          "code": "TEX001",
+          "message": "缺少推荐宏包：geometry, amsmath, graphicx, booktabs, hyperref（仅警告，不影响编译判定）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX004",
+          "message": "使用了 [H] 浮动锚定但未加载 \\usepackage{float}，请确认",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX005",
+          "message": "文件无 \\documentclass，跳过 \\end{document} 检查（视为 \\input 子文件片段）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX006",
+          "message": "\\input{figures/tco_branches} 引用的文件无法解析（请确认文件存在且路径正确）",
+          "line": 156
+        },
+        {
+          "severity": "info",
+          "code": "TEX009",
+          "message": "未找到 .log 文件，请运行 xelatex 后重检（编译后会在同目录生成 .log）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX014",
+          "message": "tabular 有 6 列且全部使用固定宽度说明符（l/c/r），未使用 p{width} 或 tabularx（溢出高风险）",
+          "line": 61
+        },
+        {
+          "severity": "info",
+          "code": "TEX016",
+          "message": "已通过 --skip-tikz-overlap 跳过 TikZ 包围盒重叠检测",
+          "line": null
+        }
+      ],
+      "summary": {
+        "errors": 0,
+        "warnings": 4,
+        "passes": 0
+      }
+    },
+    {
+      "path": "D:\\2024备份和迁移\\2024备份和迁移\\f复旭文件\\h彗星计划相关\\其他资料\\凯瑞甘的texmarp项链孵化池\\黄仁勋发言调研\\research_output\\report_v2\\en\\latex\\sections\\07_conclusion.tex",
+      "file_type": "latex",
+      "messages": [
+        {
+          "severity": "warning",
+          "code": "TEX001",
+          "message": "缺少推荐宏包：geometry, amsmath, graphicx, booktabs, hyperref（仅警告，不影响编译判定）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX004",
+          "message": "使用了 [H] 浮动锚定但未加载 \\usepackage{float}，请确认",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX005",
+          "message": "文件无 \\documentclass，跳过 \\end{document} 检查（视为 \\input 子文件片段）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX006",
+          "message": "\\input{figures/timeline_outlook} 引用的文件无法解析（请确认文件存在且路径正确）",
+          "line": 66
+        },
+        {
+          "severity": "info",
+          "code": "TEX009",
+          "message": "未找到 .log 文件，请运行 xelatex 后重检（编译后会在同目录生成 .log）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX016",
+          "message": "已通过 --skip-tikz-overlap 跳过 TikZ 包围盒重叠检测",
+          "line": null
+        }
+      ],
+      "summary": {
+        "errors": 0,
+        "warnings": 3,
+        "passes": 0
+      }
+    },
+    {
+      "path": "D:\\2024备份和迁移\\2024备份和迁移\\f复旭文件\\h彗星计划相关\\其他资料\\凯瑞甘的texmarp项链孵化池\\黄仁勋发言调研\\research_output\\report_v2\\en\\latex\\appendices\\appendix_a_alignment_matrix.tex",
+      "file_type": "latex",
+      "messages": [
+        {
+          "severity": "warning",
+          "code": "TEX001",
+          "message": "缺少推荐宏包：geometry, amsmath, graphicx, booktabs, hyperref（仅警告，不影响编译判定）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX004",
+          "message": "使用了 [H] 浮动锚定但未加载 \\usepackage{float}，请确认",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX005",
+          "message": "文件无 \\documentclass，跳过 \\end{document} 检查（视为 \\input 子文件片段）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX009",
+          "message": "未找到 .log 文件，请运行 xelatex 后重检（编译后会在同目录生成 .log）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX014",
+          "message": "tabular 有 6 列且全部使用固定宽度说明符（l/c/r），未使用 p{width} 或 tabularx（溢出高风险）",
+          "line": 31
+        },
+        {
+          "severity": "info",
+          "code": "TEX016",
+          "message": "已通过 --skip-tikz-overlap 跳过 TikZ 包围盒重叠检测",
+          "line": null
+        }
+      ],
+      "summary": {
+        "errors": 0,
+        "warnings": 3,
+        "passes": 0
+      }
+    },
+    {
+      "path": "D:\\2024备份和迁移\\2024备份和迁移\\f复旭文件\\h彗星计划相关\\其他资料\\凯瑞甘的texmarp项链孵化池\\黄仁勋发言调研\\research_output\\report_v2\\en\\latex\\appendices\\appendix_b_parameter_verdicts.tex",
+      "file_type": "latex",
+      "messages": [
+        {
+          "severity": "warning",
+          "code": "TEX001",
+          "message": "缺少推荐宏包：geometry, amsmath, graphicx, booktabs, hyperref（仅警告，不影响编译判定）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX004",
+          "message": "使用了 [H] 浮动锚定但未加载 \\usepackage{float}，请确认",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX005",
+          "message": "文件无 \\documentclass，跳过 \\end{document} 检查（视为 \\input 子文件片段）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX009",
+          "message": "未找到 .log 文件，请运行 xelatex 后重检（编译后会在同目录生成 .log）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX016",
+          "message": "已通过 --skip-tikz-overlap 跳过 TikZ 包围盒重叠检测",
+          "line": null
+        }
+      ],
+      "summary": {
+        "errors": 0,
+        "warnings": 2,
+        "passes": 0
+      }
+    },
+    {
+      "path": "D:\\2024备份和迁移\\2024备份和迁移\\f复旭文件\\h彗星计划相关\\其他资料\\凯瑞甘的texmarp项链孵化池\\黄仁勋发言调研\\research_output\\report_v2\\en\\latex\\appendices\\appendix_c_calculation_methods.tex",
+      "file_type": "latex",
+      "messages": [
+        {
+          "severity": "warning",
+          "code": "TEX001",
+          "message": "缺少推荐宏包：geometry, amsmath, graphicx, booktabs, hyperref（仅警告，不影响编译判定）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX004",
+          "message": "使用了 [H] 浮动锚定但未加载 \\usepackage{float}，请确认",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX005",
+          "message": "文件无 \\documentclass，跳过 \\end{document} 检查（视为 \\input 子文件片段）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX009",
+          "message": "未找到 .log 文件，请运行 xelatex 后重检（编译后会在同目录生成 .log）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX016",
+          "message": "已通过 --skip-tikz-overlap 跳过 TikZ 包围盒重叠检测",
+          "line": null
+        }
+      ],
+      "summary": {
+        "errors": 0,
+        "warnings": 2,
+        "passes": 0
+      }
+    },
+    {
+      "path": "D:\\2024备份和迁移\\2024备份和迁移\\f复旭文件\\h彗星计划相关\\其他资料\\凯瑞甘的texmarp项链孵化池\\黄仁勋发言调研\\research_output\\report_v2\\en\\latex\\appendices\\appendix_d_evidence_routing.tex",
+      "file_type": "latex",
+      "messages": [
+        {
+          "severity": "warning",
+          "code": "TEX001",
+          "message": "缺少推荐宏包：geometry, amsmath, graphicx, booktabs, hyperref（仅警告，不影响编译判定）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX004",
+          "message": "使用了 [H] 浮动锚定但未加载 \\usepackage{float}，请确认",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX005",
+          "message": "文件无 \\documentclass，跳过 \\end{document} 检查（视为 \\input 子文件片段）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX009",
+          "message": "未找到 .log 文件，请运行 xelatex 后重检（编译后会在同目录生成 .log）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX016",
+          "message": "已通过 --skip-tikz-overlap 跳过 TikZ 包围盒重叠检测",
+          "line": null
+        }
+      ],
+      "summary": {
+        "errors": 0,
+        "warnings": 2,
+        "passes": 0
+      }
+    },
+    {
+      "path": "D:\\2024备份和迁移\\2024备份和迁移\\f复旭文件\\h彗星计划相关\\其他资料\\凯瑞甘的texmarp项链孵化池\\黄仁勋发言调研\\research_output\\report_v2\\en\\latex\\appendices\\appendix_e_deprecated_chains.tex",
+      "file_type": "latex",
+      "messages": [
+        {
+          "severity": "warning",
+          "code": "TEX001",
+          "message": "缺少推荐宏包：geometry, amsmath, graphicx, booktabs, hyperref（仅警告，不影响编译判定）",
+          "line": null
+        },
+        {
+          "severity": "warning",
+          "code": "TEX004",
+          "message": "使用了 [H] 浮动锚定但未加载 \\usepackage{float}，请确认",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX005",
+          "message": "文件无 \\documentclass，跳过 \\end{document} 检查（视为 \\input 子文件片段）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX009",
+          "message": "未找到 .log 文件，请运行 xelatex 后重检（编译后会在同目录生成 .log）",
+          "line": null
+        },
+        {
+          "severity": "info",
+          "code": "TEX016",
+          "message": "已通过 --skip-tikz-overlap 跳过 TikZ 包围盒重叠检测",
+          "line": null
+        }
+      ],
+      "summary": {
+        "errors": 0,
+        "warnings": 2,
+        "passes": 0
+      }
+    }
+  ],
+  "overall": {
+    "errors": 1,
+    "warnings": 44,
+    "files_scanned": 16
+  }
+}

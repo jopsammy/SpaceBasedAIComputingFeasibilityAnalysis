@@ -1,0 +1,50 @@
+% 功率链路图 — 第5章用
+% 150/120/210 kW 三数字的物理口径分层图
+% 简化为三层边界 + 三个数字 + 一句裁决，避免节点文字相互重叠
+\begin{tikzpicture}[
+  x=1cm, y=1cm,
+  layer/.style={rectangle, draw=black!35, rounded corners, minimum width=13.1cm,
+                minimum height=2.2cm, fill=black!2},
+  side/.style={font=\footnotesize, text=black!55, align=center, text width=2.2cm},
+  badge/.style={rectangle, draw=black!55, rounded corners, minimum width=2.4cm,
+                minimum height=1.1cm, align=center, font=\small\bfseries},
+  desc/.style={align=left, font=\small, text width=4.9cm},
+  boundary/.style={font=\footnotesize, text=black!55},
+  flow/.style={thick, draw=gray!65, -{Stealth[length=2.5mm]}},
+  verdict/.style={rectangle, draw=gray!50, rounded corners, fill=gray!6,
+                  text width=10.8cm, align=center, font=\small\bfseries}
+]
+  % ===== 三层物理边界（框体加高、间距继续加宽） =====
+  \node[layer, fill=cyan!15!gray!4] (l1) at (0,4.0) {};
+  \node[layer, fill=blue!15!gray!4]  (l2) at (0,0.8) {};
+  \node[layer, fill=gray!18]   (l3) at (0,-2.4) {};
+
+  % ===== 顶部链路说明 =====
+  \node[boundary] at (0,5.3) {能量链路：阵列 EOL 输出 $\rightarrow$ 电源系统输出 $\rightarrow$ GPU 直流输入};
+
+  % ===== 三个功率数字及说明 =====
+  \node[side] at (-5.0,4.0) {阵列直流输出端\\(EOL)};
+  \node[badge, fill=cyan!28!gray!15, text=cyan!45!black, anchor=west] (p210) at (-3.45,4.0)
+    {$\sim$210\;kW};
+  \node[desc, anchor=west] at (-0.35,4.0)
+    {\textbf{阵列 EOL 输出需求}\\对应 120\;kW 持续 IT 所需，已含退化、回充与链路损耗。};
+
+  \node[side] at (-5.0,0.8) {电源系统输出端\\(持续 IT)};
+  \node[badge, fill=blue!28!gray!15, text=blue!50!black, anchor=west] (p120) at (-3.45,0.8)
+    {120\;kW};
+  \node[desc, anchor=west] at (-0.35,0.8)
+    {\textbf{持续 IT 负载}\\SpaceX 官方持续口径，表示轨道平均可用 IT 功率。};
+
+  \node[side] at (-5.0,-2.4) {GPU 直流输入端\\(峰值)};
+  \node[badge, fill=gray!35, text=black!75, anchor=west] (p150) at (-3.45,-2.4)
+    {150\;kW};
+  \node[desc, anchor=west] at (-0.35,-2.4)
+    {\textbf{GPU 峰值功率}\\约对应 $\sim$150 GPU $\times$ 1{,}000\;W TDP，不含系统损耗。};
+
+  % ===== 链路方向（跨层间距继续加宽） =====
+  \draw[flow] (5.15,2.8) -- (5.15,2.0);
+  \draw[flow] (5.15,-0.4) -- (5.15,-1.2);
+
+  % ===== 底部裁决（与最下层框体间距加宽） =====
+  \node[verdict] at (0,-4.8) {一句话裁决：150/120/$\sim$210\;kW 分属不同物理边界，不能当作同一口径直接比较。};
+\end{tikzpicture}

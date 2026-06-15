@@ -1,0 +1,208 @@
+% sections/03_science.tex -- Q1/Q2/Q3 科学分析
+
+\section{科学分析：太空散热与热环境}
+
+\subsection{Q1：真空辐射散热的物理极限}
+
+\subsubsection{斯特藩-玻尔兹曼定律基础}
+
+在真空中，热辐射是唯一的散热途径。斯特藩-玻尔兹曼定律决定了单位面积散热通量的上限：
+
+\begin{equation}
+\frac{P}{A} = \varepsilon \sigma T^{4}
+\label{eq:sb}
+\end{equation}
+
+其中 $\sigma = 5.6704\times10^{-8}$\unitWpm{}/K\textsuperscript{4}（CODATA 2018），$\varepsilon$ 为表面辐射率（0--1），$T$ 为散热面绝对温度（K）。
+
+\begin{figure}[H]
+\centering
+\input{figures/sb_t4_curve}
+\caption{斯特藩-玻尔兹曼 $T^{4}$ 曲线：散热通量随温度的非线性增长。4条曲线对应不同辐射率（$\varepsilon=0.85/0.90/0.95/1.00$），红色标记为AI1工作点（342.5\,K，$\sim$1400\,W/m\textsuperscript{2}）。注意$T^{4}$效应使高温区通量急剧上升。}
+\label{fig:sb_t4}
+\end{figure}
+
+表\ref{tab:sb_basic}给出不同温度和辐射率下的单面散热通量：
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{斯特藩-玻尔兹曼定律基础散热通量（单面辐射，W/m\textsuperscript{2}）}
+\label{tab:sb_basic}
+\begin{tabular}{rrrrrr}
+\toprule
+$T$ (K) & $T$ (\unitC{}) & $\varepsilon=0.85$ & $\varepsilon=0.90$ & $\varepsilon=0.95$ & $\varepsilon=1.00$ \\
+\midrule
+300 & 27 & 390 & 413 & 436 & 459 \\
+323 & 50 & 523 & 554 & 585 & 616 \\
+340 & 67 & 642 & 680 & 718 & 756 \\
+350 & 77 & 723 & 765 & 808 & 851 \\
+373 & 100 & 932 & 987 & 1,042 & 1,097 \\
+400 & 127 & 1,234 & 1,306 & 1,379 & 1,452 \\
+450 & 177 & 1,981 & 2,098 & 2,214 & 2,331 \\
+500 & 227 & 3,015 & 3,192 & 3,370 & 3,547 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{双面辐射与AI1 1,400 W/m\textsuperscript{2} 验证}
+
+AI1采用双面辐射散热板设计——物理面板面积110 m\textsuperscript{2}，等效辐射面积220 m\textsuperscript{2}（两面辐射至深空）。双面辐射通量（按物理面板面积计）为：
+
+\begin{equation}
+\frac{P}{A_{\text{物理面板}}} = 2\varepsilon\sigma T^{4}
+\label{eq:sb_double}
+\end{equation}
+
+关键计算结果（表\ref{tab:ai1_verify}）：
+
+\begin{table}[H]
+\centering
+\caption{AI1散热参数反推与物理可行性验证}
+\label{tab:ai1_verify}
+\begin{tabular}{cccc}
+\toprule
+\textbf{辐射率 $\varepsilon$} & \textbf{双面模式所需 $T$ (K)} & \textbf{所需 $T$ (\unitC{})} & \textbf{验证通量 (W/m\textsuperscript{2})} \\
+\midrule
+0.85 & 347.9 & 74.8 & 1,400 \\
+0.88 & 345.0 & 71.9 & 1,400 \\
+\textbf{0.90} & \textbf{342.5} & \textbf{69.5} & \textbf{1,403} \\
+0.92 & 340.2 & 67.1 & 1,400 \\
+0.95 & 336.8 & 63.7 & 1,400 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{AI1 1,400 W/m\textsuperscript{2} 物理可行性判定：物理成立，已接近当前材料天花板。}
+
+在双面辐射、$\varepsilon\approx0.90$、面板温度约342.5K（69.5\unitC{}）时可达到1,400\unitWpm{}（物理面板面积）。面板温度69.5\unitC{}在液冷散热器工作范围内。但$\varepsilon=0.90$需要高性能热控涂层（如Z-93白漆），在空间环境退化（UV+原子氧）后的EOL（寿命末期）$\varepsilon$会下降至约0.82--0.85，届时散热能力将衰减5--10\%\cite{nasa2024sst,nasa1993thermal}。
+
+\subsubsection{1 GW轨道数据中心所需散热面积}
+
+假设1 GW中$\sim$95\%转化为废热（950 MW待散热），关键场景的散热面积需求见表\ref{tab:onegw_area}：
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{1 GW轨道数据中心所需最小散热面积（多场景）}
+\label{tab:onegw_area}
+\begin{tabular}{lcccrr}
+\toprule
+\textbf{场景} & $\varepsilon$ & $T$ (K) & \textbf{模式} & \textbf{通量 (W/m\textsuperscript{2})} & \textbf{面积 (km\textsuperscript{2})} \\
+\midrule
+AI1 BOL（激进） & 0.90 & 342.5 & 双面 & 1,403 & 0.71 \\
+AI1 EOL（退化后） & 0.83 & 340 & 双面 & $\sim$1,250 & $\sim$0.80 \\
+典型航天器设计点 & 0.85 & 350 & 双面 & 1,446 & 0.69 \\
+保守设计点 & 0.85 & 323 & 单面 & 523 & 1.91 \\
+高性能涂层+高温 & 0.93 & 353 & 双面 & 1,740 & 0.57 \\
+极限材料+最高温 & 0.96 & 393 & 双面 & 2,970 & 0.34 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{核心洞察}：AI1设计点的1 GW散热面积约0.71 km\textsuperscript{2}（$\sim$700,000 m\textsuperscript{2}，相当于边长840 m正方形）。按每颗AI1卫星110 m\textsuperscript{2}散热板估算，需要约6,400颗AI1级卫星来散热1 GW\cite{nasa2024sst,cybernative2026thermo}。
+
+\subsection{Q2：太空vs地面散热效率定量对比}
+
+\subsubsection{PUE对比：太空的实际优势}
+
+PUE（Power Usage Effectiveness）衡量数据中心冷却开销。表\ref{tab:pue_compare}汇总了地面与太空的PUE对比：
+
+\begin{table}[H]
+\centering
+\caption{太空vs地面数据中心PUE与冷却效率对比}
+\label{tab:pue_compare}
+\begin{tabular}{lccc}
+\toprule
+\textbf{来源} & \textbf{PUE} & \textbf{冷却开销（\%总功率）} & \textbf{年份} \\
+\midrule
+行业平均（Uptime Institute） & 1.56--1.58 & 35.9--36.7 & 2024 \\
+Google全球机队平均 & 1.09 & 8.3 & 2024 \\
+最佳超大规模 & 1.06--1.12 & 5.7--10.7 & 2024 \\
+GB300液冷配置（理论） & 1.05--1.10 & 4.8--9.1 & 2025--26 \\
+\rowcolor{gray!10}
+\textbf{太空辐射散热（理论）} & \textbf{$\sim$1.02--1.05} & \textbf{2--5（仅泵功率）} & \textbf{--} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{太空的核心PUE优势不是"散热更快"，而是"不需要冷却塔/制冷机组等额外能耗设施"——冷源（2.7K宇宙微波背景）天然存在且免费。}\cite{uptime2024,google2024pue,microsoft2024pue}
+
+\subsubsection{散热密度对比：太空的天然劣势}
+
+然而，辐射散热通量（单面$\sim$400--1,500\unitWpm{}）比地面液冷冷板（10,000--100,000\unitWpm{}）低1--2个数量级。辐射散热受限于$T^{4}$效应——即使将面板温度从350K提升至500K（+43\%），通量也仅从$\sim$800提升至$\sim$3,000\unitWpm{}（+275\%），但500K（227\unitC{}）已超出绝大多数电子设备的安全工作范围。
+
+\subsubsection{黄仁勋"97.5\%重量是冷却系统"说法的量化验证}
+
+多源验证表明：GB300 NVL72机架总重约1.36--1.59吨（而非2吨）；机架内液冷组件约占7--12\%（$\sim$100--170 kg）；加上CDU（冷却分配单元）后冷却相关总重量约18--35\%\cite{lenovo2025gb300,aivres2025krs}。黄仁勋的说法是\textbf{修辞性夸张，方向正确但数字夸大}——97.5\%更可能指传统风冷数据中心中冷却基础设施占总设施重量的高比例（含冷却塔、冷水机组等），而非单个机架的冷却组件。
+
+\subsection{Q3：轨道热环境的真实复杂性}
+
+\begin{figure}[H]
+\centering
+\input{figures/leo_thermal_env}
+\caption{LEO轨道热环境示意图。中央为AI1散热板（双面辐射至2.7\,K深空），四周展示四种热流：太阳直射（1361\,W/m\textsuperscript{2}，knife-edge定向后吸收$\sim$5\%）、地球红外辐射（$\sim$240\,W/m\textsuperscript{2}）、地球反照（$\sim$480\,W/m\textsuperscript{2}）以及向深空的辐射散热（1400\,W/m\textsuperscript{2}，双面）。}
+\label{fig:leo_thermal_env}
+\end{figure}
+
+\subsubsection{LEO热环境全景参数}
+
+LEO并非"理想冷库"，而是高度动态的多热源环境。表\ref{tab:leo_thermal}汇总了关键热环境参数\cite{clawson2002thermal,nasa2021tm4527}：
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{LEO轨道关键热环境参数}
+\label{tab:leo_thermal}
+\begin{tabular}{lcc}
+\toprule
+\textbf{参数} & \textbf{值} & \textbf{波动范围} \\
+\midrule
+太阳常数（1 AU均值） & 1,367\unitWpm{} & 1,322--1,414（$\pm$3.5\%） \\
+地球反照率均值 & $\sim$0.30 & 0.05（海面）--0.85（雪/云） \\
+反照热流（LEO典型） & $\sim$480\unitWpm{}（局部最大值） & 视地表类型大幅波动 \\
+地球红外辐射（OLR）均值 & $\sim$240\unitWpm{} & 220--260 \\
+轨道周期 & $\sim$90分钟 & 85--95（400--800 km） \\
+日照/阴影比 & $\sim$60/40 & 取决于$\beta$角 \\
+外部表面温度范围 & -150\unitC{}至+150\unitC{} & 峰谷差可达220\unitC{} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{散热器效率衰减量化}
+
+在多热源真实环境中，散热器净效率显著低于理想真空计算值\cite{modus2026thermal,encyclopedia2025leo}：
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{LEO环境对散热器效率的衰减因素}
+\label{tab:efficiency_loss}
+\begin{tabular}{p{2.8cm}p{5.2cm}p{1.8cm}p{2.8cm}}
+\toprule
+\textbf{衰减因素} & \textbf{衰减机制} & \textbf{效率损失} & \textbf{应对策略} \\
+\midrule
+太阳直射吸收 & 散热面朝向太阳时吸收$\sim$1,367\unitWpm{} & 100\%（完全丧失） & knife-edge定向+太阳盾 \\
+\hline
+太阳掠射（knife-edge, $<$5\unitC{}入射角） & 极小投影面积$\times$太阳常数 & $\sim$5--10\%净散热损失 & 主动姿态控制$\pm$1\unitC{} \\
+\hline
+地球反照加热 & 反照流$\sim$480\unitWpm{}$\times$VF$\times\alpha_s$ & $\sim$10--20\% & 散热面朝向深空 \\
+\hline
+地球红外加热 & OLR$\sim$240\unitWpm{}$\times$VF$\times\varepsilon_{IR}$ & $\sim$5--10\% & 同上 \\
+\hline
+$\beta$角高值期间 & 轨道日照比例高，散热器长时间暴露于太阳 & $\sim$15--30\%（时段性） & 择机部署 \\
+\hline
+热控涂层退化（EOL） & UV+原子氧导致$\alpha_s$上升、$\varepsilon_{IR}$下降 & $\varepsilon$下降5--15\% & 选择抗退化涂层 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{knife-edge-to-sun定向有效性}
+
+knife-edge策略（散热器法线矢量与太阳方向夹角=90\unitC{}）可将太阳吸收降至散热能力的$<$1\%（姿态控制精度$\pm$1\unitC{}时，太阳吸收功率$\approx24\times\alpha_s\approx3.6$\unitWpm{}，vs散热功率$\sim$800\unitWpm{}）。但要求持续主动姿态控制，且$\beta$角不利期间效率显著降低。
+
+\textbf{LEO昼夜循环影响}：90分钟周期（日照$\sim$54分钟/阴影$\sim$36分钟）对百kW级载荷不可通过PCM（相变材料）储热解决——缓冲150kW$\times$36分钟需$\sim$1.9吨纯PCM\cite{ijisrt2025pcm}。必须依赖散热器自然热容+液冷环路热容平滑+适度降载策略。
+
+\textbf{综合结论}：散热器效率在真实LEO环境中比理想真空计算值低15--40\%，具体取决于轨道$\beta$角、散热面定向策略和涂层退化程度。
+
+% end of 03_science

@@ -1,0 +1,88 @@
+% !TEX program = xelatex
+\documentclass[12pt,a4paper]{article}
+
+% === Preamble 组装 ===
+\input{preamble/packages}
+\input{preamble/macros}
+
+% === 参考文献资源 ===
+\addbibresource{bib/refs.bib}
+
+% === 文档元信息 ===
+\title{太空算力可行性分析报告：\\物理极限、工程约束与商业前景}
+\author{}
+\date{2026年6月}
+
+\begin{document}
+
+% 标题页
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+
+    {\Huge\bfseries 太空算力可行性分析报告\par}
+    \vspace{0.5cm}
+    {\Large\bfseries 物理极限、工程约束与商业前景\par}
+    \vspace{0.3cm}
+    {\large ——基于黄仁勋与埃隆·马斯克公开言论的技术研判\par}
+
+    \vspace{0.8cm}
+
+    {\Large 内部研究报告\par}
+
+    \vspace{2cm}
+
+    {\Large 曾庆明\par}
+
+    \vspace{2cm}
+
+    {\large 2026年6月\par}
+
+    \vfill
+
+    \begin{minipage}{0.85\textwidth}
+        \small\itshape
+        \begin{flushright}
+        ``In space there's no conduction, there's no convection. There's just radiation.''
+
+        \vspace{0.3em}
+        \normalfont\small
+        ——黄仁勋，NVIDIA GTC 2026 Keynote
+        \end{flushright}
+    \end{minipage}
+
+    \vspace{1cm}
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\footnotetext[1]{联系邮箱：\href{jop.sammy@163.com}{jop.sammy@163.com} \quad ORCID：\href{https://orcid.org/0009-0007-4382-0040}{0009-0007-4382-0040}}
+\end{titlepage}
+
+\newpage
+
+% 摘要
+\begin{abstract}
+\input{sections/00_abstract}
+\end{abstract}
+
+\newpage
+
+% 关键词
+\vspace{1cm}
+\textbf{关键词：} 太空算力；轨道数据中心；辐射散热；斯特藩-玻尔兹曼定律；总拥有成本；黄仁勋；埃隆·马斯克；NVIDIA Space-1；SpaceX AI1
+
+% 目录
+\tableofcontents
+\newpage
+
+% === 正文章节 ===
+\input{sections/01_background}
+\input{sections/02_statements}
+\input{sections/03_science}
+\input{sections/04_engineering}
+\input{sections/05_commercial}
+\input{sections/06_conclusion}
+
+% === 参考文献 ===
+\printbibliography
+
+\end{document}

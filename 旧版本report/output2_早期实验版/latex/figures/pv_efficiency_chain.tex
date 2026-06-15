@@ -1,0 +1,97 @@
+% pv_efficiency_chain.tex — 轨道光伏效率链瀑布图
+\begin{tikzpicture}[
+    node distance=0.6cm,
+    block/.style={
+        rectangle,
+        draw=primary,
+        fill=primary!8,
+        minimum width=3.0cm,
+        minimum height=1.3cm,
+        align=center,
+        font=\small
+    },
+    loss/.style={
+        rectangle,
+        draw=highlight,
+        fill=highlight!12,
+        minimum width=2.2cm,
+        minimum height=0.9cm,
+        align=center,
+        font=\footnotesize
+    },
+    arrow/.style={
+        ->,
+        >=stealth,
+        line width=1.0pt,
+        color=primary
+    },
+    label/.style={
+        font=\footnotesize,
+        text=primary
+    }
+]
+
+% 主流程：左列
+\node[block] (gsc) at (0,0)
+    {太阳常数\\[-2pt] {\large\textbf{1,361 W/m\textsuperscript{2}}}};
+
+\node[block] (pv) at (0,-2.8)
+    {光伏转换\\[-2pt] {\large\textbf{408 W/m\textsuperscript{2}}}\\（$\eta$=30\% GaAs）};
+
+\node[block] (deg) at (0,-5.6)
+    {5年退化后\\[-2pt] {\large\textbf{347 W/m\textsuperscript{2}}}\\（$\eta_{\text{deg}}$=85\%）};
+
+\node[block] (mppt) at (0,-8.4)
+    {MPPT+电源管理\\[-2pt] {\large\textbf{330 W/m\textsuperscript{2}}}\\（$\eta_{\text{MPPT}}$=95\%）};
+
+\node[block] (bat) at (0,-11.2)
+    {储能充放电\\[-2pt] {\large\textbf{290 W/m\textsuperscript{2}}}\\（$\eta_{\text{bat}}$=88\%）};
+
+\node[block] (duty) at (0,-14.0)
+    {日照占空比\\[-2pt] {\large\textbf{174 W/m\textsuperscript{2}}}\\（$D$=60\% LEO）};
+
+\node[block, fill=highlight!20, draw=highlight, line width=1.5pt] (final)
+    at (0,-17.0)
+    {\textbf{可用电力}\\[-2pt] {\LARGE\textbf{183 W/m\textsuperscript{2}}}\\[-2pt] \footnotesize 综合效率 $\approx$\,13.5\%};
+
+% 损失标注：右列
+\node[loss] (loss1) at (3.8,-1.4)
+    {损失\\953 W/m\textsuperscript{2}};
+
+\node[loss] (loss2) at (3.8,-4.2)
+    {退化损失\\61 W/m\textsuperscript{2}};
+
+\node[loss] (loss3) at (3.8,-7.0)
+    {电源损失\\17 W/m\textsuperscript{2}};
+
+\node[loss] (loss4) at (3.8,-9.8)
+    {充放损失\\40 W/m\textsuperscript{2}};
+
+\node[loss] (loss5) at (3.8,-12.6)
+    {地影损失\\116 W/m\textsuperscript{2}};
+
+% 箭头
+\draw[arrow] (gsc) -- (pv);
+\draw[arrow] (pv) -- (deg);
+\draw[arrow] (deg) -- (mppt);
+\draw[arrow] (mppt) -- (bat);
+\draw[arrow] (bat) -- (duty);
+\draw[arrow] (duty) -- (final);
+
+% 损失箭头
+\draw[->, >=stealth, color=highlight, line width=0.8pt]
+    (pv.east) -- ++(1.5,0) |- (loss1.west);
+\draw[->, >=stealth, color=highlight, line width=0.8pt]
+    (deg.east) -- ++(1.5,0) |- (loss2.west);
+\draw[->, >=stealth, color=highlight, line width=0.8pt]
+    (mppt.east) -- ++(1.5,0) |- (loss3.west);
+\draw[->, >=stealth, color=highlight, line width=0.8pt]
+    (bat.east) -- ++(1.5,0) |- (loss4.west);
+\draw[->, >=stealth, color=highlight, line width=0.8pt]
+    (duty.east) -- ++(1.5,0) |- (loss5.west);
+
+% 对比标注
+\node[font=\footnotesize, text=gray] at (0,-18.2)
+    {对比：地面光伏综合可用系数 $\approx$\,21.3\%};
+
+\end{tikzpicture}

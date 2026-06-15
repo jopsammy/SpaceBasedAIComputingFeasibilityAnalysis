@@ -1,0 +1,67 @@
+% figures/leo_thermal_env.tex
+% LEO 轨道热环境示意图 —— 纯 TikZ
+\begin{tikzpicture}[
+    >=Stealth,
+    scale=1.0,
+    every node/.style={font=\footnotesize},
+]
+
+% ===== 中心卫星 =====
+\filldraw[fill=primary!10, draw=primary, line width=1.5pt]
+    (-1.5,-0.8) rectangle (1.5,0.8);
+\node[primary, font=\bfseries] at (0,0) {\textbf{AI1 散热板}};
+\node[primary, font=\scriptsize] at (0,-0.5) {(辐射散热至深空 2.7\,K)};
+
+% ===== 太阳直射（上方金黄色，从太阳指向卫星） =====
+\draw[->, line width=1.5pt, color=yellow!80!orange]
+    (0,3.5) -- (0,0.8);
+\node[anchor=south, text=yellow!60!orange, font=\footnotesize\bfseries]
+    at (0,3.6) {\textbf{太阳直射}};
+\node[anchor=north, text=yellow!70!orange, font=\scriptsize]
+    at (0,2.8) {1361\,W/m\textsuperscript{2}};
+\node[anchor=north, text=yellow!70!orange, font=\scriptsize]
+    at (0,2.3) {吸收$\sim$5\% (knife-edge 定向后)};
+
+% ===== 地球红外辐射（下方蓝色，从地球指向卫星） =====
+\draw[->, line width=1.2pt, color=blue!60]
+    (-1.2,-3.0) -- (-0.3,-0.8);
+\node[anchor=north, text=blue!60, font=\footnotesize\bfseries]
+    at (-2.0,-3.0) {\textbf{地球红外}};
+\node[anchor=south, text=blue!60, font=\scriptsize]
+    at (-1.2,-2.3) {$\sim$240\,W/m\textsuperscript{2}};
+
+% ===== 地球反照（下方浅蓝，从地球指向卫星） =====
+\draw[->, line width=1.2pt, color=cyan!60]
+    (1.2,-3.0) -- (0.3,-0.8);
+\node[anchor=north, text=cyan!60, font=\footnotesize\bfseries]
+    at (2.0,-3.0) {\textbf{地球反照}};
+\node[anchor=south, text=cyan!60, font=\scriptsize]
+    at (1.2,-2.3) {$\sim$480\,W/m\textsuperscript{2}};
+
+% ===== 辐射散热至深空（左右灰色箭头） =====
+\draw[->, line width=1.5pt, color=graybase]
+    (-1.5,0) -- (-3.5,0);
+\node[anchor=east, text=graybase, font=\footnotesize\bfseries]
+    at (-3.6,0.3) {\textbf{辐射散热}};
+\node[anchor=east, text=graybase, font=\scriptsize]
+    at (-3.6,-0.25) {1400\,W/m\textsuperscript{2}};
+
+\draw[->, line width=1.5pt, color=graybase]
+    (1.5,0) -- (3.5,0);
+\node[anchor=west, text=graybase, font=\footnotesize\bfseries]
+    at (3.6,0.3) {\textbf{辐射散热}};
+\node[anchor=west, text=graybase, font=\scriptsize]
+    at (3.6,-0.25) {1400\,W/m\textsuperscript{2}};
+
+% ===== 深空标注 =====
+\node[graybase, font=\scriptsize\itshape]
+    at (3.8,2.5) {深空背景};
+\node[graybase, font=\scriptsize\itshape]
+    at (3.8,2.1) {2.7\,K};
+
+% ===== 地球示意 =====
+\filldraw[fill=blue!20, draw=blue!40, line width=0.8pt]
+    (-3.0,-4.0) arc (180:360:3.0 and 0.8) -- (3.0,-4.0) -- cycle;
+\node[blue!60, font=\scriptsize\bfseries] at (0,-4.0) {\textbf{地球}};
+
+\end{tikzpicture}

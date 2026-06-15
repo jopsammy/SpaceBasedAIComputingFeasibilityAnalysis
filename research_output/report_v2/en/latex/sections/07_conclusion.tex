@@ -1,0 +1,108 @@
+% sections/07_conclusion.tex
+% Chapter 7: Synthesized Judgment
+
+\section{Synthesized Judgment}
+
+This chapter converges the analytical results of the preceding six chapters into three clearly defined categories, organized by cognitive tier: known facts (confirmable without further verification), computable chains (quantifiable ranges can be given under current parameter sets and assumptions), and currently undecidable (reliable judgment requires more data). This chapter is the logical endpoint of the full text and introduces no new evidence or calculations.
+
+\subsection{Known Facts}
+
+The following conclusions rest on physical laws or publicly verifiable authoritative sources and require no further verification for confirmation:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{The Stefan--Boltzmann law does not prohibit 1~MW-class orbital heat dissipation.} AI1's 1,400\;W/m\textsuperscript{2} (dual-sided radiation, $\varepsilon\approx0.90$, $T\approx342.5$\;K) is physically self-consistent and realizable with current materials. However, this operating point nearly exhausts the available margin after EOL degradation of high-emissivity coatings---physically feasible does not mean margin is ample. (From: Chapter~4 S-B derivation)
+
+    \item \textbf{Doubling the heat dissipation density ($\to$2,800+\;W/m\textsuperscript{2}) cannot be supported by any single-technology path before 2035.} Combined paths (high-temperature chips + durable coatings + deployable structures) can achieve 40--50\% improvement. Heat dissipation density is a hard constraint set by physical law and is not a variable that can be compressed indefinitely through ``engineering scale.'' (From: Chapter~4 heat dissipation density boundary analysis)
+
+    \item \textbf{The real LEO thermal environment is not an ``ideal cold sink.''} Direct solar radiation, Earth albedo, and Earth infrared radiation reduce effective heat dissipation capacity by 15--40\% relative to ideal vacuum. The orbital diurnal eclipse cycle (every 96.7 minutes, with 35.5 minutes of eclipse) introduces an ineliminable energy storage constraint. (From: Chapter~4 LEO thermal environment analysis)
+
+    \item \textbf{Launch costs have fallen by approximately 100$\times$ over the past 15 years,} from Shuttle $\sim$\$54,500/kg to Falcon 9 reusable $\sim$\$2,720/kg. Starship V3 targets \$100--200/kg (full-reuse mode), but as of June 2026, full reuse has not yet been achieved\cite{nasalaunch2018,faa2025boca,faa2026ksc}. (From: Chapter~2 launch unit cost specification notes)
+
+    \item \textbf{Under AI1's publicly disclosed wingspan constraint and existing deployment technology precedents, the HJT route is significantly disadvantaged.} AI1 almost certainly uses GaAs (or equivalent III-V group) solar cells. The confidence in this inference is extremely high---the independently derived 625\;m\textsuperscript{2} physical figure and the 70\;m wingspan are precisely self-consistent in design parameters (error <1\%), constituting a strong cross-validation. (From: Chapter~5 wingspan constraint analysis)
+\end{enumerate}
+
+\subsection{Computable Chains}
+
+The following conclusions yield quantifiable ranges under current parameter sets and assumptions. Their precision is limited by the Tier-4 inference nature of some parameters (14/47 parameters), but the directional judgments are robust:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{The 10yr-GaAs primary chain TCO is approximately \$0.77B (range \$0.55B--\$1.1B, depending on variation in key assumptions)} (1\;MW sustained IT / 10-year total window / \$200/kg). This is the best-evidenced single-generation primary chain baseline result to date. The photovoltaic array ($\sim$50.4\%) and system margin/redundancy ($\sim$20.0\%) are the two largest components of total cost, together accounting for $\sim$70.4\%. Launch cost accounts for only $\sim$1.8\%. (From: Chapter~6 TCO breakdown)
+
+    \item \textbf{The 5yr-GaAs comparison TCO is approximately \$1,341.26M,} approximately 75\% more expensive than the primary chain. Shortening the lifetime to 5 years necessitates one re-launch, approximately doubling manufacturing cost. \textbf{On-orbit lifetime is a far more important economic lever than launch cost}---the cost saving from extending lifetime from 5 to 10 years (\$576M) is equivalent to the effect of reducing launch unit cost from \$200/kg to approximately \$0/kg. (From: Chapter~6 comparison branch contrast)
+
+    \item \textbf{The 5yr-HJT reconciled estimate TCO is approximately \$1,005M,} and is not cost-competitive against 10yr-GaAs. Under the currently disclosed AI1 wingspan constraint and existing deployment technology precedents, the HJT route is significantly disadvantaged. (From: Chapter~6 HJT parallel route analysis)
+
+    \item \textbf{The single-satellite mass baseline is approximately 8.48\;t} (10yr-GaAs), comprising 9 independently traceable subsystems. The compute payload mass is approximately 1,500\;kg, with the evidence chain elevated from the previous ``B1 second-hand relay'' to ``A1 ground hardware anchor (GB300 NVL72) + three verifiable space-adaptation increments.'' (From: Chapter~5 bottom-up mass chain)
+
+    \item \textbf{Launch unit cost \$200/kg sensitivity}: reducing from \$200/kg to \$100/kg decreases total cost by only about 0.9\%. At \$50/kg, total cost is still approximately \$751M. The limited impact of launch cost on total TCO is one of the most robust quantitative conclusions of this report. (From: Chapter~6 launch unit cost sensitivity analysis)
+
+    \item \textbf{Musk's claimed 300--500\;GW/yr deployment diverges from the current FAA-approved annual launch cap (69 launches) by approximately 3 orders of magnitude.} Even under an optimistic scenario with significantly raised FAA caps, closing this gap would require combinatorial breakthroughs in three parameters: launch capacity, launch frequency, and single-satellite mass. (From: Chapter~5 launch capacity reality check)
+\end{enumerate}
+
+\subsection{Currently Undecidable}
+
+The following questions cannot yield reliable judgments at the mid-2026 level of public evidence:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Actual on-orbit GPU failure rate.} Current estimate is 5--15\%/yr (Tier-4 inference), requiring Rubin Space-1 on-orbit data for closure to a more precise value. The true failure rate will directly affect re-launch intervals, redundancy design, and TCO. (Linked to residual risk R3)
+
+    \item \textbf{The combined probability of synchronized multi-parameter improvement.} The commercial competitiveness of space-based AI computing requires that photovoltaic cost reduction, on-orbit lifetime extension, AIT cost compression, and launch cost reduction all occur \emph{within the same time window}. The probability of improvement for each individual parameter can be estimated, but the probability of synchronized four-parameter improvement cannot be precisely quantified. This report judges that probability as low---based on the inherent probability discount of ``synchronicity'' itself ($P(A \cap B \cap C \cap D) \ll \min(P(A), P(B), P(C), P(D))$) and the current distance of each of the four parameters from a competitive level.
+
+    \item \textbf{Complete closure of the HJT space-grade array system-level procurement price.} The price chain has three independent anchors (terrestrial HJT wholesale price, Risen Energy space-grade quote, Starlink-class array system reference), allowing an interval estimate (Chapter~6 has given a reconciled estimate of $\sim$\$15M/array system per satellite, total cost $\sim$\$1,005M), but first-hand public quotes for space-grade system procurement remain a gap. However, even if this gap is closed, it will not alter the conclusion that ``5yr-HJT under AI1 constraints is not competitive against 10yr-GaAs.'' (Linked to residual risk R4)
+
+    \item \textbf{AI1's first-hand total mass and stowed dimensions.} Although partially mitigated by the bottom-up mass chain (ground hardware anchor + space-adaptation increments), closure to SpaceX's first-hand official total mass is not possible. 8.48\;t is the current best estimate, not a verified fact. (Linked to residual risk R1)
+
+    \item \textbf{The full-satellite BOM after Rubin-ization and the degree of system-level improvement.} NVIDIA has announced GPU-level improvements for Rubin (25$\times$ inference performance vs.\ H100), but full-satellite-level BOM changes (including radiation hardening, thermal management, power supply, and other system-level adaptations) lack first-hand public data. Rubin will narrow the gap between space and ground, but by how much is currently undecidable. (Linked to residual risk R3)
+\end{enumerate}
+
+Among the above undecidable items, items~1 and~2 are the core uncertainty sources for directional judgments; items~3,~4, and~5 are uncertainty sources for quantitative precision but do not alter directional conclusions.
+
+\subsection{Timeline Outlook}
+
+Based on the three-tier progressive judgment of ``physically feasible $\to$ engineering-fragile $\to$ commercially distant,'' this report offers the following outlook on the development timeline for space-based AI computing:
+
+\begin{figure}[H]
+\centering
+\input{figures/timeline_outlook}
+\caption{Three-phase forward-looking judgment timeline for space-based AI computing---the evolutionary path from prototype validation to conditional expansion. The core judgment for each phase is based on the physical, engineering, and commercial analysis conclusions of Chapters~4--6.}
+\label{fig:timeline_outlook}
+\end{figure}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{2026--2028: Prototype Validation Phase.} The first two AI1 prototypes (planned for launch in 2027) and Rubin Space-1 on-orbit validation data are the most important information increments of this phase. Commercial viability in this phase is zero---costs at the prototype stage cannot be compared with costs of terrestrial mass-production data centers. The key is to validate: on-orbit GPU actual failure rate, heat dissipation system performance in the real LEO environment, and photovoltaic array on-orbit degradation rate. \emph{Judgment: Economically infeasible, technically meaningful for validation.}
+
+    \item \textbf{2028--2030: Limited Deployment Phase.} If prototype validation results are positive, space-based AI computing may enter a limited deployment phase during 2028--2030---military/intelligence scenarios (with willingness to pay a premium for physical security, global coverage, and non-interceptability) and low-latency inference niche scenarios (leveraging LEO global coverage with <20--30 ms latency advantage) may be the first commercial customers. The deployment scale in this phase is expected to be tens to hundreds of satellites, not millions. \emph{Judgment: Niche scenarios feasible, scale deployment infeasible.}
+
+    \item \textbf{2030--2035: Conditional Expansion Phase.} If the following four conditions are synchronously met---(1) on-orbit lifetime stably $\geq$ 7 years; (2) photovoltaic array cost reduced to <\$50/W\_BOL; (3) AIT cost compressed to Starlink mass-production level; (4) launch cost <\$100/kg---space-based AI computing may begin expanding toward scale commercial applications. The synchronized probability of the four conditions is assessed at <25\%, so the 2030--2035 conditional expansion is ``possible but uncertain'' rather than ``highly probable.'' \emph{Judgment: Dependent on synchronized multi-parameter improvement probability; currently insufficient to support a definitive commitment.}
+\end{enumerate}
+
+\subsection{Robustness Statement of Conclusions}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Physical conclusions (Chapter~4) are highly robust}: They depend only on physical constants ($\sigma = 5.6704\times10^{-8}$\;W\;m\textsuperscript{-2}\;K\textsuperscript{-4}) and publicly verifiable physical laws, and do not rely on any corporate disclosures or commercial assumptions. No future technological advances or information increments will change the Stefan--Boltzmann law or LEO orbital mechanics.
+
+    \item \textbf{Engineering conclusions (Chapter~5) are moderately robust}: The ``foundation'' of the bottom-up mass chain---ground hardware specifications such as GB300 NVL72---comes from Tier-2 authoritative sources (Lenovo/NVIDIA official), with reliable anchors. Among the three space-adaptation increments, radiation protection and thermal management modifications both have independent literature anchors (Tier~3), but the structural modification increment remains an industry experience estimate (Tier~4). Approximately 35\% of the cost items in the 9-subsystem breakdown of full-satellite total mass involve Tier-4 inference---if AI1's first-hand total mass or stowed dimensions were disclosed, the confidence interval for full-satellite mass would narrow significantly.
+
+    \item \textbf{Commercial conclusions (Chapter~6) are sensitive to parametric assumptions}: 14/47 parameters in the TCO model are Tier-4 reasonable inferences. The core uncertainty lies not in any single parameter but in the probability of synchronized multi-parameter improvement. In other words, what determines commercial viability is not any one technology breaking through alone, but whether multiple key parameters can improve together within the same time window.
+
+    \item \textbf{Non-Recurring Engineering (NRE) costs are not included in the TCO model.} After millions of units are produced, NRE can be amortized to negligible levels, but at the early 1--100\;MW validation stage it is non-negligible. Primary NRE sources include: non-recurring design verification for satellite bus GNC/thermal/power/structure, customized ground segment development, and one-time investment in volume production lines.
+
+    \item \textbf{Methodological robustness}: This report proceeds from physical laws (Stefan--Boltzmann), through engineering hardware anchors (NVIDIA GB300 NVL72), to a complete computational chain in independent Python modeling, following the methodology of first-principles bottom-up verification. Primary conclusions are traced as far as possible to publicly and independently verifiable original sources; the photovoltaic array ($\sim$50\%) is cross-anchored via Tier-2/Tier-3 evidence, ensuring that directional conclusions will not undergo order-of-magnitude flips due to reasonable variation in Tier-4 parameters.
+\end{itemize}
+
+\subsection{Analytical Stance and Method}
+
+This report handles contentious issues through a three-layer stratification of scenarios, specifications, and evidence:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Scenario stratification}: TCO must be read together with specific assumptions. This report presents complete results for three comparable branches and annotates the boundary conditions of each.
+    \item \textbf{Specification stratification}: Figures under different specifications are not directly comparable. Appendix~A provides a complete alignment matrix of 7 scenarios $\times$ 9 dimensions.
+    \item \textbf{Evidence stratification}: All 47 key parameters are graded and adjudicated according to the four-tier evidence system. Tier-3 and Tier-4 parameters are used to express ``best estimates at the current level of evidence'' rather than being written directly as confirmed facts.
+    \item \textbf{Retaining the undecidable}: For questions that cannot be closed with current public information, the report maintains the ``currently undecidable'' state and handles it separately from computable chains and known facts.
+\end{itemize}
+
+If this report's core judgment can be summarized in one sentence: \textbf{The physical foundation of space-based AI computing is solid, the engineering pathway is discernible, and the commercial prospect is distant.} Current public information supports continued observation rather than an early strong commercial commitment. The flight validation data from AI1 and Rubin Space-1 will be the next most important information increment.
+
+(See Appendix~C for complete formulas and substitution values for all computable-chain figures; see Appendix~B for the disposition and verdict record of all contentious parameters; see Appendix~E for deprecated derivation chains and the prohibited-line list; see Appendix~D for executable traceability paths from this report's conclusions back to original sources.)
+
+\endinput

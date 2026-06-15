@@ -1,0 +1,107 @@
+% 02_environment.tex — 轨道环境全景对比
+
+\section{轨道环境全景对比}
+
+在深入各轨道之前，本节提供七条轨道的辐射、热、\deltav、通信四大环境维度的全景概览，建立跨轨道的宏观认知框架。
+
+\subsection{辐射环境全景}
+
+表~\ref{tab:rad-overview} 汇总各轨道辐射环境关键参数。TID 数据基于 4 mm Al 等效屏蔽条件。
+
+\begin{table}[H]
+\centering
+\caption{各轨道辐射环境全景对比}
+\label{tab:rad-overview}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\textbf{维度} & \textbf{LEO} & \textbf{MEO} & \textbf{GEO} & \textbf{HEO} & \textbf{地日L1/L2} & \textbf{地月L4/L5} \\
+\midrule
+TID (\kradyr) & 10--30 & 5--15 & 3--10 & \textbf{50--200} & \textbf{2--5} & 5--15\textsuperscript{*} \\
+SEU (相对LEO) & 1x & $\sim 10^{5}$x & $\sim$1--10x & $\sim 10^{5}$--$10^{6}$x & $\sim$100--1000x & $\sim$10--50x\textsuperscript{*} \\
+主要辐射源 & 质子 (SAA) & 电子 (外带) & 电子+SPE+GCR & 质子+电子(双带) & GCR+SPE & GCR+SPE\textsuperscript{*} \\
+磁层屏蔽 & 有 & 无 & 无 & 无 & 无 & 弱/部分 \\
+\bottomrule
+\end{tabular}%
+}
+
+\smallskip
+\noindent\textsuperscript{*}标记为估计值，缺乏精确在轨测量数据。地月 L4/L5 的辐射数据置信度较低。
+\end{table}
+
+\textbf{核心发现}：HEO 在所有轨道中辐射环境最劣，TID 和 SEU 均为最高；地日 L1/L2 的屏蔽后 TID \textit{低于} LEO（无 SAA 质子贡献），但 SEU 率高出 100--1000 倍——此即"\tid 悖论"的核心。
+
+\subsection{热环境对比}
+
+表~\ref{tab:thermal-overview} 展示了各轨道散热相关的关键热环境参数。
+
+\begin{table}[H]
+\centering
+\caption{各轨道热环境与散热能力对比}
+\label{tab:thermal-overview}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\textbf{参数} & \textbf{LEO} & \textbf{MEO} & \textbf{GEO} & \textbf{HEO} & \textbf{地日L1/L2} & \textbf{地月L4/L5} \\
+\midrule
+地球 IR (\wpm) & 240 & 14 & 5--6 & 4--5 (远) & $\sim$0 & $\sim$0 \\
+地球反照 (\wpm) & 480 & $<$5 & $<$2 & $\sim$0 (远) & $\sim$0 & $\sim$0 \\
+净回载 (\wpm) & $\sim$720 & $\sim$20 & $\sim$8 & $\sim$5 (远) & $\sim$0 & $\sim$0 \\
+热循环 (次/年) & 5,840 & $\sim$730 & $\sim$0\textsuperscript{*} & $\sim$1,460 & $\sim$0 & $\sim$0 \\
+350K净散热 (\wpm) & 482 & 1,040 & 1,040 & 1,015 & 1,038 & 1,038 \\
+\bottomrule
+\end{tabular}%
+}
+
+\smallskip
+\noindent\textsuperscript{*}GEO 仅在春/秋分季节有最长 72 分钟/天的食。
+\end{table}
+
+\textbf{核心发现}：LEO 在 300 K 时净散热为负值（环境热回载 $\sim$720~\wpm 超过理想辐射能力 $\sim$413~\wpm），必须依赖定向冷面散热器。所有非 LEO 轨道散热能力提升 2--3x。
+
+\subsection{\deltav 发射成本对比}
+
+表~\ref{tab:dv-overview} 基于 Starship 复用基准（LEO $\$150$/kg）估算各轨道 1 MW 算力部署的发射成本。1 MW 假设发射质量约 20,000 kg（20 kg/kW）。
+
+\begin{table}[H]
+\centering
+\caption{各轨道 \deltav 与发射成本对比}
+\label{tab:dv-overview}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{轨道} & \textbf{地面\deltav{} (\kms)} & \textbf{LEO$\rightarrow$\deltav{} (\kms)} & \textbf{\$/kg (估算)} & \textbf{1MW发射 (\$M)} & \textbf{vs LEO倍数} \\
+\midrule
+LEO (600km)  & 9.4  & 0.0  & \$150  & \$3.0M  & 1.00x \\
+MEO (20,200) & 12.3 & 3.6  & \$197  & \$3.9M  & 1.31x \\
+GEO (35,786) & 14.0 & 3.9  & \$230  & \$4.6M  & 1.54x \\
+HEO (Molniya)& 14.5 & 5.1  & \$241  & \$4.8M  & 1.60x \\
+地日 L1/L2   & 12.7 & 3.3  & \$204  & \$4.1M  & 1.36x \\
+地月 L4/L5   & 13.1 & 3.7  & \$212  & \$4.2M  & 1.42x \\
+地月 L1/L2   & 12.8--13.0 & 3.4--3.6 & \$206--210 & \$4.1--4.2M & 1.38--1.40x \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\textbf{核心发现}：所有非 LEO 轨道的发射成本仅为 LEO 的 1.3--1.6x。Starship 在轨加注可将差距进一步缩小至 1.1--1.3x。\textbf{发射成本差异不是高轨道部署的主要障碍}。
+
+\subsection{通信延迟全景}
+
+\begin{table}[H]
+\centering
+\caption{各轨道通信延迟对比}
+\label{tab:latency-overview}
+\small
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\textbf{参数} & \textbf{LEO} & \textbf{MEO} & \textbf{GEO} & \textbf{HEO} & \textbf{地日L1/L2} & \textbf{地月L4/L5} \\
+\midrule
+RTT (范围) & 5--10 ms & $\sim$135 ms & 480--600 ms & 7--260 ms & \textbf{$\sim$10,000 ms} & $\sim$2,560 ms \\
+vs LEO 倍数 & 1x & 14--27x & 48--120x & 1--52x & \textbf{1000--2000x} & 256--512x \\
+延迟稳定性 & 稳定 & 中等慢变 & 稳定但极高 & \textbf{极度不稳定} & 稳定 & 稳定 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{核心发现}：通信延迟是拉格朗日点部署算力的最大不可消除劣势。地日 L1/L2 的 10 秒 RTT 排除交互式推理——只适用于"批处理式"计算任务（提交$\rightarrow$等待$\rightarrow$取结果）。地月 L4/L5 的 2.6 秒 RTT 比地日 L1/L2 好 4 倍。HEO 的延迟范围跨度 37x（近地点 7 ms $\rightarrow$ 远地点 260 ms），对通信协议设计构成独特挑战。

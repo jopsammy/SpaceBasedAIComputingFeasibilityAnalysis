@@ -1,0 +1,265 @@
+% appendices/appendix_d_evidence_routing.tex
+
+\section{证据链、引用链与脚本路由}
+
+本章为从正文结论到原始来源的可执行追溯路径——正文说"详见附录D"，读者来此即可按表格逐层追溯。
+
+\subsection{五层路由说明}
+\label{sec:five-layer}
+
+本报告的所有关键结论均可经以下五层路由追溯到最原始的公开来源：
+
+\begin{enumerate}
+  \item \textbf{正文结论} —— 根目录交付物（《第二阶段差异分析初步研究.md》）或各结果文档中的统计数字
+  \item \textbf{交叉核验文档} —— 逐Task的缺口解除状态与交叉核验分析（\path{stage2_gap_closure_verification.md} 等）
+  \item \textbf{结构化JSON输入} —— 模型可读的参数值（\path{stage2_mass_inputs_blackwell_hjt.json}、\path{stage2_cost_inputs_blackwell_hjt.json}）
+  \item \textbf{V裁决记录} —— 内部参数裁决文档中的V1-V37逐参数裁决记录（含推导链、来源URL、逐参数裁决）
+  \item \textbf{原始来源URL/公式} —— 可独立核验的公开网页、DOI或物理公式
+\end{enumerate}
+
+使用方式：在表中找到要查的结论 $\to$ 从左到右依次打开对应列的文件 $\to$ 每一层都精确指向更原始的支撑证据。最右列给出最终的URL或公式，可独立核验。\\[4pt]
+\footnote{本报告涉及的全部 Python 计算脚本与结构化输入 JSON 文件将在报告定稿后开源至 GitHub 研究仓库，届时读者可独立复算所有模型输出。当前阶段脚本路由见§\ref{sec:script-entry}。}
+
+\subsection{关键结论速查路由表}
+\label{sec:quick-routing}
+
+以下表格提取自 \path{stage2_evidence_routing_guide.md}，覆盖全部核心结论。路径中 \path{{ROOT}} 代表项目根目录。因参数较多，分为四张表：功率与效率（D.2-A1）、面密度与电池（D.2-A2）、子系统物理参数（D.2-B1）、成本汇总（D.2-B2）。
+
+% --- 子表 D.2-A1：功率基线、质量与光电效率 ---
+\begin{table}[H]
+  \centering
+  \caption{关键结论五层速查路由表（A1：功率基线、载荷质量与光电效率）}
+  \label{tab:routing-a1}
+  \scriptsize
+  \sloppy
+  \setlength{\tabcolsep}{2pt}
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{1.7cm}
+    >{\raggedright\arraybackslash}p{1.2cm}
+    >{\centering\arraybackslash}p{1.3cm}
+    >{\raggedright\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}p{2.0cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{结论} & \textbf{值} & \textbf{档位} & \textbf{第一落点（结果文档）} & \textbf{第二落点（交叉核验文档）} & \textbf{第三落点（JSON/裁决）} & \textbf{第五落点（URL/公式）} \\
+  \midrule
+  功率轨道基线 & 峰值150kW/持续120kW/轨道600km & 二档 & 《第二阶段差异分析初步研究.md》 §1.3 & \path{stage2_gap_closure_verification.md} §七 & \path{current-note.md} §V1-V3 & Inkl/Tom's Hardware \url{inkl.com} / Knightli \url{knightli.com} / Indexbox \url{indexbox.io} 三家一致 \\
+  \addlinespace
+  计算载荷质量（基准） & 1,500 kg & 二档+三档 & 同上 §5.2 & 同上 §三 & \path{stage2_mass_inputs_blackwell_hjt.json} $\to$ \path{current-note.md} §V30 & Lenovo LP2357, NVIDIA PCF, NVIDIA DGX B200 User Guide（URL见附录C §C.3.1） \\
+  \addlinespace
+  GaAs效率 BOL & 32\% & 二档 & \path{stage2_power_system_results_blackwell_hjt.md} §三 & \path{stage2_gap_closure_verification.md} §七 & \path{current-note.md} §V4 & AzurSpace 4G32产品页 \url{https://www.azurspace.com/en/products/space-products/} \\
+  \addlinespace
+  GaAs效率 EOL & 29\% & 二档 & 同上 & 同上 & \path{current-note.md} §V5 & BOL 32\% $\times$ (1$-$9.4\%退化)；退化率来自NASA NEPP报告数据库III-V空间电池公开文献 \\
+  \addlinespace
+  HJT效率 BOL & 22\% & 二档 & 同上 & 同上 §四 & \path{current-note.md} §V6 & 华晟\url{huasunsolar.com}量产$>$26\%；东方日升\url{prnewswire.com} 26.61\%；隆基\url{longi.com} 27.81\%；AM0修正$\times$0.85$\to$保守取22\% \\
+  \addlinespace
+  HJT效率 EOL & 14\% & 二档 & 同上 & 同上 & \path{current-note.md} §V7 & CEA/INES独立辐照实验 \url{https://www.cea.fr/cea-tech/liten/...}；ISFH Caltec独立验证 \url{https://ines-solaire.org/} \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+% --- 子表 D.2-A2：阵列面密度与电池参数 ---
+\begin{table}[H]
+  \centering
+  \caption{关键结论五层速查路由表（A2：阵列面密度与电池参数）}
+  \label{tab:routing-a2}
+  \scriptsize
+  \sloppy
+  \setlength{\tabcolsep}{2pt}
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{1.7cm}
+    >{\raggedright\arraybackslash}p{1.2cm}
+    >{\centering\arraybackslash}p{1.3cm}
+    >{\raggedright\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}p{2.0cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{结论} & \textbf{值} & \textbf{档位} & \textbf{第一落点（结果文档）} & \textbf{第二落点（交叉核验文档）} & \textbf{第三落点（JSON/裁决）} & \textbf{第五落点（URL/公式）} \\
+  \midrule
+  GaAs阵列面密度 & 1.5 kg/m$^2$ (panel-only) & 三档 & \path{stage2_power_system_results_blackwell_hjt.md} §三 & \path{stage2_gap_closure_verification.md} §七 & \path{current-note.md} §V8 & 行业区间1.5-2.5 kg/m$^2$（空间级刚性GaAs面板），取区间低端 \\
+  \addlinespace
+  HJT阵列面密度 & 1.8 kg/m$^2$ (panel-only) & 三档 & 同上（HJT行） & 同上 §四 & \path{current-note.md} §V9 & Starlink V2 Mini面板级反推$\sim$1.7-2.6 kg/m$^2$；33FG Research硅基阵列区间1.0-3.0 \\
+  \addlinespace
+  电池DoD（三分支） & 5yr 40\%/10yr Li-ion 25\%/10yr LTO 80\% & 三档+四档 & 《第二阶段差异分析初步研究.md》 §8.2 & 同上 §五 & \path{current-note.md} §V10 & Ray Barsa（SpaceX首席电池工程师）演讲 \url{https://ciclibattery.com/...}；Saft LTO白皮书 \url{https://saft.com/...} \\
+  \addlinespace
+  电池比能量 & Li-ion NMC 190 Wh/kg / LTO 100 Wh/kg & 三档 & 同上 & 同上 & \path{current-note.md} §V11 & Starlink pack 230 Wh/kg（cell$\to$pack降额$\sim$12\%）；Saft LTO比Li-ion低30-50\% \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+% --- 子表 D.2-B1：电池成本与子系统物理参数 ---
+\begin{table}[H]
+  \centering
+  \caption{关键结论五层速查路由表（B1：电池成本与子系统物理参数）}
+  \label{tab:routing-b1}
+  \scriptsize
+  \sloppy
+  \setlength{\tabcolsep}{2pt}
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{1.7cm}
+    >{\raggedright\arraybackslash}p{1.2cm}
+    >{\centering\arraybackslash}p{1.3cm}
+    >{\raggedright\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}p{2.0cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{结论} & \textbf{值} & \textbf{档位} & \textbf{第一落点（结果文档）} & \textbf{第二落点（交叉核验文档）} & \textbf{第三落点（JSON/裁决）} & \textbf{第五落点（URL/公式）} \\
+  \midrule
+  电池NMC成本 & \$200/kWh（固定） & 三档 & \path{stage2_economic_branches_blackwell.md} §四 & \path{stage2_gap_closure_verification.md} §五 & \path{current-note.md} §V36 & Starlink直接迁移，零溢价原则；Ray Barsa演讲 + 亿颗级Panasonic 21700采购 \\
+  \addlinespace
+  电池LTO成本 & \$260/\$350/\$400/kWh & 四档 & 同上 §八 & 同上 & \path{current-note.md} §V37 & 地面LTO/NMC价格比1.3-1.5$\times$ $\times$ \$200/kWh；等比压缩法 \\
+  \addlinespace
+  散热器面密度 & 4.0/5.0/6.5 kg/m$^2$ & 四档 & 《第二阶段差异分析初步研究.md》 §4.3 & 同上 §三 & \path{current-note.md} §V20 & 航天器热控结构面密度3-8 kg/m$^2$；ISS 840m$^2$/1000kg$\approx$1.2为展开式设计不适用刚性面板 \\
+  \addlinespace
+  平台系数 & 0.25/0.35/0.45 & 四档 & 同上 & 同上 §七 & \path{current-note.md} §V21 & Starlink V2 Mini质量粗拆：整星740kg$-$光伏197$-$电池48$-$推进40$-$通信170=结构/热控/线束$\sim$285kg$\to$ratio$\sim$0.38 \\
+  \addlinespace
+  推进质量 & 200/350/500 kg & 四档 & 同上 §12.1 & 同上 & \path{current-note.md} §V22 & Starlink V2 Mini推进$\sim$5-6\%整星质量（SpaceX自研氩霍尔）；AI1 6-8t级$\to$5-8\%$\to$300-640kg \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+% --- 子表 D.2-B2：通信/电力/成本汇总 ---
+\begin{table}[H]
+  \centering
+  \caption{关键结论五层速查路由表（B2：通信/电力/成本汇总）}
+  \label{tab:routing-b2}
+  \scriptsize
+  \sloppy
+  \setlength{\tabcolsep}{2pt}
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{1.7cm}
+    >{\raggedright\arraybackslash}p{1.2cm}
+    >{\centering\arraybackslash}p{1.3cm}
+    >{\raggedright\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}p{2.0cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{结论} & \textbf{值} & \textbf{档位} & \textbf{第一落点（结果文档）} & \textbf{第二落点（交叉核验文档）} & \textbf{第三落点（JSON/裁决）} & \textbf{第五落点（URL/公式）} \\
+  \midrule
+  通信质量 & 200/300/450 kg & 四档 & \path{stage2_gap_closure_verification.md} §三 & 同上 & \path{current-note.md} §V23+V28 & Google Suncatcher（2025 arXiv）\url{https://arxiv.org/html/2511.19468v1}：天基AI集群需 tens of Tbps ISL \\
+  \addlinespace
+  PCDU比功率 & 1.0/0.5/0.2 kW/kg & 四档 & \path{stage2_power_system_results_blackwell_hjt.md} §三 & 同上 §七 & \path{current-note.md} §V25 & Terma PCDU飞行产品（\href{https://satsearch.co/products/terma-power-conditioning-distribution-unit}{satsearch}）：15kW/28kg=0.54kW/kg \\
+  \addlinespace
+  计算载荷成本 & \$38k/\$60k/\$100k/kW & 三档 & \path{stage2_economic_branches_blackwell.md} §四 & 同上 §七 & \path{current-note.md} §V12 & GB300 NVL72地面\$25-33k/kW \url{awesomeagents.ai}；H100空间原型17-33$\times$ \url{culled.org}；SpaceX COTS策略1.5-3$\times$ \\
+  \addlinespace
+  GaAs阵列成本 & \$180/\$200/\$250/W\_BOL & 三档 & 同上 & 同上 & \path{current-note.md} §V14 & AzurSpace产品存在+此前的口径200-400 USD/W+satsearch零售面板三锚点 \\
+  \addlinespace
+  10年-GaAs总成本 & \$764.98M & 混合 & 同上 §三 & 同上 §六 & 全部JSON输入的综合输出 & 结果见第6章 TCO 表格；脚本实跑exit code 0 \\
+  \addlinespace
+  废弃的kW/t链 & 70/55/45 kW/t$\to$永久废弃 & 已废弃 & 《第二阶段差异分析初步研究.md》 §5.1 & 同上 §三 & \path{deprecated_notice} 字段 & 废弃原因见附录E §E.1 \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{Python 脚本入口说明}
+\label{sec:script-entry}
+
+本报告的所有数值计算均来自以下两份Python脚本。两者经独立Python建模计算，输入为结构化JSON，输出为Markdown结果文档，所有数值均可复算验证。
+
+\subsubsection{stage2\_power\_system\_model.py}
+
+\textbf{功能}：轨道食时计算、电池容量/质量、阵列面积/质量、PCDU质量。固定Blackwell主线，GaAs/HJT并行，电池分支化（DoD按分支选取）。
+
+\begin{itemize}
+  \item \textbf{输入文件}：\\
+    \path{stage2_mass_inputs_blackwell_hjt.json}\\
+    \path{stage2_cost_inputs_blackwell_hjt.json}
+  \item \textbf{输出结果文件}：\\
+    \path{stage2_power_system_results_blackwell_hjt.md}
+  \item \textbf{关键公式链}：轨道周期$\to$食时$\to$食区负载能量$\to$电池名义容量（/DoD/$\eta$）\\
+     $\to$回充能量$\to$日照段额外功率$\to$PCDU输出$\to$EOL阵列需求\\
+     $\to$阵列面积（/$G$/$\eta_{\text{eol}}$/$f_{\text{pkg}}$）
+  \item \textbf{运行命令}：\path{python stage2_power_system_model.py}
+\end{itemize}
+
+\subsubsection{stage2\_mass\_cost\_model.py}
+
+\textbf{功能}：bottom-up计算载荷质量、整星9子系统质量/成本逐项求和、三分支TCO（10年总窗口，含制造成本+发射成本+保险+运维+退役）。
+
+\begin{itemize}
+  \item \textbf{输入文件}：\\
+    \path{stage2_mass_inputs_blackwell_hjt.json}\\
+    \path{stage2_cost_inputs_blackwell_hjt.json}
+  \item \textbf{输出结果文件}：\\
+    \path{stage2_power_system_results_blackwell_hjt.md}
+  \item \textbf{关键公式链}：计算载荷质量$\gets$\path{components[compute_payload].scenario_mass_kg}（直接读取，不再经过kW/t分母）$\to$单星质量=$\Sigma$(子系统质量)$\to$单星制造成本=$\Sigma$(子系统成本)$\to$总制造成本=单星成本$\times$卫星当量$\times$代数$\to$总发射成本=单星质量$\times$卫星当量$\times$发射单价$\times$代数$\to$总成本=制造+发射+保险(8\%)+运维(\$5M/年$\times$10)+退役(\$3M/代$\times$代数)
+  \item \textbf{运行命令}：\path{python stage2_mass_cost_model.py}
+\end{itemize}
+
+\begingroup
+\small
+\sloppy
+\subsection{完整引用资料清单}
+\label{sec:full-references}
+
+以下按主题分类列出本报告引用的全部关键公开资料。格式：名称、URL或DOI、在报告中何处引用。
+
+\subsubsection{散热物理}
+
+\begin{itemize}
+  \item CODATA 2018 Stefan-Boltzmann constant: $\sigma = 5.670374419 \times 10^{-8}$ W m$^{-2}$ K$^{-4}$. \url{https://physics.nist.gov/cuu/Constants/}
+  \item Gilmore, D.G. (ed.) \textit{Spacecraft Thermal Control Handbook}. The Aerospace Press. ISBN: 1-884989-11-X.（正文第4章，散热系统面密度参考）
+\end{itemize}
+
+\subsubsection{轨道环境}
+
+\begin{itemize}
+  \item WGS84 Earth parameters: $R_{\oplus} = 6378.137$ km, $\mu = 3.986004418 \times 10^{14}$ m$^3$/s$^2$.
+  \item ASTM E-490 AM0 Solar Constant: $G = 1361.0$ W/m$^2$.（正文第5章，附录C §C.2）
+\end{itemize}
+
+\subsubsection{发射成本}
+
+\begin{itemize}
+  \item SpaceX Starship Payload User's Guide (2024). \url{https://www.spacex.com/vehicles/starship/}（正文第6章，发射运力基准）
+  \item FAA Starship/Super Heavy Launch License environmental assessment documents.（发射频次约束来源）
+\end{itemize}
+
+\subsubsection{GPU硬件}
+
+\begin{itemize}
+  \item Lenovo LP2357 Product Guide: \href{https://lenovopress.lenovo.com/lp2357-lenovo-nvidia-gb300-nvl72-rack-scale-ai}{lenovopress}（附录C §C.3.1）
+  \item NVIDIA HGX B200 PCF Summary: \href{https://images.nvidia.com/aem-dam/Solutions/documents/HGX-B200-PCF-Summary.pdf}{NVIDIA PDF}（同上）
+  \item NVIDIA DGX B200 User Guide: \href{https://docs.nvidia.com/dgx/dgxb200-user-guide/introduction-to-dgxb200.html}{docs.nvidia.com}（同上）
+  \item NVIDIA Rubin Space-1 Platform (GTC 2026).（正文第3章）
+\end{itemize}
+
+\subsubsection{电源系统}
+
+\begin{itemize}
+  \item AzurSpace 4G32 Product Page: \href{https://www.azurspace.com/en/products/space-products/}{AzurSpace 官网}（附录C §C.2，GaAs BOL效率）
+  \item CEA/INES Irradiation Experiment: \href{https://www.cea.fr/cea-tech/liten/english/Pages/Medias/News/2025/major-breakthrough-for-photovoltaic-technology-space.aspx}{CEA/INES 新闻页}（HJT EOL效率）
+  \item Ray Barsa (SpaceX Chief Battery Engineer): \href{https://ciclibattery.com/battery-power-online-space-batteries-how-spacex-designs-batteries-for-satellites/}{Battery Power Online}（电池DoD/比能量/成本）
+  \item NASA Starlink Batteries Reliability Workshop (2025): \href{https://www.nasa.gov/wp-content/uploads/2024/01/starlink-batteries-reliability-lessons-from-10000-leo-satellites-abw-2025.pdf}{NASA PDF}（电池比能量）
+  \item Saft LTO Technical Whitepaper: \href{https://saft.com/en/horizon-new-lithium-based-technology-satellite-batteries-improving-mission-performance}{Saft 白皮书}（LTO DoD/比能量）
+  \item Terma PCDU Flight Product (BepiColombo MTM): \href{https://satsearch.co/products/terma-power-conditioning-distribution-unit}{satsearch}；\href{https://www.satnow.com/products/power-conditioning-and-distribution-units/terma/134-1195-bepicolombo-mtm-pcdu}{satnow}（PCDU比功率）
+  \item Huasun Solar (HJT): \href{https://www.huasunsolar.com/}{Huasun 官网}
+  \item Risen Energy HJT 26.61\%: \href{https://www.prnewswire.com/news-releases/risen-energy-achieves-26-61-efficiency-for-hjt-solar-cell-302390000.html}{PR Newswire}
+  \item LONGi HJT 27.81\%: \href{https://www.longi.com/}{LONGi 官网}
+\end{itemize}
+
+\subsubsection{商业/经济}
+
+\begin{itemize}
+  \item Google Suncatcher (2025 arXiv): \href{https://arxiv.org/html/2511.19468v1}{arXiv HTML}（通信系统质量/成本推断）
+  \item 33FG Research Starlink V2 Mini Analysis: \href{https://research.33fg.com/analysis/starlink-v2-mini-optimized-lighter-satellites-more-bandwidth-per-launch}{33FG Research}（HJT阵列面密度区间）
+  \item AwesomeAgents.ai GB300 NVL72 Hardware Cost: \href{https://awesomeagents.ai/hardware/nvidia-gb300-nvl72/}{AwesomeAgents.ai}（计算载荷地面成本锚点）
+  \item SpaceX AI1 Public Release (2026-06-08). 多源转述：Inkl/Tom's Hardware, Knightli, Indexbox.（功率/轨道/翼展参数）
+  \item NVIDIA GTC 2026 Keynote, Space-1 Rubin Platform.（正文第4章）
+\end{itemize}
+
+\subsubsection{数据库}
+
+\begin{itemize}
+  \item satsearch.co —— 空间产品数据库（电池、PCDU、光伏面板价格查询）
+  \item NASA NEPP Report Database —— III-V空间电池辐射退化率统计
+\end{itemize}
+\endgroup

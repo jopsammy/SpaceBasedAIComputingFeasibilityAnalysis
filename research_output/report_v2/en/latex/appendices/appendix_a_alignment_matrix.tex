@@ -1,0 +1,110 @@
+% appendices/appendix_a_alignment_matrix.tex
+
+\section{Alignment Matrix}
+
+This chapter provides the complete, independently consultable detailed matrix for the calibration discussion in Chapter~2. Different scenarios (or different research groups) that adopt different time windows, power conventions, architecture generations, power supply routes, and lifetime assumptions will produce numbers that cannot be directly compared laterally. The purpose of this matrix is not to judge superiority among entries, but to explicitly list the values and sources of each dimension, enabling readers to judge whether the premises of comparisons are aligned when reading the main body of this report or other external studies.
+
+\subsection{Calibration Dimension Definitions}
+
+The following are unified definitions for each column dimension of the matrix:
+
+\begin{description}
+  \item[Time Window] Number of years a single-generation satellite serves on orbit. A 5-year window means automatic deorbit and re-launch after 5 years; a 10-year window means a single-generation satellite serves 10 years without re-launch.
+  \item[Power Convention] Separately indicates peak power (maximum electrical output per satellite), sustained power (average available power over a full orbital period), and IT load power (available power ultimately delivered to the compute hardware).
+  \item[Architecture Generation] GPU architecture of the compute hardware. Blackwell corresponds to the GB300 NVL72 compute tray as the ground hardware anchor (Tier~2); Rubin corresponds to the NVIDIA Space-1 platform.
+  \item[Photovoltaic Route] Solar cell technology route. GaAs is the primary chain (AzurSpace 4G32-class, BOL~32\%/EOL~29\%); HJT is a parallel maturation route (BOL~22\%/EOL~14\%).
+  \item[Battery Chemistry] Energy storage battery system and depth-of-discharge (DoD) value. Branches: 5yr NMC (DoD~40\%), 10yr Li-ion NMC (DoD~25\%), 10yr LTO (DoD~80\%).
+  \item[Launch Unit Price] Assumed cost per kilogram to orbit. Baseline is \$200/kg (Starship V3 reuse target).
+  \item[Lifetime Assumption] Total comparison window and re-launch rules.
+  \item[Redundancy Included?] Whether on-orbit backup satellites are explicitly included in the satellite count.
+  \item[Per-Satellite Mass Definition] Whether the mass convention is compute payload only or full-system all-up satellite mass.
+  \item[Ground Reference Convention] The ground data center cost reference value used for TCO ratio comparison.
+\end{description}
+
+\subsection{Complete Alignment Matrix}
+
+\begin{table}[H]
+  \centering
+  \caption{Alignment Matrix --- Values, Sources, and Comparability Determination for Each Scenario Dimension}
+  \label{tab:alignment-matrix}
+  \scriptsize
+  \setlength{\tabcolsep}{1pt}
+  \renewcommand{\arraystretch}{1.6}
+  \setlength{\extrarowheight}{2pt}
+  \begin{tabularx}{\textwidth}{
+    >{\hsize=1.40\hsize\raggedright\arraybackslash}X
+    >{\hsize=0.50\hsize\centering\arraybackslash}X
+    >{\hsize=1.25\hsize\raggedright\arraybackslash}X
+    >{\hsize=1.10\hsize\raggedright\arraybackslash}X
+    >{\hsize=1.00\hsize\raggedright\arraybackslash}X
+    >{\hsize=1.00\hsize\raggedright\arraybackslash}X
+    >{\hsize=0.50\hsize\centering\arraybackslash}X
+    >{\hsize=1.10\hsize\raggedright\arraybackslash}X
+    >{\hsize=0.90\hsize\raggedright\arraybackslash}X
+    >{\hsize=1.25\hsize\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Scenario} & \textbf{Time Window} & \textbf{Power Convention} & \textbf{Architecture} & \textbf{PV Route} & \textbf{Battery} & \textbf{Launch Price} & \textbf{Lifetime} & \textbf{Redundancy?} & \textbf{Mass Definition} \\
+  \midrule
+  \textbf{This Report Primary Chain} & 10yr & Peak 150kW / Sustained 120kW / IT Load $\sim$120kW & Blackwell (GB300 NVL72) & GaAs (Tier~2) & 10yr Li-ion NMC, DoD 25\% & \$200/kg & Single-gen 10yr, no re-launch & No (8.33 sats = 1MW/120kW) & All-up 8.48t (9-subsystem summation) \\[3pt]
+  \textbf{This Report 5yr Reference} & 5yr & Same as above & Same as above & GaAs (Tier~2) & 5yr NMC, DoD 40\% & \$200/kg & Deorbit + re-launch once after 5yr (2 generations total) & No & All-up 7.10t \\[3pt]
+  \textbf{This Report HJT Reference} & 5yr & Same as above & Same as above & HJT (Parallel maturation route, Tier~2) & 5yr NMC, DoD 40\% & \$200/kg & Deorbit + re-launch once after 5yr (2 generations total) & No & All-up 9.13t \\[3pt]
+  \textbf{Industry Optimistic Scenario} & Unspecified & Unspecified & Not locked & Unspecified (HJT assumption possible) & Unspecified & \$100/kg or lower & Re-launch rule unspecified & Redundancy possible & Component breakdown not public \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{Quantitative Impact of Calibration Differences}
+
+\begin{enumerate}
+  \item \textbf{Time Window Difference} (5yr vs.\ 10yr): In this report's model, shortening the service life from 10 years to 5 years causes one re-launch of the entire satellite, approximately doubling the 10-year total manufacturing cost (10yr-GaAs baseline total cost \$764.98M vs.\ 5yr-GaAs \$1,341.26M). Any cross-convention comparison that does not control for the time window may have cost differences dominated by the lifetime assumption rather than by genuine system differences.
+  
+  \item \textbf{Power Convention Difference} (Peak vs.\ Sustained vs.\ IT Load): The relationship between peak power 150~kW and sustained power 120~kW is not a simple ``20\% discount''---starting from the physical constraints of LEO orbital energy balance, 150~kW is the IT peak / public peak convention and cannot be directly equated to sustained IT; the forward physical demand for 120~kW sustained IT corresponds to approximately 210~kW array EOL output. If strictly capped at 150~kW, the maximum sustained IT is only about 86~kW. The two span the complete energy conversion chain (photovoltaic array $\to$ battery $\to$ PCDU $\to$ GPU) and must not be conflated as the same physical convention.
+
+  \item \textbf{Photovoltaic Route Difference} (GaAs vs.\ HJT): Under the same load, HJT requires an additional $\sim$670~m$^2$ of array area (1,295 vs.\ 625~m$^2$) and approximately 0.80t more total power system mass (3.73t vs.\ 2.93t). Furthermore, the publicly stated 70m wingspan constraint for AI1 directly rules out HJT as a feasible route---70m $\times$ 8.9m $\approx$ 625~m$^2$ is precisely self-consistent with the GaAs primary chain calculation, whereas the 1,295~m$^2$ required by HJT would demand $\sim$18.5m average width under a 70m wingspan, which is not realizable at current engineering levels.
+
+  \item \textbf{Battery Chemistry Difference} (NMC vs.\ LTO): Under 10-year service conditions, NMC must be restricted to 25\% DoD (battery 1,542~kg), while LTO can operate at 80\% DoD (battery 916~kg, $\sim$40\% lighter). However, LTO has a higher unit price (\~\$350/kWh vs.\ \$200/kWh), so the branch must be selected based on specific mission requirements and cannot be collapsed into a single parameter.
+
+  \item \textbf{Launch Unit Price Difference} (\$100 vs.\ \$200 vs.\ \$500/kg): In this report's 10yr-GaAs baseline, launch cost accounts for only $\sim$1.8\% of total cost (\$14.13M / \$764.98M). Even if launch cost drops from \$200 to \$100/kg, total cost falls by only $\sim$0.9\%. This means that relying solely on launch cost reduction is insufficient to flip the commercial conclusion.
+
+  \item \textbf{Per-Satellite Mass Definition Difference} (Compute Payload vs.\ All-Up): Under the kW/t back-calculation chain's 2.14t convention (compute payload only), the load count is $\sim$37--46 satellites per launch (Starship 100+t-class capacity). But the current-round bottom-up all-up mass baseline is 8.48t, reducing the load count to $\sim$9--14 satellites per launch. Different mass conventions directly alter launch cost estimates and constellation-scale judgments.
+\end{enumerate}
+
+\subsection{Why Different Scenarios Cannot Be Directly Compared}
+
+\begin{enumerate}
+  \item \textbf{Different Comparison Denominators}: This report uses ``1~MW sustained IT load / 10-year total window'' as the unified comparison denominator. Other scenarios may use different target power levels (e.g., 100~MW class) or different comparison windows (e.g., 30 years), making direct comparison of per-satellite cost or satellite count meaningless.
+
+  \item \textbf{Different Cost Boundaries}: This report's cost includes manufacturing cost (9-subsystem breakdown) + launch + insurance + O\&M + decommissioning. Other scenarios may include only manufacturing cost or only launch cost; directly comparing total cost figures constitutes a convention mismatch.
+
+  \item \textbf{Implicit Lifetime Assumption Difference}: Industry optimistic scenarios often implicitly assume long life ($\ge$10 years) without re-launch, but do not provide publicly verifiable hardware lifetime evidence. This report has declared in the 10-year branch that ``no additional publicly verifiable 10-year lifetime mass or cost premium factors are assumed; this is a conservative placeholder'' (residual risk R8).
+
+  \item \textbf{Maturity Assumption Difference}: Industry optimistic scenarios may assume that the HJT route is sufficiently mature to drive procurement prices substantially lower, and that ``mature mass-production compression'' of various coefficients is already in place. This report labels such assumptions by tier under the four-tier evidence system and does not present optimistic-scenario parameters as proven facts.
+\end{enumerate}
+
+\subsection{Cross-Scenario Conversion Reference}
+
+If the reader needs to perform approximate conversions between different conventions, the following conversion factors are provided for reference (all based on engineering judgment from this report's model, not physical laws):
+
+\begin{table}[H]
+  \centering
+  \caption{Approximate Cross-Convention Conversion Reference}
+  \label{tab:cross-alignment-conversion}
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.9cm}
+    >{\centering\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Conversion Direction} & \textbf{Approximate Factor} & \textbf{Notes} \\
+  \midrule
+  Peak Power $\to$ Sustained Power & Cannot be converted with a simple $\times$ factor & See the full energy chain derivation in Chapter~5~\S6.7 of the main text; the two span PV array $\to$ battery $\to$ PCDU $\to$ GPU \\
+  Sustained Power $\to$ IT Load & $\times$0.94 & Typical bus efficiency (distribution + conversion loss $\sim$6\%) \\
+  5yr Window $\to$ 10yr Window & $\times$1.75--2.0 & Contains total cost amplification from one re-launch (with 10yr total window as denominator) \\
+  GaAs $\to$ HJT (Array Area) & $\times$2.07 & EOL efficiency ratio 0.29/0.14 = 2.07$\times$ \\
+  Compute Payload Only $\to$ All-Up Mass & $\times$5.0--6.5 & Includes power system / thermal / bus / propulsion / communications / AIT full system \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+\textbf{Note}: The above factors are only for rapid order-of-magnitude estimation and do not substitute for the full formula substitution in Appendix~C. If the reader requires precise numbers, they should directly reference the corresponding complete derivations in Appendix~C and the adjudicated parameter values in Appendix~B.

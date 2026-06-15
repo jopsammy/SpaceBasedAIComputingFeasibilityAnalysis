@@ -1,0 +1,92 @@
+% sections/06_conclusion.tex -- 综合结论
+
+\section{综合结论}
+
+\subsection{核心判断：三层面综合评估}
+
+\begin{table}[H]
+\centering
+\caption{太空算力可行性三层面综合评估（2026年视角）}
+\label{tab:overall}
+\small
+\begin{tabular}{p{1.5cm}p{2.5cm}p{3.2cm}p{3.0cm}p{3.0cm}}
+\toprule
+\textbf{层面} & \textbf{当前可行？} & \textbf{核心约束} & \textbf{5--10年展望} & \textbf{关键转折点} \\
+\midrule
+\textbf{物理} & \textbf{是}——斯特藩-玻尔兹曼定律不否定 & 1 GW需$\sim$0.7 km\textsuperscript{2}双面散热面积 & 散热材料进步可缩至$\sim$0.5 km\textsuperscript{2} & 高温容忍芯片+耐久涂层成熟 \\
+\hline
+\textbf{工程} & \textbf{脆弱}——可靠性数据严重不足 & 轨道GPU故障率5--15\%/年，维修不可行 & Rubin在轨验证可能提供关键数据 & 模块化设计+机器人维修突破 \\
+\hline
+\textbf{商业} & \textbf{否}——TCO是地面的10.5倍 & 发射成本+硬件溢价+寿命短板 & 乐观2030--32年接近临界可行 & 翻转条件组合下仍6.3x（概率$<$25\%） \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{关键发现总结}
+
+\begin{enumerate}[leftmargin=*]
+
+    \item \textbf{散热是硬物理约束，不受摩尔定律驱动。}
+    SpaceX AI1的1,400\unitWpm{}散热密度在物理上成立但已逼近材料天花板。1 GW轨道数据中心需要约0.71 km\textsuperscript{2}的双面散热面积（$\sim$6,400颗AI1级卫星）。散热密度的翻倍（$\rightarrow$2,800+\unitWpm{}）在2035年前的单一技术路径上不可行，但组合路径（高温芯片+耐久涂层+适度可展开结构）可在2032年前实现40--50\%改善。
+
+    \item \textbf{太空PUE优势真实但被散热密度劣势稀释。}
+    太空辐射散热的PUE（$\sim$1.02--1.05）优于地面最优超大规模（1.06--1.12），但辐射散热通量（单面$\sim$400--1,500\unitWpm{}）比地面液冷冷板（10,000--100,000\unitWpm{}）低1--2个数量级。黄仁勋"97.5\%重量是冷却系统"为修辞性夸张——实际机架内+CDU冷却重量占比约18--35\%。
+
+    \item \textbf{LEO热环境并非"理想冷库"，效率损失15--40\%。}
+    LEO是高度动态的多热源环境：太阳直射可能使散热功能完全丧失，地球反照和红外辐射对散热器形成10--30\%的背景加热，90分钟昼夜循环对百kW级载荷不可通过PCM储热解决。
+
+    \item \textbf{Starship可将发射成本降至\$100--200/kg，但发射成本下降本身不足以解决经济性问题。}
+    15年间发射成本下降约100倍（Shuttle \$54,500/kg$\rightarrow$Starship目标$\sim$\$100--200/kg），遵循Wright's Law但存在\$20--30/kg物理地板。马斯克"300--500 GW/年运力"声明在当前工程约束下偏差约3个数量级，属于理论终极极限而非可操作目标。
+
+    \item \textbf{硬件可靠性是仅次于散热的第二大工程风险。}
+    消费级GPU无法在轨道存活超过数月；NVIDIA Rubin Space-1具有辐射耐受设计但长期可靠性未知；在轨GPU级维修目前完全不可行。轨道GPU故障率估计为5--15\%/年（vs地面1--3\%/年）。Rubin Space-1在轨验证数据是判断短期可行性的关键不确定性。
+
+    \item \textbf{GPU能效8年提升52倍，但绝对功耗同步飙升10倍。}
+    NVIDIA GPU AI精度能效（Volta 0.42$\rightarrow$Rubin $\sim$21.7 TFLOPS/W）的进步令人瞩目，但芯片级热密度仍在增加（Dennard缩放已失效），轨道散热面积需求与算力增长几乎成正比。
+
+    \item \textbf{2026年太空算力TCO为地面的10.5倍，翻转需四参数同时达标。}
+    轨道数据中心10年TCO约\$681M/MW（基准，vs地面中位\$64.6M/MW），乐观情景\$261.4M/MW（4.3x），悲观情景\$1,220M/MW（17.7x）。发射成本即使降至\$50/kg，轨道TCO仍为\$678.6M（10.5倍）。关键交叉点分析：翻转条件组合（发射$<$\$100/kg + 溢价$<$3x + 寿命$>$7年）下轨道TCO仅降至\$408.1M（6.3x），仍未达到地面水平。综合概率在乐观估计下$<$25\%。最可能路径为：2026--2028原型验证$\rightarrow$2028--2030有限部署（军事/情报场景）$\rightarrow$2030--2035条件性扩张（如果多参数同步达标）。
+
+\end{enumerate}
+
+\subsection{对黄仁勋vs马斯克分歧的最终研判}
+
+\textbf{本报告的独立判断确认：黄仁勋的"务实保留"比马斯克的"5年内更便宜"在工程层面更站得住脚。}
+
+但这一判断需要加两个重要限定：
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{马斯克并非完全错误}——在发射成本下降速度和GPU能效提升方面，近未来的技术外推确实支持他的乐观判断。如果发射成本、GPU能效、散热密度、硬件寿命四项参数恰好全部落入乐观区间（概率$<$25\%），"5年内更便宜"并非物理上不可能，只是工程上概率低。
+    \item \textbf{黄仁勋也并非完全保守}——NVIDIA已通过Space-1 Vera Rubin平台实质性地押注太空算力。黄仁勋的"保守"主要体现在时间线的模糊化和对具体承诺的回避，而非对太空算力方向的否定。
+\end{enumerate}
+
+两人分歧的本质不是"做不做"，而是"多快能做"和"瓶颈在哪里"。黄仁勋从芯片工程视角看到了多参数耦合的工程难度（散热、可靠性、成本三重约束），马斯克从文明能源视角假设所有参数会同步改善。本报告基于独立分析的判断是：\textbf{同步改善是可能的，但同步的概率不足以支撑近期明确承诺。}
+
+\subsection{最可能的演进路径}
+
+\begin{center}
+\begin{tabular}{p{3.0cm}p{11.0cm}}
+\toprule
+\textbf{阶段} & \textbf{特征与判断} \\
+\midrule
+\textbf{2026--2028} & \textbf{原型验证期。} AI1/Exlumina等1--2颗原型卫星发射；Rubin Space-1在轨数据收集；Starship发射频次爬坡至50--100/年。经济性：不可行（TCO为地面的10.5x）。 \\
+\hline
+\textbf{2028--2030} & \textbf{有限部署期。} 首批10--50颗轨道算力卫星（军事/情报/低延迟推理场景）；发射成本降至\$100--300/kg；硬件寿命数据积累。经济性：特定利基场景可行。 \\
+\hline
+\textbf{2030--2035} & \textbf{条件性扩张期。} 四参数均达标 $\rightarrow$ 轨道算力成为地面补充；参数未达标 $\rightarrow$ 仍限于军事/科学场景。地面数据中心仍在进步。 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{方法论声明}
+
+本报告所有关键定量计算均由独立Python脚本验证，包括：
+\begin{itemize}[leftmargin=*]
+    \item \texttt{stefan\_boltzmann\_verification.py}：斯特藩-玻尔兹曼定律5部分32+数据点验证\cite{note_sb_script}。
+    \item \texttt{tco\_comparison.py}：3情景TCO对比+发射成本/硬件寿命双维度敏感性分析\cite{note_tco_script}。
+    \item \texttt{launch\_cost\_learning\_curve.py}：Wright's Law学习曲线建模+R\textsuperscript{2}拟合\cite{note_launch_script}。
+\end{itemize}
+
+本报告不构成投资建议。所有近未来外推均基于当前公开数据和合理工程假设，实际进展可能显著偏离估计。核心不确定性不在于任何单一参数，而在于多参数同步改善的概率——这一概率在当前数据下无法精确量化，但可合理判断为低。
+
+% end of 06_conclusion

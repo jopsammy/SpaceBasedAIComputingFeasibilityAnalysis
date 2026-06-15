@@ -1,0 +1,150 @@
+% sections/04_engineering.tex -- Q4/Q5/Q6 工程分析
+
+\section{工程分析：发射、供电与可靠性}
+
+\subsection{Q4：发射成本与轨道算力部署的经济门槛}
+
+\subsubsection{发射成本的历史轨迹与Starship前景}
+
+自航天飞机时代以来，\$/kg-to-LEO成本已下降约100倍（表\ref{tab:launch_history}）。Starship V3复用模式的目标是将成本进一步降至\$100--200/kg\cite{nasalaunch2018,33fg2026starship,guangfa2026learning}。
+
+\begin{table}[H]
+\centering
+\small
+\caption{发射成本历史轨迹（\$/kg to LEO，2026年美元）}
+\label{tab:launch_history}
+\begin{tabularx}{\textwidth}{lcccl}
+\toprule
+\textbf{运载器} & \textbf{年代} & \textbf{LEO运力} & \textbf{\$/kg} & \textbf{备注} \\
+\midrule
+Space Shuttle & 1981--2011 & 27,500 kg & $\sim$\$54,500 & NASA官方数据 \\
+Saturn V & 1967--1973 & 140,000 kg & $\sim$\$46,000 & 通胀调整 \\
+Falcon 9（新） & 2010--2017 & 22,800 kg & $\sim$\$2,720 & NASA 2018 \\
+Falcon 9（复用） & 2017至今 & $\sim$17,500 kg & $\sim$\$2,400 & 复用折扣 \\
+Falcon Heavy & 2018至今 & 63,800 kg & $\sim$\$1,400--2,350 & 部分复用 \\
+Starship V1（一次性） & 2023--2024 & $\sim$200 t & $\sim$\$500 & Payload Research \\
+\textbf{Starship V3（复用目标）} & \textbf{2026+} & \textbf{$\sim$200 t} & \textbf{\$100--200} & \textbf{SpaceX营销目标} \\
+Starship V3（复用成熟） & 2028+ & $\sim$200 t & \$60--100 & 分析机构预测 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{部署1 MW轨道算力的发射成本}
+
+关键参数估算：
+\begin{itemize}[leftmargin=*]
+    \item AI1卫星：150 kW峰值/120 kW持续，翼展70 m，质量估计5--10 t/颗
+    \item 1 MW $\approx$ 8--9颗AI1级卫星
+    \item 总质量40--90 t $\rightarrow$ \textbf{1次Starship V3发射即可部署}
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{部署1 MW轨道算力所需发射成本（2030年情景）}
+\label{tab:launch_1mw}
+\begin{tabular}{lccc}
+\toprule
+\textbf{情景} & \textbf{\$/kg} & \textbf{1MW总发射成本} & \textbf{每kW发射成本} \\
+\midrule
+乐观（\$50/kg） & \$50 & \$2M--4.5M & \$2,000--4,500/kW \\
+基准（\$200/kg） & \$200 & \$8M--18M & \$8,000--18,000/kW \\
+悲观（\$500/kg） & \$500 & \$20M--45M & \$20,000--45,000/kW \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{马斯克"300--500 GW/年运力"的物理可行性验证}
+
+当前FAA批准Starship年发射频次上限为69次/年（Boca Chica 25次 + KSC LC-39A 44次）\cite{faa2025boca,faa2026ksc}。每次发射可部署约2.4--4.8 MW算力，69次/年$\times$4.8 MW/次 $\approx$ 331 MW/年——仅为声称的300 GW的约0.1\%。要达到300 GW/年，需要$\sim$62,500次/年（每天171次）。
+
+\textbf{结论：300--500 GW/年声明在当前工程约束下不可行，偏差约3个数量级。} 该数字可能的解释框架：马斯克在描述"年产10,000艘、每艘复用100次"的终极理论极限\cite{33fg2026starship}。
+
+\subsection{Q5：轨道太阳能供电的实际可用功率}
+
+\subsubsection{关键参数与计算}
+
+\begin{itemize}[leftmargin=*]
+    \item 太阳常数（AM0, 1 AU）：1,361\unitWpm{}
+    \item 当前最佳空间级多结砷化镓电池效率：32\% BOL（AZUR SPACE 4G32C四结电池）；五结电池实验室记录36.06\% AM0\cite{azur2025space,zhang2025solar}
+    \item LEO日照时间占比：$\sim$60\%（$\sim$55分钟日照/35分钟地影）
+    \item 电池充放电效率：$\sim$90\%（锂离子）
+\end{itemize}
+
+计算链（1 MW持续算力，使用30\%效率GaAs电池）：
+\begin{equation*}
+\text{所需光伏面积} = \frac{1000\ \text{kW}}{0.60 \times 0.90} \div 0.85 \div (1361 \times 0.30) \approx 5,340\ \text{m}^2
+\end{equation*}
+
+\textbf{结论：1 MW持续轨道算力需要约5,000--6,000 m\textsuperscript{2}光伏面积}（30\%效率）。若使用36\%效率五结电池，可降至$\sim$4,400 m\textsuperscript{2}。
+
+\subsubsection{轨道vs地面光伏对比}
+
+\begin{table}[H]
+\centering
+\caption{轨道（LEO）vs地面光伏关键参数对比}
+\label{tab:pv_compare}
+\begin{tabular}{lcc}
+\toprule
+\textbf{参数} & \textbf{轨道（LEO）} & \textbf{地面（最优）} \\
+\midrule
+峰值辐照 & 1,361\unitWpm{} & $\sim$1,000\unitWpm{}（AM1.5） \\
+光伏效率 & 30--36\%（多结GaAs） & 20--25\%（单晶硅） \\
+容量因子 & $\sim$60\% & 15--25\% \\
+年有效发电小时 & $\sim$5,256 h & $\sim$1,300--2,200 h \\
+每W成本 & \$200--400/W（空间级） & \$0.2--0.5/W（地面硅） \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+轨道太阳能在物理可用性上占优（容量因子60\% vs 15--25\%），但成本高3个数量级。目前不具备经济竞争力\cite{nasa2024iss}。
+
+\subsection{Q6：在轨维护可行性与硬件可靠性}
+
+\subsubsection{航天器电子设备辐射故障机制}
+
+LEO轨道上电子设备面临五种主要辐射效应\cite{nasajpl2025rad,gaoanxin2025rad}：总电离剂量（TID，LEO 600km SSO: 10--30 krad(Si)/年）、单粒子翻转（SEU，$10^{-4}$--$10^{-5}$/器件·天）、单粒子闩锁（SEL，可烧毁器件）、热循环疲劳（每90分钟-150\unitC{}至+150\unitC{}，$\sim$5,840次/年）、单粒子烧毁（SEB，永久性损坏）。
+
+\subsubsection{NVIDIA Rubin Space-1和消费级GPU的轨道适用性}
+
+\begin{table}[H]
+\centering
+\caption{NVIDIA GPU在轨道环境中的适用性判断}
+\label{tab:gpu_space}
+\begin{tabular}{p{2.5cm}p{3.5cm}p{3.5cm}p{3.5cm}}
+\toprule
+\textbf{GPU类型} & \textbf{辐射防护} & \textbf{LEO适用性} & \textbf{关键限制} \\
+\midrule
+Rubin Space-1 & 辐射耐受（radiation-tolerant），内置ECC+看门狗+自主恢复 & 适合LEO短期任务 & 未公布TID/SEL具体等级；长期可靠性未知 \\
+\hline
+IGX Thor & 工业级耐久性，非空间级辐射加固 & 适合地面站/低轨短期 & 不适合深空或GEO \\
+\hline
+H100/消费级 & 仅有地面级ECC，无TID防护 & 无法在轨道存活超过数月 & 4nm工艺对总剂量效应极为敏感 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{地面vs轨道故障率对比}
+
+\begin{table}[H]
+\centering
+\caption{地面vs轨道GPU故障率估计}
+\label{tab:failure_rate}
+\begin{tabular}{p{3.5cm}ccc}
+\toprule
+\textbf{故障类型} & \textbf{地面数据中心} & \textbf{轨道（无辐射加固）} & \textbf{轨道（辐射耐受）} \\
+\midrule
+年化GPU故障率 & $\sim$1--3\% & $>$50\%（估计） & $\sim$5--15\%（估计） \\
+MTBF（小时） & 10,000--30,000 & $<$2,000 & 5,000--20,000（估计） \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{数据受限警告}：轨道GPU的精确故障率数据不存在——NVIDIA未公布Rubin Space-1的可靠性测试结果。上述为非辐射加固和辐射耐受器件的工程外推估计\cite{newspace2025h100,theclaw2026rubin}。
+
+\subsubsection{在轨维修可行性}
+
+当前卫星服务市场（如SpaceLogistics GEO延寿\$30--50M/次、NASA Katalyst Swift救援$\sim$\$30M）表明：\textbf{对轨道数据中心的单个GPU进行在轨更换目前完全不可行。} 解决方案只能是：(a) 硬件冗余（N+1或N+2 GPU配置），(b) 接受有限寿命后整星替换，(c) 等待未来机器人维修技术进步\cite{nasa2026katalyst,eamvision2025satellite}。
+
+\textbf{核心结论}：硬件可靠性是太空算力仅次于散热的第二大工程风险。Rubin Space-1虽代表重要进步，但其在轨验证数据是判断轨道算力短期可行性的关键不确定性。
+
+% end of 04_engineering

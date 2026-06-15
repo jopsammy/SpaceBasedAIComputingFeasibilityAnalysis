@@ -1,0 +1,63 @@
+% gpu_reliability_bars.tex — GPU 可靠性对比柱状图
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.95\textwidth,
+    height=6.5cm,
+    ybar,
+    bar width=28pt,
+    ylabel={年化失效率 AFR（\%）},
+    ymin=0, ymax=38,
+    ytick={0,3,5,10,15,30},
+    yticklabels={0,3,5,10,15,30},
+    symbolic x coords={地面数据中心, 轨道商业级GPU, 轨道抗辐射GPU, 极端太阳事件},
+    xtick=data,
+    xticklabel style={align=center, font=\footnotesize},
+    enlarge x limits=0.25,
+    nodes near coords,
+    nodes near coords style={font=\footnotesize},
+    point meta=explicit symbolic,
+    every node near coord/.append style={yshift=6pt},
+    legend style={
+        at={(0.5,-0.22)},
+        anchor=north,
+        legend columns=1,
+        draw=none,
+        font=\footnotesize
+    },
+    grid=major,
+    grid style={draw=gray!20},
+    axis lines=left,
+    enlarge y limits={upper, value=0.2}
+]
+
+% 柱状图数据
+\addplot[fill=primary!60, draw=primary]
+    coordinates {
+        (地面数据中心, 2) [2\%]
+        (轨道商业级GPU, 12) [12\%]
+        (轨道抗辐射GPU, 5) [5\%]
+        (极端太阳事件, 30) [30\%+]
+    };
+
+% 标注
+\draw[->, >=stealth, highlight, line width=1.0pt, dashed]
+    (axis cs:地面数据中心,8) -- (axis cs:轨道商业级GPU,8)
+    node[midway, above, font=\footnotesize, text=highlight] {$\times$6};
+
+\draw[->, >=stealth, highlight, line width=1.0pt, dashed]
+    (axis cs:轨道商业级GPU,20) -- (axis cs:极端太阳事件,20)
+    node[midway, above, font=\footnotesize, text=highlight] {$\times$2.5};
+
+% 不可接受阈值线
+\draw[red!50, dashed, line width=0.8pt]
+    (axis cs:地面数据中心,15) -- (axis cs:极端太阳事件,15);
+\node[red!60, font=\footnotesize] at (axis cs:轨道抗辐射GPU,16.5)
+    {不可接受阈值};
+
+% 注解
+\node[align=left, font=\footnotesize, text=gray]
+    at (axis cs:地面数据中心,36)
+    {在轨维修 $\rightarrow$ 不可行\\集群3年可用算力 $\rightarrow$ 20--40\%};
+
+\end{axis}
+\end{tikzpicture}

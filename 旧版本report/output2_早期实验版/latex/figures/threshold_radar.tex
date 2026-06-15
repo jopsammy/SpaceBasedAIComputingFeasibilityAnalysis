@@ -1,0 +1,124 @@
+% figures/threshold_radar.tex
+% 临界阈值蛛网图：四轴雷达图（发射成本/GPU能效/散热密度/硬件寿命）
+% 使用 TikZ 手工绘制四边形雷达图
+
+\begin{tikzpicture}[scale=1.0]
+
+% ===== 轴定义 =====
+% 四个轴：右(0°)、上(90°)、左(180°)、下(270°)
+% 中心点 (0,0)，最大半径 3.5cm
+
+\def\rmax{3.5}
+
+% ===== 网格线（0.25, 0.5, 0.75, 1.0） =====
+\foreach \r in {0.875,1.75,2.625,3.5}{
+    \draw[gray!30, line width=0.3pt]
+        (\r,0) -- (0,\r) -- (-\r,0) -- (0,-\r) -- cycle;
+}
+
+% ===== 四轴 =====
+% 轴 1: 右 — GPU 能效 (TFLOPS/W)
+% 轴 2: 上 — 散热密度 (W/m²)
+% 轴 3: 左 — 发射成本 ($/kg, 反向)
+% 轴 4: 下 — 硬件寿命 (年)
+\draw[->, >=stealth, graybase, line width=0.8pt] (0,0) -- ( \rmax,0);
+\draw[->, >=stealth, graybase, line width=0.8pt] (0,0) -- (0, \rmax);
+\draw[->, >=stealth, graybase, line width=0.8pt] (0,0) -- (-\rmax,0);
+\draw[->, >=stealth, graybase, line width=0.8pt] (0,0) -- (0,-\rmax);
+
+% ===== 轴标签 =====
+\node[primary, font=\bfseries\footnotesize, anchor=west]
+    at (\rmax+0.3,0) {\textbf{GPU能效}};
+\node[primary, font=\scriptsize, anchor=west]
+    at (\rmax+0.3,-0.35) {TFLOPS/W};
+
+\node[primary, font=\bfseries\footnotesize, anchor=south]
+    at (0,\rmax+0.3) {\textbf{散热密度}};
+\node[primary, font=\scriptsize, anchor=south]
+    at (0,\rmax+0.05) {W/m\textsuperscript{2}};
+
+\node[primary, font=\bfseries\footnotesize, anchor=east]
+    at (-\rmax-0.3,0) {\textbf{发射成本}};
+\node[primary, font=\scriptsize, anchor=east]
+    at (-\rmax-0.3,-0.35) {\$/kg (反向)};
+
+\node[primary, font=\bfseries\footnotesize, anchor=north]
+    at (0,-\rmax-0.3) {\textbf{硬件寿命}};
+\node[primary, font=\scriptsize, anchor=north]
+    at (0,-\rmax-0.05) {年};
+
+% ===== 刻度标记 =====
+% GPU能效: 0, 25, 50, 75, 100, 125, 150
+\foreach \v/\l in {0.583/25, 1.167/50, 1.75/75, 2.333/100, 2.917/125, 3.5/150}{
+    \draw[gray!40] (\v,0.08) -- (\v,-0.08);
+    \node[font=\tiny, graybase, anchor=north] at (\v,-0.1) {\l};
+}
+
+% 散热密度: 0, 500, 1000, 1500, 2000, 2500, 3000
+\foreach \v/\l in {0.583/500, 1.167/1000, 1.75/1500, 2.333/2000, 2.917/2500, 3.5/3000}{
+    \draw[gray!40] (0.08,\v) -- (-0.08,\v);
+    \node[font=\tiny, graybase, anchor=east] at (-0.12,\v) {\l};
+}
+
+% 发射成本 (反向): 0, 50, 100, 150, 200, 250, 300
+\foreach \v/\l in {0.583/50, 1.167/100, 1.75/150, 2.333/200, 2.917/250, 3.5/300}{
+    \draw[gray!40] (-\v,0.08) -- (-\v,-0.08);
+    \node[font=\tiny, graybase, anchor=north] at (-\v,-0.1) {\l};
+}
+
+% 硬件寿命: 0, 2, 4, 6, 8, 10, 12
+\foreach \v/\l in {0.583/2, 1.167/4, 1.75/6, 2.333/8, 2.917/10, 3.5/12}{
+    \draw[gray!40] (0.08,-\v) -- (-0.08,-\v);
+    \node[font=\tiny, graybase, anchor=east] at (-0.12,-\v) {\l};
+}
+
+% ===== 红色虚线多边形: 2026 基准 =====
+% 发射 $200 → 左轴: 200/300 * 3.5 = 2.333
+% GPU能效 7.5 → 右轴: 7.5/150 * 3.5 = 0.175
+% 散热 1400 → 上轴: 1400/3000 * 3.5 = 1.633
+% 寿命 5 → 下轴: 5/12 * 3.5 = 1.458
+\fill[highlight, opacity=0.15]
+    (0.175,0) -- (0,1.633) -- (-2.333,0) -- (0,-1.458) -- cycle;
+\draw[highlight, line width=1.2pt, dashed]
+    (0.175,0) -- (0,1.633) -- (-2.333,0) -- (0,-1.458) -- cycle;
+\node[highlight, font=\footnotesize\bfseries, anchor=south west]
+    at (0.2,0.2) {\textbf{2026 基准}};
+
+% 数据点标注
+\fill[highlight] (0.175,0) circle (1.8pt);
+\fill[highlight] (0,1.633) circle (1.8pt);
+\fill[highlight] (-2.333,0) circle (1.8pt);
+\fill[highlight] (0,-1.458) circle (1.8pt);
+
+% ===== 蓝色实线多边形: 翻转条件 =====
+% 发射 <$100 → 100/300 * 3.5 = 1.167
+% GPU能效 >100 → 100/150 * 3.5 = 2.333
+% 散热 >2000 → 2000/3000 * 3.5 = 2.333
+% 寿命 >7 → 7/12 * 3.5 = 2.042
+\fill[primary, opacity=0.25]
+    (2.333,0) -- (0,2.333) -- (-1.167,0) -- (0,-2.042) -- cycle;
+\draw[primary, line width=1.5pt]
+    (2.333,0) -- (0,2.333) -- (-1.167,0) -- (0,-2.042) -- cycle;
+\node[primary, font=\footnotesize\bfseries, anchor=south east]
+    at (1.5,1.5) {\textbf{翻转条件}};
+
+% 数据点标注
+\fill[primary] (2.333,0) circle (2pt);
+\fill[primary] (0,2.333) circle (2pt);
+\fill[primary] (-1.167,0) circle (2pt);
+\fill[primary] (0,-2.042) circle (2pt);
+
+% ===== 面积差标注 =====
+\node[graybase, font=\tiny\itshape, align=center]
+    at (0.8,0.6) {\textbf{面积差}\\\textbf{$=$ 不可行区间}};
+
+% ===== 图例 =====
+\node[font=\footnotesize, anchor=north west]
+    at (-3.5,3.5) {
+    \begin{tabular}{ll}
+    \tikz{\draw[highlight, dashed, line width=1.2pt] (0,0) -- (0.5,0);} & 2026 基准 \\
+    \tikz{\draw[primary, line width=1.5pt] (0,0) -- (0.5,0);} & 翻转条件 \\
+    \end{tabular}
+};
+
+\end{tikzpicture}

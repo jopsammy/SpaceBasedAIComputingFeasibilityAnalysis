@@ -1,0 +1,55 @@
+% figures/sb_t4_curve.tex
+% 斯特藩-玻尔兹曼 T⁴ 曲线：散热通量 vs 温度
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.95\textwidth,
+    height=7cm,
+    xlabel={\textbf{散热面温度} $T$ (K)},
+    ylabel={\textbf{散热通量} (W/m\textsuperscript{2})},
+    xmin=290, xmax=510,
+    ymin=0, ymax=3800,
+    grid=major,
+    legend style={
+        at={(0.02,0.98)},
+        anchor=north west,
+        font=\footnotesize,
+        cells={anchor=west}
+    },
+    tick label style={font=\footnotesize},
+    label style={font=\small},
+]
+
+% ε=0.85
+\addplot[color=gray!60, line width=1.2pt, mark=*, mark size=1.5pt]
+    coordinates {(300,390)(323,523)(340,642)(350,723)(373,932)(400,1234)(450,1981)(500,3015)};
+\addlegendentry{$\varepsilon=0.85$}
+
+% ε=0.90
+\addplot[color=accent, line width=1.2pt, mark=square*, mark size=1.5pt]
+    coordinates {(300,413)(323,555)(340,682)(350,766)(373,988)(400,1306)(450,2093)(500,3190)};
+\addlegendentry{$\varepsilon=0.90$}
+
+% ε=0.95
+\addplot[color=primary!70, line width=1.2pt, mark=triangle*, mark size=1.5pt]
+    coordinates {(300,436)(323,586)(340,720)(350,808)(373,1043)(400,1379)(450,2209)(500,3367)};
+\addlegendentry{$\varepsilon=0.95$}
+
+% ε=1.00 (黑体)
+\addplot[color=primary, line width=1.5pt, dashed, mark=diamond*, mark size=1.5pt]
+    coordinates {(300,459)(323,617)(340,758)(350,851)(373,1097)(400,1452)(450,2325)(500,3544)};
+\addlegendentry{$\varepsilon=1.00$ (黑体)}
+
+% AI1 工作点标注
+\addplot[only marks, mark=*, mark size=4pt, color=highlight]
+    coordinates {(342.5,1400)};
+\node[highlight, anchor=south west, font=\footnotesize\bfseries]
+    at (axis cs:342.5,1400) {AI1 工作点 (342.5\,K, $\sim$1400\,W/m\textsuperscript{2})};
+
+% T⁴ 非线性辅助标注
+\draw[->, >=stealth, graybase, line width=0.6pt]
+    (axis cs:380,800) -- (axis cs:460,1800);
+\node[graybase, font=\footnotesize, anchor=north]
+    at (axis cs:420,1050) {\textbf{$T^{4}$ 非线性增长}};
+
+\end{axis}
+\end{tikzpicture}

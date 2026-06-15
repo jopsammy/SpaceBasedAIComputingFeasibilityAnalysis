@@ -1,0 +1,45 @@
+% TCO branch comparison chart — Chapter 7
+% Three branches (10yr-GaAs primary, 5yr-GaAs control, 5yr-HJT fill-in) + Ground IDC reference
+% Total cost composition stacked bar chart
+\begin{tikzpicture}
+  \begin{axis}[
+      ybar stacked,
+      width=13cm, height=7cm,
+      bar width=1.4cm,
+      ymin=0, ymax=1600,
+      ylabel={10-Year Total Cost (USD Million)},
+      ylabel style={font=\small},
+      xtick=data,
+      xticklabels={10yr-GaAs\\Primary, 5yr-GaAs\\Control, 5yr-HJT\\Fill-in, Ground IDC\\Reference},
+      xticklabel style={font=\footnotesize, align=center, text width=1.9cm},
+      legend style={
+        font=\footnotesize,
+        at={(0.5,-0.28)},
+        anchor=north,
+        legend columns=-1,
+        draw=none
+      },
+      nodes near coords={
+        \pgfmathprintnumber{\pgfplotspointmeta}
+      },
+      nodes near coords style={font=\tiny, anchor=center, /pgf/number format/.cd, fixed, precision=0, /tikz/.cd, fill=white, inner sep=1pt, opacity=0.8, text opacity=1},
+      enlarge x limits=0.18,
+    ]
+    % 10yr-GaAs Primary: Manufacturing 696.72 + Launch 14.13 + Ops/Insurance/Decomm 54.13 = 764.98
+    % 5yr-GaAs Control: 1259.69 + 23.68 + 57.89 = 1341.26
+    % 5yr-HJT Fill-in: 916 + 30.44 + 58.56 ≈ 1005
+    % Ground IDC Reference (position 3): ~64.6M
+    \addplot [fill=cyan!30!gray!40, draw=cyan!40!gray!60]  coordinates {(0,696.72) (1,1259.69) (2,916)    (3,0)};
+    \addplot [fill=teal!30!gray!40, draw=teal!40!gray!60]  coordinates {(0,14.13)  (1,23.68)   (2,30.44)  (3,0)};
+    \addplot [fill=brown!30!gray!40, draw=brown!40!gray!60] coordinates {(0,54.13)  (1,57.89)   (2,58.56)  (3,0)};
+    \addplot [fill=orange!40!gray!30, draw=orange!50!gray!50] coordinates {(0,0)       (1,0)       (2,0)      (3,64.6)};
+
+    % Total cost labels (axis coordinate system)
+    \node [font=\footnotesize\bfseries] at (axis cs:0,810)  {\$764.98M};
+    \node [font=\footnotesize\bfseries] at (axis cs:1,1380) {\$1,341.26M};
+    \node [font=\footnotesize\bfseries] at (axis cs:2,1040) {$\sim$\$1,005M};
+    \node [font=\footnotesize\bfseries, text=orange!60!black] at (axis cs:3,110)  {$\sim$\$64.6M};
+
+    \legend{Manufacturing Cost, Launch Cost, Ops+Insurance+Decommissioning, Ground IDC Reference (right bar)}
+  \end{axis}
+\end{tikzpicture}

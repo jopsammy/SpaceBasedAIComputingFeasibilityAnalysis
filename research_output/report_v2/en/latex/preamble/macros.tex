@@ -1,0 +1,55 @@
+% preamble/macros.tex
+% Custom macros / commands / environments
+
+% ========== Font Settings ==========
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Courier New}
+
+% ========== Color Definitions ==========
+\definecolor{primary}{HTML}{1A5276}
+\definecolor{accent}{HTML}{16A085}
+\definecolor{graybase}{HTML}{2C3E50}
+\definecolor{graylight}{HTML}{BDC3C7}
+\definecolor{highlight}{HTML}{E74C3C}
+
+% ========== Math Commands ==========
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+
+% ========== Table Column Types ==========
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+% ========== Unit Abbreviations ==========
+\newcommand{\unitWpm}[0]{W/m\textsuperscript{2}}
+\newcommand{\unitK}[0]{K}
+\newcommand{\unitC}[0]{\textdegree{}C}
+\newcommand{\degree}{\textdegree}
+\newcommand{\unitGW}[0]{GW}
+\newcommand{\unitMW}[0]{MW}
+\newcommand{\unitkW}[0]{kW}
+\newcommand{\unitkm}[0]{km}
+\newcommand{\unitt}[0]{t}
+
+% ========== hyperref Fix ==========
+\makeatletter
+\patchcmd{\@newl@bel}{\@testdef}{\@testdef{}}{}{}
+\makeatother
+\makeindex
+
+% ========== Table Float Fix ==========
+\makeatletter
+\newcommand{\fixtablefloats}{%
+  \def\fps@table{htbp}%
+  \def\ftype@table{1}%
+  \floatplacement{table}{htbp}%
+}
+\AtBeginDocument{%
+  \ifdefstring{\languagename}{english}{\fixtablefloats}{}%
+  \appto\english{\fixtablefloats}%
+}
+\makeatother

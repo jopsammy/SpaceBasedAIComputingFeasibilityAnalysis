@@ -1,0 +1,107 @@
+% appendices/appendix_a_alignment_matrix.tex
+
+\section{口径对齐矩阵}
+
+本章为第2章的口径讨论提供完整的可独立查阅的详细矩阵。不同场景（或不同研究方）若分别采用不同的时间窗、功率口径、架构代际、电源路线和寿命假设，其得出的数字不能直接横向比较。本矩阵的目的不是在各项间判定优劣，而是显式列出各维度的取值与来源，使读者在阅读本报告正文或其他外部研究时能够判断比较的前提是否对齐。
+
+\subsection{口径维度说明}
+
+以下为矩阵各列维度的统一定义：
+
+\begin{description}
+  \item[时间窗] 单代卫星在轨服役年数。5年窗口意味着5年后自动坠毁、需重射；10年窗口意味着单代卫星服役10年不重射。
+  \item[功率口径] 分别标注峰值功率（单星最大电力输出）、持续功率（全轨道周期平均可用功率）和 IT 负载功率（最终送达计算硬件的可用功率）。
+  \item[架构代际] 计算硬件的 GPU 架构。Blackwell 对应 GB300 NVL72 计算托盘为地面硬件锚点（二档）；Rubin 对应 NVIDIA Space-1 平台。
+  \item[光伏路线] 太阳电池技术路线。GaAs 为主链（AzurSpace 4G32 级，BOL 32\%/EOL 29\%）；HJT 为并行成熟路线（BOL 22\%/EOL 14\%）。
+  \item[电池化学] 储能电池体系与放电深度(DoD)取值。分支：5yr NMC（DoD 40\%）、10yr Li-ion NMC（DoD 25\%）、10yr LTO（DoD 80\%）。
+  \item[发射单价] 假设的每千克入轨成本。基准取\$200/kg（Starship V3 复用目标）。
+  \item[寿命假设] 总比较窗口及重射规则。
+  \item[是否含冗余] 是否在卫星数量中显式计入在轨备份星。
+  \item[单星质量定义] 质量口径是仅计算载荷还是整星全系统质量。
+  \item[地面参照口径] 用于 TCO 倍数比较的地面数据中心成本参照值。
+\end{description}
+
+\subsection{完整口径对齐矩阵}
+
+\begin{table}[H]
+  \centering
+  \caption{口径对齐矩阵——各场景维度的取值、来源与可比较性判定}
+  \label{tab:alignment-matrix}
+  \small
+  \begin{tabular}{
+    >{\raggedright\arraybackslash}p{1.6cm}
+    >{\raggedright\arraybackslash}p{1.2cm}
+    >{\raggedright\arraybackslash}p{1.1cm}
+    >{\raggedright\arraybackslash}p{1.0cm}
+    >{\raggedright\arraybackslash}p{0.9cm}
+    >{\raggedright\arraybackslash}p{0.9cm}
+    >{\raggedright\arraybackslash}p{0.8cm}
+    >{\raggedright\arraybackslash}p{0.9cm}
+    >{\raggedright\arraybackslash}p{1.0cm}
+    >{\raggedright\arraybackslash}p{1.0cm}
+  }
+  \toprule
+  \textbf{场景} & \textbf{时间窗} & \textbf{功率口径} & \textbf{架构} & \textbf{光伏路线} & \textbf{电池} & \textbf{发射单价} & \textbf{寿命假设} & \textbf{是否含冗余} & \textbf{单星质量定义} \\
+  \midrule
+  \textbf{本报告主链} & 10年 & 峰值150kW/持续120kW/IT负载$\sim$120kW & Blackwell (GB300 NVL72) & GaAs（二档） & 10yr Li-ion NMC, DoD 25\% & \$200/kg & 单代10年，不重射 & 否（8.33颗=1MW/120kW） & 整星8.48t（9子系统分项求和） \\[3pt]
+  \textbf{本报告5年对照} & 5年 & 同上 & 同上 & GaAs（二档） & 5yr NMC, DoD 40\% & \$200/kg & 5年后坠毁重射一次（共2代） & 否 & 整星7.10t \\[3pt]
+  \textbf{本报告HJT对照} & 5年 & 同上 & 同上 & HJT（并行成熟路线，二档） & 5yr NMC, DoD 40\% & \$200/kg & 5年后坠毁重射一次（共2代） & 否 & 整星9.13t \\[3pt]
+  \textbf{行业乐观场景} & 不明确 & 不明确 & 不锁定 & 未指定（可能存在HJT假设） & 未指定 & \$100/kg或更低 & 未指定重射规则 & 可能含冗余 & 未公开分项 \\
+  \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{口径差异的定量影响}
+
+\begin{enumerate}
+  \item \textbf{时间窗差异}（5年 vs 10年）：在本报告模型中，将服役寿命从10年缩短为5年导致整星重射一次，使10年总制造成本近似翻倍（10年-GaAs基线总成本\$764.98M vs 5年-GaAs \$1,341.26M）。任何跨口径比较若未控制时间窗，成本差异可能被寿命假设主导而非系统本身差异。
+  
+  \item \textbf{功率口径差异}（峰值 vs 持续 vs IT负载）：峰值功率150 kW与持续功率120 kW之间的关系并非简单的"20\%折扣"——从LEO轨道能量平衡的物理约束出发，150 kW为IT峰值/公开峰值口径，不可直接等同为持续IT；120 kW持续IT的正向物理需求约对应210 kW阵列EOL输出。若严格以150 kW为上限，则最大持续IT仅约86 kW。二者跨越了完整能量转换链（光伏阵列→电池→PCDU→GPU），不可混淆为同一物理口径。
+
+  \item \textbf{光伏路线差异}（GaAs vs HJT）：在相同负载下，HJT需要额外约670 m$^2$阵列面积（1,295 vs 625 m$^2$）和约0.80t电源总质量（3.73t vs 2.93t）。此外，AI1公开的70m翼展约束直接排除HJT作为可落地路线——70m $\times$ 8.9m $\approx$ 625 m$^2$与GaAs主链计算精确自洽，而HJT所需的1,295 m$^2$在70m翼展下要求$\sim$18.5m平均宽度，在当前工程水平下不可实现。
+
+  \item \textbf{电池化学差异}（NMC vs LTO）：在10年服役条件下，NMC需限制DoD至25\%（电池1,542 kg），而LTO可运行于80\% DoD（电池916 kg，轻约40\%）。但LTO单价更高（\~\$350/kWh vs \$200/kWh），需视具体任务需求选择分支，不可合并为单一参数。
+
+  \item \textbf{发射单价差异}（\$100 vs \$200 vs \$500/kg）：在本报告10年-GaAs基线中，发射成本仅占总成本约1.8\%（\$14.13M / \$764.98M）。即使发射成本从\$200降至\$100/kg，总成本仅下降约0.9\%。这意味着单纯依赖发射降本不足以翻转商业结论。
+
+  \item \textbf{单星质量定义差异}（计算载荷 vs 整星）：若按kW/t反推链的2.14t口径（仅计算载荷），装载数约37-46颗/发（Starship 100+t级运力）。但本轮bottom-up整星质量基准为8.48t，装载数降至约9-14颗/发。不同的质量口径直接改变发射成本估算和星座规模判断。
+\end{enumerate}
+
+\subsection{不同场景为何不能直接比较}
+
+\begin{enumerate}
+  \item \textbf{比较分母不同}：本报告以「1 MW 持续 IT 负载 / 10 年总窗口」为统一比较分母。其他场景可能使用不同的目标功率（如100 MW级）或不同的比较窗口（如30年），直接比较单星成本或卫星数量无意义。
+
+  \item \textbf{成本边界不同}：本报告成本包含制造成本（9子系统分项）+发射+保险+运维+退役。其他场景可能仅含制造成本或仅含发射成本，直接比较总成本数字属于口径不一致。
+
+  \item \textbf{寿命假设隐式差异}：行业乐观场景常隐式假设长寿命（$\ge$10年）且不重射，但未提供公开可证实的硬件寿命证据。本报告在10年分支中已声明"未额外假定公开可证实的10年寿命增重或增价因子，属于保守占位"（残余风险R8）。
+
+  \item \textbf{成熟度假定差异}：行业乐观场景可能假定HJT路线已足够成熟到使采购价大幅降低，且各项系数的"成熟量产压缩"已到位。本报告将此类假设按四档证据体系分别标注档位，不将乐观情景参数表述为已证实事实。
+\end{enumerate}
+
+\subsection{跨场景换算参考}
+
+若读者需在不同口径间进行近似换算，以下转换因子可供参考（均基于本报告模型的工程判断，非物理定律）：
+
+\begin{table}[H]
+  \centering
+  \caption{跨口径近似换算参考}
+  \label{tab:cross-alignment-conversion}
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.9cm}
+    >{\centering\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{转换方向} & \textbf{近似因子} & \textbf{说明} \\
+  \midrule
+  峰值功率 $\to$ 持续功率 & 不可用简单$\times$因子换算 & 参见正文第5章§6.7的完整能量链推导，二者跨越光伏阵列$\to$电池$\to$PCDU$\to$GPU \\
+持续功率 $\to$ IT负载 & $\times$0.94 & 母线效率典型值（配电+转换损耗$\sim$6\%） \\
+  5年窗口 $\to$ 10年窗口 & $\times$1.75-2.0 & 含重射一次的总成本放大（以10年总窗口为分母） \\
+  GaAs $\to$ HJT（阵列面积） & $\times$2.07 & EOL效率比 0.29/0.14 = 2.07$\times$ \\
+  仅计算载荷 $\to$ 整星质量 & $\times$5.0-6.5 & 含电源/热控/平台/推进/通信/AIT全系统 \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+\textbf{注意}：上述因子仅用于快速量级估计，不替代附录C中的完整公式代入。若读者需要精确数字，应直接引用附录C中对应的完整推导与附录B中已裁决的参数取值。

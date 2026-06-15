@@ -1,0 +1,66 @@
+% !TEX program = xelatex
+\documentclass[12pt,a4paper]{article}
+
+% === Preamble 组装 ===
+\input{preamble/packages}
+\input{preamble/macros}
+
+% === 参考文献资源 ===
+\addbibresource{bib/refs.bib}
+
+% === 文档元信息 ===
+\title{太空算力可行性分析报告：\\物理极限、工程约束与商业前景}
+\author{曾庆明}
+\date{2026年6月}
+
+\begin{document}
+
+% 封面（使用 \maketitle）
+\maketitle
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\footnotetext[1]{联系邮箱：\href{jop.sammy@163.com}{jop.sammy@163.com} \quad ORCID：\href{https://orcid.org/0009-0007-4382-0040}{0009-0007-4382-0040}}
+
+% 摘要
+\begin{abstract}
+本报告对太空（轨道）AI算力的物理可行性、工程可行性与商业前景进行了独立技术分析。报告从零引入研究对象，采用物理-工程-商业三层递进框架，基于斯特藩-玻尔兹曼定律、自底向上质量链、三分支TCO模型和四档证据体系对黄仁勋（NVIDIA）与埃隆·马斯克（SpaceX）的公开言论进行交叉验证。核心发现：物理上可行——AI1宣称的1,400 W/m²散热密度在辐射热物理中成立；工程上脆弱——计算载荷质量链已完成从kW/t反推到地面硬件锚点的重构，但多种非计算子系统的质量与成本仍依赖工程推断；商业以场景分层——统一Blackwell主线下的10年-GaAs基线给出\$764.98M（官方宣称口径下1MW持续IT/10年总窗口的乐观可比基线）的TCO，寿命缩短或光伏路线切换均显著推高成本，多参数同步改善的概率在当前证据下较低。
+
+\medskip
+\noindent\textbf{报告性质声明：}本报告为基于公开资料和第一性原理的早期情景可行性分析，\textbf{非工程定型报告，亦非完整项目财务审计}。所有 TCO 数字均为给定假设下的模型输出，不代表对具体项目成本的预测或审计结论。报告力求以严谨的交叉核验标准进行评估，但其结论应被理解为"在现有公开信息下的方向性判断"而非"可据以决策的确定性结果"。进一步的数据增量（AI1在轨验证、一手硬件指标公开）将显著影响量化结论的精度。
+\end{abstract}
+
+\vspace{1cm}
+
+% 关键词
+\textbf{关键词：} 太空算力；轨道数据中心；辐射散热；斯特藩-玻尔兹曼定律；总拥有成本；黄仁勋；埃隆·马斯克；NVIDIA Space-1；SpaceX AI1
+
+\newpage
+
+% 目录
+\tableofcontents
+\newpage
+
+% === 执行摘要 + 正文（第1章至第7章）===
+\input{sections/00_executive_summary}
+\input{sections/01_background}
+\input{sections/02_methodology}
+\input{sections/03_statements}
+\input{sections/04_science}
+\input{sections/05_engineering}
+\input{sections/06_commercial}
+\input{sections/07_conclusion}
+
+% === 参考文献 ===
+\printbibliography
+
+\newpage
+
+% === 附录（5篇）===
+\appendix
+\input{appendices/appendix_a_alignment_matrix}
+\input{appendices/appendix_b_parameter_verdicts}
+\input{appendices/appendix_c_calculation_methods}
+\input{appendices/appendix_d_evidence_routing}
+\input{appendices/appendix_e_deprecated_chains}
+
+\end{document}

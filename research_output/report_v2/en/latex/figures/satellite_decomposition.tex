@@ -1,0 +1,53 @@
+% Single satellite decomposition diagram — Chapter 6
+% AI1-tier satellite 9-subsystem breakdown (10yr-GaAs baseline), showing mass & proportion per subsystem
+\resizebox{\textwidth}{!}{
+\begin{tikzpicture}[node distance=0.3cm and 0.6cm, auto]
+  % Style definitions — color-coded by functional group
+  \tikzstyle{box}   = [rectangle, draw, text width=3.2cm, align=center, rounded corners, minimum height=1.2cm, font=\footnotesize]
+  \tikzstyle{core}  = [box, fill=red!20]
+  \tikzstyle{therm} = [box, fill=orange!20]
+  \tikzstyle{powr}  = [box, fill=yellow!25]
+  \tikzstyle{struc} = [box, fill=green!20]
+  \tikzstyle{misc}  = [box, fill=blue!15]
+
+  % === Row 1 ===
+  \node [core]  (c1) {\textbf{Compute Payload}\\[1pt]1,500 kg (17.7\%)};
+  \node [therm, right=of c1] (c2) {\textbf{Thermal System}\\[1pt]550 kg (6.5\%)};
+  \node [powr,  right=of c2] (c3) {\textbf{PV Array}\\[1pt]938 kg (11.1\%)};
+  \node [powr,  right=of c3] (c4) {\textbf{Battery}\\[1pt]1,573 kg (18.6\%)};
+
+  % === Row 2 ===
+  \node [powr,  below=of c3] (c5) {\textbf{PCDU/Distribution}\\[1pt]419 kg (4.9\%)};
+  \node [struc, below=of c2] (c6) {\textbf{Platform/Structure}\\[1pt]1,743 kg (20.6\%)};
+  \node [misc,  below=of c1] (c7) {\textbf{Propulsion}\\[1pt]350 kg (4.1\%)};
+  \node [misc,  below=of c6] (c8) {\textbf{Comm/Laser Links}\\[1pt]300 kg (3.5\%)};
+  \node [misc,  below=of c7] (c9) {\textbf{Margin, Redundancy,}\\[1pt]\textbf{\& Extras}\\[1pt]1,106 kg (13.0\%)};
+
+  % === Bottom total ===
+  \node [below=0.8cm of c9, rectangle, draw=black, fill=gray!10,
+         text width=12cm, text centered, rounded corners, minimum height=0.8cm,
+         font=\small\bfseries] (total) {
+    Total Satellite Mass: 8,479 kg (10yr-GaAs Baseline)
+  };
+
+  % Arrows
+  \draw [->, thick] (c1) -- (c2);
+  \draw [->, thick] (c2) -- (c3);
+  \draw [->, thick] (c3) -- (c4);
+  \draw [->, thick] (c3) -- (c5);
+  \draw [->, thick] (c1) -- (c6);
+  \draw [->, thick] (c6) -- (c7);
+  \draw [->, thick] (c7) -- (c8);
+  \draw [->, thick, dashed] (c1) -- (c9);
+  \draw [->, thick, dashed] (c9) -- (total);
+
+  % === Legend (placed at bottom) ===
+  \node [below=0.5cm of total, font=\footnotesize, text width=12cm, align=center] {
+    \textcolor{red!60!black}{$\blacksquare$} Compute Core \quad
+    \textcolor{orange!60!black}{$\blacksquare$} Thermal \quad
+    \textcolor{yellow!60!black}{$\blacksquare$} Power \quad
+    \textcolor{green!60!black}{$\blacksquare$} Structure \quad
+    \textcolor{blue!60!black}{$\blacksquare$} Others
+  };
+\end{tikzpicture}
+}

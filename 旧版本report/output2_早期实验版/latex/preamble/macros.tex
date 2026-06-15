@@ -1,0 +1,58 @@
+% preamble/macros.tex
+% 自定义宏 / 命令 / 环境
+
+% ========== 字体设置（必须放在 ctex 之后） ==========
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Courier New}
+\setCJKmainfont{SimSun}[AutoFakeBold=true]
+
+% ========== 颜色定义 ==========
+\definecolor{primary}{HTML}{1A5276}
+\definecolor{accent}{HTML}{16A085}
+\definecolor{graybase}{HTML}{2C3E50}
+\definecolor{graylight}{HTML}{BDC3C7}
+\definecolor{highlight}{HTML}{E74C3C}
+
+% ========== 数学命令 ==========
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+
+% ========== 表格列类型 ==========
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+% ========== 单位简写 ==========
+\newcommand{\unitWpm}[0]{W/m\textsuperscript{2}}
+\newcommand{\unitK}[0]{K}
+\newcommand{\unitC}[0]{\textdegree{}C}
+\newcommand{\unitGW}[0]{GW}
+\newcommand{\unitMW}[0]{MW}
+\newcommand{\unitkW}[0]{kW}
+\newcommand{\unitkm}[0]{km}
+\newcommand{\unitt}[0]{t}
+
+% ========== ctex 修复 ==========
+\ctexset{autoindent=2}
+
+% ========== hyperref 修复 ==========
+\makeatletter
+\patchcmd{\@newl@bel}{\@testdef}{\@testdef{}}{}{}
+\makeatother
+\makeindex
+
+% ========== 表格浮动修复 ==========
+\makeatletter
+\newcommand{\fixtablefloats}{%
+  \def\fps@table{htbp}%
+  \def\ftype@table{1}%
+  \floatplacement{table}{htbp}%
+}
+\AtBeginDocument{%
+  \ifdefstring{\languagename}{english}{\fixtablefloats}{}%
+  \appto\english{\fixtablefloats}%
+}
+\makeatother

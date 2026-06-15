@@ -1,0 +1,132 @@
+% sections/03_statements.tex
+% Chapter 3: First-Hand Statements and Divergence Characterization
+
+\section{First-Hand Statements and Divergence Characterization}
+
+This chapter faithfully compiles all known public statements by Elon Musk (SpaceX CEO) and Jensen Huang (NVIDIA CEO) as of June 2026, and then characterizes their actual technical divergence. This chapter does not judge ``who is right or wrong''---that task is undertaken from an independent analytical standpoint by Chapters~4--6---but rather establishes the factual foundation enabling readers to understand where the two figures ``come from, what they have said, and where they diverge.''
+
+\subsection{Musk's Statements (7 First-Hand Sources)}
+
+From September 2024 to June 2026, Musk systematically articulated the inevitability of space AI computing through the X platform, public forum speeches, and SpaceX official events. Table~\ref{tab:musk_statements} compiles all 7 first-hand statements, each annotated with: date, venue, core argument, quantitative claim, and the corresponding analytical chapter in this report.
+
+\begin{table}[H]
+\centering
+\caption{Musk's 7 First-Hand Public Statements on Space-Based AI Computing}
+\label{tab:musk_statements}
+\footnotesize
+\begin{tabular}{p{1.45cm}p{1.75cm}p{1.35cm}p{3.25cm}p{2.65cm}p{1.1cm}}
+\toprule
+\textbf{\#} & \textbf{Date} & \textbf{Venue} & \textbf{Core Argument} & \textbf{Quantitative Claim} & \textbf{Ch.} \\
+\midrule
+Statement~1 & 2026-06-08 & SpaceX official video (AI1 release) & AI satellite design simpler than Starlink; orbital AI positioned as ``the necessary path for humanity toward a Type II civilization'' & Wingspan 70\;m, peak 150\;kW, sustained 120\;kW, heat dissipation density 1,400\;W/m\textsuperscript{2}; 1\;GW/yr by 2027 & Ch.~4--6 \\
+\hline
+Statement~2 & 2025-11-19 & X platform & Starship capacity underpins orbital AI deployment & Starship 300--500\;GW/yr deployment capacity & Ch.~5 \\
+\hline
+Statement~3a & 2025-10-24 & X platform & Solar-powered AI satellites are the only path to a Kardashev-II civilization & -- & Ch.~2 \\
+\hline
+Statement~3b & 2024-09 & X platform & All energy production will ultimately be solar in origin & One corner of Texas could power the entire US & Ch.~2 \\
+\hline
+Statement~3c & 2025-11-02 & X platform & Lunar manufacturing + electromagnetic launch & 100\;TW/yr possible & Out of scope \\
+\hline
+Statement~4 & 2025-12 & US-Saudi Investment Forum & Space AI inevitable; cost crossover time prediction & Space computing cheaper than terrestrial in 4--5 years & Ch.~6 \\
+\hline
+Statement~5 & 2026-05 & SpaceX S-1 prospectus & Only SpaceX can solve the technical challenges of orbital AI computing & Deployment begins 2028; 100\;GW/yr & Ch.~5--6 \\
+\hline
+Statement~6 & 2026-03-21 & Terafab launch event & Chip manufacturing capacity is the supply-chain foundation for space computing & \$25\;B investment, 80\% compute output for orbital use & Ch.~5 \\
+\hline
+Statement~7 & 2026-01 & FCC filing & Million-satellite-scale orbital AI deployment plan & 1 million orbital AI satellites; AI Sat Mini 100\;kW/sat & Ch.~5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Key observation: The two figures from Musk's statements with the greatest cross-verification value---\textbf{AI1's 150\;kW peak / 120\;kW sustained power and 70\;m wingspan}---come from Statement~1 (SpaceX official video, June 2026), belonging to first-hand authoritative sources and usable as anchors for independent verification\cite{spacex2026ai1}. Other quantitative claims (300--500\;GW/yr, 100\;GW/yr deployment, 4--5 year cost crossover) have not been supported by equivalent-level technical detail through public channels and are treated in this report as ``testable hypotheses'' rather than ``verified facts.''
+
+\subsection{Huang's Statements (5 First-Hand Sources)}
+
+Jensen Huang's public commentary on space-based AI computing is concentrated between November 2025 and March 2026---relatively brief in length but high in engineering judgment density. Table~\ref{tab:huang_statements} compiles all 5 first-hand statements.
+
+\begin{table}[H]
+\centering
+\caption{Huang's 5 First-Hand Public Statements on Space-Based AI Computing}
+\label{tab:huang_statements}
+\footnotesize
+\begin{tabular}{p{1.45cm}p{1.75cm}p{1.35cm}p{3.25cm}p{2.65cm}p{1.1cm}}
+\toprule
+\textbf{\#} & \textbf{Date} & \textbf{Venue} & \textbf{Core Argument} & \textbf{Quant./Eng. Detail} & \textbf{Ch.} \\
+\midrule
+Statement~1 & 2026-03-16 & GTC 2026 Keynote & Announced Space-1 Vera Rubin space computing platform; heat dissipation is the fundamental bottleneck & Rubin GPU space inference 25$\times$ H100; partnerships with 6 space enterprises & Ch.~4--5 \\
+\hline
+Statement~2 & 2026-03-20 & All-In Podcast & Heat dissipation is the largest technical barrier for space data centers; ``it will take years'' & Radiative cooling requires enormous radiator area; system is complex and expensive & Ch.~4 \\
+\hline
+Statement~3 & 2025-11-19 & US-Saudi Investment Forum (shared stage with Musk) & Approaching heat dissipation from a hardware mass perspective: terrestrial cooling accounts for $\sim$97.5\% of rack mass & ``Each rack 2 tons, about 1.95 tons is the cooling system'' & Ch.~4 \\
+\hline
+Statement~4 & 2026-02-26 & NVIDIA Q4 Earnings Call & Current economics not ideal; space and ground are entirely different & Systematic differences involving cooling, cosmic rays, solar storms, micrometeoroids, etc. & Ch.~5 \\
+\hline
+Statement~5 & 2026-03-23 & Lex Fridman Podcast & Space offers continuous solar power + virtually unlimited space; ``extreme co-design'' philosophy & Joint optimization of chip + network + cooling + algorithms & Ch.~5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Key observation: In all public appearances, Huang has neither directly criticized Musk's space computing plans nor offered a concrete cost-crossover timeline. His discursive strategy is to discuss heat dissipation, reliability, and ``systematic differences'' as engineering problems that require time to solve, rather than denying the long-term direction of space computing. The fact that NVIDIA already has CUDA operating in orbit demonstrates that the company's stance is not ``opposed to space computing,'' but rather that ``space computing will take more time than people think.''
+
+The public intersection of the two figures is embodied in two events: Huang delivering the first DGX Spark to SpaceX Starbase in October 2025; and the two sharing a stage for the first time at the Saudi Investment Forum in November 2025 to discuss the vision of space AI---this is also the closest public record to ``Jensen Huang responding to Musk's space plans''\cite{musk_huang2025saudi}.
+
+\subsection{Divergence Characterization}
+
+\subsubsection{Not ``Who Is Right or Wrong,'' But ``Who Depends on Which Assumptions''}
+
+Through analysis of all 12 statements from both figures and this report's independent verification in Chapters~4--6, a clear judgment emerges: their divergence is \emph{not about ``whether to do it''}---both agree that space-based computing has long-term inevitability at a civilizational scale---but rather \emph{``how fast it can be done'' and ``where the bottlenecks are.''} More importantly, their divergence is not fundamentally about ``who calculated wrong,'' but about \emph{the different assumptions each party relies upon}. The following table decomposes their actual technical divergence into five independently analyzable dimensions:
+
+\begin{table}[H]
+\centering
+\caption{Huang vs.\ Musk: Decomposition of Actual Technical Divergence Points}
+\label{tab:divergence_decomposition}
+\small
+\begin{tabular}{p{3.0cm}p{3.2cm}p{3.2cm}p{3.0cm}}
+\toprule
+\textbf{Divergence Dimension} & \textbf{Huang's Position} & \textbf{Musk's Position} & \textbf{Analysis in This Report} \\
+\midrule
+Surmountability of heat dissipation bottleneck & Radiative cooling is a hard physical constraint; requires enormous radiator area; the ``largest technical barrier'' & Also acknowledges the challenge, but believes it ``can be solved''; AI1 has already stated a design value of 1,400\;W/m\textsuperscript{2} & Chapter~4 (Physical Feasibility) \\
+\hline
+Cost crossover timeline & Gives no specific year: ``It will take years. It's okay; I have time.'' & Space computing cheaper than terrestrial in 4--5 years & Chapter~6 (Commercial Feasibility) \\
+\hline
+Deployment scale and launch capacity & Not quantified & 300--500\;GW/yr (Starship capacity); 100\;GW/yr (IPO target) & Chapter~5 (``Launch Capacity Reality Check'') \\
+\hline
+Hardware reliability and lifetime & Emphasizes systematic differences: cosmic rays, solar storms, micrometeoroids & Has not discussed on-orbit reliability in detail in public statements & Chapter~5 (``On-Orbit Lifetime, Failure Rate, and Service Infeasibility'') \\
+\hline
+Rate of launch cost reduction & Not separately addressed & Extremely optimistic (including long-term schemes such as lunar manufacturing and electromagnetic launch) & Chapter~6 (``Launch Unit Cost Sensitivity Analysis'') \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Core Assumptions Each Party Relies Upon}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Huang's Core Assumptions (conservative group)}: (1) Space hardware will continue to face the engineering complexity of terrestrial semiconductors rather than enjoying the simplifying benefits of the space environment; (2) Cosmic rays/solar storms/micrometeoroids will produce non-negligible failure rates for consumer-grade GPUs that have not undergone comprehensive radiation hardening; (3) The rate of synchronized improvement across multiple parameters (heat dissipation, power supply, reliability, cost) will be paced by the \emph{slowest} link, not the fastest.
+
+    Plausibility of these assumptions: As NVIDIA CEO, Huang has first-hand knowledge of the physical constraints on GPU chips; his emphasis on heat dissipation as the ``largest technical barrier'' on the All-In Podcast is consistent with his engineering background. However, he has not offered a concrete quantitative judgment, nor has he provided mathematical models for heat dissipation, reliability, and cost; thus his stance is ``directionally conservative'' rather than ``verifiably and quantitatively pessimistic.''
+
+    \item \textbf{Musk's Core Assumptions (optimistic group)}: (1) All relevant parameters (launch cost, photovoltaic efficiency, battery life, manufacturing scale, hardware reliability) will improve synchronously; (2) Starship's learning curve will continue Falcon~9's cost-reduction trajectory; (3) The scale effects of space manufacturing and deployment will reach a level sufficient to compete with terrestrial alternatives within 4--5 years.
+
+    Plausibility of these assumptions: Musk has indeed created some of the most dramatic cost-reduction precedents in engineering history with Falcon~9 reusability and Starlink mass production. However, Starship has not yet achieved full reusability (as of June 2026), AI1 has not yet reached orbit, and the Terafab chip factory has not yet begun production---in other words, the three key pillars supporting his ``4--5 year cost crossover'' judgment have not yet obtained independently verifiable evidence in the public domain. Furthermore, the premise of synchronized multi-parameter improvement (e.g., photovoltaic efficiency improving while battery life also extends and launch cost simultaneously falls) is inherently of far lower probability than single-parameter improvement.
+\end{itemize}
+
+\subsubsection{Location of the Divergence: Not a Divergence in Physical Laws, But a Judgment Divergence in Parameter Improvement Rates}
+
+A noteworthy finding is that the two figures have no divergence regarding the underlying physical laws governing heat dissipation (Stefan--Boltzmann law), solar energy availability (AM0 solar constant), or launch mass constraints (rocket equation). Their divergence is concentrated on \emph{parameter improvement rates}---i.e., whether multiple independent parameters (launch cost, photovoltaic efficiency, battery life, hardware reliability, manufacturing scale) will improve synchronously within the same time window to a level sufficient for commercial viability.
+
+This observation guides the core uncertainty statement of this report's Chapter~7: \textbf{The commercial viability of space-based AI computing depends on the probability of synchronized multi-parameter improvement, not on any single parameter's technological breakthrough. Current evidence supports the cautious judgment that ``synchronized improvement is possible but the probability is insufficient to support a near-term definitive commitment.''}
+
+\subsection{From Divergence to Analysis: Chapter Routing}
+
+The five divergence dimensions characterized in this chapter are each addressed by subsequent chapters from an independent analytical standpoint:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Heat dissipation divergence} $\to$ Chapter~4 (Stefan--Boltzmann quantitative derivation + LEO thermal environment analysis)
+    \item \textbf{Engineering divergence (reliability, deployment scale, launch capacity)} $\to$ Chapter~5 (bottom-up mass chain + on-orbit lifetime + launch capacity reality check)
+    \item \textbf{Commercial divergence (cost crossover timeline, launch cost reduction rate)} $\to$ Chapter~6 (three-branch TCO model + flip-condition analysis)
+\end{itemize}
+
+See the five-tier routing table in Appendix~D for the original URL/source of each statement. This chapter does not pile up URLs---traceability paths are pre-embedded in Appendix~D, keeping the main text readable.
+
+\endinput

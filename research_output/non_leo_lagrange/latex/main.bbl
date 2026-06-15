@@ -1,0 +1,772 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{smad2020}{book}{}{}
+      \name{author}{3}{}{%
+        {{hash=44c6d1a811e1293f490371afda50288e}{%
+           family={Wertz},
+           familyi={W\bibinitperiod},
+           given={J.\bibnamedelimi R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=e5f7dbbf2ba6a6496c923e62f05b126d}{%
+           family={Everett},
+           familyi={E\bibinitperiod},
+           given={D.\bibnamedelimi F.},
+           giveni={D\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=8751258447e17b9209e4468e49677357}{%
+           family={Puschell},
+           familyi={P\bibinitperiod},
+           given={J.\bibnamedelimi J.},
+           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \name{namea}{3}{}{%
+        {{hash=44c6d1a811e1293f490371afda50288e}{%
+           family={Wertz},
+           familyi={W\bibinitperiod},
+           given={J.\bibnamedelimi R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=e5f7dbbf2ba6a6496c923e62f05b126d}{%
+           family={Everett},
+           familyi={E\bibinitperiod},
+           given={D.\bibnamedelimi F.},
+           giveni={D\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=8751258447e17b9209e4468e49677357}{%
+           family={Puschell},
+           familyi={P\bibinitperiod},
+           given={J.\bibnamedelimi J.},
+           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \list{publisher}{1}{%
+        {Microcosm Press}%
+      }
+      \strng{namehash}{ea85fee263465e85e2edea537f458aad}
+      \strng{fullhash}{fd8e8c2a30f1376408ac052f4562a3b5}
+      \strng{fullhashraw}{fd8e8c2a30f1376408ac052f4562a3b5}
+      \strng{bibnamehash}{fd8e8c2a30f1376408ac052f4562a3b5}
+      \strng{authorbibnamehash}{fd8e8c2a30f1376408ac052f4562a3b5}
+      \strng{authornamehash}{ea85fee263465e85e2edea537f458aad}
+      \strng{authorfullhash}{fd8e8c2a30f1376408ac052f4562a3b5}
+      \strng{authorfullhashraw}{fd8e8c2a30f1376408ac052f4562a3b5}
+      \strng{nameabibnamehash}{fd8e8c2a30f1376408ac052f4562a3b5}
+      \strng{nameanamehash}{ea85fee263465e85e2edea537f458aad}
+      \strng{nameafullhash}{fd8e8c2a30f1376408ac052f4562a3b5}
+      \strng{nameafullhashraw}{fd8e8c2a30f1376408ac052f4562a3b5}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{4th}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{title}{Space Mission Analysis and Design (SMAD)}
+      \field{usera}{M}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \keyw{smad2020}
+    \endentry
+    \entry{jwst_cr_2025}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{2}{}{%
+        {{hash=0f75a192bd7eba7bf2202642b3563f08}{%
+           family={Rauscher},
+           familyi={R\bibinitperiod},
+           given={B.\bibnamedelimi J.},
+           giveni={B\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=7bb4ca08d2d52468cb6d17cb802a4dae}{%
+           family={Fixsen},
+           familyi={F\bibinitperiod},
+           given={D.\bibnamedelimi J.},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \true{morenamea}
+      \name{namea}{2}{}{%
+        {{hash=0f75a192bd7eba7bf2202642b3563f08}{%
+           family={Rauscher},
+           familyi={R\bibinitperiod},
+           given={B.\bibnamedelimi J.},
+           giveni={B\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=7bb4ca08d2d52468cb6d17cb802a4dae}{%
+           family={Fixsen},
+           familyi={F\bibinitperiod},
+           given={D.\bibnamedelimi J.},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{613ab9fa4cba0168de360aaa5da55c29}
+      \strng{fullhash}{3c18e2ec5e5b5dd7da2e759ce5d8e1aa}
+      \strng{fullhashraw}{3c18e2ec5e5b5dd7da2e759ce5d8e1aa}
+      \strng{bibnamehash}{3c18e2ec5e5b5dd7da2e759ce5d8e1aa}
+      \strng{authorbibnamehash}{3c18e2ec5e5b5dd7da2e759ce5d8e1aa}
+      \strng{authornamehash}{613ab9fa4cba0168de360aaa5da55c29}
+      \strng{authorfullhash}{3c18e2ec5e5b5dd7da2e759ce5d8e1aa}
+      \strng{authorfullhashraw}{3c18e2ec5e5b5dd7da2e759ce5d8e1aa}
+      \strng{nameabibnamehash}{3c18e2ec5e5b5dd7da2e759ce5d8e1aa}
+      \strng{nameanamehash}{613ab9fa4cba0168de360aaa5da55c29}
+      \strng{nameafullhash}{3c18e2ec5e5b5dd7da2e759ce5d8e1aa}
+      \strng{nameafullhashraw}{3c18e2ec5e5b5dd7da2e759ce5d8e1aa}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Publications of the Astronomical Society of the Pacific}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{number}{9}
+      \field{title}{{JWST NIRSpec's Cosmic Ray Experience at L2}}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{volume}{137}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{pages}{095003}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1088/1538-3873/adfb2f
+      \endverb
+      \keyw{jwst_cr_2025}
+    \endentry
+    \entry{chen_meo_tid_2020}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=ff38b98d2dc65002f66d028a85b9d58d}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=0f38d764043d1b04ca27726fb9904c0a}{%
+           family={Morley},
+           familyi={M\bibinitperiod},
+           given={S.\bibnamedelimi K.},
+           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=51e99f2aa179eeef7d23e47bf10b794d}{%
+           family={Hoover},
+           familyi={H\bibinitperiod},
+           given={A.\bibnamedelimi S.},
+           giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=20d561487a505f5ccf07b10bf23ddab5}{%
+           family={Carver},
+           familyi={C\bibinitperiod},
+           given={M.\bibnamedelimi R.},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \name{namea}{4}{}{%
+        {{hash=ff38b98d2dc65002f66d028a85b9d58d}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=0f38d764043d1b04ca27726fb9904c0a}{%
+           family={Morley},
+           familyi={M\bibinitperiod},
+           given={S.\bibnamedelimi K.},
+           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=51e99f2aa179eeef7d23e47bf10b794d}{%
+           family={Hoover},
+           familyi={H\bibinitperiod},
+           given={A.\bibnamedelimi S.},
+           giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=20d561487a505f5ccf07b10bf23ddab5}{%
+           family={Carver},
+           familyi={C\bibinitperiod},
+           given={M.\bibnamedelimi R.},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{285643e98622aae7df83abdb517b753d}
+      \strng{fullhash}{df7de9ddb5bca68cdc7277a3cc4d44c8}
+      \strng{fullhashraw}{df7de9ddb5bca68cdc7277a3cc4d44c8}
+      \strng{bibnamehash}{bf52248e74a551f94ac362f5697c462c}
+      \strng{authorbibnamehash}{bf52248e74a551f94ac362f5697c462c}
+      \strng{authornamehash}{285643e98622aae7df83abdb517b753d}
+      \strng{authorfullhash}{df7de9ddb5bca68cdc7277a3cc4d44c8}
+      \strng{authorfullhashraw}{df7de9ddb5bca68cdc7277a3cc4d44c8}
+      \strng{nameabibnamehash}{bf52248e74a551f94ac362f5697c462c}
+      \strng{nameanamehash}{285643e98622aae7df83abdb517b753d}
+      \strng{nameafullhash}{df7de9ddb5bca68cdc7277a3cc4d44c8}
+      \strng{nameafullhashraw}{df7de9ddb5bca68cdc7277a3cc4d44c8}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{number}{2012.00117}
+      \field{title}{Determining Ionizing Doses in Medium Earth Orbits Using Long-Term GPS Particle Measurements}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \keyw{chen_meo_tid_2020}
+    \endentry
+    \entry{zhang_beidou_seu_2023}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=14fd6c4762d5113df9a2a4c45d09c456}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \true{morenamea}
+      \name{namea}{1}{}{%
+        {{hash=14fd6c4762d5113df9a2a4c45d09c456}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{6288959531289d576f726aff48d2e20e}
+      \strng{fullhash}{6288959531289d576f726aff48d2e20e}
+      \strng{fullhashraw}{6288959531289d576f726aff48d2e20e}
+      \strng{bibnamehash}{6288959531289d576f726aff48d2e20e}
+      \strng{authorbibnamehash}{6288959531289d576f726aff48d2e20e}
+      \strng{authornamehash}{6288959531289d576f726aff48d2e20e}
+      \strng{authorfullhash}{6288959531289d576f726aff48d2e20e}
+      \strng{authorfullhashraw}{6288959531289d576f726aff48d2e20e}
+      \strng{nameabibnamehash}{6288959531289d576f726aff48d2e20e}
+      \strng{nameanamehash}{6288959531289d576f726aff48d2e20e}
+      \strng{nameafullhash}{6288959531289d576f726aff48d2e20e}
+      \strng{nameafullhashraw}{6288959531289d576f726aff48d2e20e}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Open Astronomy}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{title}{Monitor of the Single Event Upsets and Linear Energy Transfer of Space Radiation on the Beidou Navigation Satellites}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.1515/astro-2022-0206
+      \endverb
+      \keyw{zhang_beidou_seu_2023}
+    \endentry
+    \entry{nasa_tid_transit_2022}{report}{}{}
+      \name{author}{2}{}{%
+        {{hash=436fe854f522d389764e0407bdd7c689}{%
+           family={Carstens},
+           familyi={C\bibinitperiod},
+           given={T.\bibnamedelimi A.},
+           giveni={T\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=769ba371f9353d5ad500b1b9cffa0d35}{%
+           family={Campola},
+           familyi={C\bibinitperiod},
+           given={M.\bibnamedelimi J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \name{namea}{2}{}{%
+        {{hash=436fe854f522d389764e0407bdd7c689}{%
+           family={Carstens},
+           familyi={C\bibinitperiod},
+           given={T.\bibnamedelimi A.},
+           giveni={T\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=769ba371f9353d5ad500b1b9cffa0d35}{%
+           family={Campola},
+           familyi={C\bibinitperiod},
+           given={M.\bibnamedelimi J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {NASA GSFC}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \list{publisher}{1}{%
+        {NASA GSFC}%
+      }
+      \strng{namehash}{3fbc0a719caca5090f9bf555fd044063}
+      \strng{fullhash}{afbeeafa0032b4904c86c6d652615b67}
+      \strng{fullhashraw}{afbeeafa0032b4904c86c6d652615b67}
+      \strng{bibnamehash}{afbeeafa0032b4904c86c6d652615b67}
+      \strng{authorbibnamehash}{afbeeafa0032b4904c86c6d652615b67}
+      \strng{authornamehash}{3fbc0a719caca5090f9bf555fd044063}
+      \strng{authorfullhash}{afbeeafa0032b4904c86c6d652615b67}
+      \strng{authorfullhashraw}{afbeeafa0032b4904c86c6d652615b67}
+      \strng{nameabibnamehash}{afbeeafa0032b4904c86c6d652615b67}
+      \strng{nameanamehash}{3fbc0a719caca5090f9bf555fd044063}
+      \strng{nameafullhash}{afbeeafa0032b4904c86c6d652615b67}
+      \strng{nameafullhashraw}{afbeeafa0032b4904c86c6d652615b67}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{number}{NTRS 20220011257}
+      \field{title}{Total Dose Modeling of the Transit Through the Van Allen Belts}
+      \field{usera}{R}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \keyw{nasa_tid_transit_2022}
+    \endentry
+    \entry{quan_gnss_radiation_2023}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=8d9a6788983b393f5d52aa7667ef0d09}{%
+           family={Quan},
+           familyi={Q\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \true{morenamea}
+      \name{namea}{1}{}{%
+        {{hash=8d9a6788983b393f5d52aa7667ef0d09}{%
+           family={Quan},
+           familyi={Q\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{a922af82b1e2a4b55a775941d7200cdd}
+      \strng{fullhash}{a922af82b1e2a4b55a775941d7200cdd}
+      \strng{fullhashraw}{a922af82b1e2a4b55a775941d7200cdd}
+      \strng{bibnamehash}{a922af82b1e2a4b55a775941d7200cdd}
+      \strng{authorbibnamehash}{a922af82b1e2a4b55a775941d7200cdd}
+      \strng{authornamehash}{a922af82b1e2a4b55a775941d7200cdd}
+      \strng{authorfullhash}{a922af82b1e2a4b55a775941d7200cdd}
+      \strng{authorfullhashraw}{a922af82b1e2a4b55a775941d7200cdd}
+      \strng{nameabibnamehash}{a922af82b1e2a4b55a775941d7200cdd}
+      \strng{nameanamehash}{a922af82b1e2a4b55a775941d7200cdd}
+      \strng{nameafullhash}{a922af82b1e2a4b55a775941d7200cdd}
+      \strng{nameafullhashraw}{a922af82b1e2a4b55a775941d7200cdd}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Open Astronomy}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{title}{Radiation Environment and Effect Detection Based on Global Navigation Constellation}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.1515/astro-2022-0204
+      \endverb
+      \keyw{quan_gnss_radiation_2023}
+    \endentry
+    \entry{zheng_scad_2023}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=ca5d8c01ece6364a02e9fe2849da33ed}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \true{morenamea}
+      \name{namea}{1}{}{%
+        {{hash=ca5d8c01ece6364a02e9fe2849da33ed}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{adf392e5e6f3be2f22819a9c51335732}
+      \strng{fullhash}{adf392e5e6f3be2f22819a9c51335732}
+      \strng{fullhashraw}{adf392e5e6f3be2f22819a9c51335732}
+      \strng{bibnamehash}{adf392e5e6f3be2f22819a9c51335732}
+      \strng{authorbibnamehash}{adf392e5e6f3be2f22819a9c51335732}
+      \strng{authornamehash}{adf392e5e6f3be2f22819a9c51335732}
+      \strng{authorfullhash}{adf392e5e6f3be2f22819a9c51335732}
+      \strng{authorfullhashraw}{adf392e5e6f3be2f22819a9c51335732}
+      \strng{nameabibnamehash}{adf392e5e6f3be2f22819a9c51335732}
+      \strng{nameanamehash}{adf392e5e6f3be2f22819a9c51335732}
+      \strng{nameafullhash}{adf392e5e6f3be2f22819a9c51335732}
+      \strng{nameafullhashraw}{adf392e5e6f3be2f22819a9c51335732}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Open Astronomy}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{title}{Surface Charging and Dose Monitor on Geosynchronous Orbit Satellite}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.1515/astro-2022-0211
+      \endverb
+      \keyw{zheng_scad_2023}
+    \endentry
+    \entry{hands_radiation_2018}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=2e7e0e001e0fc904ac45a7554b00d77b}{%
+           family={Hands},
+           familyi={H\bibinitperiod},
+           given={A.\bibnamedelimi D.\bibnamedelimi P.},
+           giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \true{morenamea}
+      \name{namea}{1}{}{%
+        {{hash=2e7e0e001e0fc904ac45a7554b00d77b}{%
+           family={Hands},
+           familyi={H\bibinitperiod},
+           given={A.\bibnamedelimi D.\bibnamedelimi P.},
+           giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{170a8c8a0d4a20f543028888aa344b95}
+      \strng{fullhash}{170a8c8a0d4a20f543028888aa344b95}
+      \strng{fullhashraw}{170a8c8a0d4a20f543028888aa344b95}
+      \strng{bibnamehash}{170a8c8a0d4a20f543028888aa344b95}
+      \strng{authorbibnamehash}{170a8c8a0d4a20f543028888aa344b95}
+      \strng{authornamehash}{170a8c8a0d4a20f543028888aa344b95}
+      \strng{authorfullhash}{170a8c8a0d4a20f543028888aa344b95}
+      \strng{authorfullhashraw}{170a8c8a0d4a20f543028888aa344b95}
+      \strng{nameabibnamehash}{170a8c8a0d4a20f543028888aa344b95}
+      \strng{nameanamehash}{170a8c8a0d4a20f543028888aa344b95}
+      \strng{nameafullhash}{170a8c8a0d4a20f543028888aa344b95}
+      \strng{nameafullhashraw}{170a8c8a0d4a20f543028888aa344b95}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Space Weather}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{title}{Radiation Effects on Satellites During Extreme Space Weather Events}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{volume}{16}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{pages}{1216\bibrangedash 1226}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1029/2018SW001913
+      \endverb
+      \keyw{hands_radiation_2018}
+    \endentry
+    \entry{horne_internal_charging_2025}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=bc4238131f4cac8e07534d198e1be9b2}{%
+           family={Horne},
+           familyi={H\bibinitperiod},
+           given={R.\bibnamedelimi B.},
+           giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \true{morenamea}
+      \name{namea}{1}{}{%
+        {{hash=bc4238131f4cac8e07534d198e1be9b2}{%
+           family={Horne},
+           familyi={H\bibinitperiod},
+           given={R.\bibnamedelimi B.},
+           giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{40cb41d442da728868a943231ea94265}
+      \strng{fullhash}{40cb41d442da728868a943231ea94265}
+      \strng{fullhashraw}{40cb41d442da728868a943231ea94265}
+      \strng{bibnamehash}{40cb41d442da728868a943231ea94265}
+      \strng{authorbibnamehash}{40cb41d442da728868a943231ea94265}
+      \strng{authornamehash}{40cb41d442da728868a943231ea94265}
+      \strng{authorfullhash}{40cb41d442da728868a943231ea94265}
+      \strng{authorfullhashraw}{40cb41d442da728868a943231ea94265}
+      \strng{nameabibnamehash}{40cb41d442da728868a943231ea94265}
+      \strng{nameanamehash}{40cb41d442da728868a943231ea94265}
+      \strng{nameafullhash}{40cb41d442da728868a943231ea94265}
+      \strng{nameafullhashraw}{40cb41d442da728868a943231ea94265}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Space Weather}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{title}{Satellite Internal Charging for a Reasonable Worst-Case}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.1029/2024SW004226
+      \endverb
+      \keyw{horne_internal_charging_2025}
+    \endentry
+    \entry{loge_heo_radiation_2014}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=fc7fba24f93e4f538bfbe7962c6d54ce}{%
+           family={Loge},
+           familyi={L\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \name{namea}{1}{}{%
+        {{hash=fc7fba24f93e4f538bfbe7962c6d54ce}{%
+           family={Loge},
+           familyi={L\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{fc7fba24f93e4f538bfbe7962c6d54ce}
+      \strng{fullhash}{fc7fba24f93e4f538bfbe7962c6d54ce}
+      \strng{fullhashraw}{fc7fba24f93e4f538bfbe7962c6d54ce}
+      \strng{bibnamehash}{fc7fba24f93e4f538bfbe7962c6d54ce}
+      \strng{authorbibnamehash}{fc7fba24f93e4f538bfbe7962c6d54ce}
+      \strng{authornamehash}{fc7fba24f93e4f538bfbe7962c6d54ce}
+      \strng{authorfullhash}{fc7fba24f93e4f538bfbe7962c6d54ce}
+      \strng{authorfullhashraw}{fc7fba24f93e4f538bfbe7962c6d54ce}
+      \strng{nameabibnamehash}{fc7fba24f93e4f538bfbe7962c6d54ce}
+      \strng{nameanamehash}{fc7fba24f93e4f538bfbe7962c6d54ce}
+      \strng{nameafullhash}{fc7fba24f93e4f538bfbe7962c6d54ce}
+      \strng{nameafullhashraw}{fc7fba24f93e4f538bfbe7962c6d54ce}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{AIAA SPACE 2014 Conference and Exposition}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{number}{2014-4245}
+      \field{title}{Radiation Environment Analysis of Highly Elliptical Orbits for Satellite Based Broadband Communications to the Arctic}
+      \field{usera}{C}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{year}{2014}
+      \field{dateera}{ce}
+      \keyw{loge_heo_radiation_2014}
+    \endentry
+    \entry{nasa_photonics_mars_2014}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=952a5aa87297acea930506103867d477}{%
+           family={{NASA MSFC}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \name{namea}{1}{}{%
+        {{hash=952a5aa87297acea930506103867d477}{%
+           family={{NASA MSFC}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {NASA}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \list{publisher}{1}{%
+        {NASA}%
+      }
+      \strng{namehash}{952a5aa87297acea930506103867d477}
+      \strng{fullhash}{952a5aa87297acea930506103867d477}
+      \strng{fullhashraw}{952a5aa87297acea930506103867d477}
+      \strng{bibnamehash}{952a5aa87297acea930506103867d477}
+      \strng{authorbibnamehash}{952a5aa87297acea930506103867d477}
+      \strng{authornamehash}{952a5aa87297acea930506103867d477}
+      \strng{authorfullhash}{952a5aa87297acea930506103867d477}
+      \strng{authorfullhashraw}{952a5aa87297acea930506103867d477}
+      \strng{nameabibnamehash}{952a5aa87297acea930506103867d477}
+      \strng{nameanamehash}{952a5aa87297acea930506103867d477}
+      \strng{nameafullhash}{952a5aa87297acea930506103867d477}
+      \strng{nameafullhashraw}{952a5aa87297acea930506103867d477}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{number}{NTRS 20140002978}
+      \field{title}{Photonics on the Mission to Mars}
+      \field{usera}{R}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{year}{2014}
+      \field{dateera}{ce}
+      \keyw{nasa_photonics_mars_2014}
+    \endentry
+    \entry{jahan_radiation_2026}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=ab36797abe254fb52d899a896ed04a72}{%
+           family={Jahan},
+           familyi={J\bibinitperiod},
+           given={Z.},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \name{namea}{1}{}{%
+        {{hash=ab36797abe254fb52d899a896ed04a72}{%
+           family={Jahan},
+           familyi={J\bibinitperiod},
+           given={Z.},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{ab36797abe254fb52d899a896ed04a72}
+      \strng{fullhash}{ab36797abe254fb52d899a896ed04a72}
+      \strng{fullhashraw}{ab36797abe254fb52d899a896ed04a72}
+      \strng{bibnamehash}{ab36797abe254fb52d899a896ed04a72}
+      \strng{authorbibnamehash}{ab36797abe254fb52d899a896ed04a72}
+      \strng{authornamehash}{ab36797abe254fb52d899a896ed04a72}
+      \strng{authorfullhash}{ab36797abe254fb52d899a896ed04a72}
+      \strng{authorfullhashraw}{ab36797abe254fb52d899a896ed04a72}
+      \strng{nameabibnamehash}{ab36797abe254fb52d899a896ed04a72}
+      \strng{nameanamehash}{ab36797abe254fb52d899a896ed04a72}
+      \strng{nameafullhash}{ab36797abe254fb52d899a896ed04a72}
+      \strng{nameafullhashraw}{ab36797abe254fb52d899a896ed04a72}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Stanford PH241}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{title}{Radiation Effects on Microelectronics in Space}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{year}{2026}
+      \field{dateera}{ce}
+      \keyw{jahan_radiation_2026}
+    \endentry
+    \entry{kchaou_tmr_2026}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=8f598ec9025afdb4df92bc81f828557d}{%
+           family={Kchaou},
+           familyi={K\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c3997b67043bc943be9a98d5df293f62}{%
+           family={Saad},
+           familyi={S\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=48053bbd04637778c44a55bdc87f89da}{%
+           family={Garrab},
+           familyi={G\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod}}}%
+      }
+      \name{namea}{3}{}{%
+        {{hash=8f598ec9025afdb4df92bc81f828557d}{%
+           family={Kchaou},
+           familyi={K\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c3997b67043bc943be9a98d5df293f62}{%
+           family={Saad},
+           familyi={S\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=48053bbd04637778c44a55bdc87f89da}{%
+           family={Garrab},
+           familyi={G\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{a0fbc556940456c00a852e737829059d}
+      \strng{fullhash}{847a5b63c22fb57a8df9f9cedcea20ae}
+      \strng{fullhashraw}{847a5b63c22fb57a8df9f9cedcea20ae}
+      \strng{bibnamehash}{847a5b63c22fb57a8df9f9cedcea20ae}
+      \strng{authorbibnamehash}{847a5b63c22fb57a8df9f9cedcea20ae}
+      \strng{authornamehash}{a0fbc556940456c00a852e737829059d}
+      \strng{authorfullhash}{847a5b63c22fb57a8df9f9cedcea20ae}
+      \strng{authorfullhashraw}{847a5b63c22fb57a8df9f9cedcea20ae}
+      \strng{nameabibnamehash}{847a5b63c22fb57a8df9f9cedcea20ae}
+      \strng{nameanamehash}{a0fbc556940456c00a852e737829059d}
+      \strng{nameafullhash}{847a5b63c22fb57a8df9f9cedcea20ae}
+      \strng{nameafullhashraw}{847a5b63c22fb57a8df9f9cedcea20ae}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Engineering Research Express}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{title}{{FPGA-Based Fault Injection and TMR Evaluation for PC Reliability in LEON3}}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{year}{2026}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.1088/2631-8695/ae6d7f
+      \endverb
+      \keyw{kchaou_tmr_2026}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

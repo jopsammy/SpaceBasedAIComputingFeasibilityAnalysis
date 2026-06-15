@@ -1,0 +1,49 @@
+% 03_meo.tex — MEO 分析
+
+\section{MEO（中地球轨道）深度分析}
+
+\subsection{辐射环境：SEE 主导}
+
+MEO（以 GPS 星座约 20,200 km 为代表）位于范艾伦\textbf{外辐射带}核心区域（范围约 13,000--60,000 km）。主要辐射威胁来自高能电子（0.1--10 MeV），每日两次穿越外带最密集区域。
+
+\begin{table}[H]
+\centering
+\caption{MEO 辐射环境关键参数}
+\label{tab:meo-rad}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{参数} & \textbf{MEO 值} & \textbf{vs LEO} & \textbf{来源} \\
+\midrule
+TID (4mm Al) & 5--15~\kradyr{}（电子主导）& 0.5--0.5x & Chen et al. (2020) \cite{chen_meo_tid_2020} \\
+SEU 率 & $\sim$1 次/器件$\cdot$天 & $\mathbf{10^{4}}$--$\mathbf{10^{5}x}$ 更劣 & 北斗 M15/M16 实测 \cite{zhang_beidou_seu_2023} \\
+主要粒子类型 & 外带高能电子 (0.1--10 MeV) & 与 LEO 质子主导不同 & NASA Carstens \& Campola (2022) \cite{nasa_tid_transit_2022} \\
+磁层屏蔽 & 无（外带核心）& 更劣 & — \\
+GCR 通量 & $\sim$3--4x LEO & 更劣 & Laser2COTS 辐射评估 \\
+SEL/SEB 风险 & 重离子引发风险显著 & 更劣 & Quan et al. (2023) \cite{quan_gnss_radiation_2023} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+MEO 的 TID 以电子为主，与 LEO 的质子主导 TID 在量级上可比（5--15 vs 10--30~\kradyr），但 SEU 率高出 4--5 个数量级。北斗 M15/M16 卫星的存储器 SEU 实测数据确认了约 1 次/器件$\cdot$天的量级，主要由重离子引发 \cite{zhang_beidou_seu_2023}。
+
+\textbf{MEO 的关键辐射判断}：辐射威胁由 SEE 主导，非 TID。SEU 率 $\sim 10^{5}$ 倍于 LEO 意味着：
+\begin{itemize}
+    \item EDAC (SECDED) 的 12.5\% 内存开销是必需的基线
+    \item TMR 的 $\sim$200\% 面积/功耗开销在 MEO 环境下不可缩减
+    \item FPGA scrubbing 间隔需从 LEO 的小时级缩短至秒级
+    \item SEE 防护开销可能"吃掉"大部分有效算力
+\end{itemize}
+
+\subsection{热环境：大幅优于 LEO}
+
+MEO 距地球约 20,200 km，地球红外（$\sim$14~\wpm）和反照（$<$5~\wpm）已大幅衰减至 LEO 的 $\sim$3\%。高倾角 GPS 轨道（56\textdegree{}）在高 $\beta$ 角下可连续数周无食。热循环频率（$\sim$730 次/年 vs LEO 5,840 次/年）仅为 LEO 的 12.5\%。
+
+\subsection{通信与覆盖}
+
+MEO 单星覆盖直径约 15,000--18,000 km，仅需 24--30 颗卫星即可实现全球覆盖（对比 LEO 需数百至数万颗）。RTT 约 135 ms——不适合实时交互式计算，但对批量数据处理可接受。
+
+\subsection{太空算力部署评估}
+
+\textbf{不推荐 MEO 作为独立太空算力部署轨道}。核心约束是可比的 TID 加上高出 $10^{4}$--$10^{5}$x 的 SEU 率，使得辐射 SEE 防护开销可能超过有效算力收益。MEO 缺乏独特的应用价值主张——LEO 星座中继可替代 MEO 的全球覆盖优势。仅有的可能应用场景是 GNSS 星座原位 AI 增强（导航信号异常检测、抗欺骗），但市场规模有限。

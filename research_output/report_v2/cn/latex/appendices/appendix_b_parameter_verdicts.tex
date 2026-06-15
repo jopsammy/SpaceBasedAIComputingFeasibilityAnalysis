@@ -1,0 +1,219 @@
+% appendices/appendix_b_parameter_verdicts.tex
+
+\section{关键参数值与争议裁决}
+
+本章为主链涉及的全部关键参数提供登记索引——正文中每个数字的"身份证"。读者可在本章查到正文中任何关键数字的来源档位、裁决状态和进一步追溯路径。所有参数均已经过逐参数独立裁决并锚定于 `current-note.md`。
+
+\textbf{说明}：因版面限制，本章正文仅列出核心争议参数（§B.2–§B.3）。全部47参数的完整逐条登记表（含每个参数的档位、取值、裁决状态、来源路由）可经附录D的五层路由表追溯到内部参数裁决文档与结构化JSON输入文件。
+
+\subsection{四档证据体系定义}
+
+\begin{table}[H]
+  \centering
+  \caption{四档证据分级定义}
+  \label{tab:evidence-tiers}
+  \begin{tabular}{cp{1.8cm}p{4.5cm}p{5.5cm}}
+  \toprule
+  \textbf{档位} & \textbf{名称} & \textbf{定义} & \textbf{判定标准} \\
+  \midrule
+  一档 & 物理推导链 & 由明确物理公式、边界条件和任务约束直接推导 & 公式可写清、输入可追溯、单位可自洽 \\
+  二档 & 权威资料 & 来自明确权威来源或官方公开资料 & 有可回查URL、适用边界可说明 \\
+  三档 & 可迁移证据 & 来自不可直接迁移的行业资料、类比平台资料 & 必须写出可迁移/不可迁移部分、迁移理由与区间依据 \\
+  四档 & 合理推断 & 公开资料不足，只能做工程推断 & 必须写明推断依据、边界条件、失效风险 \\
+  禁止 & 禁止入模 & 数值被公开证据直接反驳或无任何支撑 & 已替换或永久排除 \\
+  废弃 & 已废弃 & 此推导路径/标签已被本报告永久替代 & 仅存档，不得在正文中使用 \\
+  \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{核心争议参数裁决表}
+
+以下为报告中最关键的争议参数及其裁决结果。每个参数附带一句话裁决说明，完整裁决记录（含来源URL、推导链、逐参数独立裁决过程）见 `current-note.md` §Task V2。
+
+% --- 子表1：单星质量 ---
+\begin{table}[H]
+  \centering
+  \caption{核心争议参数裁决（一）：单星质量（多种口径）}
+  \label{tab:core-verdicts-mass}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.7cm}
+    >{\raggedright\arraybackslash}p{2.2cm}
+    >{\centering\arraybackslash}p{1.5cm}
+    >{\raggedright\arraybackslash}p{2.1cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{参数名} & \textbf{当前取值} & \textbf{档位} & \textbf{裁决状态} & \textbf{一句话裁决说明} \\
+  \midrule
+  计算载荷质量（基准） & 1,500 kg & 二档+三档 & 已吸收进主链 & 以NVIDIA GB300 NVL72地面硬件为A1级锚点（二档），加三项空间化增量（辐射/热/结构）拆解（三档），经逐参数裁决取1,200/1,500/2,000 kg三场景 \\
+  整星总质量（10年-GaAs） & 8,479 kg & 一档+二档+三档+四档 & 已吸收进主链 & 9子系统分项求和：计算载荷1,500 + 散热550 + 光伏938 + 电池1,573 + PCDU 419 + 平台1,743 + 推进350 + 通信300 + 系统裕量/冗余/附加 1,106 kg \\
+  整星总质量（5年-GaAs） & 7,103 kg & 同上 & 已吸收进主链（敏感性对照） & 与10年-GaAs物理配置一致，除电池分支（5yr NMC, 983 kg）和AIT裕量（5年分支）差异外 \\
+  整星总质量（5年-HJT） & 9,133 kg & 同上 & 已降级为对照（并行路线） & HJT光伏阵列2,330 kg（vs GaAs 938 kg），导致整星质量偏重约2.03t \\
+  此前分析中的计算载荷质量值 & 2,143/2,727/3,333 kg & 已废弃 & 已废弃 & 源自kW/t反推链（150kW / 70/55/45 kW/t），分母来源为B1级二手转述，存在循环引用风险，已被bottom-up链永久替代 \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+% --- 子表2：发射装载 ---
+\begin{table}[H]
+  \centering
+  \caption{核心争议参数裁决（二）：发射装载}
+  \label{tab:core-verdicts-launch}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.7cm}
+    >{\raggedright\arraybackslash}p{2.2cm}
+    >{\centering\arraybackslash}p{1.5cm}
+    >{\raggedright\arraybackslash}p{2.1cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{参数名} & \textbf{当前取值} & \textbf{档位} & \textbf{裁决状态} & \textbf{一句话裁决说明} \\
+  \midrule
+  装载数（整星口径） & $\sim$9-14颗/发 & 一档（几何约束） & 已吸收进主链 & 基于整星质量8.48t (10年-GaAs)，Starship 100+t级运力，扣除10-20\%适配器/分离机构裕量 \\
+  装载数（仅计算载荷） & $\sim$53-60颗/发 & 一档+三档 & 仅作外部参照 & 基于仅计算载荷质量1,500 kg；假设在轨集成——此假设未经验证，不可作为主链 \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+\clearpage
+
+% --- 子表3-A：GaAs主链成本 ---
+\begin{table}[H]
+  \centering
+  \caption{核心争议参数裁决（三-A）：GaAs主链制造成本}
+  \label{tab:core-verdicts-cost-gaas}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.7cm}
+    >{\raggedright\arraybackslash}p{2.2cm}
+    >{\centering\arraybackslash}p{1.5cm}
+    >{\raggedright\arraybackslash}p{2.1cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{参数名} & \textbf{当前取值} & \textbf{档位} & \textbf{裁决状态} & \textbf{一句话裁决说明} \\
+  \midrule
+  单星制造成本（10年-GaAs） & \$83.61M & 三档+四档混合 & 已吸收进主链 & 9子系统分项求和：光伏\$46.27M (55\%)、AIT \$18.29M (22\%)、计算载荷\$7.20M (9\%)、平台\$6.27M (8\%)、通信\$2.50M、推进\$1.30M、PCDU \$1.05M、散热\$0.66M、电池\$0.06M \\
+  光伏阵列成本（GaAs） & \$180/\$200/\$250 /W\_BOL & 三档 & 已吸收进主链 & AzurSpace产品存在+此前的口径200-400 USD/W+satsearch零售面板三锚点交叉；取\$200/W\_BOL为基准 \\
+  计算载荷成本 & \$38k/\$60k/\$100k/kW & 三档 & 已吸收进主链 & 地面GB300 NVL72基准\$25-33k/kW，乘以1.5-3$\times$量产溢价（SpaceX COTS策略），经3轮搜索与逐参数裁决 \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+% --- 子表3-B：对照路线与电池成本 ---
+\begin{table}[H]
+  \centering
+  \caption{核心争议参数裁决（三-B）：对照技术制造成本（HJT + 电池）}
+  \label{tab:core-verdicts-cost-other}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.7cm}
+    >{\raggedright\arraybackslash}p{2.2cm}
+    >{\centering\arraybackslash}p{1.5cm}
+    >{\raggedright\arraybackslash}p{2.1cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{参数名} & \textbf{当前取值} & \textbf{档位} & \textbf{裁决状态} & \textbf{一句话裁决说明} \\
+  \midrule
+  HJT阵列成本 & 地面\$0.14-0.24/W；空间\~\$2-3/W & 三档 & 已降级为对照 & 地面量产多源交叉验证（二档）+东方日升空间级报价（三档）；地面→空间放大10-15$\times$（四档）；总闭合度低于GaAs \\
+  电池NMC成本 & \$200/kWh（固定） & 三档 & 已吸收进主链 & Starlink直接迁移，零额外溢价——Starlink NMC pack本身就是空间电池；Ray Barsa演讲+亿颗级Panasonic 21700采购锚定 \\
+  电池LTO成本 & \$260/\$350/\$400/kWh & 四档 & 仅作外部参照（敏感性分支） & 等比压缩法：地面LTO/NMC价格比1.3-1.5$\times$ $\times$ \$200/kWh = \$260-400/kWh；经对比分析后排除传统Saft认证定价路径 \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+% --- 子表4：地面对照TCO ---
+\begin{table}[H]
+  \centering
+  \caption{核心争议参数裁决（四）：地面对照 TCO 口径与 TCO 倍数}
+  \label{tab:core-verdicts-tco}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.7cm}
+    >{\raggedright\arraybackslash}p{2.2cm}
+    >{\centering\arraybackslash}p{1.5cm}
+    >{\raggedright\arraybackslash}p{2.1cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{参数名} & \textbf{当前取值} & \textbf{档位} & \textbf{裁决状态} & \textbf{一句话裁决说明} \\
+  \midrule
+  地面对照TCO（中位估计） & $\sim$\$64.6M/MW/10年 & 四档 & 仅作外部参照 & 基于公开地面AI数据中心建设成本分析的综合估计；具体文献来源见附录D§D.4 \\
+  TCO倍数（太空/地面） & $\sim$11.8$\times$（10年-GaAs基线） & 混合档位 & 已吸收进主链 & \$764.98M / \~\$64.6M $\approx$ 11.8$\times$；受太空侧四档参数（占成本约35\%）和地面侧口径不确定性双重约束 \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{47参数分级统计汇总}
+
+\begin{table}[H]
+  \centering
+  \caption{47参数分级统计}
+  \label{tab:param-statistics}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.6cm}
+    >{\centering\arraybackslash}p{1.2cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{档位} & \textbf{数量} & \textbf{典型参数} \\
+  \midrule
+  一档（物理推导链） & 5 & 太阳常数(1361.0 W/m$^2$)、散热面积(110 m$^2$, S-B推导)、阵列面积(物理公式)、电池名义容量(186.4 kWh) \\
+  二档（权威资料） & 7 & 峰值功率(150 kW)、持续功率(120 kW)、轨道高度(600 km)、GaAs BOL/EOL效率(32\%/29\%)、HJT BOL/EOL效率(22\%/14\%) \\
+  三档（可迁移证据） & 17 & GaAs/HJT面密度、DoD、比能量、计算载荷成本、GaAs/HJT阵列成本等 \\
+  四档（合理推断） & 14 & 散热器面密度、平台系数、推进质量/成本、通信质量/成本、AIT裕量/成本、PCDU比功率/成本等 \\
+  禁止入模 & 1 & 此前的电池成本\$400/kWh（与公开空间级价格存在约225倍矛盾，已替换） \\
+  已废弃 & 3 & kW/t反推链(70/55/45)、此前的计算载荷质量(2143/2727/3333 kg)、HJT"禁止进入主模型"标签 \\
+  \midrule
+  \textbf{合计} & \textbf{47} & \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+四档参数占比30\%（14/47），是AI1信息公开不足的客观结果，非执行缺陷。全部弱证据参数均已嵌入逐参数独立裁决闸门，每个四档参数均附带推断依据、边界条件和失效风险说明。裁决记录可经附录D五层路由表追溯到 `current-note.md` §Task V2 中的V1-V37逐参数裁决。
+
+\subsection{按档位分组的完整参数清单}
+
+以下为全部47参数的完整登记表。每参数一行，按档位分组排列。来源路由指向附录D对应行号。
+
+\textbf{说明}：完整47行参数登记表因版面限制仅列出核心争议参数（详见§B.2-§B.3）。需要查询全部参数的读者应按以下路径追溯：
+
+\begin{itemize}
+  \item 全部47参数逐条分级清单：见内部参数裁决文档，可经附录D路由表追溯
+  \item 质量参数结构化输入（JSON）：见附录D路由表对应行
+  \item 价格参数结构化输入（JSON）：见附录D路由表对应行
+  \item 五层速查路由（结论→交叉核验→JSON→裁决→URL）：附录D §D.2
+\end{itemize}
+
+特别的，以下裁决在最新一轮内部交叉核验中发生了关键调整，与此前审查轮次数值不同：
+
+\begin{table}[H]
+  \centering
+  \caption{关键裁决调整（此前审查轮次与本轮对比）}
+  \label{tab:key-ruling-changes}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.3cm}
+    >{\raggedright\arraybackslash}p{2.2cm}
+    >{\raggedright\arraybackslash}p{2.4cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{参数} & \textbf{此前取值} & \textbf{本轮值} & \textbf{调整原因} \\
+  \midrule
+  计算载荷质量链 & 2,143-3,333 kg (kW/t反推) & 1,200-2,000 kg (bottom-up) & kW/t分母来源B1级二手转述，存在循环引用；替换为地面硬件A1锚点+三项空间化增量 \\
+  HJT BOL效率 & 20\% & 22\% & GN-004审查指出比最低权威来源低6pp；研究团队从22/24/25三候选取最保守值 \\
+  HJT面密度 & 1.2 kg/m$^2$ & 1.8 kg/m$^2$ & 经搜索Starlink参考后上调；面板+展开分列建模 \\
+  PCDU比功率 & 10.0 kW/kg & 0.5 kW/kg（基准） & Terma飞行产品锚点揭示原值高估约18$\times$；PCDU额定功率取209.8 kW（EOL阵列主导），质量修正为约420 kg \\
+  平台系数 & 0.18/0.22/0.28 & 0.25/0.35/0.45 & Starlink V2 Mini质量粗拆参考ratio\~0.38 \\
+  电池DoD & 单一40\% & 三分支：5yr 40\%/10yr Li-ion 25\%/10yr LTO 80\% & 研究团队认为不应一刀切 \\
+  HJT路线定位 & "只能降级"/"禁止进入主模型" & "并行成熟路线" & Task 3证据包（17条URL+12项物理链闭合）支撑 \\
+  电池成本NMC & \$400/kWh（禁止入模） & \$200/kWh（固定） & Starlink直接迁移，零溢价原则 \\
+  推进成本 & 线性缩放 & 0.6次方缩放+寿命分支 & 经逐项校验后修正为0.6次方缩放 \\
+  \bottomrule
+  \end{tabularx}
+\end{table}

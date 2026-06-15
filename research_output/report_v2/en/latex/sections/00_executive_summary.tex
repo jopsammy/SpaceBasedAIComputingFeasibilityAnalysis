@@ -1,0 +1,98 @@
+% sections/00_executive_summary.tex
+% Executive Summary (unnumbered)
+
+\section*{Executive Summary}
+\addcontentsline{toc}{section}{Executive Summary}
+
+\subsection*{Core Conclusions}
+
+This report presents an independent technical analysis of the feasibility of low Earth orbit (LEO) AI computing data centers, examined across three progressive tiers: physical, engineering, and commercial. The core conclusions are as follows:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Physically feasible, but approaching the ceiling of current materials.} The Stefan--Boltzmann law does not prohibit 1~MW-class orbital heat dissipation---the 1,400\;W/m\textsuperscript{2} claimed by the AI1 satellite (dual-sided radiation, $\varepsilon\approx0.90$, $T\approx342.5$\;K) is physically self-consistent. However, this operating point nearly exhausts the available margin of current high-emissivity thermal control coatings after end-of-life (EOL) degradation. A doubling of heat dissipation density has no single-technology path to support it before 2035. (Full derivation in Chapter~4, Appendix~C~\S C.1)
+
+    \item \textbf{Engineering-fragile; single-satellite mass and reliability are the primary bottlenecks.} Sending computing hardware into space and sustaining its on-orbit operation is a multi-constraint coupled engineering problem. The compute payload mass chain has been reconstructed from the ``kW per ton'' inverse method used in prior industry analyses (which has been permanently deprecated due to unreliable denominator sourcing and definitional ambiguity; see Appendix~E) to a line-item accumulation method anchored on NVIDIA GB300 NVL72 ground hardware. Under the baseline scenario, the total single-satellite mass is approximately 8.48\;t, with the photovoltaic array (55.3\%) and system margin/redundancy (21.9\%) together accounting for the vast majority of manufacturing cost. (Full derivation in Chapter~5, Appendix~C~\S C.3)
+
+    \item \textbf{Commercially scenario-layered; no ``single correct number'' exists.} This report establishes three comparable economic branches: the 10-year GaAs primary chain baseline has a total cost of approximately \$0.77B (range \$0.55B--\$1.1B, depending on variation in key assumptions) (single-generation 1~MW sustained IT load, 10-year total window, \$200/kg launch unit cost); the 5-year GaAs comparison branch rises to approximately \$1,341.26M due to the need for a full satellite re-launch; the 5-year HJT parallel route gives a reconciled estimate of approximately \$1,005M, but is excluded by the AI1 70~m wingspan geometric constraint and cannot serve as a deployable primary route. Launch cost accounts for only about 1.8\% of TCO---the factors that truly determine commercial viability are photovoltaic array cost, on-orbit lifetime, and hardware reliability. (Full results in Chapter~6 and the script routing in Appendix~D)
+\end{itemize}
+
+\subsection*{Primary Chain TCO Figures (Quick Reference)}
+
+\begin{table}[H]
+\centering
+\caption{Three-Branch TCO Overview (common denominator: 1\;MW sustained IT load, 10-year total window)}
+\label{tab:exec_tco}
+\footnotesize
+\begin{tabular}{lc>{\centering\arraybackslash}p{2.8cm}>{\centering\arraybackslash}p{4.4cm}}
+\toprule
+\textbf{Branch} & \textbf{Single-Sat. Mass} & \textbf{10-Year Total Cost} & \textbf{Status} \\
+\midrule
+10yr-GaAs (primary) & 8.48\;t & \textbf{\$764.98M}\tablefootnote{Model output for the 10-year GaAs chain using SpaceX's publicly stated 120~kW sustained IT as the satellite-count denominator and after LEO orbital power chain closure; should be understood as the ``optimistic comparable baseline under officially claimed specifications,'' not an audited value of future project cost.} & The only single-generation primary chain currently capable of being fully specified \\
+5yr-GaAs (comparison)  & 7.10\;t & \$1,341.26M & Lifetime shortened to 5 years, requiring one re-launch \\
+5yr-HJT (parallel)   & 9.13\;t & $\approx$\;\$1,005M\quad(reconciled estimate) & Geometrically excluded by 70~m wingspan; figure is a reconciled estimate, not a lower bound \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Total cost formula: $\Sigma$ (manufacturing cost $+$ launch cost $+$ insurance (satellite manufacturing value$\times$3--5\% + launch cost$\times$8\%; current model only includes the launch cost portion as a lower-bound estimate) $+$ operations (\$5M/yr$\times 10$yr) $+$ decommissioning (\$3M/gen$\times$generations)). Single-generation satellite equivalent $= \text{1\;MW} / \text{120\;kW} \approx 8.33$. See relevant tables in Chapter~6 and Appendix~D~\S \ref{sec:script-entry} for details.
+
+\subsection*{Characterizing the Divergence}
+
+The publicly expressed differences between NVIDIA CEO Jensen Huang and SpaceX CEO Elon Musk on the topic of space-based AI computing constitute the core research motivation of this report.
+
+But their divergence is \emph{not about ``whether to do it.''} Both agree that space-based AI computing has long-term inevitability at a civilizational scale; the real divergence lies in \emph{``how fast it can be done'' and ``where the bottlenecks are''}:
+
+\begin{itemize}[leftmargin=*]
+    \item Jensen Huang, approaching from a chip engineering perspective, emphasizes the coupled engineering difficulty of heat dissipation flux, cosmic rays, solar storms, and micrometeoroids, and cites NVIDIA's existing deployment of CUDA in space to demonstrate that he is not opposed to space-based computing but holds a more conservative judgment on pace.
+    \item Elon Musk, approaching from a civilizational energy perspective, embeds orbital AI within a Kardashev-scale narrative and implicitly assumes that all relevant parameters (launch cost, photovoltaic efficiency, battery life, manufacturing scale) will improve synchronously.
+    \item This report's independent judgment: \textbf{synchronized improvement is possible, but the probability of multi-parameter synchronized improvement is insufficient to support a near-term definitive commitment.} The divergence is not fundamentally about ``who calculated wrong''---it is that the two parties use different time windows, power definitions, architecture generations, and system boundaries. When these differences are parameterized, the divergence reduces from a ``directional dispute'' to a ``parametric assumption difference.'' (See Appendix~A for the specification alignment matrix.)
+\end{itemize}
+
+\subsection*{Reading Guide}
+
+This report adopts a modular structure; different readers may selectively read according to their needs:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Readers needing only the conclusions:} This chapter suffices. The three-tier judgment and primary-chain TCO figures given here are the core outputs of the full report.
+    \item \textbf{Readers needing background:} Continue to Chapter~1 (definition of space-based AI computing, key participants, and the 2024--2026 event timeline).
+    \item \textbf{Readers needing the analytical framework:} Read Chapters~1--2. Chapter~2 defines the five unified specification dimensions (power, time window, architecture generation, cost boundary, launch unit cost) and the three-tier progressive framework, which are prerequisites for understanding subsequent chapters.
+    \item \textbf{Readers needing to verify the factual basis:} Read Chapter~3 (complete compilation and divergence characterization of 12 first-hand statements) and Appendix~D (five-tier evidence routing table, traceable from text conclusions back to original URLs).
+    \item \textbf{Readers needing to examine technical judgments:} Read Chapters~4--6 and Appendix~A (specification alignment matrix), Appendix~B (47-parameter line-item verdicts), and Appendix~C (core calculation methods and formulas).
+    \item \textbf{Readers needing the complete chain of reasoning:} Read the full text and all five appendices.
+\end{itemize}
+
+\subsection*{Chapter and Appendix Index}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Chapter~1 Background and Research Subject}: Definition of space-based AI computing, motivations for its proposal, key participants (SpaceX/NVIDIA), 2024--2026 timeline, research scope and boundaries.
+    \item \textbf{Chapter~2 Analytical Methods and Comparison Baselines}: Physical-engineering-commercial three-tier progressive framework, definitions of the five unified specification dimensions, preliminary specification alignment matrix.
+    \item \textbf{Chapter~3 First-Hand Statements and Divergence Characterization}: Musk's 7 statements summary table, Huang's 5 statements summary table, divergence characterization (assumption differences rather than right/wrong).
+    \item \textbf{Chapter~4 Scientific Feasibility}: Stefan--Boltzmann law derivation and heat dissipation area, real LEO thermal environment constraints, heat dissipation density boundary.
+    \item \textbf{Chapter~5 Engineering Feasibility}: Bottom-up compute payload mass chain (replacing the kW/t inverse chain), GaAs/HJT power system route comparison, battery three-branch analysis, full satellite mass breakdown, on-orbit lifetime and maintenance, launch capacity reality check.
+    \item \textbf{Chapter~6 Commercial Feasibility}: Three-branch TCO complete breakdown and comparison, quantitative impact of specification differences, flip-condition analysis.
+    \item \textbf{Chapter~7 Synthesized Judgment}: Three-tier convergence into known facts / computable chains / currently undecidable, timeline outlook, robustness statement of conclusions.
+    \item \textbf{Appendix~A}: Specification alignment matrix (complete comparison of 7 scenarios $\times$ 9 dimensions).
+    \item \textbf{Appendix~B}: 47-parameter line-item verdict table (tier, value, verdict status, source routing).
+    \item \textbf{Appendix~C}: Core calculation methods and formulas (S-B heat dissipation derivation, orbital power energy budget, bottom-up mass chain).
+    \item \textbf{Appendix~D}: Five-tier evidence routing table (conclusion $\to$ cross-verification $\to$ JSON $\to$ verdict record $\to$ URL/formula).
+    \item \textbf{Appendix~E}: Deprecated derivation chain documentation (reasons for deprecating the kW/t inverse chain, prohibited-line list, parameter usage boundary declaration).
+\end{itemize}
+
+\subsection*{Evidence System Notes}
+
+All 47 key parameters involved in this report have been graded and adjudicated line-by-line according to the four-tier evidence system:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Tier 1 (physical derivation chain, 5 parameters)}: Directly derived from explicit physical formulas and boundary conditions, e.g., solar constant, heat dissipation area.
+    \item \textbf{Tier 2 (authoritative sources, 7 parameters)}: From traceable authoritative public sources, e.g., AI1 power parameters (multi-source cross-validated), AzurSpace 4G32 GaAs efficiency.
+    \item \textbf{Tier 3 (transferable evidence, 17 parameters)}: From transferable industry literature, e.g., Starlink battery DoD/specific energy, terrestrial HJT module wholesale prices.
+    \item \textbf{Tier 4 (reasonable inference, 14 parameters)}: Insufficient public data, based on engineering inference, e.g., radiator areal density, platform coefficient, PCDU specific power, etc.---involving approximately 35\% of manufacturing cost items. The Tier-4 share of 30\% (14/47) is an objective constraint of insufficient AI1 public disclosure, not an analytical deficiency.
+\end{itemize}
+
+Every key figure in the main text carries an evidence-tier annotation; see Appendix~B for the complete parameter verdict table; see Appendix~D for traceability routing.
+
+\subsection*{Methodology Statement}
+
+This report proceeds from physical laws (Stefan--Boltzmann), through engineering hardware anchors (NVIDIA GB300 NVL72), to a complete computational chain modeled in independent Python, following a first-principles bottom-up verification methodology. The photovoltaic array ($\sim$50\%) in the TCO is cross-anchored via Tier-2/Tier-3 evidence; system margin/redundancy/additional (AIT margin) remains a dominant cost item ($\sim$20\%), though its value still carries Tier-4 inference attributes. Even if Tier-4 parameter values undergo reasonable variation, directional conclusions will not experience order-of-magnitude flips. This report pursues robustness of conclusions rather than predictive precision.
+
+\endinput

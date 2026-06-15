@@ -1,0 +1,127 @@
+% sections/03_engineering.tex
+% 工程层分析：Q4--Q6
+
+\section{工程层：发射、供电与可靠性}
+
+科学层确认了散热在物理极限内的可行性，但工程层需要回答：在当前技术水平下，将这些物理方案付诸实施的可靠性如何？本章聚焦三个关键工程维度：发射成本的历史趋势、轨道光伏供电链路的实际效率、以及GPU在轨可靠性的数据缺口。
+
+\subsection{发射成本：Wright学习率的现实检验}
+
+SpaceX的Falcon 9将LEO发射成本从航天飞机时代的\$65,000/kg降至约\$2,720/kg（70\%降幅），但此后下降速度显著放缓。表~\ref{tab:launch_cost} 整理了关键里程碑。
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{LEO发射成本里程碑}
+\label{tab:launch_cost}
+\begin{tabular}{lcc}
+\toprule
+\textbf{运载器/阶段} & \textbf{LEO成本（\$/kg）} & \textbf{来源} \\
+\midrule
+航天飞机（1981--2011） & $\sim$65,000 & NASA\cite{nasalaunch2018} \\
+Atlas V（2002--） & $\sim$13,000 & NASA \\
+Falcon 9 v1.0（2010） & $\sim$4,300 & SpaceX \\
+Falcon 9 FT（2015--） & $\sim$2,720 & SpaceX \\
+Falcon Heavy（2018--） & $\sim$1,400 & SpaceX \\
+Starship（理论预测） & $\sim$200（目标） & SpaceX/FAA\cite{faa2025boca} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+图~\ref{fig:launch_cost} 以半对数坐标直观呈现发射成本40年间下降272倍的轨迹——以及Starship目标与物理地板之间的剩余空间。
+
+\begin{figure}[H]
+\centering
+\input{figures/launch_cost_curve.tex}
+\caption{LEO发射成本历史曲线（半对数坐标）：从航天飞机到Starship}
+\label{fig:launch_cost}
+\end{figure}
+
+从Falcon 9到Starship，预期的\$2,720$\rightarrow$\$200意味着再降93\%——即使假设Wright学习率（每翻倍产量成本降15\%--20\%，与半导体制造经验一致\cite{guangfa2026learning}），达成这一目标也需要Starship的年发射频次从当前每年几次增至数百次。SpaceX的2026年FCC频率申请和S1测试进度\cite{spacex2026fcc,spacex2026s1}表明，高频次复用仍处于早期验证阶段。
+
+\subsection{马斯克"300--500\,GW/年"主张的拆解}
+
+马斯克提出的"Starship每年300\,GW，或许500\,GW"\cite{musk2025starship}值得逐层拆解。
+
+假设条件：Starship单次LEO运力200\,t（FCC申报数据\cite{spacex2026fcc}），每t算力对应约0.5\,MW（基于H100级GPU的功率密度）。则单次发射可部署$\sim$0.1\,GW算力。300\,GW/年意味着每年3,000次Starship发射——即每天8次以上。FAA 2025年对Boca Chica的环评审批\cite{faa2025boca}仅支持年发射25--50次。即便KSC增设发射台\cite{faa2026ksc}，年3000次频次在当前监管、基础设施和制造能力框架下不具备可行性。500\,GW对应的5,000次/年更是脱离了讨论的现实基础。
+
+进一步地：以当前最先进的H100 GPU（700\,W）为例，1\,GW算力对应约143万颗GPU。即使假设Blackwell（1200\,W）\cite{nvidia2026rubin}，也需83万颗。这是一个超出NVIDIA当前全年H100出货量的数量级。算力供给约束——而非仅发射约束——可能才是马斯克主张中最大的隐性瓶颈。
+
+\subsection{轨道太阳能的效率链}
+
+轨道太阳能的计算链需要逐项乘以效率系数：
+
+\[
+P_{\text{可用}} = G_{\text{SC}} \times \eta_{\text{PV}} \times \eta_{\text{deg}} \times \eta_{\text{MPPT}} \times \eta_{\text{bat}} \times D_{\text{duty}}
+\]
+
+其中：$G_{\text{SC}}=1361$\,\unitWpm{}（太阳常数），$\eta_{\text{PV}}\approx 30\%$（空间级三结砷化镓\cite{zhang2025solar}），$\eta_{\text{deg}}\approx 85\%$（5年退化后），$\eta_{\text{MPPT}}\approx 95\%$，$\eta_{\text{bat}}\approx 88\%$（充放电循环），$D_{\text{duty}}\approx 60\%$（轨道日照占空比）。逐项相乘后，1361\,\unitWpm{}$\rightarrow$约183\,\unitWpm{}可用电力，综合效率仅约13.5\%。
+
+图~\ref{fig:pv_chain} 以瀑布图展示这一逐级退化过程。
+
+\begin{figure}[H]
+\centering
+\input{figures/pv_efficiency_chain.tex}
+\caption{轨道光伏效率链瀑布图：1361\,W/m\textsuperscript{2} $\rightarrow$ 183\,W/m\textsuperscript{2}可用电力}
+\label{fig:pv_chain}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{轨道与地面光伏效率链对比}
+\label{tab:pv_chain}
+\begin{tabular}{lcc}
+\toprule
+\textbf{环节} & \textbf{轨道（三结GaAs）} & \textbf{地面（单晶硅）} \\
+\midrule
+初始辐照度                    & 1361\,\unitWpm{}         & $\sim$1000\,\unitWpm{} \\
+光伏效率                      & $\sim$30\%               & $\sim$24\%              \\
+退化后效率（5年）             & $\sim$25.5\%             & $\sim$22\%              \\
+MPPT+电源管理                & $\sim$95\%               & $\sim$97\%              \\
+储能系统效率                  & $\sim$88\%               & 无（电网）              \\
+日照占空比                    & $\sim$60\%               & 无（电网）              \\
+\addlinespace
+\textbf{综合可用系数}               & $\sim$\textbf{13.5\%}          & $\sim$\textbf{21.3\%}         \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+表~\ref{tab:pv_chain} 显示，尽管轨道太阳常数比地面高36\%，但储能与占空比损耗使得轨道综合可用系数反低于地面光伏。这意味着，马斯克描绘的"无限太阳能"在工程实现中需要搭配显著的光伏阵列面积扩大——进一步加剧上一章讨论的散热面积约束。
+
+\subsection{GPU在轨可靠性：最大的未知}
+
+地面数据中心的GPU年均失效率（AFR）通常在1\%--3\%\cite{uptime2024}。太空高能粒子辐射环境（银河宇宙射线GCR、太阳高能粒子SPE、范艾伦辐射带穿越）会显著增加单粒子效应（SEE）概率\cite{nasa2021tm4527}。NASA对ISS电子设备的跟踪数据\cite{nasa2024iss}及地面辐射模拟\cite{nasajpl2025rad}表明，无抗辐射加固的商业级GPU在LEO轨道的AFR预计为8\%--15\%，极端太阳事件下甚至可达30\%+。
+
+图~\ref{fig:gpu_afr} 将这一差异以柱状图可视化。
+
+\begin{figure}[H]
+\centering
+\input{figures/gpu_reliability_bars.tex}
+\caption{GPU年化失效率对比：地面 vs 轨道（LEO）}
+\label{fig:gpu_afr}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{GPU可靠性对比：轨道 vs 地面}
+\label{tab:gpu_reliability}
+\begin{tabular}{lcc}
+\toprule
+\textbf{指标} & \textbf{轨道（LEO）} & \textbf{地面数据中心} \\
+\midrule
+主要辐射源 & GCR, SPE, 范艾伦带 & 本底辐射（可忽略） \\
+GPU AFR（商业级，无加固） & 8\%--15\%（估计） & 1\%--3\%\cite{uptime2024} \\
+极端事件下AFR & 30\%+（一级耀斑） & 不可比 \\
+在轨更换/维修 & \textbf{不可行}（当前无在轨服务能力） & 热插拔，<1小时 \\
+抗辐射加固代价 & 3--5倍成本 + 30--50\%性能损失\cite{gaoanxin2025rad} & 不适用 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+表~\ref{tab:gpu_reliability} 揭示了轨道算力最关键的单点故障：**在轨维护的不可行性**。即使GPU年失效率仅提高至地面2--3倍（保守假设5\%--8\%），在无法更换的条件下，集群可用算力将在3年内衰减至初始的20\%--40\%。这与地面数据中心"坏一块换一块"的运维模式构成根本性差异。NASA的Katalyst计划\cite{nasa2026katalyst}正在开发在轨服务机器人，但预计最早在2027--2028年才有初步演示能力。黄仁勋在Q4财报中强调的"将需要数年"\cite{huang2026earnings}，很大程度上正是指向这些非芯片层面的系统工程缺口。
+
+\subsection{工程层小结}
+
+发射成本是四大参数中最乐观的一项——Starship确有降本潜力，但年3000次频次缺乏现实支撑。轨道光伏综合效率反低于地面，供电优势不像表面数字那么直观。最关键的是：GPU在轨可靠性数据几近空白，缺乏在轨维护能力的条件下，集群寿命约束将使TCO中的硬件替换成本急剧膨胀。黄仁勋的"硬件工程谨慎"在这一层获得最充分的证据支持。

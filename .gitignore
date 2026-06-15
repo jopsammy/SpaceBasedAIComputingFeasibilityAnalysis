@@ -1,0 +1,28 @@
+# IDE / Editor
+.trae/
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+
+# Logs
+*.log
+*.tmp
+
+# Large data / temp
+research_output/workspace/temp/

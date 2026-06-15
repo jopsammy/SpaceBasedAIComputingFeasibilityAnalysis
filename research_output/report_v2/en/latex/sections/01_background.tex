@@ -1,0 +1,111 @@
+% sections/01_background.tex
+% Chapter 1: Background and Research Subject
+
+\section{Background and Research Subject}
+
+\subsection{What Is Space-Based AI Computing}
+
+Space-based AI computing (orbital compute) refers to computing satellites or satellite clusters deployed in Earth orbit whose primary workload is AI training or inference. It differs from conventional communication satellites (such as Starlink)---communication satellites take signal relay as their primary function, with power consumption typically in the hundreds to thousands of watts; space-based AI computing satellites may consume tens to hundreds of kilowatts, with power density 1--2 orders of magnitude higher, posing fundamentally different engineering challenges for heat dissipation, power supply, and on-orbit reliability.
+
+Compared to terrestrial data centers, space-based AI computing has four essential physical differences:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Single-mode heat dissipation:} In space there is no air, no water, and no conduction or convection. All waste heat must be rejected to deep space via radiation---this is the hard physical constraint of the Stefan--Boltzmann law and constitutes the core analytical subject of Chapter~4 of this report.
+    \item \textbf{Fixed energy source:} Space-based photovoltaics are the only sustainable energy form. In LEO there are no fossil fuels and no grid connection; all electrical power must be obtained from photovoltaic arrays and battery energy storage systems.
+    \item \textbf{Unique deployment method:} All hardware must be launched into orbit via rocket, with the mass and volume of a single launch constrained by the launch vehicle. Launch cost (per kilogram) directly affects total cost of ownership (TCO), although this report will demonstrate that its impact is smaller than intuitive expectation.
+    \item \textbf{Limited maintenance:} Once in orbit, hardware is physically inaccessible. One cannot dispatch personnel to swap GPUs, add coolant, or replace failed power modules as one would in a terrestrial data center. The economic feasibility of on-orbit servicing is an important unresolved question.
+\end{enumerate}
+
+\subsection{Why Space-Based AI Computing Has Been Proposed}
+
+The proposal of space-based AI computing did not arise in a vacuum; it responds to three increasingly pressing constraints facing terrestrial AI infrastructure---often called the ``three walls'':
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{The Power Wall:} The power demand of a single AI data center has rapidly escalated from tens of MW to the GW level. Some regional grids cannot satisfy the power connection applications for new data centers; site selection has become a bottleneck.
+    \item \textbf{The Land Wall:} Hyperscale data centers occupy hundreds of acres and face the dual pressures of land cost and community opposition in densely populated areas.
+    \item \textbf{The Cooling Wall:} The power density of GPU racks continues to climb (GB300 NVL72 can exceed 140\;kW per rack); liquid cooling is replacing air cooling, but the cooling infrastructure itself consumes significant amounts of electricity (PUE typically between 1.1--1.4) and water resources.
+\end{enumerate}
+
+Proponents of space-based AI computing argue that the orbital environment naturally circumvents these constraints:
+\begin{itemize}[leftmargin=*]
+    \item Solar power is available 24/7 (LEO has no atmospheric ``weather'' concept blocking sunlight, only brief eclipse periods---about 35--37 minutes per 96--97-minute orbital period).
+    \item Theoretically unlimited physical expansion space (LEO is a three-dimensional spherical shell; deployment density is far from the upper limit of space debris constraints).
+    \item Radiating waste heat into the 3\;K deep-space background is physically more efficient than rejecting heat into the 300\;K atmosphere on the ground.
+\end{itemize}
+
+\subsection{Key Participants}
+
+\subsubsection{SpaceX and Elon Musk}
+
+SpaceX is the most aggressive proponent of orbital AI computing. As of June 2026, its principal actions include:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{AI1 Satellite:} On June 8, 2026, SpaceX disclosed AI1 satellite parameters in detail for the first time via an official video---wingspan 70\;m, peak power 150\;kW, sustained power 120\;kW, LEO (approximately 600\;km), heat dissipation density approximately 1,400\;W/m\textsuperscript{2} (physical panel area). The first two prototypes are planned for launch in early 2027. This public release provided a verifiable anchor for analyses that had previously relied entirely on speculation\cite{spacex2026ai1}.
+    \item \textbf{Starship Super-Heavy Launch System:} Starship is the sole launch capacity vehicle for large-scale orbital deployment. The V3 version targets a payload capacity of 100+ tons to LEO (full-reuse mode). SpaceX has obtained FAA approval for Starship launches at Boca Chica (25 launches/yr) and Kennedy Space Center LC-39A (44 launches/yr), for a combined annual cap of 69 launches\cite{faa2025boca,faa2026ksc}.
+    \item \textbf{FCC Million-Satellite Application:} In January 2026, SpaceX submitted an authorization application to the FCC to deploy up to 1 million orbital AI data center satellites in the altitude range of 500--2,000\;km. The engineering feasibility of this application will be discussed in Chapter~5 of this report\cite{spacex2026fcc}.
+    \item \textbf{Orbital AI Positioning in the S-1 Prospectus:} In the May 2026 SEC S-1/A filing, SpaceX positioned orbital AI computing as ``a barrier-level challenge that only SpaceX can solve,'' with deployment planned to begin in 2028 at a target of 100\;GW per year. The IPO valuation range was \$1.75--2\;T\cite{spacex2026s1}.
+    \item \textbf{Terafab Chip Factory:} In March 2026, Musk announced a \$25\;billion investment in the Terafab mega chip factory in Texas, a joint venture of SpaceX, Tesla, and xAI, claiming that 80\% of its compute output would be destined for orbital deployment\cite{musk2026terafab}.
+\end{itemize}
+
+\subsubsection{NVIDIA and Jensen Huang}
+
+NVIDIA's participation in the space-based AI computing arena stands in sharp contrast to SpaceX: product-driven rather than narrative-driven, embedding pragmatic engineering reservations within an optimistic vision.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Space-1 Vera Rubin Platform:} At the March 2026 GTC conference, NVIDIA unveiled the Space-1 space computing platform, centered on the Rubin GPU---which NVIDIA officially claims delivers 25$\times$ the space inference performance of the H100. The platform includes the IGX Thor edge computing module and has established partnerships with six space enterprises\cite{huang2026gtc}.
+    \item \textbf{Jensen Huang's Prudent Stance:} Despite releasing hardware products, Huang has repeatedly emphasized across multiple venues that heat dissipation is the fundamental bottleneck for space-based computing. His statement on the March 2026 All-In Podcast---``It will take years. It's okay; I have time.''---is the public remark closest to his true timeline judgment\cite{huang2026allin}.
+    \item \textbf{Extreme Co-Design Philosophy:} On the Lex Fridman Podcast, Huang articulated the ``extreme co-design'' philosophy---that chips, networking, cooling, and algorithms must be jointly optimized for space-based computing to be engineering-viable. This implies his view that simply ``moving terrestrial GPUs to space'' is insufficient\cite{huang2026lex}.
+\end{itemize}
+
+\subsubsection{Other Relevant Parties}
+
+- \textbf{Exlumina}: A startup focused on space edge AI computing, positioned as a LEO orbital inference service provider.
+- \textbf{Google Suncatcher (arXiv preprint, 2025)}: An academic paper published by the Google research team exploring the topology and bandwidth requirements of space-based AI clusters, providing an independent reference anchor for the tens-of-Tbps inter-satellite laser link (ISL) demand magnitude used in this report's communication subsystem mass/cost estimation.
+- \textbf{Multiple Satellite Communication Enterprises}: The engineering experience of large-scale LEO constellations being deployed by AST SpaceMobile, Telesat, and others (e.g., deployable antennas, satellite bus design) constitutes the industrial technology foundation for space-based AI computing.
+
+\subsection{Key Event Timeline}
+
+\begin{table}[H]
+\centering
+\caption{Key Event Timeline for Space-Based AI Computing (2024--2026)}
+\label{tab:timeline}
+\small
+\begin{tabular}{p{2.0cm}p{3.5cm}p{8.0cm}}
+\toprule
+\textbf{Date} & \textbf{Event} & \textbf{Impact on This Report's Analytical Framework} \\
+\midrule
+2024--09 & Musk X post: Kardashev metric & First linkage of space AI with civilizational energy narrative, establishing Musk's discursive framework\cite{musk2024kardashev} \\
+2025--11 & Saudi Investment Forum: first joint appearance & The closest public record to ``Huang responding to Musk''; Huang addressed heat dissipation from a hardware mass perspective\cite{musk_huang2025saudi} \\
+2026--01 & SpaceX FCC million-satellite application & Deployment scale first disclosed in official document form, shifting discussion from ``is it possible'' to ``at what scale''\cite{spacex2026fcc} \\
+2026--02 & NVIDIA Q4 Earnings Call & Huang's first qualitative characterization of the current phase of space-based computing as ``economics not ideal''\cite{huang2026earnings} \\
+2026--03 & NVIDIA GTC 2026: Space-1 Rubin & NVIDIA transitioned from ``commenting'' to ``product,'' marking a watershed in the space computing discussion\cite{huang2026gtc} \\
+2026--03 & All-In Podcast & Huang delivered the remark closest to a timeline judgment: ``it will take years''\cite{huang2026allin} \\
+2026--03 & Terafab chip factory announcement & Musk's supply chain arrangement extended from ``sending hardware to orbit'' to ``in-house chip production''\cite{musk2026terafab} \\
+2026--05 & SpaceX S-1 prospectus & Orbital AI became the core IPO narrative, with a 2028 deployment start and 100\;GW/yr target\cite{spacex2026s1} \\
+2026--06 & AI1 satellite parameter release & Provided this report's most important single verifiable anchor: 70\;m wingspan, 150\;kW peak, 120\;kW sustained\cite{spacex2026ai1} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Scope of This Report}
+
+\subsubsection{What Is Studied}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Orbital regime:} Low Earth Orbit (LEO, approximately 600\;km), which is the target orbit of AI1 and the focus of current discussion.
+    \item \textbf{Unit of analysis:} 1\;MW sustained IT load (i.e., usable power ultimately delivered to computing hardware), 10-year total window (with branch calculations including re-launch cost), NVIDIA Blackwell architecture (GB300 NVL72 as ground hardware anchor) as baseline.
+    \item \textbf{Analytical dimensions:} Physical feasibility (is heat dissipation possible---Chapter~4), engineering feasibility (can it be built and operated---Chapter~5), commercial feasibility (is it worth investing---Chapter~6).
+    \item \textbf{Technology routes:} GaAs (gallium arsenide) III-V multi-junction solar cells as the primary route (this report's independent analysis indicates this is almost certainly the only viable route for AI1), HJT (heterojunction silicon cells) as the parallel comparison route (cost potential noteworthy but excluded by deployment constraints).
+\end{itemize}
+
+\subsubsection{What Is Not Studied}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{MEO/GEO/Deep-space computing:} Although Musk's narrative touches on lunar manufacturing and electromagnetic launch, these lie outside the analytical scope of this report (not excluded as potential future extended research).
+    \item \textbf{Communication constellation infrastructure:} Space-based AI computing requires inter-satellite laser links (ISL) and ground gateways as supporting infrastructure, but the communication system is incorporated into TCO only at the satellite subsystem level in mass and cost dimensions, not as an independent research topic.
+    \item \textbf{Comprehensive terrestrial data center substitution analysis:} This report uses \$64.6M USD (10-year total window, 1\;MW IT load) as the reference TCO for a terrestrial AI data center, but does not perform a detailed breakdown comparison of terrestrial technologies.
+    \item \textbf{Investment advice:} This report is a technical feasibility analysis and does not constitute any form of investment recommendation.
+    \item \textbf{Regulation and spectrum:} Policy dimensions such as FCC applications, ITU spectrum coordination, and space traffic management lie outside the technical analysis scope of this report.
+\end{itemize}
+
+\endinput

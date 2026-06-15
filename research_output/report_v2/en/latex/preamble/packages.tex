@@ -1,0 +1,66 @@
+% preamble/packages.tex
+% Package list (no custom commands)
+
+% ========== Essential Base Packages ==========
+% Font engine (must be loaded first)
+\usepackage{fontspec}
+
+% English language support
+\usepackage[english]{babel}
+
+% LaTeX3 programming support
+\usepackage{expl3}
+
+% ========== Mathematics ==========
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+
+% ========== Tables & Floats ==========
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{wrapfig}
+
+% ========== Graphics & Color ==========
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc}
+
+% ========== Hyperlinks & References ==========
+\usepackage[colorlinks=true, allcolors=blue, pdfborder={0 0 0}]{hyperref}
+\usepackage[style=numeric,backend=biber,sorting=none]{biblatex}
+
+% --- URL line-breaking for bibliography (prevents hbox overfull from long URLs) ---
+\usepackage{xurl}
+\setcounter{biburlnumpenalty}{9000}
+\setcounter{biburllcpenalty}{9000}
+\setcounter{biburlucpenalty}{9000}
+
+% ========== Document Structure Enhancement ==========
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage[shortlabels]{enumitem}
+
+% Appendix: use built-in \appendix command (no extra package needed)
+
+% Long table support
+\usepackage{longtable}
+
+% Table footnotes
+\usepackage{tablefootnote}
+
+% ========== Code & Tools ==========
+\usepackage{cleveref}
+\usepackage{makeidx}
+\usepackage{verbatim}
+\usepackage[normalem]{ulem}
+
+% ========== Fix Configurations ==========
+\usepackage{etoolbox}
+\usepackage{colortbl}

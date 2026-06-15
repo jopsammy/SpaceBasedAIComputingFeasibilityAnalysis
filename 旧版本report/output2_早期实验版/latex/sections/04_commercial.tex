@@ -1,0 +1,141 @@
+% sections/04_commercial.tex
+% 商业层分析：Q7--Q11
+
+\section{商业层：TCO全口径对比与可行性翻转条件}
+
+如果说科学层回答的是"物理上是否可能"，工程层回答的是"技术上是否可靠"，那么商业层要回答的是最现实的问题：在经济上是否划算？本章构建全口径10年TCO模型，对比轨道与地面数据中心的总拥有成本，并识别翻转经济可行性所需的多参数同步突破。
+
+\subsection{TCO多场景对比}
+
+表~\ref{tab:tco_scenarios} 呈现三种成本场景下轨道数据中心与地面基准的TCO对比。地面数据中心采用2026年行业典型配置\cite{uptime2024,cloudzero2026gpu,cgranier2025capex}。
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{轨道 vs 地面数据中心10年TCO多场景对比}
+\label{tab:tco_scenarios}
+\begin{tabular}{lccc}
+\toprule
+\textbf{场景} & \textbf{轨道TCO（\$M）} & \textbf{地面TCO（\$M）} & \textbf{比值} \\
+\midrule
+保守假设（\$500/kg, AFR 15\%, $\eta_{\text{PV}}$ 28\%） & 932 & 65 & \textbf{14.3x} \\
+\textbf{基准假设（\$200/kg, AFR 10\%, $\eta_{\text{PV}}$ 30\%）} & \textbf{681} & \textbf{65} & \textbf{10.5x} \\
+乐观假设（\$100/kg, AFR 5\%, $\eta_{\text{PV}}$ 32\%） & 398 & 65 & \textbf{6.1x} \\
+2030目标（\$50/kg, AFR 3\%, $\eta_{\text{PV}}$ 35\%, $q$=2000） & 280 & 65 & \textbf{4.3x} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+在基准假设下，轨道10年TCO为\$681M，是地面\$65M的10.5倍。即使采用最激进的2030年假设（发射成本\$50/kg、GPU在轨AFR降至3\%、光伏效率35\%、散热密度2000\,\unitWpm{}），比值仍为4.3倍。这一结果与黄仁勋Q4财报中的"将需要数年"判断高度吻合\cite{huang2026earnings}。
+
+\subsection{TCO成本构成分解}
+
+TCO差距的核心驱动力需要在构成层面理解。图~\ref{fig:tco_breakdown} 以堆叠柱状图展示两类的成本结构。
+
+\begin{figure}[H]
+\centering
+\input{figures/tco_breakdown.tex}
+\caption{轨道 vs 地面数据中心10年TCO成本构成对比（基准场景）}
+\label{fig:tco_breakdown}
+\end{figure}
+
+决定性的成本项是光伏+储能（\$300M，占轨道TCO的44\%）和硬件替换（\$258M，占38\%），二者合计占82\%。地面数据中心的两大项——计算硬件（\$39M）和网络/存储/电力（\$44M）——合计仅占64\%。航天特有的"生存系统"成本（光伏、储能、散热、抗辐射）是TCO差距的结构性根源，而非芯片成本的差异。
+
+\subsection{GPU能效悖论：Dennard缩放失效的后果}
+
+图~\ref{fig:gpu_paradox} 展示了2012年以来NVIDIA GPU的AI TFLOPS/W与TDP的双轨演进。
+
+\begin{figure}[H]
+\centering
+\input{figures/gpu_paradox.tex}
+\caption{GPU能效悖论：AI TFLOPS/W提升52x，但TDP同步增长10x}
+\label{fig:gpu_paradox}
+\end{figure}
+
+从Kepler（2012）到Rubin（2026），AI TFLOPS/W提升了约52倍，但单GPU TDP从235\,W增至2300\,W，增长约10倍。这一"能效悖论"的根源在于Dennard缩放的失效——晶体管密度仍在按Moore定律增加（3nm已达物理极限附近\cite{tsmc2026symposium}），但供给电压不再同比降低，导致单位面积的功耗密度持续攀升。在轨散热受限于辐射冷却面积时，单位面积功耗密度增长是负和博弈——GPU越强，单位算力的散热成本越高。这对轨道数据中心的含义是直截了当的：地面冷却可以用更大的冷机、更高的风速来适配TDP增长，轨道只能靠增大辐射面。
+
+\subsection{发射成本学习曲线外推}
+
+表~\ref{tab:launch_2030} 基于当前\$200/kg基准，使用不同Wright学习率外推2030年发射成本。
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{2030年发射成本Wright曲线外推}
+\label{tab:launch_2030}
+\begin{tabular}{ccc}
+\toprule
+\textbf{Wright学习率} & \textbf{累计产量翻倍次数（至2030）} & \textbf{2030年预测（\$/kg）} \\
+\midrule
+15\%（保守，航天历史均值\cite{guangfa2026learning}） & 3.5 & $\sim$113 \\
+20\%（乐观，半导体经验\cite{guangfa2026learning}） & 3.5 & $\sim$92 \\
+25\%（极乐观，仅Starship特例） & 3.5 & $\sim$74 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+即使在20\%的乐观学习率下，2030年发射成本仍约\$92/kg——距马斯克隐含的"成本交叉"所需的\$50/kg仍有近一倍差距。在15\%保守假设下，突破\$100/kg仍需5--7年。历史数据不支持"发射成本会像芯片一样快速下降"的假设——发射本质上是结构工程与经济规模问题，其学习率上限低于半导体工艺。
+
+\subsection{下一代热管理材料：前景与时间线}
+
+石墨烯复合热界面材料\cite{esa2017graphene,scalia2023graphene,kanti2025graphene}和形状记忆合金可展开散热器\cite{pennstate2024sma,act2026deployable}在实验室条件下已展示了4000--6000\,\unitWpm{}的散热潜力。NASA的TFAWS项目\cite{nasa2024tfaws,nasatfaws2024ti}也在开发轻质量大面积可展开散热板。但这些技术均处于TRL 4--6（实验室验证至地面原型），距空间飞行鉴定（TRL 8--9）通常还需5--10年。将它们纳入2026--2030年可行性假设并不可靠。
+
+\subsection{静态与动态对比：翻转条件识别}
+
+表~\ref{tab:static_dynamic} 将上述分析归纳为静态（当前基准）与动态（翻转条件）的对比。
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{静态基准 vs 翻转条件对比}
+\label{tab:static_dynamic}
+\begin{tabular}{lccc}
+\toprule
+\textbf{参数} & \textbf{2026基准} & \textbf{翻转临界值} & \textbf{差距} \\
+\midrule
+发射成本（\$/kg） & 200 & $<$100 & 2x \\
+GPU在轨AFR（\%/年） & 10 & $<$3 & 3.3x \\
+散热密度（\unitWpm{}） & 1400 & $>$2000 & 1.4x \\
+硬件寿命（年） & 3--5 & $>$7 & 1.4--2.3x \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+图~\ref{fig:threshold_radar} 以雷达图直观呈现四大参数的当前基准（红色虚线）与翻转所需条件（蓝色实线）之间的面积差——即当前可行性缺口。
+
+\begin{figure}[H]
+\centering
+\input{figures/threshold_radar.tex}
+\caption{临界阈值蛛网图：四大参数当前基准 vs 翻转条件}
+\label{fig:threshold_radar}
+\end{figure}
+
+翻转的核心挑战在于：四大参数的改善不是独立的。发射成本下降需要Starship量产规模化（依赖FAA审批与制造爬坡），GPU在轨AFR降低需要抗辐射加固（牺牲性能换取可靠性），散热密度提升需要新材料飞行鉴定（5--10年周期），硬件寿命延长需要在轨服务能力（NASA Katalyst计划最早2027--2028年）。四项同步突破的概率低于25\%。
+
+\subsection{独立交叉验证：黄仁勋 vs 马斯克评估}
+
+最终，我们将本报告的独立评估结果与双方主张进行对比（表~\ref{tab:cross_validate}）。
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{独立交叉验证：黄仁勋 vs 马斯克}
+\label{tab:cross_validate}
+\begin{tabularx}{\textwidth}{p{2.0cm}p{2.2cm}p{2.2cm}X}
+\toprule
+\textbf{维度} & \textbf{马斯克主张} & \textbf{黄仁勋主张} & \textbf{本报告独立评估} \\
+\midrule
+散热可行性   & "巨大冷沉"     & "散热是最大难题"    & \textbf{物理可行但余量有限，GW规模面积巨大} \\
+发射成本     & 4--5年成本交叉     & "需要数年"          & \textbf{乐观2030年4.3x，交叉点2033--35} \\
+功耗密度     & 未充分讨论            & 隐含于co-design & \textbf{Dennard失效使轨道散热更被动} \\
+GPU可靠性    & 未充分讨论            & 含于"equation" & \textbf{最大未知，在轨AFR缺口是数据空白} \\
+商业可行性   & "必然"               & 谨慎                 & \textbf{10.5x差距，4参数翻转概率<25\%} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+黄仁勋在五个维度中四个得到了数据更强有力的支持，唯一与马斯克一致的是对太空算力长期价值的肯定——分歧不在"是否可能"，而在"何时可行"以及"当前瓶颈的性质"。
+
+\subsection{商业层小结}
+
+轨道数据中心的10年TCO是地面同类设施的10.5倍，即便2030年最乐观推演仍为4.3倍。成本差距的结构性根源不是GPU采购成本（轨道\$34M vs 地面\$39M），而是航天特有的生存系统——电+储能+在轨硬件替换。翻转需要发射成本、GPU AFR、散热密度、硬件寿命四项同时突破临界值，在当前技术路线下的并发概率低于25\%。马斯克的"4--5年成本交叉"在商业模型中找不到数据支撑；黄仁勋的"需要数年"是对当前约束格局的更准确描述。

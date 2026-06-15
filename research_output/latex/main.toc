@@ -1,0 +1,60 @@
+\contentsline {section}{\numberline {1}研究背景}{5}{section.1}%
+\contentsline {subsection}{\numberline {1.1}太空算力：一场由两位科技领袖引发的全球辩论}{5}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}马斯克：从文明尺度论述太空AI的必然性}{5}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}黄仁勋：从硬件工程视角的务实保留}{6}{subsubsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.2}核心分歧的本质}{6}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}研究范围与方法}{7}{subsection.1.3}%
+\contentsline {section}{\numberline {2}双方言论详细对比：Phase 1调研成果}{8}{section.2}%
+\contentsline {subsection}{\numberline {2.1}马斯克发言综述（7条一手来源）}{8}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}黄仁勋发言综述（5条一手来源）}{10}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}两人立场的交叉验证}{10}{subsection.2.3}%
+\contentsline {section}{\numberline {3}科学分析：太空散热与热环境}{11}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Q1：真空辐射散热的物理极限}{11}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}斯特藩-玻尔兹曼定律基础}{11}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}双面辐射与AI1 1,400 W/m\textsuperscript {2} 验证}{12}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}1 GW轨道数据中心所需散热面积}{13}{subsubsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.2}Q2：太空vs地面散热效率定量对比}{13}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}PUE对比：太空的实际优势}{13}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}散热密度对比：太空的天然劣势}{14}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}黄仁勋"97.5\%重量是冷却系统"说法的量化验证}{14}{subsubsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.3}Q3：轨道热环境的真实复杂性}{15}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}LEO热环境全景参数}{15}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}散热器效率衰减量化}{16}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}knife-edge-to-sun定向有效性}{16}{subsubsection.3.3.3}%
+\contentsline {section}{\numberline {4}工程分析：发射、供电与可靠性}{17}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Q4：发射成本与轨道算力部署的经济门槛}{17}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}发射成本的历史轨迹与Starship前景}{17}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}部署1 MW轨道算力的发射成本}{17}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.3}马斯克"300--500 GW/年运力"的物理可行性验证}{18}{subsubsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.2}Q5：轨道太阳能供电的实际可用功率}{18}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}关键参数与计算}{18}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}轨道vs地面光伏对比}{19}{subsubsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.3}Q6：在轨维护可行性与硬件可靠性}{19}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}航天器电子设备辐射故障机制}{19}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}NVIDIA Rubin Space-1和消费级GPU的轨道适用性}{20}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3}地面vs轨道故障率对比}{20}{subsubsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.4}在轨维修可行性}{20}{subsubsection.4.3.4}%
+\contentsline {section}{\numberline {5}商业分析与近未来展望}{21}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Q7：轨道vs地面数据中心TCO全生命周期对比}{21}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}地面数据中心TCO基线}{21}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}轨道数据中心TCO——多情景对比}{21}{subsubsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.3}马斯克"5年内更便宜"的敏感性分析}{23}{subsubsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.2}Q8：GPU/ASIC能效的历史演进与近未来外推}{24}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}NVIDIA GPU架构TFLOPS/W历史曲线}{24}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}2030年GPU能效推算与热密度影响}{25}{subsubsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.3}Q9：发射成本的历史下降曲线与近未来外推}{26}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Wright's Law适用性}{26}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}2030年弹性预估}{26}{subsubsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.4}Q10：下一代散热材料与结构设计对辐射散热极限的突破潜力}{27}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}关键技术路线图}{27}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}散热密度天花板突破推演}{27}{subsubsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.5}Q11："静态今天"vs"近未来外推"对比元分析}{29}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}结论对比表}{29}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}关键阈值矩阵：翻转条件组合}{30}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}黄仁勋vs马斯克判断的独立检验}{32}{subsubsection.5.5.3}%
+\contentsline {section}{\numberline {6}综合结论}{33}{section.6}%
+\contentsline {subsection}{\numberline {6.1}核心判断：三层面综合评估}{33}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}关键发现总结}{33}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}对黄仁勋vs马斯克分歧的最终研判}{34}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}最可能的演进路径}{35}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}方法论声明}{35}{subsection.6.5}%

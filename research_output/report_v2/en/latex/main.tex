@@ -1,0 +1,72 @@
+% !TEX program = xelatex
+\documentclass[12pt,a4paper]{article}
+
+% === Preamble assembly ===
+\input{preamble/packages}
+\input{preamble/macros}
+
+% === Bibliography resource ===
+\addbibresource{bib/refs.bib}
+
+% === Document metadata ===
+\title{Space-Based AI Computing Feasibility Analysis:\\
+Physical Limits, Engineering Constraints, and Commercial Prospects}
+\author{Sammy Zeng}
+\date{June 2026}
+
+% Use document font for URLs (enables natural line-breaking in bibliography)
+\urlstyle{same}
+% Force URL font to normal (no underlines) — prevents ulem underline bleed into \url{}
+\renewcommand{\UrlFont}{\normalfont}
+
+\begin{document}
+
+% Title page (using \maketitle)
+\maketitle
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\footnotetext[1]{Email: \href{jop.sammy@163.com}{jop.sammy@163.com} \quad ORCID: \href{https://orcid.org/0009-0007-4382-0040}{0009-0007-4382-0040}}
+
+% Abstract
+\begin{abstract}
+This report presents an independent technical analysis of the physical feasibility, engineering viability, and commercial prospects of orbital (space-based) AI computing. Starting from first principles, the report adopts a three-tier progressive framework---physical, engineering, and commercial---and cross-validates the public statements of Jensen Huang (NVIDIA) and Elon Musk (SpaceX) using the Stefan--Boltzmann law, a bottom-up mass chain, a three-branch TCO model, and a four-tier evidence grading system. Core findings: physically feasible---the 1,400~W/m\textsuperscript{2} heat dissipation density claimed by AI1 is consistent with radiative heat transfer physics; engineering-fragile---the compute payload mass chain has been reconstructed from the kW/t inverse method to a ground-hardware-anchored approach, but the mass and cost of several non-compute subsystems still rely on engineering inference; commercially scenario-layered---under a unified Blackwell baseline, the 10-year GaAs chain yields a TCO of \$764.98M (an optimistic comparable baseline at 1~MW sustained IT load / 10-year total window under officially claimed specifications), while shorter lifetime or alternative photovoltaic routes significantly increase cost. The probability of synchronized multi-parameter improvement is judged to be low based on current evidence.
+
+\medskip
+\noindent\textbf{Disclaimer on Report Nature:} This report is an early-stage scenario feasibility analysis based on publicly available information and first principles; \textbf{it is neither a finalized engineering report nor a complete project financial audit}. All TCO figures are model outputs under given assumptions and do not represent predictions or audit conclusions for any specific project cost. The report strives for rigor through cross-validation standards, but its conclusions should be understood as ``directional judgments under currently available public information'' rather than ``deterministic results upon which decisions may be based.'' Further data increments (AI1 on-orbit validation, disclosure of first-hand hardware specifications) will significantly affect the precision of quantitative conclusions.
+\end{abstract}
+
+\vspace{1cm}
+
+% Keywords
+\textbf{Keywords:} space-based AI computing; orbital data center; radiative heat dissipation; Stefan--Boltzmann law; total cost of ownership; Jensen Huang; Elon Musk; NVIDIA Space-1; SpaceX AI1
+
+\newpage
+
+% Table of contents
+\tableofcontents
+\newpage
+
+% === Executive Summary + Main text (Chapters 1--7) ===
+\input{sections/00_executive_summary}
+\input{sections/01_background}
+\input{sections/02_methodology}
+\input{sections/03_statements}
+\input{sections/04_science}
+\input{sections/05_engineering}
+\input{sections/06_commercial}
+\input{sections/07_conclusion}
+
+% === References ===
+\printbibliography
+
+\newpage
+
+% === Appendices (5 pieces) ===
+\appendix
+\input{appendices/appendix_a_alignment_matrix}
+\input{appendices/appendix_b_parameter_verdicts}
+\input{appendices/appendix_c_calculation_methods}
+\input{appendices/appendix_d_evidence_routing}
+\input{appendices/appendix_e_deprecated_chains}
+
+\end{document}

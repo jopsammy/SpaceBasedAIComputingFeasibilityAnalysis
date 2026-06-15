@@ -1,0 +1,46 @@
+% 05_heo.tex — HEO 分析
+
+\section{HEO（大椭圆轨道）深度分析}
+
+\subsection{轨道特征}
+
+以 Molniya 轨道为参考：周期 11 h 58 min（半恒星日），倾角 63.435\textdegree{}（临界倾角，冻结拱线），偏心率 $\sim$0.74，近地点 $\sim$1,177 km，远地点 $\sim$39,319 km。每圈穿越范艾伦辐射带 4 次（进出内外带）$\times$ 2 圈/天 = 8 次/天。
+
+\subsection{辐射环境：最劣轨道类型}
+
+HEO 是所有轨道中\textbf{辐射最严酷}的类型。近地点穿越内质子带（10--100 MeV 质子），远地点穿越外电子带（0.1--10 MeV 电子），每次轨道周期双带穿越。
+
+\begin{table}[H]
+\centering
+\caption{HEO (Molniya) 辐射环境关键参数}
+\label{tab:heo-rad}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{参数} & \textbf{HEO 值} & \textbf{vs LEO} & \textbf{来源} \\
+\midrule
+TID (中等屏蔽) & \textbf{50--200~\kradyr} & \textbf{5--7x 更劣} & Blake \& Mazur 实测; Loge (2014) \cite{loge_heo_radiation_2014} \\
+SEU 率 & $\sim 10^{5}$--$10^{6}$x LEO & \textbf{最劣} & ESA SPENVIS 模拟 \\
+辐射带穿越时间占比 & 每 12h 轨道约 2--3 小时 & 大幅更劣 & Blake \& Mazur HEO dosimetry \\
+剂量深度剖面 & 薄屏蔽（电子）$+$ 厚屏蔽（质子贯穿） & 双重挑战 & 同上 \\
+太阳电池退化 & 比 GEO 快 $\sim$1.3--1.5x & 最严重 & Loge (2014) \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\textbf{HEO 的"双杀"困境}：薄屏蔽（$<$1 mm Al）以电子 TID 为主，厚屏蔽（$>$5 mm Al）以质子贯穿 TID 为主——无法通过单一屏蔽厚度同时应对两种辐射源。且 SEU 率因三重威胁（内带质子 + 外带电子 + GCR 重离子）而达到所有轨道中最高的 $10^{5}$--$10^{6}$ 倍于 LEO。
+
+\subsection{热环境：大幅值热循环}
+
+HEO 的热环境独特：近地点（$\sim$1,177 km）暴露于 LEO 级别的地球 IR/反照，远地点（$\sim$39,319 km）则接近深空环境。每圈从 LEO 等效环境切换到深空等效环境，表面温度幅值可能比 LEO 更大。热循环频率（$\sim$1,460 次/年）虽低于 LEO（5,840 次/年），但单次幅值更剧烈。
+
+\subsection{通信延迟：极度不稳定}
+
+HEO 的通信延迟变化范围是所有轨道中最大的：近地点 RTT $\sim$7 ms（LEO 等效）到远地点 RTT $\sim$260 ms（GEO 等效），每圈经历 37x 跨度。这对通信协议设计和实时计算任务调度是独特挑战。此外，近地点高速通过导致显著的多普勒频移。
+
+\subsection{太空算力部署评估}
+
+\textbf{不推荐 HEO 部署任何太空算力}。HEO 在所有评估维度中均为最劣或接近最劣：最劣辐射环境（TID 50--200~\kradyr，SEU $10^{5}$--$10^{6}$x LEO）、最劣 \deltav（1.60x LEO）、不可维护、延迟极度不稳定。其高纬度覆盖优势已被 Starlink 极地壳层替代。尽管 HEO 在极地通信和北极航道 AI 应用中有理论市场，但辐射防护成本远超任何可能的应用收益。
+
+\textbf{12h Molniya vs 16h/24h 方案的权衡}：Loge (2014) 使用 ESA SPENVIS 比较了 12h Molniya、16h TAP 和 24h Tundra 三种 HEO 方案，发现 12h Molniya 的辐射剂量最高但并非不可接受；更长的轨道周期可降低辐射带穿越频率，但会牺牲高纬度覆盖时间 \cite{loge_heo_radiation_2014}。即使采用 24h Tundra 方案，HEO 的综合可行性仍远低于 GEO 和 LEO。

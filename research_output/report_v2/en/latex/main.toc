@@ -1,0 +1,153 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Executive Summary}{8}{Doc-Start}%
+\contentsline {section}{\numberline {1}Background and Research Subject}{13}{section.1}%
+\contentsline {subsection}{\numberline {1.1}What Is Space-Based AI Computing}{13}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Why Space-Based AI Computing Has Been Proposed}{13}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Key Participants}{14}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}SpaceX and Elon Musk}{14}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}NVIDIA and Jensen Huang}{15}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.3}Other Relevant Parties}{16}{subsubsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.4}Key Event Timeline}{17}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Scope of This Report}{17}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {1.5.1}What Is Studied}{17}{subsubsection.1.5.1}%
+\contentsline {subsubsection}{\numberline {1.5.2}What Is Not Studied}{18}{subsubsection.1.5.2}%
+\contentsline {section}{\numberline {2}Analytical Methods and Comparison Baselines}{18}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Three-Tier Progressive Analytical Framework}{19}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Definitions of the Five Unified Specifications}{19}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Power Specification}{20}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Deep Explanation of the Power Specification: Why the 150 kW Official Figure Is Retained}{21}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Time Window Specification}{22}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Architecture Generation Specification}{22}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}Cost Boundary Specification}{23}{subsubsection.2.2.5}%
+\contentsline {subsubsection}{\numberline {2.2.6}Launch Unit Cost Specification}{23}{subsubsection.2.2.6}%
+\contentsline {subsection}{\numberline {2.3}Specification Alignment Matrix (Abridged Version)}{24}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Why Specification Differences Matter}{25}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Methodology Statement: First-Principles Bottom-Up Verification}{26}{subsection.2.5}%
+\contentsline {section}{\numberline {3}First-Hand Statements and Divergence Characterization}{27}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Musk's Statements (7 First-Hand Sources)}{27}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Huang's Statements (5 First-Hand Sources)}{29}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Divergence Characterization}{30}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Not ``Who Is Right or Wrong,'' But ``Who Depends on Which Assumptions''}{30}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Core Assumptions Each Party Relies Upon}{31}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Location of the Divergence: Not a Divergence in Physical Laws, But a Judgment Divergence in Parameter Improvement Rates}{32}{subsubsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.4}From Divergence to Analysis: Chapter Routing}{33}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Scientific Feasibility: Heat Dissipation Physics and the Orbital Thermal Environment}{33}{section.4}%
+\contentsline {subsection}{\numberline {4.1}The Stefan--Boltzmann Law and the AI1 Heat Dissipation Operating Point}{33}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Fundamental Physical Constraint}{33}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Physical Verification of the AI1 Operating Point}{34}{subsubsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.2}Heat Dissipation Area Scaling and GW-Class Implications}{36}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Area Scaling from Single Satellite to System}{36}{subsubsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.3}Real LEO Thermal Environment Constraints}{37}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Environmental Heat Sources}{37}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}Orbital Diurnal Cycle and Energy Storage Constraints}{37}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3}Limitations of Phase Change Materials (PCM)}{38}{subsubsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.4}Engineering Note on S-B Ideal Values---Impact of LEO Environmental Heat Sources on Thermal Design}{38}{subsubsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.4}Heat Dissipation Density Boundary and Outlook}{39}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Current Feasible Upper Limit}{39}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Doubling ($\to 2,800+$ W/m\textsuperscript {2}) Is Not Feasible Before 2035}{39}{subsubsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.3}A Combined Path Can Achieve 40--50\% Improvement}{40}{subsubsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.5}Final Judgment on Scientific Feasibility}{40}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Engineering Feasibility: Mass, Power, Lifetime, and Launch Capacity}{41}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Compute Payload Mass: From kW/t Inverse to Bottom-Up Hardware Anchor}{41}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}First Declaration: The ``kW per Ton'' Inverse Method Has Been Permanently Deprecated}{41}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Calculation Method: Ground Hardware Anchor + Three Space-Adaptation Increments}{42}{subsubsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.3}Three Increments: Included/Not-Included Item List}{44}{subsubsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.2}Power System Route Comparison}{45}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}GaAs Primary Chain Power System}{45}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}HJT Parallel Route Power System}{47}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}GaAs vs.\ HJT Comparison and 70~m Wingspan Constraint Analysis}{49}{subsubsection.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.4}Materials Supplement: HJT for 10-Year Space Design}{50}{subsubsection.5.2.4}%
+\contentsline {subsubsection}{\numberline {5.2.5}Battery Three-Branch Analysis}{51}{subsubsection.5.2.5}%
+\contentsline {subsubsection}{\numberline {5.2.6}Power System Summary}{53}{subsubsection.5.2.6}%
+\contentsline {subsubsection}{\numberline {5.2.7}Power Specification Clarification: 120 kW Sustained vs.\ 150 kW Peak}{53}{subsubsection.5.2.7}%
+\contentsline {subsubsection}{\numberline {5.2.8}Misreading Check: If 150 kW Is Misinterpreted as Array Peak}{56}{subsubsection.5.2.8}%
+\contentsline {subsection}{\numberline {5.3}Full Satellite Mass Breakdown (10yr-GaAs Baseline)}{56}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}On-Orbit Lifetime, Failure Rate, and Service Infeasibility}{59}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}5 yr vs.\ 10 yr: Lifetime as a Lever on Total Cost}{59}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}On-Orbit GPU Failure Rate Estimation}{59}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.3}Infeasibility of On-Orbit Servicing}{60}{subsubsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.5}Launch Capacity Reality Check}{60}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Load Count Corresponding to Single-Satellite Mass}{60}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}Quantitative Verification of Musk's ``300--500\tmspace +\thickmuskip {.2777em}GW/yr'' Claim}{61}{subsubsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.6}Final Judgment on Engineering Feasibility}{61}{subsection.5.6}%
+\contentsline {section}{\numberline {6}Commercial Feasibility: Three-Branch TCO with Scenario Stratification}{62}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Comparison Baseline: This Report's Unified Cost Model}{63}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}Total Cost Formula}{63}{subsubsection.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.2}Unified Assumptions}{64}{subsubsection.6.1.2}%
+\contentsline {subsection}{\numberline {6.2}10yr-GaAs Primary Chain: Complete TCO Breakdown}{64}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Comparison Branch Contrast}{66}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {6.3.1}5yr-GaAs: The Cost of Shortened Lifetime}{66}{subsubsection.6.3.1}%
+\contentsline {subsubsection}{\numberline {6.3.2}5yr-HJT: Cost Constraints of the Parallel Route}{66}{subsubsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.4}Three-Branch TCO Overview and Ranking}{68}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Quantified Impact of Specification Differences: Launch Unit Cost Sensitivity}{69}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Flip-Condition Analysis: Which Parameter Combinations Would Change the Direction of Conclusions}{69}{subsection.6.6}%
+\contentsline {subsection}{\numberline {6.7}Commercial Divergence Between Training and Inference}{70}{subsection.6.7}%
+\contentsline {subsubsection}{\numberline {6.7.1}Training Scenario: Orbital Compute Competitiveness Is Even Weaker}{70}{subsubsection.6.7.1}%
+\contentsline {subsubsection}{\numberline {6.7.2}Inference Scenario: Global Low Latency Has Relative Advantages, But Scale Is Limited}{71}{subsubsection.6.7.2}%
+\contentsline {subsubsection}{\numberline {6.7.3}Qualitative Directional Comparison of Training/Inference Divergence}{72}{subsubsection.6.7.3}%
+\contentsline {subsection}{\numberline {6.8}GPU Failure Rate TCO Sensitivity Analysis}{73}{subsection.6.8}%
+\contentsline {subsubsection}{\numberline {6.8.1}Failure Model and Assumptions}{73}{subsubsection.6.8.1}%
+\contentsline {subsubsection}{\numberline {6.8.2}Sensitivity Calculation Results}{73}{subsubsection.6.8.2}%
+\contentsline {subsubsection}{\numberline {6.8.3}Interpretation and Conclusions}{74}{subsubsection.6.8.3}%
+\contentsline {subsection}{\numberline {6.9}Final Judgment on Commercial Feasibility}{74}{subsection.6.9}%
+\contentsline {section}{\numberline {7}Synthesized Judgment}{75}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Known Facts}{75}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Computable Chains}{76}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Currently Undecidable}{77}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Timeline Outlook}{78}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Robustness Statement of Conclusions}{80}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Analytical Stance and Method}{81}{subsection.7.6}%
+\contentsline {section}{\numberline {A}Alignment Matrix}{86}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Calibration Dimension Definitions}{86}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}Complete Alignment Matrix}{87}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}Quantitative Impact of Calibration Differences}{87}{subsection.A.3}%
+\contentsline {subsection}{\numberline {A.4}Why Different Scenarios Cannot Be Directly Compared}{89}{subsection.A.4}%
+\contentsline {subsection}{\numberline {A.5}Cross-Scenario Conversion Reference}{89}{subsection.A.5}%
+\contentsline {section}{\numberline {B}Key Parameter Values and Controversy Adjudication}{90}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}Four-Tier Evidence System Definition}{91}{subsection.B.1}%
+\contentsline {subsection}{\numberline {B.2}Core Controversial Parameter Adjudication Table}{91}{subsection.B.2}%
+\contentsline {subsection}{\numberline {B.3}47-Parameter Tier Classification Statistical Summary}{100}{subsection.B.3}%
+\contentsline {subsection}{\numberline {B.4}Complete Parameter Inventory by Tier}{100}{subsection.B.4}%
+\contentsline {section}{\numberline {C}Core Calculation Methods and Formulas}{103}{appendix.C}%
+\contentsline {subsection}{\numberline {C.1}Stefan--Boltzmann Heat Dissipation Derivation}{103}{subsection.C.1}%
+\contentsline {subsubsection}{\numberline {C.1.1}Basic Formula}{103}{subsubsection.C.1.1}%
+\contentsline {subsubsection}{\numberline {C.1.2}AI1 Operating Point Back-Calculation}{103}{subsubsection.C.1.2}%
+\contentsline {subsubsection}{\numberline {C.1.3}Radiator Area Scaling}{104}{subsubsection.C.1.3}%
+\contentsline {subsubsection}{\numberline {C.1.4}Parameter Sensitivity Analysis}{104}{subsubsection.C.1.4}%
+\contentsline {subsubsection}{\numberline {C.1.5}Heat Dissipation Density Boundary Conclusion}{105}{subsubsection.C.1.5}%
+\contentsline {subsection}{\numberline {C.2}Orbital Power System Area and Energy Budget Derivation}{105}{subsection.C.2}%
+\contentsline {subsubsection}{\numberline {C.2.1}Orbital Mechanics Fundamentals}{105}{subsubsection.C.2.1}%
+\contentsline {subsubsection}{\numberline {C.2.2}Battery Capacity Requirement}{106}{subsubsection.C.2.2}%
+\contentsline {subsubsection}{\numberline {C.2.3}Recharge Power and Array Area}{106}{subsubsection.C.2.3}%
+\contentsline {paragraph}{GaAs Primary Chain Substitution}{107}{equation.25}%
+\contentsline {paragraph}{HJT Parallel Route Substitution}{107}{equation.28}%
+\contentsline {subsubsection}{\numberline {C.2.4}PCDU Mass}{108}{subsubsection.C.2.4}%
+\contentsline {subsection}{\numberline {C.3}Bottom-Up Compute Payload Mass Chain Derivation}{108}{subsection.C.3}%
+\contentsline {subsubsection}{\numberline {C.3.1}Ground Hardware Baseline (Tier~2 / A1 Anchor)}{108}{subsubsection.C.3.1}%
+\contentsline {subsubsection}{\numberline {C.3.2}Decomposition of Three Space-Hardening Increments}{109}{subsubsection.C.3.2}%
+\contentsline {section}{\numberline {D}Evidence Chains, Citation Chains, and Script Routing}{109}{appendix.D}%
+\contentsline {subsection}{\numberline {D.1}Five-Layer Routing Explanation}{109}{subsection.D.1}%
+\contentsline {subsection}{\numberline {D.2}Key Conclusion Quick-Lookup Routing Table}{110}{subsection.D.2}%
+\contentsline {subsection}{\numberline {D.3}Python Script Entry Points}{113}{subsection.D.3}%
+\contentsline {subsubsection}{\numberline {D.3.1}stage2\_power\_system\_model.py}{113}{subsubsection.D.3.1}%
+\contentsline {subsubsection}{\numberline {D.3.2}stage2\_mass\_cost\_model.py}{114}{subsubsection.D.3.2}%
+\contentsline {subsection}{\numberline {D.4}Complete Reference Materials Inventory}{114}{subsection.D.4}%
+\contentsline {subsubsection}{\numberline {D.4.1}Heat Dissipation Physics}{115}{subsubsection.D.4.1}%
+\contentsline {subsubsection}{\numberline {D.4.2}Orbital Environment}{115}{subsubsection.D.4.2}%
+\contentsline {subsubsection}{\numberline {D.4.3}Launch Cost}{115}{subsubsection.D.4.3}%
+\contentsline {subsubsection}{\numberline {D.4.4}GPU Hardware}{115}{subsubsection.D.4.4}%
+\contentsline {subsubsection}{\numberline {D.4.5}Power System}{115}{subsubsection.D.4.5}%
+\contentsline {subsubsection}{\numberline {D.4.6}Commercial / Economic}{116}{subsubsection.D.4.6}%
+\contentsline {subsubsection}{\numberline {D.4.7}Databases}{116}{subsubsection.D.4.7}%
+\contentsline {section}{\numberline {E}Deprecated Derivation Chains and Parameter Constraints}{116}{appendix.E}%
+\contentsline {subsection}{\numberline {E.1}kW/t Back-Calculation Chain Deprecation}{117}{subsection.E.1}%
+\contentsline {subsubsection}{\numberline {E.1.1}Deprecated Content}{117}{subsubsection.E.1.1}%
+\contentsline {subsubsection}{\numberline {E.1.2}Three Root Causes}{117}{subsubsection.E.1.2}%
+\contentsline {subsubsection}{\numberline {E.1.3}Replacement Path}{118}{subsubsection.E.1.3}%
+\contentsline {subsection}{\numberline {E.2}Derivation Path Replacement Relationship Table}{119}{subsection.E.2}%
+\contentsline {subsection}{\numberline {E.3}Superseded Parameters and Current Value Comparison}{120}{subsection.E.3}%
+\contentsline {subsection}{\numberline {E.4}Parameter Four-Tier Classification and DoD Boundary Constraints}{122}{subsection.E.4}%
+\contentsline {subsubsection}{\numberline {E.4.1}Parameter Four-Tier Classification Constraints}{122}{subsubsection.E.4.1}%
+\contentsline {subsubsection}{\numberline {E.4.2}DoD Boundary Constraints}{122}{subsubsection.E.4.2}%
+\contentsline {subsection}{\numberline {E.5}Parameter Tier Reading Guide}{123}{subsection.E.5}%
+\contentsline {subsection}{\numberline {E.6}Key Parameter Constraint Conditions}{124}{subsection.E.6}%

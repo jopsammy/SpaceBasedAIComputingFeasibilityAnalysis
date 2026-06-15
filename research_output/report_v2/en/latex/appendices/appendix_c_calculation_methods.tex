@@ -1,0 +1,300 @@
+% appendices/appendix_c_calculation_methods.tex
+
+\section{Core Calculation Methods and Formulas}
+
+This chapter provides the complete derivation process for all calculation conclusions in the main text. The main text gives results and logical bridging; this chapter gives formulas, substituted values, and boundary conditions so that technically inclined readers can independently reproduce the calculations.
+
+\subsection{Stefan--Boltzmann Heat Dissipation Derivation}
+\label{sec:sb-derivation}
+
+\subsubsection{Basic Formula}
+
+In a vacuum orbital environment, a satellite can only dissipate heat via thermal radiation. The Stefan--Boltzmann law gives the relationship between blackbody radiation flux and temperature:
+
+\begin{equation}
+  \frac{P}{A} = \varepsilon \sigma T^{4}
+  \label{eq:sb-basic}
+\end{equation}
+
+where:
+\begin{itemize}
+  \item $P$ --- Radiative heat dissipation power [W]
+  \item $A$ --- Radiator area [m$^2$] (Note: for dual-sided radiation, $A$ is the radiator geometric area; effective radiating area is $A_{\text{eff}} = 2A$)
+  \item $\varepsilon$ --- Surface emissivity, dimensionless, typical space-grade thermal control coating $\varepsilon = 0.85\text{--}0.95$
+  \item $\sigma$ --- Stefan--Boltzmann constant, $5.670374419 \times 10^{-8}$ W m$^{-2}$ K$^{-4}$ (CODATA 2018 recommended value)
+  \item $T$ --- Radiator surface absolute temperature [K]
+\end{itemize}
+
+\textbf{Note}: In the above formula $\sigma$ is taken as $5.6704 \times 10^{-8}$ W m$^{-2}$ K$^{-4}$. For dual-sided radiators, the actual radiation flux $P/A_{\text{geo}} = 2\varepsilon\sigma T^{4}$ ($A_{\text{geo}}$ being the radiator geometric area). This report uniformly uses geometric area as the baseline convention for $A$.
+
+\subsubsection{AI1 Operating Point Back-Calculation}
+
+Assuming AI1 radiators use a dual-sided radiation configuration:
+\begin{itemize}
+  \item Peak heat load $P_{\text{peak}} = 150$ kW (Tier~2, multi-source cross-verified)
+  \item Radiator geometric area $A = 110$ m$^2$ (Tier~1, back-calculated from system: $150$ kW / $\sim$1.364 kW/m$^2$)
+  \item Emissivity $\varepsilon = 0.90$ (Tier~4, engineering inference: typical space-grade white paint / OSR coating)
+\end{itemize}
+
+Dual-sided radiation equivalent heat flux (based on geometric area):
+
+\begin{equation}
+  q_{\text{geo}} = \frac{P_{\text{peak}}}{A} = \frac{150 \times 10^{3}}{110} \approx 1364\ \text{W/m}^{2}
+\end{equation}
+
+This heat flux corresponds to a single-sided equivalent radiation flux $q_{\text{eff}} = q_{\text{geo}}/2 = 682$ W/m$^2$.
+
+Solving for radiator surface temperature:
+
+\begin{equation}
+  T = \left(\frac{P_{\text{peak}}}{2A\varepsilon\sigma}\right)^{1/4}
+    = \left(\frac{150 \times 10^{3}}{2 \times 110 \times 0.90 \times 5.6704 \times 10^{-8}}\right)^{1/4}
+    \approx 342.5\ \text{K} \approx 69.4^{\circ}\text{C}
+  \label{eq:ai1-temperature}
+\end{equation}
+
+\subsubsection{Radiator Area Scaling}
+
+Given any target dissipation power $P_{\text{target}}$, the required radiator geometric area (dual-sided radiation):
+
+\begin{equation}
+  A = \frac{P_{\text{target}}}{2\varepsilon\sigma T^{4}}
+  \label{eq:area-scaling}
+\end{equation}
+
+Under this report's 1~MW sustained IT load target ($\sim$8.3 AI1-class satellites), the total radiator geometric area is approximately $110 \times 8.3 \approx 917$ m$^2$.
+
+\subsubsection{Parameter Sensitivity Analysis}
+
+The $T^{4}$ dependence makes radiator area highly sensitive to temperature. Table~\ref{tab:sb-sensitivity} shows the impact of parameter variations on radiator area (with AI1 baseline as reference):
+
+\begin{table}[H]
+  \centering
+  \caption{Stefan--Boltzmann Parameter Sensitivity (Baseline: $P$=150 kW, $A$=110 m$^2$, $\varepsilon$=0.90, $T$=342.5 K)}
+  \label{tab:sb-sensitivity}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.6cm}
+    >{\centering\arraybackslash}p{2.8cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Parameter Change} & \textbf{Radiator Area Change} & \textbf{Notes} \\
+  \midrule
+  $T$: 342.5 $\to$ 300 K & $A \to$ 186 m$^2$ (+69\%) & Per 10 K decrease, area increases $\sim$8--10\% \\
+  $T$: 342.5 $\to$ 400 K & $A \to$ 63 m$^2$ (-43\%) & High-temperature chips (SiC/GaN) can significantly reduce radiator area \\
+  $\varepsilon$: 0.90 $\to$ 0.85 & $A \to$ 117 m$^2$ (+6\%) & Coating degradation is a known risk for long-duration service \\
+  $\varepsilon$: 0.90 $\to$ 0.95 & $A \to$ 104 m$^2$ (-5\%) & High-emissivity coatings (e.g., Vantablack-class) yield limited improvement \\
+  Dual-sided $\to$ Single-sided radiation & $A \to$ 220 m$^2$ (+100\%) & Single-sided radiation directly doubles radiator area demand \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsubsection{Heat Dissipation Density Boundary Conclusion}
+
+The current feasible upper bound is approximately 1,400~W/m$^2$ (dual-sided radiation geometric area basis, $T\approx$342.5~K, $\varepsilon\approx$0.90). Doubling to 2,800+~W/m$^2$ requires $T \approx 407$~K---not feasible on any single technology path before 2035. Combined paths (high-temperature chips + durable coatings + moderate deployable structures) can achieve 40--50\% improvement by 2032.
+
+\subsection{Orbital Power System Area and Energy Budget Derivation}
+\label{sec:orbit-power}
+
+\subsubsection{Orbital Mechanics Fundamentals}
+
+For a 600~km circular orbit ($R_{\oplus} = 6378.137$ km, $\mu = 3.986004418 \times 10^{14}$ m$^3$/s$^2$, WGS84):
+
+\begin{equation}
+  T_{\text{orbit}} = 2\pi\sqrt{\frac{(R_{\oplus} + h)^{3}}{\mu}}
+  \label{eq:orbit-period}
+\end{equation}
+
+Substituting $h = 600$ km:
+
+\begin{equation}
+  T_{\text{orbit}} = 2\pi\sqrt{\frac{(6378.137 + 600)^{3} \times 10^{9}}{3.986004418 \times 10^{14}}}
+                     \approx 5802\ \text{s} \approx 96.7\ \text{min}
+\end{equation}
+
+Eclipse time ($\beta = 0$, most conservative approximation, orbital plane coplanar with the Sun vector):
+
+\begin{equation}
+  t_{\text{eclipse}} = T_{\text{orbit}} \times \frac{\arcsin(R_{\oplus} / (R_{\oplus} + h))}{\pi}
+  \label{eq:eclipse-time}
+\end{equation}
+
+\begin{equation}
+  t_{\text{eclipse}} \approx 5802 \times \frac{\arcsin(6378.137 / 6978.137)}{\pi}
+                     \approx 2128\ \text{s} \approx 35.5\ \text{min}
+\end{equation}
+
+Sunlight duration:
+
+\begin{equation}
+  t_{\text{sunlight}} = T_{\text{orbit}} - t_{\text{eclipse}} \approx 3674\ \text{s} \approx 61.2\ \text{min}
+  \label{eq:sunlight-time}
+\end{equation}
+
+\subsubsection{Battery Capacity Requirement}
+
+Eclipse-segment load energy demand:
+
+\begin{equation}
+  E_{\text{load, eclipse}} = P_{\text{sustained}} \times t_{\text{eclipse}}
+                            = 120\ \text{kW} \times \frac{2128}{3600}\ \text{h}
+                            \approx 71.0\ \text{kWh}
+  \label{eq:eload}
+\end{equation}
+
+Battery nominal capacity (with DoD and discharge efficiency constraints):
+
+\begin{equation}
+  E_{\text{battery, nominal}} = \frac{E_{\text{load, eclipse}}}{\text{DoD} \times \eta_{\text{discharge}}}
+  \label{eq:battery-capacity}
+\end{equation}
+
+Substituting baseline values (DoD = 0.40, $\eta_{\text{discharge}}$ = 0.95):
+
+\begin{equation}
+  E_{\text{battery, nominal}} = \frac{71.0}{0.40 \times 0.95} \approx 186.8\ \text{kWh}
+\end{equation}
+
+Battery mass:
+
+\begin{equation}
+  M_{\text{battery}} = \frac{E_{\text{battery, nominal}} \times 1000}{\rho_{\text{specific}}}
+                      = \frac{186,800}{190} \approx 983\ \text{kg}
+  \label{eq:battery-mass}
+\end{equation}
+
+where $\rho_{\text{specific}} = 190$ Wh/kg is the Li-ion NMC pack-level specific energy (Tier~3, Starlink transfer).
+
+\subsubsection{Recharge Power and Array Area}
+
+Recharge energy demand (including charge/discharge efficiency losses):
+
+\begin{equation}
+  E_{\text{recharge}} = \frac{E_{\text{load, eclipse}}}{\eta_{\text{charge}} \times \eta_{\text{discharge}}}
+                       = \frac{71.0}{0.95 \times 0.95} \approx 78.7\ \text{kWh}
+  \label{eq:recharge-energy}
+\end{equation}
+
+Sunlight-segment additional recharge power:
+
+\begin{equation}
+  P_{\text{recharge, extra}} = \frac{E_{\text{recharge}}}{t_{\text{sunlight}}}
+                               = \frac{78.7}{61.2/60} \approx 77.2\ \text{kW}
+  \label{eq:recharge-power}
+\end{equation}
+
+PCDU output requirement:
+
+\begin{equation}
+  P_{\text{pcdu, out}} = P_{\text{sustained}} + P_{\text{recharge, extra}}
+                         = 120 + 77.2 \approx 197.2\ \text{kW}
+  \label{eq:pcdu-out}
+\end{equation}
+
+EOL array power requirement (deducting bus losses, $\eta_{\text{bus}} = 0.94$):
+
+\begin{equation}
+  P_{\text{array, eol}} = \frac{P_{\text{pcdu, out}}}{\eta_{\text{bus}}}
+                          = \frac{197.2}{0.94} \approx 209.8\ \text{kW}
+  \label{eq:array-eol-power}
+\end{equation}
+
+BOL array power requirement (back-calculated from EOL to BOL, degradation factor = $\eta_{\text{eol}}/\eta_{\text{bol}}$):
+
+\begin{equation}
+  P_{\text{array, bol}} = \frac{P_{\text{array, eol}}}{\eta_{\text{eol}}/\eta_{\text{bol}}}
+  \label{eq:array-bol-power}
+\end{equation}
+
+Array area (solar constant $G = 1361.0$ W/m$^2$, packaging correction $f_{\text{pkg}} = 0.85$):
+
+\begin{equation}
+  A_{\text{array}} = \frac{P_{\text{array, eol}}}{G \times \eta_{\text{eol}} \times f_{\text{pkg}}}
+  \label{eq:array-area}
+\end{equation}
+
+\paragraph{GaAs Primary Chain Substitution} ($\eta_{\text{bol}} = 0.32$, $\eta_{\text{eol}} = 0.29$):
+
+\begin{equation}
+  P_{\text{array, bol}} = \frac{209.8}{0.29/0.32} \approx 231.5\ \text{kW}
+\end{equation}
+
+\begin{equation}
+  A_{\text{array, GaAs}} = \frac{209.8 \times 1000}{1361.0 \times 0.29 \times 0.85} \approx 625\ \text{m}^{2}
+\end{equation}
+
+Array mass (areal density $\sigma_{\text{array}} = 1.5$ kg/m$^2$, panel-only, deployment mechanisms accounted separately):
+
+\begin{equation}
+  M_{\text{array, GaAs}} = 625 \times 1.5 = 938\ \text{kg}
+\end{equation}
+
+\paragraph{HJT Parallel Route Substitution} ($\eta_{\text{bol}} = 0.22$, $\eta_{\text{eol}} = 0.14$):
+
+\begin{equation}
+  P_{\text{array, bol}} = \frac{209.8}{0.14/0.22} \approx 329.7\ \text{kW}
+\end{equation}
+
+\begin{equation}
+  A_{\text{array, HJT}} = \frac{209.8 \times 1000}{1361.0 \times 0.14 \times 0.85} \approx 1295\ \text{m}^{2}
+\end{equation}
+
+Array mass (areal density $\sigma_{\text{array}} = 1.8$ kg/m$^2$):
+
+\begin{equation}
+  M_{\text{array, HJT}} = 1295 \times 1.8 = 2330\ \text{kg}
+\end{equation}
+
+\subsubsection{PCDU Mass}
+
+PCDU rated power is taken as $\max(P_{\text{array, eol}}, P_{\text{peak}}) = \max(209.8, 150) = 209.8$ kW (EOL array output power is dominant because the array must simultaneously satisfy IT load + battery recharge):
+
+\begin{equation}
+  M_{\text{pcdu}} = \frac{P_{\text{pcdu, rating}}}{\rho_{\text{pcdu}}}
+                   = \frac{209.8}{0.5} \approx 419.6\ \text{kg}
+  \label{eq:pcdu-mass}
+\end{equation}
+
+where $\rho_{\text{pcdu}} = 0.5$ kW/kg is the PCDU baseline specific power (Tier~4, Terma BepiColombo MTM flight product anchor 0.54~kW/kg as reference benchmark; 0.5~kW/kg adopted after Starlink ``simplified power electronics'' improvement).
+
+The key anchor for PCDU specific power is the Terma flight product (0.54~kW/kg); this anchor significantly improves the reliability of the PCDU mass estimate.
+
+\subsection{Bottom-Up Compute Payload Mass Chain Derivation}
+\label{sec:payload-mass}
+
+\subsubsection{Ground Hardware Baseline (Tier~2 / A1 Anchor)}
+
+The new chain for compute payload mass does not rely on any specific-power (kW/t) denominator, but instead starts from publicly disclosed NVIDIA ground hardware specifications:
+
+\begin{table}[H]
+  \centering
+  \caption{Ground Hardware Mass Anchors}
+  \label{tab:ground-hardware}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.7cm}
+    >{\raggedright\arraybackslash}p{2.7cm}
+    >{\raggedright\arraybackslash}p{2.3cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Source} & \textbf{Hardware Unit} & \textbf{Mass Data} & \textbf{URL} \\
+  \midrule
+  Lenovo LP2357 Product Guide & GB300 NVL72 Compute Tray & 29 kg/tray (4 GPU + 2 CPU) & \href{https://lenovopress.lenovo.com/lp2357-lenovo-nvidia-gb300-nvl72-rack-scale-ai}{lenovopress link} \\
+  NVIDIA PCF Datasheet & HGX B200 Baseboard & 32 kg (8 GPU) & \href{https://images.nvidia.com/aem-dam/Solutions/documents/HGX-B200-PCF-Summary.pdf}{NVIDIA PCF PDF} \\
+  NVIDIA DGX B200 User Guide & DGX B200 Full System & 142.4 kg/system & \href{https://docs.nvidia.com/dgx/dgxb200-user-guide/introduction-to-dgxb200.html}{DGX B200 docs} \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+Under a 150 GPU configuration (B200 TDP 1,000W/GPU), approximately 38 GB300 NVL72 compute trays are required:
+\begin{equation}
+  M_{\text{ground baseline}} \approx 38 \times 29 \approx 1002\text{--}1102\ \text{kg}
+\end{equation}
+
+This baseline already includes per-GPU liquid-cooling cold plates (ground GB300 NVL72 standard direct-to-chip liquid cooling), and excludes rack-level coolant distribution units (CDU), fans (not needed in space), and AC/DC PSUs.
+
+\subsubsection{Decomposition of Three Space-Hardening Increments}
+
+From bare ground hardware to space-hardened hardware, the increment is decomposed into three items (itemized

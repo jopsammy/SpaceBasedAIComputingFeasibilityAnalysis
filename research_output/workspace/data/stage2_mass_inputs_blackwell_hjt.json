@@ -1,0 +1,570 @@
+{
+  "metadata": {
+    "task": "close-stage-two-evidence-gaps / Task 6",
+    "trace_id": "cs2eg-task6-mass-update-20260614-01",
+    "generated_on": "2026-06-14",
+    "architecture_mainline": "Blackwell",
+    "evidence_regime": "Task V1 four-tier system",
+    "route_policy": {
+      "main_power_route": "GaAs",
+      "exploratory_route": "HJT parallel mature route",
+      "forbidden_mainline": [
+        "Rubin"
+      ]
+    },
+    "source_documents": [
+      "research_output/workspace/data/stage2_bom_mass_support_audit.md",
+      "research_output/workspace/data/stage2_blackwell_payload_mass_bottom_up.md",
+      "research_output/workspace/data/stage2_hjt_evidence_pack.md",
+      "research_output/workspace/data/stage2_parameter_admission_registry.md",
+      "research_output/workspace/data/stage2_power_boundary_and_formula_audit.md",
+      "research_output/workspace/data/stage2_mass_cost_results.md",
+      "research_output/workspace/data/stage2_power_system_results.md",
+      ".trae/specs/close-stage-two-evidence-gaps/current-note.md"
+    ]
+  },
+  "status_legend": {
+    "已闭合": "已有明确来源位置、公式链或强公开锚点，可直接作为后续模型输入。",
+    "四档": "合理推断——公开资料不足，只能做工程推断的参数。必须写明推断依据、边界条件和推断失效风险。",
+    "仍缺口": "当前还不能进入后续主模型。"
+  },
+  "deprecated_notice": {
+    "kWt_chain": "计算载荷质量/比功率（compute_specific_power_kw_per_t: 70/55/45）已废弃。替换为 Task 2 / V30 bottom-up 结构化三项拆解（辐射/热/结构增量分析），以 NVIDIA GB300 NVL72 地面硬件为底数。",
+    "pcdu_old_values": "PCDU 比功率 10.0 kW/kg → 15 kg 质量已废弃。替换为 V25 裁决值 1.0/0.5/0.2 kW/kg（Terma 飞行产品锚点 0.54 kW/kg）。",
+    "old_platform_ratios": "平台系数 0.18/0.22/0.28 已废弃。替换为 V21 裁决值 0.25/0.35/0.45（Starlink V2 Mini 参考 ~0.38）。",
+    "old_propulsion": "推进质量 180/220/350 kg 已废弃。替换为 V22 裁决值 200/350/500 kg。",
+    "old_comms": "通信质量 150/180/300 kg 已废弃。替换为 V23 裁决值 200/300/450 kg（Google Suncatcher 参考）。",
+    "old_ait": "AIT 裕量 0.10/0.12/0.18 已废弃。替换为 V24 裁决值（5年: 0.05/0.08/0.12；10年: 0.10/0.15/0.22）。",
+    "hjt_downgraded_label": "HJT「只能降级」标签已废弃。HJT 现定位为 GaAs 的并行成熟路线（非探索性/降级），由 Task 3 / V6-V9 裁决支撑。"
+  },
+  "common_inputs": {
+    "public_baseline": {
+      "peak_power_kw": 150.0,
+      "sustained_power_kw": 120.0,
+      "orbit_altitude_km": 600.0,
+      "radiator_area_m2": 110.0,
+      "solar_constant_w_m2": 1361.0,
+      "deployed_length_m": 70.0,
+      "deployed_length_note": "AI1 预估总展开长度 ~70m。卫星主体 ~5m，双翼各 ~32.5m（含展开机构）。70m 约束不与此文件中的阵列面积值矛盾。",
+      "evidence": {
+        "v_ruling": "V1-V3",
+        "grade": "二档",
+        "detail": "三家媒体交叉一致（Inkl/Knightli/Indexbox），非 SpaceX/NVIDIA 官方规格"
+      }
+    },
+    "scenario_scalars": {
+      "_description": "5年寿命分支。所有值来自 Task V2 参数裁决。",
+      "light": {
+        "radiator_specific_mass_kg_per_m2": 4.0,
+        "platform_ratio": 0.25,
+        "propulsion_mass_kg": 200,
+        "comms_mass_kg": 200,
+        "ait_margin_ratio": 0.05
+      },
+      "baseline": {
+        "radiator_specific_mass_kg_per_m2": 5.0,
+        "platform_ratio": 0.35,
+        "propulsion_mass_kg": 350,
+        "comms_mass_kg": 300,
+        "ait_margin_ratio": 0.08
+      },
+      "conservative": {
+        "radiator_specific_mass_kg_per_m2": 6.5,
+        "platform_ratio": 0.45,
+        "propulsion_mass_kg": 500,
+        "comms_mass_kg": 450,
+        "ait_margin_ratio": 0.12
+      }
+    },
+    "scenario_scalars_10yr": {
+      "_description": "10年寿命分支。AIT 裕量显著增大以覆盖更长寿命的测试与冗余需求。",
+      "light": {
+        "radiator_specific_mass_kg_per_m2": 4.0,
+        "platform_ratio": 0.25,
+        "propulsion_mass_kg": 200,
+        "comms_mass_kg": 200,
+        "ait_margin_ratio": 0.10
+      },
+      "baseline": {
+        "radiator_specific_mass_kg_per_m2": 5.0,
+        "platform_ratio": 0.35,
+        "propulsion_mass_kg": 350,
+        "comms_mass_kg": 300,
+        "ait_margin_ratio": 0.15
+      },
+      "conservative": {
+        "radiator_specific_mass_kg_per_m2": 6.5,
+        "platform_ratio": 0.45,
+        "propulsion_mass_kg": 500,
+        "comms_mass_kg": 450,
+        "ait_margin_ratio": 0.22
+      }
+    }
+  },
+  "route_sensitive_inputs": {
+    "gaas_baseline": {
+      "status": "已闭合",
+      "evidence_grade": "二档 + 四档",
+      "v_rulings": {
+        "efficiency": "V4-V5（二档，AzurSpace 4G32）",
+        "array_specific_mass": "V8（三档，panel-only 1.5 kg/m²，展开机构另计）",
+        "pcdu": "V25（四档，Terma 飞行产品锚点 0.54 kW/kg）",
+        "battery_dod": "V10（三档，5年 40% / 10年 Li-ion 25% / 10年 LTO 80%）",
+        "battery_specific_energy": "V11（三档，Li-ion 190 / LTO 100 Wh/kg）"
+      },
+      "array_efficiency_bol": 0.32,
+      "array_efficiency_eol": 0.29,
+      "array_specific_mass_kg_per_m2": 1.5,
+      "array_specific_mass_note": "panel-only（cells + cover glass + interconnects + substrate），不含展开机构（booms/hinges/motors/hold-down）",
+      "array_area_m2": 344.0,
+      "array_area_note": "150kW / (1361 × 0.32) BOL 简化计算，与 HJT 使用一致公式。",
+      "array_mass_kg": 516.0,
+      "battery": {
+        "dod_5yr": 0.40,
+        "dod_10yr_liion": 0.25,
+        "dod_10yr_lto": 0.80,
+        "specific_energy_wh_per_kg_liion": 190.0,
+        "specific_energy_wh_per_kg_lto": 100.0,
+        "nominal_kwh_5yr": 186.4,
+        "nominal_kwh_10yr_liion": 293.0,
+        "nominal_kwh_10yr_lto": 91.6,
+        "mass_kg_5yr": 981.0,
+        "mass_kg_10yr_liion": 1542.0,
+        "mass_kg_10yr_lto": 916.0,
+        "mass_note": "5yr: 186.4 kWh / 190 Wh/kg × 1000 = 981 kg; 10yr Li-ion: 293 kWh / 190 Wh/kg × 1000 ≈ 1542 kg; 10yr LTO: 91.6 kWh / 100 Wh/kg × 1000 = 916 kg"
+      },
+      "pcdu": {
+        "specific_power_kw_per_kg_light": 1.0,
+        "specific_power_kw_per_kg_baseline": 0.5,
+        "specific_power_kw_per_kg_conservative": 0.2,
+        "mass_kg_light": 150,
+        "mass_kg_baseline": 300,
+        "mass_kg_conservative": 750,
+        "mass_note": "150kW / specific_power. 基准 0.5 kW/kg 接近 Terma 飞行产品 0.54 kW/kg（V25 ruling）。"
+      },
+      "total_power_mass_kg_5yr": {
+        "light": 1647,
+        "baseline": 1797,
+        "conservative": 2247
+      },
+      "total_power_mass_kg_10yr_liion": {
+        "light": 2208,
+        "baseline": 2358,
+        "conservative": 2808
+      },
+      "total_power_mass_kg_10yr_lto": {
+        "light": 1582,
+        "baseline": 1732,
+        "conservative": 2182
+      },
+      "total_power_mass_note": "array_mass + battery_mass + pcdu_mass, per scenario×branch",
+      "source_anchors": [
+        "research_output/workspace/data/stage2_power_system_results.md",
+        "research_output/workspace/scripts/stage2_power_system_model.py",
+        "research_output/workspace/data/stage2_power_boundary_and_formula_audit.md",
+        ".trae/specs/close-stage-two-evidence-gaps/current-note.md"
+      ]
+    },
+    "hjt_parallel": {
+      "status": "并行成熟路线",
+      "evidence_grade": "二档 + 四档",
+      "status_note": "HJT 路线定位已从「只能降级」修正为「并行成熟路线」。V6 BOL 22% 含地面量产保守选取+AM0修正；V9 panel-only 1.8 kg/m² 由用户裁决上调。",
+      "v_rulings": {
+        "efficiency_bol": "V6（二档，华晟 26%→AM0 22%，保守选取）",
+        "efficiency_eol": "V7（二档，CEA/INES 独立辐照实验 >14%，不随 BOL 上调而改变）",
+        "array_specific_mass": "V9（三档，panel-only 1.8 kg/m²，展开机构另计）",
+        "pcdu": "V25（四档，与 GaAs 共用）",
+        "battery_dod": "V10（三档，与 GaAs 共用）",
+        "battery_specific_energy": "V11（三档，与 GaAs 共用）"
+      },
+      "array_efficiency_bol": 0.22,
+      "array_efficiency_eol": 0.14,
+      "array_specific_mass_kg_per_m2": 1.8,
+      "array_specific_mass_note": "panel-only（cells + cover glass + interconnects + substrate），不含展开机构。V9 裁决：从 1.2 上调至 1.8（Starlink V2 Mini 参考）。",
+      "array_area_m2": 501.0,
+      "array_area_note": "150kW / (1361 × 0.22) BOL 简化计算。",
+      "array_mass_kg": 901.8,
+      "array_mass_note": "501.0 m² × 1.8 kg/m²",
+      "battery": {
+        "dod_5yr": 0.40,
+        "dod_10yr_liion": 0.25,
+        "dod_10yr_lto": 0.80,
+        "specific_energy_wh_per_kg_liion": 190.0,
+        "specific_energy_wh_per_kg_lto": 100.0,
+        "nominal_kwh_5yr": 186.4,
+        "nominal_kwh_10yr_liion": 293.0,
+        "nominal_kwh_10yr_lto": 91.6,
+        "mass_kg_5yr": 981.0,
+        "mass_kg_10yr_liion": 1542.0,
+        "mass_kg_10yr_lto": 916.0,
+        "mass_note": "与 GaAs 共用同一电池链路（电池质量由任务食时决定，与光伏路线无关）。"
+      },
+      "pcdu": {
+        "specific_power_kw_per_kg_light": 1.0,
+        "specific_power_kw_per_kg_baseline": 0.5,
+        "specific_power_kw_per_kg_conservative": 0.2,
+        "mass_kg_light": 150,
+        "mass_kg_baseline": 300,
+        "mass_kg_conservative": 750,
+        "mass_note": "与 GaAs 共用同一 PCDU 链路（V25 ruling）。"
+      },
+      "total_power_mass_kg_5yr": {
+        "light": 2032.8,
+        "baseline": 2182.8,
+        "conservative": 2632.8
+      },
+      "total_power_mass_kg_10yr_liion": {
+        "light": 2593.8,
+        "baseline": 2743.8,
+        "conservative": 3193.8
+      },
+      "total_power_mass_kg_10yr_lto": {
+        "light": 1967.8,
+        "baseline": 2117.8,
+        "conservative": 2567.8
+      },
+      "total_power_mass_note": "array_mass + battery_mass + pcdu_mass, per scenario×branch",
+      "source_anchors": [
+        "research_output/workspace/data/stage2_hjt_evidence_pack.md",
+        "research_output/workspace/data/stage2_power_boundary_and_formula_audit.md",
+        ".trae/specs/close-stage-two-evidence-gaps/current-note.md"
+      ]
+    }
+  },
+  "components": [
+    {
+      "id": "compute_payload",
+      "display_name": "计算载荷",
+      "route_scope": "common",
+      "status": "已闭合（新 bottom-up 链）",
+      "support_type": "二档（地面硬件锚点 A1）+ 三档（空间化辐射/热/结构增量推断）",
+      "conclusion_grade": "二档 + 三档（V30 ruling）",
+      "scenario_mass_kg": {
+        "light": 1200,
+        "baseline": 1500,
+        "conservative": 2000
+      },
+      "scenario_mass_kg_ranges": {
+        "light": "~1,060-1,350 kg",
+        "baseline": "~1,330-1,670 kg",
+        "conservative": "~1,750-2,300 kg"
+      },
+      "formula": "地面硬件基线（~1,000-1,100 kg，基于 GB300 NVL72/ HGX B200/ DGX B200） + 三项空间化增量（辐射防护 + 热管理改造 + 结构/真空改造）",
+      "formula_detail": {
+        "地面基线": "38×计算托盘 × 29 kg ≈ 1,002-1,102 kg（150 GPU @ 1,000W/GPU，含 per-GPU 液冷冷板）",
+        "辐射防护增量": "乐观点 shielding 30-50 kg / 基准混合 80-120 kg / 保守全封闭 200-300 kg",
+        "热管理改造增量": "乐观 -50~+50 kg / 基准 +100-200 kg / 保守 +250-400 kg",
+        "结构真空改造增量": "乐观 +80-150 kg / 基准 +150-250 kg / 保守 +300-500 kg"
+      },
+      "source_anchors": [
+        "research_output/workspace/data/stage2_blackwell_payload_mass_bottom_up.md",
+        ".trae/specs/close-stage-two-evidence-gaps/current-note.md（V30 裁决记录）"
+      ],
+      "source_urls": [
+        "https://lenovopress.lenovo.com/lp2357-lenovo-nvidia-gb300-nvl72-rack-scale-ai",
+        "https://images.nvidia.com/aem-dam/Solutions/documents/HGX-B200-PCF-Summary.pdf",
+        "https://docs.nvidia.com/dgx/dgxb200-user-guide/introduction-to-dgxb200.html",
+        "https://www.1-act.com/resources/learning-center/case-studies/3d-printable-polymer-composite-radiation-shield/",
+        "https://technology.nasa.gov/patent/LAR-TOPS-250",
+        "https://guomans.com/insights/aerospace-nvidia-orbital-ai-data-centers-space-computing",
+        "https://arc.aiaa.org/doi/full/10.2514/1.A35030",
+        "https://www.163.com/dy/article/KUECPBRA05568W0A.html"
+      ],
+      "remaining_gap": "三项空间化增量中辐射防护和热管理改造均有独立文献锚点（ACT Polymer / NASA Shields-1 / Guomans / JAXA HFE7200），但结构改造增量仍为行业经验估计。整星总质量仍未取得 AI1 一手公开规格。"
+    },
+    {
+      "id": "thermal",
+      "display_name": "散热系统",
+      "route_scope": "common",
+      "status": "已闭合",
+      "support_type": "外部尺寸锚点 + 工程面密度",
+      "conclusion_grade": "四档（V20 ruling）",
+      "scenario_mass_kg": {
+        "light": 440.0,
+        "baseline": 550.0,
+        "conservative": 715.0
+      },
+      "formula": "mass_kg = radiator_area_m2 × radiator_specific_mass_kg_per_m2（110 m² × scenario scalars）",
+      "source_anchors": [
+        "research_output/workspace/data/stage2_task4_mass_launch_evidence.md",
+        "research_output/workspace/scripts/stage2_mass_cost_model.py",
+        ".trae/specs/close-stage-two-evidence-gaps/current-note.md（V20 裁决记录）"
+      ],
+      "source_urls": [
+        "https://www.metal-am.com/articles/nasa-spacecraft-thermal-management-am/"
+      ],
+      "remaining_gap": "散热器面密度 4.0/5.0/6.5 kg/m²（V20 四档裁决）属工程占位，航天器热控结构面密度 3-8 kg/m² 范围内。未获得 AI1 一手热控结构规格。"
+    },
+    {
+      "id": "solar_array",
+      "display_name": "光伏阵列",
+      "route_scope": "route_sensitive",
+      "status": "已闭合",
+      "support_type": "物理链 + 路线证据分级",
+      "conclusion_grade": "GaAs: 二档（AzurSpace）+ 三档（面密度）；HJT: 二档（地面量产效率）+ 三档（面密度）",
+      "route_variants": {
+        "gaas_baseline": {
+          "mass_kg": 516.0,
+          "area_m2": 344.0,
+          "efficiency_bol": 0.32,
+          "efficiency_eol": 0.29,
+          "specific_mass_kg_per_m2": 1.5,
+          "v_ruling": "V4-V5（效率），V8（面密度）"
+        },
+        "hjt_parallel": {
+          "mass_kg": 901.8,
+          "area_m2": 501.0,
+          "efficiency_bol": 0.22,
+          "efficiency_eol": 0.14,
+          "specific_mass_kg_per_m2": 1.8,
+          "v_ruling": "V6-V7（效率），V9（面密度）"
+        }
+      },
+      "deployment_mechanism_note": "面板质量（panel-only）不含展开机构（booms/hinges/motors/hold-down），展开机构质量作为独立质量项另行建模。",
+      "deployed_length_validation": "70m deployed length → GaAs: 344/(2×32.5)≈5.3m wing width; HJT: 501/(2×32.5)≈7.7m wing width. Both within reasonable range for 150kW-class satellite solar arrays (ISS: ~12m wide × 34m long; Starlink V2 Mini: ~116 m² total).",
+      "source_anchors": [
+        "research_output/workspace/data/stage2_power_system_results.md",
+        "research_output/workspace/scripts/stage2_power_system_model.py",
+        ".trae/specs/close-stage-two-evidence-gaps/current-note.md（V4-V9 裁决记录）"
+      ],
+      "source_urls": [
+        "https://www.azurspace.com/en/products/space-products/",
+        "https://www.huasunsolar.com/",
+        "https://www.prnewswire.com/news-releases/risen-energy-achieves-26-61-efficiency-for-hjt-solar-cell-302390000.html",
+        "https://www.cea.fr/cea-tech/liten/english/Pages/Medias/News/2025/major-breakthrough-for-photovoltaic-technology-space.aspx",
+        "https://en.wikipedia.org/wiki/Roll_Out_Solar_Array",
+        "https://research.33fg.com/analysis/starlink-v2-mini-optimized-lighter-satellites-more-bandwidth-per-launch"
+      ],
+      "remaining_gap": "HJT 和 GaAs 均为 panel-only 面密度，展开机构独立建模待完成。HJT EOL 14% 来自 CEA 独立实验（10^14 e⁻/cm²），不是 AI1 特定任务辐射仿真的结果。"
+    },
+    {
+      "id": "battery",
+      "display_name": "电池",
+      "route_scope": "route_sensitive",
+      "status": "已闭合",
+      "support_type": "物理链 + Starlink 工程实践可迁移证据",
+      "conclusion_grade": "三档（V10 DoD + V11 比能量）",
+      "branches": {
+        "5yr_liion": {
+          "dod": 0.40,
+          "specific_energy_wh_per_kg": 190,
+          "nominal_kwh": 186.4,
+          "mass_kg": 981.0,
+          "v_ruling": "V10 + V11"
+        },
+        "10yr_liion": {
+          "dod": 0.25,
+          "specific_energy_wh_per_kg": 190,
+          "nominal_kwh": 293.0,
+          "mass_kg": 1542.0,
+          "v_ruling": "V10 + V11"
+        },
+        "10yr_lto": {
+          "dod": 0.80,
+          "specific_energy_wh_per_kg": 100,
+          "nominal_kwh": 91.6,
+          "mass_kg": 916.0,
+          "v_ruling": "V10 + V11"
+        }
+      },
+      "source_anchors": [
+        "research_output/workspace/data/stage2_power_system_results.md",
+        "research_output/workspace/scripts/stage2_power_system_model.py",
+        ".trae/specs/close-stage-two-evidence-gaps/current-note.md（V10-V11 裁决记录）"
+      ],
+      "source_urls": [
+        "https://ciclibattery.com/battery-power-online-space-batteries-how-spacex-designs-batteries-for-satellites/",
+        "https://www.nasa.gov/wp-content/uploads/2024/01/starlink-batteries-reliability-lessons-from-10000-leo-satellites-abw-2025.pdf",
+        "https://saft.com/en/horizon-new-lithium-based-technology-satellite-batteries-improving-mission-performance"
+      ],
+      "remaining_gap": "DoD 值基于 Starlink 等效全循环分析（Ray Barsa 2025 演讲），非 AI1 特定 BMS 实测数据。LTO 100 Wh/kg 来自 Saft 通用声明非特定产品规格。"
+    },
+    {
+      "id": "pcdu",
+      "display_name": "功率电子/配电",
+      "route_scope": "route_sensitive",
+      "status": "四档",
+      "support_type": "飞行产品锚点 + 推断",
+      "conclusion_grade": "四档（V25 ruling: Terma 飞行产品锚点 0.54 kW/kg）",
+      "scenario_mass_kg": {
+        "light": 150.0,
+        "baseline": 300.0,
+        "conservative": 750.0
+      },
+      "formula": "mass_kg = 150 kW / specific_power（light 1.0 / baseline 0.5 / conservative 0.2 kW/kg）",
+      "source_anchors": [
+        "research_output/workspace/data/stage2_power_boundary_and_formula_audit.md",
+        ".trae/specs/close-stage-two-evidence-gaps/current-note.md（V25 裁决记录）"
+      ],
+      "source_urls": [
+        "https://satsearch.co/products/terma-power-conditioning-distribution-unit",
+        "https://www.satnow.com/products/power-conditioning-and-distribution-units/terma/134-1195-bepicolombo-mtm-pcdu",
+        "https://connectivity.esa.int/projects/pcdu-leo-telecom"
+      ],
+      "remaining_gap": "Terma PCDU 为 15 kW 级产品（非 150 kW 级），线性外推存在不确定性。AI1 若采用高压母线（>100V）可能大幅优于 0.54 kW/kg。Starlink 'simplified power electronics' 的改善幅度不可知。"
+    },
+    {
+      "id": "platform_structure",
+      "display_name": "平台/结构",
+      "route_scope": "common",
+      "status": "四档",
+      "support_type": "子系统求和比例 + Starlink V2 Mini 可比平台量级参考",
+      "conclusion_grade": "四档（V21 ruling）",
+      "scenario_mass_kg": {
+        "light": 822,
+        "baseline": 1346,
+        "conservative": 2233
+      },
+      "formula": "mass_kg = (compute_payload + thermal + power_system) × platform_ratio，其中 power_system 取 GaAs 基准 5yr 分支（array + battery + pcdu）",
+      "scenario_detail": {
+        "light": "(1200 + 440 + 1647) × 0.25 = 821.75 → 822 kg",
+        "baseline": "(1500 + 550 + 1797) × 0.35 = 1346.45 → 1346 kg",
+        "conservative": "(2000 + 715 + 2247) × 0.45 = 2232.9 → 2233 kg"
+      },
+      "v_ruling_annotation": "V21 裁决：平台系数 0.25/0.35/0.45。Starlink V2 Mini 参考：740 kg 整星，平台/结构 ~0.38。AI1 可能更重（高功率 GPU 计算架构 vs 通信卫星）。",
+      "source_anchors": [
+        "research_output/workspace/scripts/stage2_mass_cost_model.py",
+        ".trae/specs/close-stage-two-evidence-gaps/current-note.md（V21 裁决记录）"
+      ],
+      "source_urls": [
+        "https://www.jpl.nasa.gov/press-kits/psyche/mission/spacecraft/",
+        "https://spacenexus.us/satellite-bus-comparison",
+        "https://research.33fg.com/analysis/starlink-v2-mini-optimized-lighter-satellites-more-bandwidth-per-launch"
+      ],
+      "remaining_gap": "V21 为四档推断。缺 AI1 平台级一手分项或可靠可比平台映射关系。Starlink V2 Mini 的 0.38 为粗拆估计（总 740 - 光伏 197 - 电池 48 - 推进 40 - 通信载荷 170 ≈ 285 kg 结构/热控/线束）。"
+    },
+    {
+      "id": "propulsion",
+      "display_name": "推进",
+      "route_scope": "common",
+      "status": "四档",
+      "support_type": "Starlink V2 Mini 参考迁移 + 0.6 次方缩放",
+      "conclusion_grade": "四档（V22 ruling）",
+      "scenario_mass_kg": {
+        "light": 200,
+        "baseline": 350,
+        "conservative": 500
+      },
+      "formula": "独立占位项，非嵌入平台系数。取值基于 Starlink V2 Mini 推进质量比例（~5-6% 整星）外推到 AI1 级（6,000-8,000 kg × 5-8% → 300-640 kg）。",
+      "v_ruling_annotation": "V22 裁决：原 180/220/350 kg 废弃。替换为 200/350/500 kg。",
+      "source_anchors": [
+        "research_output/workspace/scripts/stage2_mass_cost_model.py",
+        ".trae/specs/close-stage-two-evidence-gaps/current-note.md（V22 裁决记录）"
+      ],
+      "source_urls": [
+        "https://orbionspace.com/thrusters/",
+        "https://www.exoterra.com/thrusters"
+      ],
+      "remaining_gap": "未获得 AI1 推进剂类型、贮箱规模、寿命目标与机动预算。V22 为基于 Starlink 比例外推的四档推断。"
+    },
+    {
+      "id": "communications",
+      "display_name": "通信/激光链路",
+      "route_scope": "common",
+      "status": "四档",
+      "support_type": "公开终端量级 + Google Suncatcher 高带宽需求推导",
+      "conclusion_grade": "四档（V23 ruling）",
+      "scenario_mass_kg": {
+        "light": 200,
+        "baseline": 300,
+        "conservative": 450
+      },
+      "formula": "独立占位项。基于 Google Suncatcher 天基 AI 集群 'tens of Tbps' ISL 需求推导，Starlink 通信系统 ~170-250 kg 为参考下界。",
+      "v_ruling_annotation": "V23 裁决：原 150/180/300 kg 废弃。替换为 200/300/450 kg（4 轮搜索→Google Suncatcher 参考修正）。",
+      "source_anchors": [
+        "research_output/workspace/scripts/stage2_mass_cost_model.py",
+        ".trae/specs/close-stage-two-evidence-gaps/current-note.md（V23+V28 裁决记录）"
+      ],
+      "source_urls": [
+        "https://arxiv.org/html/2511.19468v1",
+        "https://www.nasa.gov/smallsat-institute/sst-soa/soa-communications",
+        "https://www.tesat.de/products",
+        "https://www.fso-instruments.nl/products/"
+      ],
+      "remaining_gap": "Google Suncatcher 为 arXiv preprint 研究论文（非飞行验证硬件）。AI1 实际通信架构未知。终端数量、天线构型、RF/激光并行架构信息缺失。"
+    },
+    {
+      "id": "ait_margin",
+      "display_name": "集成测试/冗余",
+      "route_scope": "common",
+      "status": "四档",
+      "support_type": "项目级系统裕量 + 寿命分支分化",
+      "conclusion_grade": "四档（V24 ruling）",
+      "branches": {
+        "5yr": {
+          "ratio": {
+            "light": 0.05,
+            "baseline": 0.08,
+            "conservative": 0.12
+          },
+          "basis": "NASA CDR 级（5-10%）+ Starlink 量产压缩（disposable 5-year LEO birds, reducing qualification by 50-80%）"
+        },
+        "10yr": {
+          "ratio": {
+            "light": 0.10,
+            "baseline": 0.15,
+            "conservative": 0.22
+          },
+          "basis": "NASA PDR 级（10-20%）+ 产线继承（非'首颗'新研）"
+        }
+      },
+      "scenario_mass_kg_5yr": {
+        "_note": "待精确回写（V31-V35 自动导出，数值由已裁决输入计算）",
+        "light": "≈ 前序小计 × 0.05",
+        "baseline": "≈ 前序小计 × 0.08",
+        "conservative": "≈ 前序小计 × 0.12"
+      },
+      "scenario_mass_kg_10yr": {
+        "_note": "待精确回写",
+        "light": "≈ 前序小计 × 0.10",
+        "baseline": "≈ 前序小计 × 0.15",
+        "conservative": "≈ 前序小计 × 0.22"
+      },
+      "formula": "mass_kg = subtotal_without_margin × ait_margin_ratio",
+      "v_ruling_annotation": "V24 裁决：原 0.10/0.12/0.18 废弃。分寿命分支：5年 0.05/0.08/0.12；10年 0.10/0.15/0.22。",
+      "source_anchors": [
+        "research_output/workspace/scripts/stage2_mass_cost_model.py",
+        "research_output/workspace/data/stage2_mass_cost_results.md",
+        ".trae/specs/close-stage-two-evidence-gaps/current-note.md（V24 裁决记录）"
+      ],
+      "remaining_gap": "该项不是独立硬件实测值，只能作为工程保守量保留。本质是项目级质量裕量，不是可独立验真的物理部件。"
+    }
+  ],
+  "task5_interface": {
+    "use_blackwell_only": true,
+    "preferred_power_route": "gaas_baseline",
+    "parallel_power_route": "hjt_parallel",
+    "power_route_note": "GaAs 为主链，HJT 为并行成熟路线（非探索性/降级）。两种路线共享同一电池/PCDU链路（电池质量由食时决定、PCDU 由功率决定），差异仅在光伏阵列。",
+    "compute_payload_note": "计算载荷质量现采用 V30 bottom-up 结构化三项拆解（辐射/热/结构增量），替代已废弃的 kW/t 反推链。",
+    "battery_branches": {
+      "5yr": "Li-ion NMC, DoD 40%",
+      "10yr_liion": "Li-ion NMC, DoD 25%",
+      "10yr_lto": "LTO, DoD 80%"
+    },
+    "lifetime_branches": {
+      "5yr": "使用 scenario_scalars（5年 AIT 裕量）",
+      "10yr": "使用 scenario_scalars_10yr（更大 AIT 裕量）"
+    },
+    "fourth_tier_items": [
+      "pcdu（V25 四档：Terma 锚点，150/300/750 kg）",
+      "platform_structure（V21 四档：Starlink V2 Mini 参考，ratio 0.25/0.35/0.45）",
+      "propulsion（V22 四档：Starlink 比例外推，200/350/500 kg）",
+      "communications（V23 四档：Google Suncatcher 参考，200/300/450 kg）",
+      "ait_margin（V24 四档：分寿命分支，5年 0.05-0.12 / 10年 0.10-0.22）"
+    ],
+    "hjt_status_update": "HJT 路线已从「只能降级」修正为「并行成熟路线」，不再保留降级标签（V6-V9 裁决支撑）。HJT 探索值现已与 GaAs 主链并列进入模型。",
+    "must_not_promote_to_fact": [
+      "HJT 已被 AI1 或 Starlink 采用（当前仅能证明技术可行，非路线采用证据）",
+      "AI1 一手总质量与收拢尺寸已获得权威锚点（V30 为 bottom-up 推断，非一手规格）"
+    ],
+    "deprecated_in_this_file": [
+      "compute_specific_power_kw_per_t（70/55/45 kW/t 链全部废弃）",
+      "pcdu_specific_power_kw_per_kg = 10.0（已替换为 1.0/0.5/0.2）",
+      "old platform ratios 0.18/0.22/0.28（已替换为 0.25/0.35/0.45）",
+      "old propulsion 180/220/350 kg（已替换为 200/350/500 kg）",
+      "old comms 150/180/300 kg（已替换为 200/300/450 kg）",
+      "old AIT 0.10/0.12/0.18（已替换为分支值）",
+      "hjt_exploratory label and '只能降级' status（已替换为 hjt_parallel / 并行成熟路线）"
+    ]
+  }
+}

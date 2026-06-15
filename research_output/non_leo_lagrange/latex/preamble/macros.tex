@@ -1,0 +1,42 @@
+% macros.tex — 自定义宏/命令/环境
+
+% ===== 颜色定义 =====
+\definecolor{primary}{HTML}{1A5276}       % 深蓝主色
+\definecolor{accent}{HTML}{16A085}        % 青绿强调
+\definecolor{graybase}{HTML}{2C3E50}      % 深灰正文
+\definecolor{graylight}{HTML}{BDC3C7}     % 浅灰辅助
+\definecolor{leoorange}{HTML}{E67E22}     % LEO 色
+\definecolor{meocolor}{HTML}{E74C3C}      % MEO 色
+\definecolor{geocolor}{HTML}{27AE60}      % GEO 色
+\definecolor{heocolor}{HTML}{8E44AD}      % HEO 色
+\definecolor{l1l2color}{HTML}{2980B9}     % 地日L1/L2 色
+\definecolor{l4l5color}{HTML}{F39C12}     % 地月L4/L5 色
+\definecolor{eml1l2color}{HTML}{1ABC9C}   % 地月L1/L2 色
+
+% ===== 自定义命令 =====
+\newcommand{\deltav}{$\Delta v$}
+\newcommand{\tid}{TID}
+\newcommand{\seu}{SEU}
+\newcommand{\leo}{LEO}
+\newcommand{\meo}{MEO}
+\newcommand{\geo}{GEO}
+\newcommand{\heo}{HEO}
+\newcommand{\krad}{krad(Si)}
+\newcommand{\kradyr}{krad(Si)/年}
+\newcommand{\mw}{MW}
+\newcommand{\km}{km}
+\newcommand{\kms}{km/s}
+\newcommand{\wpm}{W/m\textsuperscript{2}}
+\newcommand{\degreeC}{\textdegree{}C}
+\newcommand{\noteimportant}[1]{\textbf{\textcolor{accent}{#1}}}
+
+% ===== 定理环境 =====
+\newtheorem{definition}{定义}[section]
+\newtheorem{observation}{观察}[section]
+
+% ===== 页眉页脚 =====
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small 非LEO轨道与拉格朗日点太空算力可行性分析}
+\fancyhead[R]{\small \thepage}
+\renewcommand{\headrulewidth}{0.4pt}

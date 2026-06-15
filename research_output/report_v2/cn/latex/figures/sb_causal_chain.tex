@@ -1,0 +1,60 @@
+% S-B 因果链图 — 第4章用
+% 从斯特藩-玻尔兹曼定律到 AI1 工作点的完整推导链
+% "公式 → 参数代入 → 工作温度 → 物理结论" 可视化因果链
+% 性冷淡风：使用低饱和冷灰/石板蓝配色
+\resizebox{\textwidth}{!}{
+\begin{tikzpicture}[
+  node distance=0.7cm and 1.2cm,
+  formula/.style={rectangle, draw=gray!60, rounded corners, minimum width=3.5cm,
+                  minimum height=1.2cm, align=center, font=\small, fill=gray!16},
+  param/.style={rectangle, draw=gray!60, rounded corners, minimum width=3.0cm,
+                minimum height=0.9cm, align=center, font=\small, fill=cyan!16!gray!10},
+  result/.style={rectangle, draw=gray!70, rounded corners, minimum width=3.0cm,
+                 minimum height=0.9cm, align=center, font=\small\bfseries, fill=blue!16!gray!14},
+  conclusion/.style={rectangle, draw=gray!80, rounded corners, minimum width=3.8cm,
+                     minimum height=1.0cm, align=center, font=\small\bfseries, fill=gray!32},
+  arrow/.style={thick, draw=gray!60, ->, >=stealth},
+  label/.style={font=\footnotesize, text=gray!60!black}
+]
+  % ===== 第一行：物理定律 =====
+  \node[formula] (sb) {\textbf{斯特藩-玻尔兹曼定律}\\[2pt]$P/A = \varepsilon \sigma T^{4}$};
+  \node[label, below=0.1cm of sb] {$\sigma = 5.6704\times10^{-8}$ W·m$^{-2}$·K$^{-4}$};
+
+  % ===== 第二行：双面辐射 =====
+  \node[formula, below=of sb] (double) {\textbf{双面辐射修正}\\[2pt]$P/A_{\text{物理}} = 2\varepsilon\sigma T^{4}$};
+  \node[label, below=0.1cm of double] {双面均辐射至深空，等效面积翻倍};
+
+  \draw[arrow] (sb) -- (double);
+
+  % ===== 第三行：AI1 参数代入 =====
+  \node[param, below=of double] (params) {\textbf{代入 }AI1\textbf{ 公开参数}\\[2pt]$P = 150$ kW, $A = 110$ m$^{2}$};
+  \node[label, below=0.1cm of params] {等效单面通量 $\approx 682$ W/m$^{2}$};
+
+  \draw[arrow] (double) -- (params);
+
+  % ===== 第四行：反推温度 =====
+  \node[result, below=of params] (temp) {\textbf{反推平衡温度}\\[2pt]$T \approx 342.5$ K（$\varepsilon \approx 0.90$）};
+  \node[label, below=0.1cm of temp] {约 $69.4^{\circ}$C，物理面板温度};
+
+  \draw[arrow] (params) -- (temp);
+
+  % ===== 第五行：结论 =====
+  \node[conclusion, below=of temp] (verdict) {\textbf{物理成立，但裕度薄}\\[2pt]$\varepsilon$ 退化后逼近材料极限};
+  \node[label, below=0.1cm of verdict] {散热密度是物理硬约束，不可无限压降};
+
+  \draw[arrow] (temp) -- (verdict);
+
+  % ===== 左侧边界标注 =====
+  \node[font=\tiny, text=gray!40, rotate=90, anchor=south] at (-2.8,0) {推导方向 $\longrightarrow$};
+
+  % ===== 右侧附加说明 =====
+  \node[font=\footnotesize, text=gray!50!black, align=left, anchor=north west] at (4.5,-1.2) {
+    关键参数来源：\\[2pt]
+    $\bullet$ $\sigma$：CODATA 2018 推荐值【一档】\\[2pt]
+    $\bullet$ 150 kW：AI1 官方峰值散热【二档】\\[2pt]
+    $\bullet$ 110 m$^{2}$：AI1 物理面板面积【二档】\\[2pt]
+    $\bullet$ $\varepsilon\approx0.90$：高辐射率涂层典型值【三档】
+  };
+
+\end{tikzpicture}
+}

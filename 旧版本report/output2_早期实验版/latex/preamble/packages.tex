@@ -1,0 +1,52 @@
+% preamble/packages.tex
+% 宏包清单（无自定义命令）
+
+% ========== 基础必要包 ==========
+% 字体引擎（必须最先加载）
+\usepackage{fontspec}
+
+% 中文核心支持
+\usepackage[UTF8,space=auto]{ctex}
+
+% LaTeX3 编程支持
+\usepackage{expl3}
+
+% ========== 数学支持 ==========
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+
+% ========== 表格与浮动体 ==========
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{wrapfig}
+
+% ========== 图形与颜色 ==========
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc}
+
+% ========== 超链接与参考文献 ==========
+\usepackage[colorlinks=true, allcolors=blue, pdfborder={0 0 0}]{hyperref}
+\usepackage[style=gb7714-2015,backend=biber,sorting=none]{biblatex}
+
+% ========== 文档结构增强 ==========
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage[shortlabels]{enumitem}
+
+% ========== 代码与工具 ==========
+\usepackage{cleveref}
+\usepackage{makeidx}
+\usepackage{verbatim}
+\usepackage{ulem}
+
+% ========== 修复配置 ==========
+\usepackage{etoolbox}
+\usepackage{colortbl}

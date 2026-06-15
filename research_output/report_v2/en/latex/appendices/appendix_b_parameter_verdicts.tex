@@ -1,0 +1,280 @@
+% appendices/appendix_b_parameter_verdicts.tex
+
+\section{Key Parameter Values and Controversy Adjudication}
+
+This chapter provides a registration index for all key parameters involved in the primary chain---the ``identity card'' for every number in the main text. Readers can look up the source tier, adjudication status, and further traceability path of any key number in the main text within this chapter. All parameters have undergone per-parameter independent adjudication and are anchored in \path{current-note.md}.
+
+\textbf{Note}: Due to space constraints, the body of this chapter lists only core controversial parameters (\S B.2--\S B.3). The complete per-parameter registration table for all 47 parameters (including tier, value, adjudication status, and source routing for each parameter) can be traced via the five-layer routing table in Appendix~D to the internal parameter adjudication document and structured JSON input files.
+
+\subsection{Four-Tier Evidence System Definition}
+
+\begin{table}[H]
+  \centering
+  \caption{Four-Tier Evidence Classification Definitions}
+  \label{tab:evidence-tiers}
+  \small
+  \begin{tabular}{cp{1.8cm}p{4.2cm}p{5.2cm}}
+  \toprule
+  \textbf{Tier} & \textbf{Name} & \textbf{Definition} & \textbf{Determination Criteria} \\
+  \midrule
+  Tier~1 & Physical Derivation Chain & Directly derived from clear physical formulas, boundary conditions, and mission constraints & Formula can be written clearly, inputs traceable, units self-consistent \\
+  Tier~2 & Authoritative Source & From clearly identified authoritative sources or official public materials & Verifiable URL available, applicable boundaries can be stated \\
+  Tier~3 & Transferable Evidence & From industry materials or analog platform data not directly transferable & Must write out transferable/non-transferable portions, transfer rationale, and interval basis \\
+  Tier~4 & Reasonable Inference & Insufficient public materials; engineering inference only & Must state inference basis, boundary conditions, and failure risks \\
+  Prohibited & Prohibited from Model Entry & Value directly contradicted by public evidence or entirely unsupported & Replaced or permanently excluded \\
+  Deprecated & Deprecated & This derivation path / label has been permanently superseded by this report & Archived only; must not be used in main text \\
+  \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Core Controversial Parameter Adjudication Table}
+
+The following are the most critical controversial parameters in the report and their adjudication results. Each parameter is accompanied by a one-sentence adjudication summary; the complete adjudication record (including source URLs, derivation chains, and per-parameter independent adjudication process) is in \path{current-note.md}~\S Task V2.
+
+% --- Sub-table 1-A: Per-Satellite Mass (1/2) ---
+\begin{table}[H]
+  \centering
+  \caption{Core Controversial Parameter Adjudication (I): Per-Satellite Mass (Multiple Conventions) (1/2)}
+  \label{tab:core-verdicts-mass-1}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.7cm}
+    >{\raggedright\arraybackslash}p{2.2cm}
+    >{\centering\arraybackslash}p{1.5cm}
+    >{\raggedright\arraybackslash}p{2.1cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Parameter Name} & \textbf{Current Value} & \textbf{Tier} & \textbf{Adjudication Status} & \textbf{One-Sentence Adjudication Summary} \\
+  \midrule
+  Compute Payload Mass (Baseline) & 1,500~kg & Tier~2+3 & Absorbed into primary chain & Takes NVIDIA GB300 NVL72 ground hardware as A1 anchor (Tier~2), plus three space-hardening increments (radiation/thermal/structural) decomposed (Tier~3); per-parameter adjudication yields 1,200/1,500/2,000~kg three scenarios \\
+  All-Up Satellite Mass (10yr-GaAs) & 8,479~kg & Tier~1+2+3+4 & Absorbed into primary chain & 9-subsystem summation: compute payload 1,500 + heat dissipation 550 + PV array 938 + battery 1,573 + PCDU 419 + bus 1,743 + propulsion 350 + communications 300 + system margin/redundancy/additional 1,106~kg \\
+  All-Up Satellite Mass (5yr-GaAs) & 7,103~kg & Same as above & Absorbed into primary chain (sensitivity reference) & Same physical configuration as 10yr-GaAs, except for battery branch (5yr NMC, 983~kg) and AIT margin (5yr branch) differences \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+% --- Sub-table 1-B: Per-Satellite Mass (2/2) ---
+\begin{table}[H]
+  \centering
+  \caption{Core Controversial Parameter Adjudication (I): Per-Satellite Mass (Multiple Conventions) (2/2)}
+  \label{tab:core-verdicts-mass-2}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.7cm}
+    >{\raggedright\arraybackslash}p{2.2cm}
+    >{\centering\arraybackslash}p{1.5cm}
+    >{\raggedright\arraybackslash}p{2.1cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Parameter Name} & \textbf{Current Value} & \textbf{Tier} & \textbf{Adjudication Status} & \textbf{One-Sentence Adjudication Summary} \\
+  \midrule
+  All-Up Satellite Mass (5yr-HJT) & 9,133~kg & Same as above & Downgraded to reference (parallel route) & HJT PV array 2,330~kg (vs.\ GaAs 938~kg), causing all-up mass heavier by $\sim$2.03t \\
+  Previous-Era Compute Payload Mass Values & 2,143/2,727/3,333~kg & Deprecated & Deprecated & Derived from kW/t back-calculation chain (150kW / 70/55/45 kW/t), denominator sourced from B1-level second-hand relay with circular reference risk; permanently superseded by bottom-up chain \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+% --- Sub-table 2: Launch Loading ---
+\begin{table}[H]
+  \centering
+  \caption{Core Controversial Parameter Adjudication (II): Launch Loading}
+  \label{tab:core-verdicts-launch}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.7cm}
+    >{\raggedright\arraybackslash}p{2.2cm}
+    >{\centering\arraybackslash}p{1.5cm}
+    >{\raggedright\arraybackslash}p{2.1cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Parameter Name} & \textbf{Current Value} & \textbf{Tier} & \textbf{Adjudication Status} & \textbf{One-Sentence Adjudication Summary} \\
+  \midrule
+  Load Count (All-Up Convention) & $\sim$9--14 sats/launch & Tier~1 (geometric constraint) & Absorbed into primary chain & Based on all-up satellite mass 8.48t (10yr-GaAs), Starship 100+t-class capacity, deducting 10--20\% adapter/separation mechanism margin \\
+  Load Count (Compute Payload Only) & $\sim$53--60 sats/launch & Tier~1+3 & External reference only & Based on compute payload mass 1,500~kg only; assumes in-orbit integration---this assumption is unverified and cannot serve as primary chain \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+\clearpage
+
+% --- Sub-table 3-A: GaAs Primary Chain Cost ---
+\begin{table}[H]
+  \centering
+  \caption{Core Controversial Parameter Adjudication (III-A): GaAs Primary Chain Manufacturing Cost (1/2)}
+  \label{tab:core-verdicts-cost-gaas-a}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{3.0cm}
+    >{\raggedright\arraybackslash}p{2.5cm}
+    >{\centering\arraybackslash}p{1.5cm}
+    >{\raggedright\arraybackslash}p{2.5cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Parameter Name} & \textbf{Current Value} & \textbf{Tier} & \textbf{Adjudication Status} & \textbf{One-Sentence Adjudication Summary} \\
+  \midrule
+  Per-Satellite Manufacturing Cost (10yr-GaAs) & \$83.61M & Tier~3+4 mixed & Absorbed into primary chain & 9-subsystem summation: PV \$46.27M (55\%), AIT \$18.29M (22\%), compute payload \$7.20M (9\%), bus \$6.27M (8\%), communications \$2.50M, propulsion \$1.30M, PCDU \$1.05M, heat dissipation \$0.66M, battery \$0.06M \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Core Controversial Parameter Adjudication (III-A): GaAs Primary Chain Manufacturing Cost (2/2)}
+  \label{tab:core-verdicts-cost-gaas-b}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{3.0cm}
+    >{\raggedright\arraybackslash}p{2.5cm}
+    >{\centering\arraybackslash}p{1.5cm}
+    >{\raggedright\arraybackslash}p{2.5cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Parameter Name} & \textbf{Current Value} & \textbf{Tier} & \textbf{Adjudication Status} & \textbf{One-Sentence Adjudication Summary} \\
+  \midrule
+  PV Array Cost (GaAs) & \$180/\$200/\$250 /W\_BOL & Tier~3 & Absorbed into primary chain & Three-anchor cross-check: AzurSpace product existence + previous-era estimate 200--400 USD/W + satsearch retail panel; \$200/W\_BOL taken as baseline \\
+  Compute Payload Cost & \$38k/\$60k/\$100k/kW & Tier~3 & Absorbed into primary chain & Ground GB300 NVL72 baseline \$25--33k/kW, multiplied by 1.5--3$\times$ mass-production premium (SpaceX COTS strategy), after 3 rounds of search and per-parameter adjudication \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+% --- Sub-table 3-B: Reference Route and Battery Cost ---
+\begin{table}[H]
+  \centering
+  \caption{Core Controversial Parameter Adjudication (III-B): Reference Technology Manufacturing Cost --- HJT Array (1/2)}
+  \label{tab:core-verdicts-cost-other-a}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{3.0cm}
+    >{\raggedright\arraybackslash}p{2.5cm}
+    >{\centering\arraybackslash}p{1.5cm}
+    >{\raggedright\arraybackslash}p{2.5cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Parameter Name} & \textbf{Current Value} & \textbf{Tier} & \textbf{Adjudication Status} & \textbf{One-Sentence Adjudication Summary} \\
+  \midrule
+  HJT Array Cost & Ground \$0.14--0.24/W; space \~\$2--3/W & Tier~3 & Downgraded to reference & Multi-source cross-validation of ground mass production (Tier~2) + Risen Energy space-grade quote (Tier~3); ground$\to$space amplification 10--15$\times$ (Tier~4); overall closure lower than GaAs \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Core Controversial Parameter Adjudication (III-B): Reference Technology Manufacturing Cost --- Battery (2/2)}
+  \label{tab:core-verdicts-cost-other-b}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{3.0cm}
+    >{\raggedright\arraybackslash}p{2.5cm}
+    >{\centering\arraybackslash}p{1.5cm}
+    >{\raggedright\arraybackslash}p{2.5cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Parameter Name} & \textbf{Current Value} & \textbf{Tier} & \textbf{Adjudication Status} & \textbf{One-Sentence Adjudication Summary} \\
+  \midrule
+  Battery NMC Cost & \$200/kWh (fixed) & Tier~3 & Absorbed into primary chain & Direct Starlink transfer, zero additional premium---Starlink NMC packs are inherently space batteries; Ray Barsa presentation + hundred-million-unit Panasonic 21700 procurement anchor \\
+  Battery LTO Cost & \$260/\$350/\$400/kWh & Tier~4 & External reference only (sensitivity branch) & Proportional compression method: ground LTO/NMC price ratio 1.3--1.5$\times$ $\times$ \$200/kWh = \$260--400/kWh; traditional Saft certified pricing path excluded after comparative analysis \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+% --- Sub-table 4: Ground Reference TCO ---
+\begin{table}[H]
+  \centering
+  \caption{Core Controversial Parameter Adjudication (IV): Ground Reference TCO Convention and TCO Ratio}
+  \label{tab:core-verdicts-tco}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{3.0cm}
+    >{\raggedright\arraybackslash}p{2.5cm}
+    >{\centering\arraybackslash}p{1.5cm}
+    >{\raggedright\arraybackslash}p{2.5cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Parameter Name} & \textbf{Current Value} & \textbf{Tier} & \textbf{Adjudication Status} & \textbf{One-Sentence Adjudication Summary} \\
+  \midrule
+  Ground Reference TCO (Median Estimate) & $\sim$\$64.6M/MW/10yr & Tier~4 & External reference only & Composite estimate based on publicly available ground AI data center construction cost analyses; specific literature sources in Appendix~D~\S D.4 \\
+  TCO Ratio (Space / Ground) & $\sim$11.8$\times$ (10yr-GaAs baseline) & Mixed tier & Absorbed into primary chain & \$764.98M / \~\$64.6M $\approx$ 11.8$\times$; doubly constrained by space-side Tier~4 parameters ($\sim$35\% of cost) and ground-side convention uncertainty \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{47-Parameter Tier Classification Statistical Summary}
+
+\begin{table}[H]
+  \centering
+  \caption{47-Parameter Tier Classification Statistics}
+  \label{tab:param-statistics}
+  \footnotesize
+  \resizebox{\textwidth}{!}{%
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.6cm}
+    >{\centering\arraybackslash}p{1.2cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Tier} & \textbf{Count} & \textbf{Representative Parameters} \\
+  \midrule
+  Tier~1 (Physical Derivation Chain) & 5 & Solar constant (1361.0~W/m$^2$), radiator area (110~m$^2$, S-B derivation), array area (physical formula), battery nominal capacity (186.4~kWh) \\
+  Tier~2 (Authoritative Source) & 7 & Peak power (150~kW), sustained power (120~kW), orbital altitude (600~km), GaAs BOL/EOL efficiency (32\%/29\%), HJT BOL/EOL efficiency (22\%/14\%) \\
+  Tier~3 (Transferable Evidence) & 17 & GaAs/HJT areal density, DoD, specific energy, compute payload cost, GaAs/HJT array cost, etc. \\
+  Tier~4 (Reasonable Inference) & 14 & Radiator areal density, bus coefficient, propulsion mass/cost, communications mass/cost, AIT margin/cost, PCDU specific power/cost, etc. \\
+  Prohibited from Model Entry & 1 & Previous-era battery cost \$400/kWh ($\sim$225$\times$ contradiction with public space-grade prices; replaced) \\
+  Deprecated & 3 & kW/t back-calculation chain (70/55/45), previous-era compute payload mass (2143/2727/3333~kg), HJT ``prohibited from entry into primary model'' label \\
+  \midrule
+  \textbf{Total} & \textbf{47} & \\
+  \bottomrule
+  \end{tabularx}%
+  }
+\end{table}
+
+Tier~4 parameters account for 30\% (14/47), an objective consequence of the limited public disclosure of AI1 information, not an execution deficiency. All weak-evidence parameters have been embedded within the per-parameter independent adjudication gate; each Tier~4 parameter carries inference basis, boundary conditions, and failure risk statements. Adjudication records can be traced via the Appendix~D five-layer routing table to the V1--V37 per-parameter adjudications in \path{current-note.md}~\S Task V2.
+
+\subsection{Complete Parameter Inventory by Tier}
+
+The following is the complete registration table for all 47 parameters. One parameter per row, organized by tier. Source routing points to the corresponding row in Appendix~D.
+
+\textbf{Note}: The full 47-row parameter registration table lists only core controversial parameters due to space constraints (see \S B.2--\S B.3 for details). Readers needing the full parameter set should follow these traceability paths:
+
+\begin{itemize}
+  \item Full 47-parameter per-item tier classification list: see internal parameter adjudication document, traceable via Appendix~D routing table
+  \item Mass parameter structured input (JSON): see corresponding row in Appendix~D routing table
+  \item Cost parameter structured input (JSON): see corresponding row in Appendix~D routing table
+  \item Five-layer quick-lookup routing (Conclusion $\to$ Cross-Verification $\to$ JSON $\to$ Adjudication $\to$ URL): Appendix~D~\S D.2
+\end{itemize}
+
+In particular, the following adjudications underwent key adjustments in the latest round of internal cross-verification, differing from values in previous review rounds:
+
+\begin{table}[H]
+  \centering
+  \caption{Key Adjudication Adjustments (Previous Review Rounds vs.\ Current Round)}
+  \label{tab:key-ruling-changes}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.3cm}
+    >{\raggedright\arraybackslash}p{2.2cm}
+    >{\raggedright\arraybackslash}p{2.4cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Parameter} & \textbf{Previous Value} & \textbf{Current-Round Value} & \textbf{Reason for Adjustment} \\
+  \midrule
+  Compute Payload Mass Chain & 2,143--3,333~kg (kW/t back-calculation) & 1,200--2,000~kg (bottom-up) & kW/t denominator sourced from B1-level second-hand relay with circular reference risk; replaced by ground hardware A1 anchor + three space-hardening increments \\
+  HJT BOL Efficiency & 20\% & 22\% & GN-004 review noted 6pp below lowest authoritative source; research team selected the most conservative among three candidates (22/24/25) \\
+  HJT Areal Density & 1.2~kg/m$^2$ & 1.8~kg/m$^2$ & Revised upward after searching Starlink references; panel+deployment modeled separately \\
+  PCDU Specific Power & 10.0~kW/kg & 0.5~kW/kg (baseline) & Terma flight product anchor revealed original value overestimated by $\sim$18$\times$; PCDU rated power taken as 209.8~kW (EOL array dominant), mass corrected to $\sim$420~kg \\
+  Bus Coefficient & 0.18/0.22/0.28 & 0.25/0.35/0.45 & Starlink V2 Mini mass rough decomposition reference ratio $\sim$0.38 \\
+  Battery DoD & Single 40\% & Three-branch: 5yr 40\% / 10yr Li-ion 25\% / 10yr LTO 80\% & Research team held that a one-size-fits-all approach should not be applied \\
+  HJT Route Positioning & ``Can only be downgraded'' / ``Prohibited from entry into primary model'' & ``Parallel maturation route'' & Supported by Task~3 evidence package (17 URLs + 12 physical chain closures) \\
+  Battery Cost NMC & \$400/kWh (prohibited from model entry) & \$200/kWh (fixed) & Direct Starlink transfer, zero-premium principle \\
+  Propulsion Cost & Linear scaling & 0.6-power scaling + lifetime branch & Corrected to 0.6-power scaling after per-item verification \\
+  \bottomrule
+  \end{tabularx}
+\end{table}

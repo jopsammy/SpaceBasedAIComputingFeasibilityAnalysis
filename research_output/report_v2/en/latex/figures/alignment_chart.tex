@@ -1,0 +1,27 @@
+% Metric alignment diagram — Chapter 3
+% Shows correspondence between different metrics (time window, power, architecture, cost) and the warning against direct comparison
+% Cold aesthetic: gray/slate-blue/deep rock-gray palette
+\begin{tikzpicture}[node distance=0.8cm, auto]
+  % Style definitions
+  \tikzstyle{block} = [rectangle, draw=gray!60, fill=cyan!18!gray!8, text width=2.7cm, align=center, rounded corners, minimum height=2.55cm, font=\small, text=black!85]
+  \tikzstyle{arrow} = [thick,draw=gray!50,->,>=stealth]
+  \tikzstyle{warn}  = [font=\small\bfseries, text=black!60]
+
+  % Four main metric blocks
+  \node [block] (time) {\textbf{Time Window}\\[4pt]5yr vs 10yr\\With/without relaunch};
+  \node [block, right=of time] (power) {\textbf{Power Metric}\\[4pt]Peak 150 kW\\Sustained 120 kW\\IT load 1 MW};
+  \node [block, right=of power] (arch) {\textbf{Architecture Gen.}\\[4pt]Blackwell baseline\\Rubin comparison};
+  \node [block, right=of arch] (cost) {\textbf{Cost\\Boundary}\\[4pt]Manufacturing/Launch/\\Ops/Decommissioning};
+
+  % Connecting arrows
+  \draw [arrow] (time) -- (power);
+  \draw [arrow] (power) -- (arch);
+  \draw [arrow] (arch) -- (cost);
+
+  % Bottom annotation
+  \node [text width=10.6cm, align=center, font=\small, anchor=north] at ($(time.south)!0.5!(cost.south)+(0,-1.0cm)$) {
+    \textbf{\textcolor{black!70}{Numbers under different metric assumptions are not directly comparable.}}\\[4pt]
+    All comparisons in this report are based on a unified baseline:\\
+    Blackwell architecture, 10-year window, 1 MW sustained IT, \$200/kg launch.
+  };
+\end{tikzpicture}

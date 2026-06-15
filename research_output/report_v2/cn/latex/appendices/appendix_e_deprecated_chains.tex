@@ -1,0 +1,198 @@
+% appendices/appendix_e_deprecated_chains.tex
+
+\section{已废弃推导链与参数约束}
+
+本章记录分析过程中被替代的推导路径、被修正的参数取值，以及各参数适用的物理边界或迁移范围。读者对照此前版本或外部引用时，应注意以下数字已不再有效。
+
+\subsection{kW/t 反推链废弃说明}
+\label{sec:deprecated-kwt}
+
+\subsubsection{废弃内容}
+
+此前的推导路径以以下公式推导计算载荷质量：
+
+\begin{equation}
+  M_{\mathrm{payload}} = \frac{P_{\mathrm{sustained}}}{s_{\mathrm{kW/t}}}
+                       = \frac{150\ \mathrm{kW}}{(70/55/45)\ \mathrm{kW/t}}
+  \label{eq:deprecated-kwt}
+\end{equation}
+
+三场景取值：2,143 kg（70 kW/t）/ 2,727 kg（55 kW/t）/ 3,333 kg（45 kW/t）。该推导链已在本报告第三轮（\path{close-stage-two-evidence-gaps}，Task 2）中永久废弃。
+
+\subsubsection{三个根因}
+
+\begin{enumerate}
+  \item \textbf{分母来源为B1级二手转述（非NVIDIA/SpaceX官方）}：
+  70/55/45 kW/t出自二手媒体对"SpaceX AI1比功率"的转述或推测，非NVIDIA官方GPU规格，也非SpaceX官方公开文档。在四档证据体系下，B1级转述不具备独立支撑模型关键输入的证据强度。
+
+  \item \textbf{定义域存在根本性歧义}：
+  分母中的"t"（吨）对应什么质量从未被一手资料锁定。若对应整星总质量，则计算载荷质量=整星总质量——这在物理上不可能（排除了电源、热控、结构、推进等所有其他子系统的存在）。若对应计算载荷子系统，则需要独立验证70 kW/t的比功率值，但无公开锚点可供验证。
+
+  \item \textbf{存在循环引用风险}：
+  此前的资料中同时出现两种用法：(a) 从70 kW/t反推计算载荷质量；(b) 用反推出的质量证明70 kW/t合理。这在逻辑上构成闭环——先假设分母、再用计算结果验证同一个分母。循环引用是证据链的根本性缺陷。
+
+  补充判断：上述三根因并非"直到第三轮才发现"的问题。kW/t反推链在第一轮（`produce-stage-two-difference-analysis`）时即以"B1级二手转述"为来源，在第二轮（`refine-stage-two-blackwell-hjt-model`）即被标注为"分母定义可疑/P0缺口2"。前两轮保留了该链作为"暂无替代"的临时占位——这是明确的执行判断，而非漏检。第三轮Task 2完成bottom-up质量链重构后，替代方案已存在且可验证，废弃正式生效。
+\end{enumerate}
+
+\subsubsection{替换路径}
+
+\begin{center}
+  \fbox{
+    \begin{minipage}{0.85\textwidth}
+      \textbf{kW/t反推 $\longrightarrow$ bottom-up地面硬件锚点 + 三项空间化增量}
+
+      新链方法详见附录C §C.3。新值（V30逐参数裁决）：乐观1,200 kg / 基准1,500 kg / 保守2,000 kg。
+      证据强度从B1二手转述升级为二档（地面硬件A1锚点）+三档（空间化增量推断）。
+    \end{minipage}
+  }
+\end{center}
+
+此前的分析数字（2,143/2,727/3,333 kg）仅作为废弃原因存档于本附录。正文中的计算载荷质量使用 V30 裁决值（1,200/1,500/2,000 kg）。
+
+\subsection{推导路径替换关系表}
+\label{sec:replacement-table}
+
+\begin{table}[H]
+  \centering
+  \caption{推导路径替换关系总表}
+  \label{tab:chain-replacement}
+  \scriptsize
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.1cm}
+    >{\raggedright\arraybackslash}p{2.8cm}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}p{2.2cm}
+  }
+  \toprule
+  \textbf{此前分析路径/取值} & \textbf{废弃原因} & \textbf{本报告方法/取值} & \textbf{本报告方法所在附录节号} \\
+  \midrule
+  \path{compute_specific_power_kw_per_t} = 70/55/45 kW/t & B1级二手转述、定义域歧义、循环引用 & 直接读取 \path{components[compute_payload].scenario_mass_kg}，不再经过 kW/t 分母 & 附录C §C.3 \\
+  \addlinespace
+  计算载荷质量 = 2,143/2,727/3,333 kg & 由kW/t反推链派生，分母已被废弃 & 1,200/1,500/2,000 kg（V30 bottom-up裁决） & 附录C §C.3.3 \\
+  \addlinespace
+  \path{battery_cost_per_kwh} = \$400/kWh & 与公开空间级电池列表价存在约225倍数量级矛盾 & NMC: \$200/kWh 固定（V36 Starlink 迁移）；LTO: \$260/350/400/kWh（V37 等比压缩） & 附录B §B.2 \\
+  \addlinespace
+  HJT "只能降级"/ "禁止进入主模型" & 路线定位与Task 3证据包（17条URL+12项物理链闭合）矛盾 & "并行成熟路线"——物理链可完全比较，价格链闭合度单独标注 & 附录B §B.4 \\
+  \addlinespace
+  \path{stage2_mass_cost_results.md} & 基于kW/t链的此前聚合模型结果 & \path{stage2_economic_branches_blackwell.md}：三分支分项展开，每子系统独立质量+成本，可逐项追溯 & — \\
+  \addlinespace
+  \path{stage2_power_system_results.md} & 不含HJT并行路线、不含电池分支化 & \path{stage2_power_system_results_blackwell_hjt.md}：Blackwell主线，GaAs/HJT并行，电池三分支 & — \\
+  \addlinespace
+  \path{stage2_architecture_reconciliation.md} & Rubin已降级为支线留痕，不再进入主模型 & 无直接替代；Rubin 架构能效重映射仅保留为外部参照方向，不进入主模型 & — \\
+  \addlinespace
+  PCDU比功率 = 10.0 kW/kg & Terma飞行产品锚点揭示高估约18$\times$（原按150kW/10.0=15kg，修正为209.8kW/0.5$\approx$420kg） & 1.0/0.5/0.2 kW/kg（V25，四档） & 附录C §C.2.5 \\
+  \addlinespace
+  平台系数 = 0.18/0.22/0.28 & Starlink V2 Mini质量粗拆参考ratio$\sim$0.38，原值偏低 & 0.25/0.35/0.45（V21，四档） & 附录B §B.3 \\
+  \addlinespace
+  推进质量 = 180/220/350 kg & Starlink V2 Mini推进占比参考提示上调空间 & 200/350/500 kg（V22，四档） & 同上 \\
+  \addlinespace
+  通信质量 = 150/180/300 kg & 4轮搜索+Google Suncatcher确认高带宽需求 & 200/300/450 kg（V23，四档） & 同上 \\
+  \addlinespace
+  电池DoD = 单一40\%（不分寿命/化学） & 研究团队认为不能一刀切，要求按电化学实测分裂 & 5yr NMC 40\% / 10yr Li-ion 25\% / 10yr LTO 80\%（V10，三档+四档） & 附录B §B.2；附录C §C.2.2 \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{已替代参数与当前取值对照}
+\label{sec:superseded-params}
+
+以下参数或表述在分析过程中被替代或修正。列出目的在于：(1) 使读者在对照此前版本或外部研究时知晓哪些数字已不再有效；(2) 展示分析过程中识别并修正的关键分歧点。
+
+\begin{enumerate}
+  \item \textbf{kW/t 反推链（70/55/45 kW/t）已被废弃。}该链以二手转述为分母、存在定义域歧义和循环引用风险（详见§E.1），当前计算载荷质量改为从地面硬件锚点直接推导（附录C §C.3）。
+
+  \item \textbf{此前计算载荷质量值（2,143/2,727/3,333 kg）已被替换。}当前取值为 1,200/1,500/2,000 kg（V30 bottom-up 裁决），此前三值仅作为废弃原因存档于§E.1。
+
+  \item \textbf{JSON 参数 \path{compute_specific_power_kw_per_t} 已被移除。}Python 脚本中计算载荷质量改为从 JSON 的 payload 质量字段直接读取，不经过 kW/t 中间量。
+
+  \item \textbf{电池成本 item\_id \path{battery_cost_per_kwh} 已分裂为两项。}\\
+        当前 item\_id 为 \path{battery_cost_per_kwh_nmc}（NMC \$200/kWh，三档）和 \path{battery_cost_per_kwh_lto}（LTO \$260/350/400/kWh，四档）。此前统一值 \$400/kWh 与 satsearch 价格锚点存在约225倍矛盾，已废弃。
+
+  \item \textbf{HJT 路线定位已从此前的"降级/禁止"修正为"并行成熟路线"。}HJT 与 GaAs 物理链可完全比较（附录C §C.2.4），价格链闭合度单独标注。HJT 不满足 AI1 70m 翼展几何约束（70m $\times$ 18.5m 不可实现），不作为可落地主路线——这是几何约束的结论，不构成对技术路线的否定。
+
+  \item \textbf{以下结果文档已被替代：}
+  \begin{itemize}
+    \item \path{stage2_mass_cost_results.md}\\
+      $\to$ \path{stage2_economic_branches_blackwell.md}
+    \item \path{stage2_power_system_results.md}\\
+      $\to$ \path{stage2_power_system_results_blackwell_hjt.md}
+    \item \path{stage2_architecture_reconciliation.md}（Rubin 已降级为支线留痕，不再进入主模型）
+  \end{itemize}
+
+  \item \textbf{标记为"仅作外部参照"的参数不构成主链闭合结论。}涉及 LTO 电池成本（四档）、HJT 完整 TCO（当前仅给出方向性估计）、以及平台系数/推进质量/通信质量/PCDU 成本等全部 14 个四档参数。
+
+  \item \textbf{HJT 补齐估计值 $\sim$\$1,005M 为方向性指示，不是已闭合的精确 TCO。}该值说明 HJT 成本不优于 GaAs 的结论方向，正文中标注为"补齐估计"并单独声明闭合度。
+\end{enumerate}
+
+\subsection{参数四档分级与 DoD 边界约束}
+\label{sec:dod-boundary}
+
+\subsubsection{参数四档分级约束}
+
+全部47参数经Task 4逐条重分级，统计如下：
+
+\begin{table}[H]
+  \centering
+  \caption{参数四档分级统计}
+  \label{tab:param-tier-boundary}
+  \begin{tabular}{lclp{6cm}}
+  \toprule
+  \textbf{档位} & \textbf{数量} & \textbf{占比} & \textbf{在正文中的引用方式} \\
+  \midrule
+  一档（物理推导链） & 5 & 11\% & 可直接作为正文结论引用，无需附加不确定性声明 \\
+  二档（权威资料） & 7 & 15\% & 可引用，建议标注来源类型（多源交叉验证或单一权威来源） \\
+  三档（可迁移证据） & 17 & 36\% & 可引用，需附带迁移局限说明（"该值来自XX迁移，依据为YY"） \\
+  四档（合理推断） & 14 & 30\% & 可引用，需附带推断依据和失效风险说明；不进入执行摘要 \\
+  禁止入模 & 1 & 2\% & 不进入正文分析；相关分析已使用替换后的新值 \\
+  已废弃 & 3 & 6\% & 仅在本附录存档，不进入正文 \\
+  \midrule
+  \textbf{合计} & \textbf{47} & \textbf{100\%} & \\
+  \bottomrule
+  \end{tabular}
+\end{table}
+
+四档参数占比30\%（涉及约35\%的制造成本项）是AI1信息公开不足的客观结果，非执行缺陷。14个四档参数均已附带推断依据和失效风险说明（详见内部参数裁决文档），但不宜作为已证实数字引用。
+
+\subsubsection{DoD边界约束}
+
+DoD（放电深度）的系统边界已在 Task 5 中界定：
+
+\begin{itemize}
+  \item DoD是电池储能子系统的独立参数，决定电池名义容量 $E_{\text{battery}} = P_{\text{sustained}} \times t_{\text{eclipse}} / (\text{DoD} \times \eta_{\text{discharge}})$，从而影响电池质量与成本。
+  \item DoD 与 GaAs/HJT 的关系是间接耦合：光伏阵列需满足电池回充需求，但 DoD 本身不随光伏路线变化。同一颗卫星的电池配置不因光伏电池化学体系改变。DoD 在报告中统一表述为"电池子系统的 DoD 取值（共享于 GaAs 和 HJT 路线）"。
+  \item DoD 通过质量链间接影响整星总质量和发射成本（DoD$\downarrow$ $\to$ $E_{\text{battery}}$ $\uparrow$ $\to$ $M_{\text{battery}}$ $\uparrow$ $\to$ $M_{\text{power}}$ $\uparrow$ $\to$ $M_{\text{total}}$ $\uparrow$ $\to$ $C_{\text{launch}}$ $\uparrow$），这是电池子系统对整星的穿透性影响。
+\end{itemize}
+
+\subsection{参数档位解读提示}
+\label{sec:reading-guide}
+
+本报告所有关键数字均附带证据档位标注（一至四档，及"禁止入模""已废弃"两档）。以下为读者在阅读正文时判断各数字可靠性的参考指引。
+
+\begin{description}
+  \item[一档（物理推导链）] 可直接采信。来源为物理定律或工程必然性约束（如 S-B 方程推导的散热面积、轨道力学推导的食时）。无需额外不确定性声明。
+
+  \item[二档（权威资料）] 可采信，但建议关注来源类型。单一权威来源（如 AzurSpace 4G32 BOL 效率）与多源交叉验证（如三家媒体对 AI1 功率参数的一致转述）的证据强度有所不同，正文中已标注。
+
+  \item[三档（可迁移证据）] 可参考，但迁移过程存在局限性。典型如 Starlink 电池数据迁移至 AI1 场景——迁移的物理逻辑成立（同为 LEO 空间电池），但任务剖面差异（通信 vs 计算）可能引入偏差。正文中三档参数均附带迁移依据和局限说明。
+
+  \item[四档（合理推断）] 仅用于填充模型完整性，不可独立作为结论支撑。涉及 14 个参数（散热器面密度、平台系数、推进/通信质量与成本等），每个均标注推断依据和主要失效风险。正文执行摘要中不使用四档参数作为核心结论。
+
+  \item[禁止入模 / 已废弃] 已被公开证据反驳或无支撑，或推导路径已被本报告永久替代。仅在本附录存档，不出现在正文分析中。
+\end{description}
+
+当前 47 参数中四档占比 30\%（14/47），影响约 35\% 的制造成本项。这是 AI1 信息公开不足的客观结果：在公开证据约束下，14 个参数均不具备升级至更高档位的条件，但均已嵌入推断依据和失效风险说明（详见内部参数裁决文档）。读者在引用本报告数字时应特别注意这 14 个参数的推断性质。
+
+\subsection{关键参数的约束条件}
+\label{sec:param-constraints}
+
+以下约束条件来自物理边界或迁移来源的适用范围，超范围外推可能导致结论偏差：
+
+\begin{itemize}
+  \item \textbf{散热器面密度（4.0/5.0/6.5 kg/m$^2$）}：适用于刚性面板设计。若 AI1 采用展开式薄膜散热器、液滴散热器等非常规方案，实际面密度可能偏离 50\% 以上。
+
+  \item \textbf{平台系数（0.25/0.35/0.45）}：基于 Starlink V2 Mini 质量粗拆（ratio $\sim$0.38），适用于 $\sim$8t 级卫星。不可线性外推至百吨级或分布式碎片化集群架构。
+
+  \item \textbf{GaAs 阵列面密度（1.5 kg/m$^2$, panel-only）}：仅含电池片 + 盖片 + 互连 + 基板，不含展开机构（铰链/电机/压紧释放）。展开机构质量在模型中单独核算。
+
+  \item \textbf{HJT 路线整体定位}：物理链闭合度与 GaAs 可比，但不满足 AI1 70m 翼展几何约束（所需约 18.5m 平均宽度不可实现）。报告中的角色为并行技术对照，用于展示不采用 GaAs 的机会成本。
+\end{itemize}

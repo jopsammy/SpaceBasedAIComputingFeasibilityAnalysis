@@ -1,0 +1,45 @@
+% TCO 分支对照图 — 第7章用
+% 三分支（10年-GaAs主链、5年-GaAs对照、5年-HJT补齐）+ 地面IDC参照
+% 总成本构成堆叠柱状图
+\begin{tikzpicture}
+  \begin{axis}[
+      ybar stacked,
+      width=13cm, height=7cm,
+      bar width=1.4cm,
+      ymin=0, ymax=1600,
+      ylabel={10年总成本（百万美元）},
+      ylabel style={font=\small},
+      xtick=data,
+      xticklabels={10年-GaAs\\主链, 5年-GaAs\\对照, 5年-HJT\\补齐, 地面IDC\\参照},
+      xticklabel style={font=\footnotesize, align=center, text width=1.9cm},
+      legend style={
+        font=\footnotesize,
+        at={(0.5,-0.28)},
+        anchor=north,
+        legend columns=-1,
+        draw=none
+      },
+      nodes near coords={
+        \pgfmathprintnumber{\pgfplotspointmeta}
+      },
+      nodes near coords style={font=\tiny, anchor=center, /pgf/number format/.cd, fixed, precision=0, /tikz/.cd, fill=white, inner sep=1pt, opacity=0.8, text opacity=1},
+      enlarge x limits=0.18,
+    ]
+    % 10年-GaAs 主链: 制造696.72 + 发射14.13 + 运维保险退役54.13 = 764.98
+    % 5年-GaAs 对照: 1259.69 + 23.68 + 57.89 = 1341.26
+    % 5年-HJT 补齐: 916 + 30.44 + 58.56 ≈ 1005
+    % 地面IDC参照 (position 3): ~64.6M
+    \addplot [fill=cyan!30!gray!40, draw=cyan!40!gray!60]  coordinates {(0,696.72) (1,1259.69) (2,916)    (3,0)};
+    \addplot [fill=teal!30!gray!40, draw=teal!40!gray!60]  coordinates {(0,14.13)  (1,23.68)   (2,30.44)  (3,0)};
+    \addplot [fill=brown!30!gray!40, draw=brown!40!gray!60] coordinates {(0,54.13)  (1,57.89)   (2,58.56)  (3,0)};
+    \addplot [fill=orange!40!gray!30, draw=orange!50!gray!50] coordinates {(0,0)       (1,0)       (2,0)      (3,64.6)};
+
+    % 总成本标签（axis坐标系统）
+    \node [font=\footnotesize\bfseries] at (axis cs:0,810)  {\$764.98M};
+    \node [font=\footnotesize\bfseries] at (axis cs:1,1380) {\$1,341.26M};
+    \node [font=\footnotesize\bfseries] at (axis cs:2,1040) {$\sim$\$1,005M};
+    \node [font=\footnotesize\bfseries, text=orange!60!black] at (axis cs:3,110)  {$\sim$\$64.6M};
+
+    \legend{制造成本, 发射成本, 运维+保险+退役, 地面IDC参照（右柱）}
+  \end{axis}
+\end{tikzpicture}

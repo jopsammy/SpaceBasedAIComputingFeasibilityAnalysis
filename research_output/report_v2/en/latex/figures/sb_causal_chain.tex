@@ -1,0 +1,60 @@
+% S-B causal chain diagram — Chapter 4
+% Complete derivation chain from Stefan-Boltzmann Law to AI1 operating point
+% "Formula → parameter substitution → operating temperature → physical conclusion" visualized causal chain
+% Cold aesthetic: low-saturation cool-gray/slate-blue palette
+\resizebox{\textwidth}{!}{
+\begin{tikzpicture}[
+  node distance=0.7cm and 1.2cm,
+  formula/.style={rectangle, draw=gray!60, rounded corners, minimum width=3.5cm,
+                  minimum height=1.2cm, align=center, font=\small, fill=gray!16},
+  param/.style={rectangle, draw=gray!60, rounded corners, minimum width=3.0cm,
+                minimum height=0.9cm, align=center, font=\small, fill=cyan!16!gray!10},
+  result/.style={rectangle, draw=gray!70, rounded corners, minimum width=3.0cm,
+                 minimum height=0.9cm, align=center, font=\small\bfseries, fill=blue!16!gray!14},
+  conclusion/.style={rectangle, draw=gray!80, rounded corners, minimum width=3.8cm,
+                     minimum height=1.0cm, align=center, font=\small\bfseries, fill=gray!32},
+  arrow/.style={thick, draw=gray!60, ->, >=stealth},
+  label/.style={font=\footnotesize, text=gray!60!black}
+]
+  % ===== Row 1: Physical law =====
+  \node[formula] (sb) {\textbf{Stefan-Boltzmann Law}\\[2pt]$P/A = \varepsilon \sigma T^{4}$};
+  \node[label, below=0.1cm of sb] {$\sigma = 5.6704\times10^{-8}$ W·m$^{-2}$·K$^{-4}$};
+
+  % ===== Row 2: Double-sided radiation =====
+  \node[formula, below=of sb] (double) {\textbf{Double-Sided Radiation Correction}\\[2pt]$P/A_{\text{physical}} = 2\varepsilon\sigma T^{4}$};
+  \node[label, below=0.1cm of double] {Both sides radiate to deep space, effective area doubles};
+
+  \draw[arrow] (sb) -- (double);
+
+  % ===== Row 3: AI1 parameter substitution =====
+  \node[param, below=of double] (params) {\textbf{Substitute AI1 Public Parameters}\\[2pt]$P = 150$ kW, $A = 110$ m$^{2}$};
+  \node[label, below=0.1cm of params] {Equivalent single-side flux $\approx 682$ W/m$^{2}$};
+
+  \draw[arrow] (double) -- (params);
+
+  % ===== Row 4: Inferred temperature =====
+  \node[result, below=of params] (temp) {\textbf{Inferred Equilibrium Temperature}\\[2pt]$T \approx 342.5$ K ($\varepsilon \approx 0.90$)};
+  \node[label, below=0.1cm of temp] {Approx.\ $69.4^{\circ}$C, physical panel temperature};
+
+  \draw[arrow] (params) -- (temp);
+
+  % ===== Row 5: Conclusion =====
+  \node[conclusion, below=of temp] (verdict) {\textbf{Physically Valid, but Thin Margin}\\[2pt]$\varepsilon$ degradation approaches material limit};
+  \node[label, below=0.1cm of verdict] {Heat dissipation density is a hard physical constraint, cannot be reduced indefinitely};
+
+  \draw[arrow] (temp) -- (verdict);
+
+  % ===== Left edge annotation =====
+  \node[font=\tiny, text=gray!40, rotate=90, anchor=south] at (-2.8,0) {Derivation direction $\longrightarrow$};
+
+  % ===== Right-side supplementary notes =====
+  \node[font=\footnotesize, text=gray!50!black, align=left, anchor=north west] at (4.5,-1.2) {
+    Key Parameter Sources:\\[2pt]
+    $\bullet$ $\sigma$: CODATA 2018 recommended value [Tier~1]\\[2pt]
+    $\bullet$ 150 kW: AI1 official peak heat dissipation [Tier~2]\\[2pt]
+    $\bullet$ 110 m$^{2}$: AI1 physical panel area [Tier~2]\\[2pt]
+    $\bullet$ $\varepsilon\approx0.90$: High-emissivity coating typical value [Tier~3]
+  };
+
+\end{tikzpicture}
+}

@@ -1,0 +1,188 @@
+% sections/04_science.tex
+% 第4章：科学可行性
+
+\section{科学可行性：散热物理与轨道热环境}
+
+本章是三层面分析中最底层、最不可逾越的判断。如果散热在物理上不可能——即所需散热温度超过材料承受极限，或所需散热面积在物理上无法实现——那么后续的工程和商业分析就失去前提。本章\emph{仅}使用物理定律和可公开验证的物理常数，不依赖任何工程假设或商业参数。所有关键数值的完整推导见附录 C\;\S C.1（斯特藩-玻尔兹曼）和\;\S C.2（轨道电源能量预算）。
+
+\subsection{斯特藩-玻尔兹曼定律与 AI1 散热工作点}
+
+\subsubsection{基本物理约束}
+
+在真空中，热辐射是唯一的散热途径。斯特藩-玻尔兹曼定律决定了单位面积散热通量的物理上限：
+
+\begin{equation}
+\frac{P}{A} = \varepsilon \sigma T^{4}
+\label{eq:sb}
+\end{equation}
+
+其中 $\sigma = 5.6704\times10^{-8}\;\text{W\;m}^{-2}\;\text{K}^{-4}$（CODATA 2018 推荐值【一档·物理常数】），$\varepsilon$ 为表面辐射率（$0<\varepsilon\leq 1$），$T$ 为散热面绝对温度（K），$P/A$ 为单面散热通量。
+
+该公式意味着：在给定辐射率下，要将散热通量翻倍，需要将绝对温度提高约 $2^{1/4} \approx 1.19$ 倍（即 $T^4$ 关系）：从 300\;K 到 357\;K 可使通量翻倍；但从 350\;K 到 417\;K 才能再次翻倍（详细敏感性分析见附录 C\;\S C.1）。这意味着散热通量存在物理上的"收益递减"——温度越高，进一步提升的通量代价越大，同时材料耐受极限也越逼近。
+
+\subsubsection{AI1 工作点的物理验证}
+
+AI1 卫星采用双面辐射散热板设计：物理面板面积 110\;m\textsuperscript{2}，等效辐射面积 220\;m\textsuperscript{2}（两面均辐射至深空）。双面辐射通量（按物理面板面积计）为：
+
+\begin{equation}
+\frac{P}{A_{\text{物理面板}}} = 2\varepsilon\sigma T^{4}
+\label{eq:sb_double}
+\end{equation}
+
+已知 AI1 宣称峰值散热功率 150\;kW、双面辐射面积 110\;m\textsuperscript{2} 【二档·权威资料，AI1 官方参数\cite{spacex2026ai1}】。代入：
+
+\begin{itemize}[leftmargin=*]
+    \item 等效单面通量：$150,000\;\text{W} / 220\;\text{m}^2 \approx 682\;\text{W/m}^2$
+    \item 双面通量（物理面板）：$150,000\;\text{W} / 110\;\text{m}^2 \approx 1,364\;\text{W/m}^2$
+\end{itemize}
+
+图\ref{fig:sb_causal_chain}将上述推导链压缩为可视化因果路径——从斯特藩-玻尔兹曼定律出发，经双面辐射修正和 AI1 参数代入，反推出散热面平衡温度，最终收敛于"物理成立但裕度薄"的判断。
+
+\begin{figure}[H]
+\centering
+\input{figures/sb_causal_chain}
+\caption{从斯特藩-玻尔兹曼定律到 AI1 工作点的可视化因果推导链——展示"公式 $\to$ 参数代入 $\to$ 工作温度 $\to$ 物理结论"的完整逻辑路径。}
+\label{fig:sb_causal_chain}
+\end{figure}
+
+表\ref{tab:ai1_temperature}进一步反推不同辐射率下所需的散热面平衡温度：
+
+\begin{table}[H]
+\centering
+\caption{AI1 散热参数反推——双面辐射模式下不同 $\varepsilon$ 所需的平衡温度}
+\label{tab:ai1_temperature}
+\begin{tabular}{ccc}
+\toprule
+\textbf{辐射率 $\varepsilon$} & \textbf{所需温度 $T$ (K)} & \textbf{所需温度 (\unitC{})} \\
+\midrule
+0.85 & $\sim$347.9 & $\sim$74.8 \\
+0.88 & $\sim$345.0 & $\sim$71.9 \\
+\textbf{0.90} & \textbf{$\sim$342.5} & \textbf{$\sim$69.5} \\
+0.92 & $\sim$340.2 & $\sim$67.1 \\
+0.95 & $\sim$336.8 & $\sim$63.7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{验证结论：AI1 的 1,400\;W/m\textsuperscript{2}（物理面板）散热工作在物理上成立，但已逼近当前材料天花板。} 在双面辐射、$\varepsilon\approx 0.90$、面板温度约 342.5\;K（69.5\unitC{}）时可达到 $\sim$1,400\;W/m\textsuperscript{2}。面板温度 69.5\unitC{} 在液冷散热器正常工作范围内——这意味着 AI1 的热设计不需要极端材料即可实现其声明值。然而，$\varepsilon=0.90$ 需要高性能热控涂层（如 Z-93 白漆），在空间环境退化（UV + 原子氧）后的寿命末期（EOL）$\varepsilon$ 会下降至约 0.82--0.85，届时散热能力将衰减 5--10\%，裕度非常紧\cite{nasa2024sst,nasa1993thermal}。
+
+\textbf{逻辑桥接}：从 S-B 定律（物理常数 $\sigma$ + 辐射率 $\varepsilon$ + 温度 $T^4$）出发，代入 AI1 的公开物理参数（150\;kW / 110\;m\textsuperscript{2} 双面），反推出工作温度 $\sim$342.5\;K。该温度在液冷散热器范围内——因此 AI1 的散热设计在物理上自洽，但 EOL 退化后裕度极薄。（完整推导与参数敏感性分析见附录 C\;\S C.1）
+
+\subsection{散热面积缩放与 1\;GW 级别含义}
+
+\subsubsection{从单星到系统的散热面积缩放}
+
+1\;MW 持续 IT 负载（扣除电源转换和配电损耗后）需要约 917\;m\textsuperscript{2} 的双面散热面积（按 AI1 的 682\;W/m\textsuperscript{2} 单面等效通量计算），即约 8.33 颗 AI1 级卫星。
+
+若将此缩放至马斯克所提及的 1\;GW 级别部署，散热需求如表\ref{tab:gigawatt_area}所示：
+
+\begin{table}[H]
+\centering
+\caption{1\;GW 轨道数据中心所需最小散热面积（多场景）}
+\label{tab:gigawatt_area}
+\footnotesize
+\begin{tabular}{lcccrr}
+\toprule
+\textbf{场景} & $\varepsilon$ & $T$ (K) & \textbf{模式} & \textbf{通量 (W/m\textsuperscript{2})} & \textbf{面积 (km\textsuperscript{2})} \\
+\midrule
+AI1 BOL（激进）      & 0.90 & 342.5 & 双面 & $\sim$1,403 & $\sim$0.71 \\
+AI1 EOL（退化后）     & 0.83 & 340   & 双面 & $\sim$1,250 & $\sim$0.80 \\
+典型航天器设计点      & 0.85 & 350   & 双面 & $\sim$1,446 & $\sim$0.69 \\
+保守设计点            & 0.85 & 323   & 单面 & $\sim$523   & $\sim$1.91 \\
+高性能涂层 + 高温    & 0.93 & 353   & 双面 & $\sim$1,740 & $\sim$0.57 \\
+极限材料 + 最高温    & 0.96 & 393   & 双面 & $\sim$2,970 & $\sim$0.34 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{1\;GW 所需 AI1 级卫星数量}：$1,000\;\text{MW} / 0.12\;\text{MW} \approx 8,333$ 颗；所需散热总面积约 $\sim$8,333 颗 $\times 110\;\text{m}^2 \approx 0.92\;\text{km}^2$。物理上不存在不可逾越的障碍（0.92\;km\textsuperscript{2} 的散热面积完全在可制造范围内），但工程上的部署、编队和相互遮挡问题是完全不同的维度（纳入第5章讨论）。
+
+\textbf{逻辑桥接}：AI1 工作点（150\;kW / 110\;m\textsuperscript{2} 双面）定义了当前工程可行的散热通量 $\sim$1,364\;W/m\textsuperscript{2}。从此出发线性缩放：1\;MW 持续 IT $\rightarrow 8.33$ 颗 $\rightarrow 917\;\text{m}^2$；1\;GW $\rightarrow 8,333$ 颗 $\rightarrow 0.92\;\text{km}^2$。物理上可行——但每颗卫星都是一个需要独立指向、供电、通信的完整航天器，物理可行不等于工程可行。
+
+\subsection{LEO 真实热环境约束}
+
+斯特藩-玻尔兹曼定律给出的"理想真空散热"实际上被 LEO 轨道的真实热环境所削减。600\;km 轨道不是一个"无限冷库"——以下环境热源会降低散热器的有效散热能力：
+
+\subsubsection{环境热源}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{太阳直射}：1,361\;W/m\textsuperscript{2}（AM0 太阳常数，一档物理常数）。对于散热器而言，这意味着如果散热面在日照段面向太阳，其表面会被额外加热，净散热能力下降【一档·物理推导链】。
+    \item \textbf{地球反照（Albedo）}：约 $\sim$122\;W/m\textsuperscript{2}（太阳常数 1,361 $\times$ 地球反照率 $\sim$0.3 $\times$ 视角因子）。在 600\;km 高度，地球反照通量虽然比太阳直射低约一个数量级，但仍然不可忽略。
+    \item \textbf{地球红外辐射}：约 $\sim$240\;W/m\textsuperscript{2}（在 600\;km 高度显著衰减但仍需计入）。这是地球自身发出的长波红外辐射，散热器接收来自地球的热量会削减其净散热能力\cite{clawson2002thermal,nasa2021tm4527}。
+\end{enumerate}
+
+综合以上因素，LEO 散热器的实际有效散热能力比理想真空计算低 15--40\%，具体取决于轨道姿态、散热器朝向、轨道周期内的太阳角变化和地球红外/反照负荷的瞬时波动。
+
+\subsubsection{轨道昼夜循环与储能约束}
+
+在 600\;km 圆轨道、最保守食时近似（$\beta = 0$，即卫星轨道面与太阳矢量齐平，食时最长）下：
+
+\begin{itemize}[leftmargin=*]
+    \item 轨道周期：约 96.7\;min
+    \item 食影时长：约 35.5\;min
+    \item 日照时长：约 61.2\;min
+    \item 食区负载能量：$120\;\text{kW} \times 35.5\;\text{min} \approx 71.0\;\text{kWh}$
+\end{itemize}
+
+这意味着：在每次食影段，电池必须放出 71.0\;kWh 的能量来维持计算硬件的持续运行；在随后的日照段，光伏阵列必须在 61.2 分钟内同时提供 120\;kW 持续负载和额外的电池回充功率。电池容量和充放电深度（DoD）的物理约束将在第5章工程可行性中详细分析。
+
+\subsubsection{相变材料（PCM）的限制}
+
+有观点认为相变材料（PCM）可替代电池作为食影段的热管理方案。PCM 利用固-液相变潜热吸收峰值热负荷，在理论上可以减少散热器面积峰值需求。然而，PCM 的质量效率（约 200--300\;kJ/kg）远低于电化学储能（Li-ion NMC 约 684\;kJ/kg 电当量），且 PCM 在多次热循环后的相分离和性能衰减是已知问题\cite{ijisrt2025pcm}。PCM 更适合处理分钟级的瞬态热负荷而非 35.5 分钟的持续食影散热，在当前分析中不替代电池作为食影段的主储能方案。
+
+\subsubsection{S-B理想值的工程注记——LEO环境热源对散热设计的影响}
+
+下表将斯特藩-玻尔兹曼理想真空散热值与计入LEO环境热源（太阳直射+地球反照+地球红外辐射）后的实际约束并列，展示热环境对散热设计的额外加压。注意：环境热源是负项——它们不会提高净散热能力，反而使设计裕度更紧。本表为工程定性注记，修正值不代入S-B主链推导，也不作为后续各章TCO模型的输入参数。
+
+\begin{table}[H]
+\centering
+\caption{LEO环境热源对S-B散热条件的实际影响（工程注记）}
+\label{tab:leo_sb_correction}
+\small
+\begin{tabularx}{0.96\textwidth}{
+  >{\raggedright\arraybackslash}p{0.31\textwidth}
+  >{\centering\arraybackslash}p{0.22\textwidth}
+  >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{约束维度（$\varepsilon=0.90$，双面辐射）} & \textbf{理想真空 S-B} & \textbf{计入LEO环境热源后} \\
+\midrule
+散热面平衡温度（在给定热负荷下）     & $\sim$342.5\;K（$\sim$69.5\unitC{}） & 需更高温度或更大面积方可维持同等净散热 \\
+净有效散热能力                       & 仅受辐射物理约束                  & 低于理想真空，幅度视轨道姿态15--40\%不等 \\
+等效环境热负荷                        & 无                                & 叠加太阳直射+反照+红外，不可忽略            \\
+设计裕度                              & 紧                                & 更紧                                           \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+注：环境热源使设计裕度更紧，而不是提高净散热能力。正文“LEO 真实热环境约束”小节所述 15--40\% 环境热源削减基于太阳直射（1,361\;W/m\textsuperscript{2}）、地球反照（$\sim$122\;W/m\textsuperscript{2}）和地球红外辐射（$\sim$240\;W/m\textsuperscript{2}）的叠加。实际值随轨道姿态、$\beta$ 角和散热器指向动态变化。
+
+\subsection{散热密度边界与展望}
+
+\subsubsection{当前可行上限}
+
+在 $\varepsilon\approx0.90$、$T\approx342.5$\;K 的工作点下，双面辐射通量约 1,400\;W/m\textsuperscript{2} 是当前材料和工程实践下的合理上限。将工作温度提升至 $\sim$373\;K（100\unitC{}）可通过双面 $\sim$2,000\;W/m\textsuperscript{2}，但 GPU 芯片结温的允许上限（通常 85--105\unitC{}）和热界面材料的长期可靠性在此温度下将承受显著压力。将 $\varepsilon$ 从 0.90 提升至 0.95 仅能获得约 5.6\% 的通量增益——因为辐射率已接近 1，几乎无进一步优化空间。
+
+\subsubsection{翻倍（$\to 2,800+$ W/m\textsuperscript{2}）在 2035 年前不可行}
+
+要将散热通量从 $\sim$1,400 翻倍至 2,800+ W/m\textsuperscript{2}，需要将 $T$ 从 342.5\;K 提升至约 408\;K（135\unitC{}），或将 $\varepsilon$ 从 0.90 提升至物理上不可能的 > 1.8。单一技术路径（仅提高温度或仅提高辐射率）在 2035 年前实现翻倍的工程前景较暗淡。
+
+\subsubsection{组合路径可实现 40--50\% 的改善}
+
+组合路径——高温芯片（允许结温 $\sim$373\;K）+ 耐久涂层（EOL $\varepsilon$ 维持在 $\geq$0.90）+ 适度可展开结构（增加等效辐射面积约 20--30\%）——可在 2032 年前将有效散热通量提升至约 2,000--2,100\;W/m\textsuperscript{2}（较当前改善 40--50\%）。这一路径不依赖任何单一技术的突破性进展，而是通过多项渐进改善的叠加实现。
+
+\subsection{科学可行性的最终判断}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{物理上成立}：斯特藩-玻尔兹曼定律不否定 1\;MW 级轨道散热。AI1 的 1,400\;W/m\textsuperscript{2}（双面辐射、$\varepsilon\approx0.90$、$T\approx342.5$\;K）在物理上自洽且可由当前材料实现。
+    \item \textbf{已逼近材料天花板}：AI1 工作点几乎用尽了当前高辐射率涂层 EOL 退化后的裕度。散热通量的进一步大幅提升需要组合路径（高温芯片 + 耐久涂层 + 可展开结构），而非单一技术突破。
+    \item \textbf{LEO 不是"理想冷库"}：太阳直射、地球反照和地球红外辐射使有效散热能力比理想真空低 15--40\%，昼夜食影循环（35.5 分钟黑暗）引入了必须由电池填补的储能需求。
+    \item \textbf{物理可行 $\rightarrow$ 工程可行之间的鸿沟}：物理上 0.92\;km\textsuperscript{2} 的散热面积完全可制造，但将其拆分为 $\sim$8,333 颗各自独立指向、供电、通信的完整航天器——这是第5章将要分析的工程问题。
+\end{enumerate}
+
+\bigskip
+\noindent\textbf{需要声明：}本章关于散热能力的推导首先回答的是"量级上是否物理可行"，而非"某一具体热控构型已经工程闭合"。正文所用双面辐射模型是理想化上界近似；真实在轨净散热能力还取决于散热器朝向、视角因子、表面 $\alpha/\varepsilon$、轨道 $\beta$ 角、地球红外/反照热流以及热输运链损耗。因此，本章结论应理解为"AI1 宣称的散热量级并未违反热辐射物理"，而不应延伸解读为"其完整热控方案已被本文验证完毕"。
+
+（本章完整公式推导、参数敏感性和代入值见附录 C\;\S C.1--\S C.2；LEO 轨道力学与食时计算见附录 C\;\S C.2；散热器材料、涂层和展开结构的文献综述见附录 D 对应路由行。）
+
+\endinput

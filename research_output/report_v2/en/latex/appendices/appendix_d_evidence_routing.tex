@@ -1,0 +1,265 @@
+% appendices/appendix_d_evidence_routing.tex
+
+\section{Evidence Chains, Citation Chains, and Script Routing}
+
+This chapter serves as the executable traceability path from main-text conclusions back to original sources---the main text says ``see Appendix~D'', and readers come here to trace layer by layer via the tables.
+
+\subsection{Five-Layer Routing Explanation}
+\label{sec:five-layer}
+
+All key conclusions in this report can be traced back to the most original public sources via the following five-layer routing:
+
+\begin{enumerate}
+  \item \textbf{Main-Text Conclusion} --- Root-level deliverable (\textit{Phase-2 Differential Analysis Preliminary Study.md}) or statistical figures in each results document
+  \item \textbf{Cross-Verification Document} --- Per-Task gap closure status and cross-verification analysis (\path{stage2_gap_closure_verification.md}, etc.)
+  \item \textbf{Structured JSON Input} --- Machine-readable parameter values (\path{stage2_mass_inputs_blackwell_hjt.json}, \path{stage2_cost_inputs_blackwell_hjt.json})
+  \item \textbf{V Adjudication Records} --- V1--V37 per-parameter adjudication records in the internal parameter adjudication document (containing derivation chains, source URLs, per-parameter adjudication)
+  \item \textbf{Original Source URL / Formula} --- Independently verifiable public web pages, DOIs, or physical formulas
+\end{enumerate}
+
+Usage: Find the conclusion you want to look up in the table $\to$ open the file in the corresponding column from left to right $\to$ each layer precisely points to more original supporting evidence. The rightmost column gives the final URL or formula, independently verifiable.\\[4pt]
+\footnote{All Python calculation scripts and structured input JSON files referenced in this report will be open-sourced to a GitHub research repository upon finalization of the report, at which point readers can independently reproduce all model outputs. The current-stage script routing is in \S\ref{sec:script-entry}.}
+
+\subsection{Key Conclusion Quick-Lookup Routing Table}
+\label{sec:quick-routing}
+
+The following tables are extracted from \path{stage2_evidence_routing_guide.md}, covering all core conclusions. \path{{ROOT}} in paths denotes the project root directory. Due to the large number of parameters, the routing is divided into four tables: Power and Efficiency (D.2-A1), Areal Density and Battery (D.2-A2), Subsystem Physical Parameters (D.2-B1), and Cost Summary (D.2-B2).
+
+% --- Sub-table D.2-A1: Power Baseline, Payload Mass, and PV Efficiency ---
+\begin{table}[H]
+  \centering
+  \caption{Key Conclusion Five-Layer Quick-Lookup Routing Table (A1: Power Baseline, Payload Mass, and PV Efficiency)}
+  \label{tab:routing-a1}
+  \scriptsize
+  \sloppy
+  \setlength{\tabcolsep}{2pt}
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{1.7cm}
+    >{\raggedright\arraybackslash}p{1.2cm}
+    >{\centering\arraybackslash}p{1.3cm}
+    >{\raggedright\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}p{2.0cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Conclusion} & \textbf{Value} & \textbf{Tier} & \textbf{First Landing Point (Results Doc)} & \textbf{Second Landing Point (Cross-Verification Doc)} & \textbf{Third Landing Point (JSON / Adjudication)} & \textbf{Fifth Landing Point (URL / Formula)} \\
+  \midrule
+  Power Orbital Baseline & Peak 150kW / Sustained 120kW / Orbit 600km & Tier~2 & \textit{Phase-2 Differential Analysis Preliminary Study.md}~\S1.3 & \path{stage2_gap_closure_verification.md}~\S VII & \path{current-note.md}~\S V1--V3 & Inkl / Tom's Hardware \url{inkl.com} / Knightli \url{knightli.com} / Indexbox \url{indexbox.io} three sources consistent \\
+  \addlinespace
+  Compute Payload Mass (Baseline) & 1,500~kg & Tier~2+3 & Same as above~\S5.2 & Same as above~\S III & \path{stage2_mass_inputs_blackwell_hjt.json} $\to$ \path{current-note.md}~\S V30 & Lenovo LP2357, NVIDIA PCF, NVIDIA DGX B200 User Guide (URLs in Appendix~C~\S C.3.1) \\
+  \addlinespace
+  GaAs Efficiency BOL & 32\% & Tier~2 & \path{stage2_power_system_results_blackwell_hjt.md}~\S III & \path{stage2_gap_closure_verification.md}~\S VII & \path{current-note.md}~\S V4 & AzurSpace 4G32 product page \url{https://www.azurspace.com/en/products/space-products/} \\
+  \addlinespace
+  GaAs Efficiency EOL & 29\% & Tier~2 & Same as above & Same as above & \path{current-note.md}~\S V5 & BOL 32\% $\times$ (1$-$9.4\% degradation); degradation rate from NASA NEPP report database III-V space cell public literature \\
+  \addlinespace
+  HJT Efficiency BOL & 22\% & Tier~2 & Same as above & Same as above~\S IV & \path{current-note.md}~\S V6 & Huasun \url{huasunsolar.com} mass production $>$26\%; Risen Energy \url{prnewswire.com} 26.61\%; LONGi \url{longi.com} 27.81\%; AM0 correction $\times$0.85$\to$ conservatively take 22\% \\
+  \addlinespace
+  HJT Efficiency EOL & 14\% & Tier~2 & Same as above & Same as above & \path{current-note.md}~\S V7 & CEA/INES independent irradiation experiment \url{https://www.cea.fr/cea-tech/liten/...}; ISFH Caltec independent verification \url{https://ines-solaire.org/} \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+% --- Sub-table D.2-A2: Array Areal Density and Battery Parameters ---
+\begin{table}[H]
+  \centering
+  \caption{Key Conclusion Five-Layer Quick-Lookup Routing Table (A2: Array Areal Density and Battery Parameters)}
+  \label{tab:routing-a2}
+  \scriptsize
+  \sloppy
+  \setlength{\tabcolsep}{2pt}
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{1.7cm}
+    >{\raggedright\arraybackslash}p{1.2cm}
+    >{\centering\arraybackslash}p{1.3cm}
+    >{\raggedright\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}p{2.0cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Conclusion} & \textbf{Value} & \textbf{Tier} & \textbf{First Landing Point (Results Doc)} & \textbf{Second Landing Point (Cross-Verification Doc)} & \textbf{Third Landing Point (JSON / Adjudication)} & \textbf{Fifth Landing Point (URL / Formula)} \\
+  \midrule
+  GaAs Array Areal Density & 1.5~kg/m$^2$ (panel-only) & Tier~3 & \path{stage2_power_system_results_blackwell_hjt.md}~\S III & \path{stage2_gap_closure_verification.md}~\S VII & \path{current-note.md}~\S V8 & Industry range 1.5--2.5~kg/m$^2$ (space-grade rigid GaAs panels), taken at low end of range \\
+  \addlinespace
+  HJT Array Areal Density & 1.8~kg/m$^2$ (panel-only) & Tier~3 & Same as above (HJT row) & Same as above~\S IV & \path{current-note.md}~\S V9 & Starlink V2 Mini panel-level back-calculation $\sim$1.7--2.6~kg/m$^2$; 33FG Research silicon-based array range 1.0--3.0 \\
+  \addlinespace
+  Battery DoD (Three-Branch) & 5yr 40\% / 10yr Li-ion 25\% / 10yr LTO 80\% & Tier~3+4 & \textit{Phase-2 Differential Analysis Preliminary Study.md}~\S8.2 & Same as above~\S V & \path{current-note.md}~\S V10 & Ray Barsa (SpaceX Chief Battery Engineer) presentation \url{https://ciclibattery.com/...}; Saft LTO whitepaper \url{https://saft.com/...} \\
+  \addlinespace
+  Battery Specific Energy & Li-ion NMC 190~Wh/kg / LTO 100~Wh/kg & Tier~3 & Same as above & Same as above & \path{current-note.md}~\S V11 & Starlink pack 230~Wh/kg (cell$\to$pack derating $\sim$12\%); Saft LTO 30--50\% lower than Li-ion \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+% --- Sub-table D.2-B1: Battery Cost and Subsystem Physical Parameters ---
+\begin{table}[H]
+  \centering
+  \caption{Key Conclusion Five-Layer Quick-Lookup Routing Table (B1: Battery Cost and Subsystem Physical Parameters)}
+  \label{tab:routing-b1}
+  \scriptsize
+  \sloppy
+  \setlength{\tabcolsep}{2pt}
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{1.7cm}
+    >{\raggedright\arraybackslash}p{1.2cm}
+    >{\centering\arraybackslash}p{1.3cm}
+    >{\raggedright\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}p{2.0cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Conclusion} & \textbf{Value} & \textbf{Tier} & \textbf{First Landing Point (Results Doc)} & \textbf{Second Landing Point (Cross-Verification Doc)} & \textbf{Third Landing Point (JSON / Adjudication)} & \textbf{Fifth Landing Point (URL / Formula)} \\
+  \midrule
+  Battery NMC Cost & \$200/kWh (fixed) & Tier~3 & \path{stage2_economic_branches_blackwell.md}~\S IV & \path{stage2_gap_closure_verification.md}~\S V & \path{current-note.md}~\S V36 & Direct Starlink transfer, zero-premium principle; Ray Barsa presentation + hundred-million-unit Panasonic 21700 procurement \\
+  \addlinespace
+  Battery LTO Cost & \$260/\$350/\$400/kWh & Tier~4 & Same as above~\S VIII & Same as above & \path{current-note.md}~\S V37 & Ground LTO/NMC price ratio 1.3--1.5$\times$ $\times$ \$200/kWh; proportional compression method \\
+  \addlinespace
+  Radiator Areal Density & 4.0/5.0/6.5~kg/m$^2$ & Tier~4 & \textit{Phase-2 Differential Analysis Preliminary Study.md}~\S4.3 & Same as above~\S III & \path{current-note.md}~\S V20 & Spacecraft thermal control structural areal density 3--8~kg/m$^2$; ISS 840m$^2$/1000kg$\approx$1.2 is deployable design not applicable to rigid panels \\
+  \addlinespace
+  Bus Coefficient & 0.25/0.35/0.45 & Tier~4 & Same as above & Same as above~\S VII & \path{current-note.md}~\S V21 & Starlink V2 Mini mass rough decomposition: all-up 740kg $-$ PV 197 $-$ battery 48 $-$ propulsion 40 $-$ comms 170 = structure/thermal/harness $\sim$285kg $\to$ ratio $\sim$0.38 \\
+  \addlinespace
+  Propulsion Mass & 200/350/500~kg & Tier~4 & Same as above~\S12.1 & Same as above & \path{current-note.md}~\S V22 & Starlink V2 Mini propulsion $\sim$5--6\% of all-up mass (SpaceX in-house argon Hall thruster); AI1 6--8t-class $\to$ 5--8\% $\to$ 300--640kg \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+% --- Sub-table D.2-B2: Communications / Power / Cost Summary ---
+\begin{table}[H]
+  \centering
+  \caption{Key Conclusion Five-Layer Quick-Lookup Routing Table (B2: Communications / Power / Cost Summary)}
+  \label{tab:routing-b2}
+  \scriptsize
+  \sloppy
+  \setlength{\tabcolsep}{2pt}
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{1.7cm}
+    >{\raggedright\arraybackslash}p{1.2cm}
+    >{\centering\arraybackslash}p{1.3cm}
+    >{\raggedright\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}p{1.8cm}
+    >{\raggedright\arraybackslash}p{2.0cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{Conclusion} & \textbf{Value} & \textbf{Tier} & \textbf{First Landing Point (Results Doc)} & \textbf{Second Landing Point (Cross-Verification Doc)} & \textbf{Third Landing Point (JSON / Adjudication)} & \textbf{Fifth Landing Point (URL / Formula)} \\
+  \midrule
+  Communications Mass & 200/300/450~kg & Tier~4 & \path{stage2_gap_closure_verification.md}~\S III & Same as above & \path{current-note.md}~\S V23+V28 & Google Suncatcher (2025 arXiv) \url{https://arxiv.org/html/2511.19468v1}: space-based AI cluster requires tens of Tbps ISL \\
+  \addlinespace
+  PCDU Specific Power & 1.0/0.5/0.2~kW/kg & Tier~4 & \path{stage2_power_system_results_blackwell_hjt.md}~\S III & Same as above~\S VII & \path{current-note.md}~\S V25 & Terma PCDU flight product (\href{https://satsearch.co/products/terma-power-conditioning-distribution-unit}{satsearch}): 15kW/28kg=0.54kW/kg \\
+  \addlinespace
+  Compute Payload Cost & \$38k/\$60k/\$100k/kW & Tier~3 & \path{stage2_economic_branches_blackwell.md}~\S IV & Same as above~\S VII & \path{current-note.md}~\S V12 & GB300 NVL72 ground \$25--33k/kW \url{awesomeagents.ai}; H100 space prototype 17--33$\times$ \url{culled.org}; SpaceX COTS strategy 1.5--3$\times$ \\
+  \addlinespace
+  GaAs Array Cost & \$180/\$200/\$250/W\_BOL & Tier~3 & Same as above & Same as above & \path{current-note.md}~\S V14 & AzurSpace product existence + previous-era estimate 200--400 USD/W + satsearch retail panel three anchors \\
+  \addlinespace
+  10yr-GaAs Total Cost & \$764.98M & Mixed & Same as above~\S III & Same as above~\S VI & Composite output of all JSON inputs & Results in Chapter~6 TCO table; script execution exit code 0 \\
+  \addlinespace
+  Deprecated kW/t Chain & 70/55/45 kW/t $\to$ permanently deprecated & Deprecated & \textit{Phase-2 Differential Analysis Preliminary Study.md}~\S5.1 & Same as above~\S III & \path{deprecated_notice} field & Deprecation reason in Appendix~E~\S E.1 \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{Python Script Entry Points}
+\label{sec:script-entry}
+
+All numerical calculations in this report are from the following two Python scripts. Both are independently Python-modeled, take structured JSON as input, and produce Markdown result documents; all values are reproducible and verifiable.
+
+\subsubsection{stage2\_power\_system\_model.py}
+
+\textbf{Function}: Orbital eclipse time calculation, battery capacity/mass, array area/mass, PCDU mass. Fixed Blackwell primary line, GaAs/HJT parallel, battery branched (DoD selected per branch).
+
+\begin{itemize}
+  \item \textbf{Input files}:\\
+    \path{stage2_mass_inputs_blackwell_hjt.json}\\
+    \path{stage2_cost_inputs_blackwell_hjt.json}
+  \item \textbf{Output result file}:\\
+    \path{stage2_power_system_results_blackwell_hjt.md}
+  \item \textbf{Key formula chain}: Orbital period $\to$ eclipse time $\to$ eclipse-segment load energy $\to$ battery nominal capacity (/DoD/$\eta$)\\
+    $\to$ recharge energy $\to$ sunlight-segment additional power $\to$ PCDU output $\to$ EOL array demand\\
+    $\to$ array area (/$G$/$\eta_{\text{eol}}$/$f_{\text{pkg}}$)
+  \item \textbf{Run command}: \path{python stage2_power_system_model.py}
+\end{itemize}
+
+\subsubsection{stage2\_mass\_cost\_model.py}
+
+\textbf{Function}: Bottom-up calculation of payload mass, all-up satellite 9-subsystem mass/cost per-item summation, three-branch TCO (10-year total window, including manufacturing cost + launch cost + insurance + O\&M + decommissioning).
+
+\begin{itemize}
+  \item \textbf{Input files}:\\
+    \path{stage2_mass_inputs_blackwell_hjt.json}\\
+    \path{stage2_cost_inputs_blackwell_hjt.json}
+  \item \textbf{Output result file}:\\
+    \path{stage2_power_system_results_blackwell_hjt.md}
+  \item \textbf{Key formula chain}: Compute payload mass $\gets$ \path{components[compute_payload].scenario_mass_kg} (direct read, no longer via kW/t denominator) $\to$ per-satellite mass = $\Sigma$(subsystem mass) $\to$ per-satellite manufacturing cost = $\Sigma$(subsystem cost) $\to$ total manufacturing cost = per-satellite cost $\times$ satellite equivalent $\times$ generations $\to$ total launch cost = per-satellite mass $\times$ satellite equivalent $\times$ launch unit price $\times$ generations $\to$ total cost = manufacturing + launch + insurance (8\%) + O\&M (\$5M/yr $\times$ 10) + decommissioning (\$3M/gen $\times$ generations)
+  \item \textbf{Run command}: \path{python stage2_mass_cost_model.py}
+\end{itemize}
+
+\begingroup
+\small
+\sloppy
+\subsection{Complete Reference Materials Inventory}
+\label{sec:full-references}
+
+The following lists all key public materials cited in this report, organized by topic. Format: name, URL or DOI, and where cited in the report.
+
+\subsubsection{Heat Dissipation Physics}
+
+\begin{itemize}
+  \item CODATA 2018 Stefan-Boltzmann constant: $\sigma = 5.670374419 \times 10^{-8}$ W m$^{-2}$ K$^{-4}$. \url{https://physics.nist.gov/cuu/Constants/}
+  \item Gilmore, D.G. (ed.) \textit{Spacecraft Thermal Control Handbook}. The Aerospace Press. ISBN: 1-884989-11-X. (Main text Chapter~4, heat dissipation system areal density reference)
+\end{itemize}
+
+\subsubsection{Orbital Environment}
+
+\begin{itemize}
+  \item WGS84 Earth parameters: $R_{\oplus} = 6378.137$ km, $\mu = 3.986004418 \times 10^{14}$ m$^3$/s$^2$.
+  \item ASTM E-490 AM0 Solar Constant: $G = 1361.0$ W/m$^2$. (Main text Chapter~5, Appendix~C~\S C.2)
+\end{itemize}
+
+\subsubsection{Launch Cost}
+
+\begin{itemize}
+  \item SpaceX Starship Payload User's Guide (2024). \url{https://www.spacex.com/vehicles/starship/} (Main text Chapter~6, launch capacity baseline)
+  \item FAA Starship/Super Heavy Launch License environmental assessment documents. (Launch frequency constraint source)
+\end{itemize}
+
+\subsubsection{GPU Hardware}
+
+\begin{itemize}
+  \item Lenovo LP2357 Product Guide: \href{https://lenovopress.lenovo.com/lp2357-lenovo-nvidia-gb300-nvl72-rack-scale-ai}{lenovopress} (Appendix~C~\S C.3.1)
+  \item NVIDIA HGX B200 PCF Summary: \href{https://images.nvidia.com/aem-dam/Solutions/documents/HGX-B200-PCF-Summary.pdf}{NVIDIA PDF} (Same as above)
+  \item NVIDIA DGX B200 User Guide: \href{https://docs.nvidia.com/dgx/dgxb200-user-guide/introduction-to-dgxb200.html}{docs.nvidia.com} (Same as above)
+  \item NVIDIA Rubin Space-1 Platform (GTC 2026). (Main text Chapter~3)
+\end{itemize}
+
+\subsubsection{Power System}
+
+\begin{itemize}
+  \item AzurSpace 4G32 Product Page: \href{https://www.azurspace.com/en/products/space-products/}{AzurSpace Official Site} (Appendix~C~\S C.2, GaAs BOL efficiency)
+  \item CEA/INES Irradiation Experiment: \href{https://www.cea.fr/cea-tech/liten/english/Pages/Medias/News/2025/major-breakthrough-for-photovoltaic-technology-space.aspx}{CEA/INES News Page} (HJT EOL efficiency)
+  \item Ray Barsa (SpaceX Chief Battery Engineer): \href{https://ciclibattery.com/battery-power-online-space-batteries-how-spacex-designs-batteries-for-satellites/}{Battery Power Online} (Battery DoD / specific energy / cost)
+  \item NASA Starlink Batteries Reliability Workshop (2025): \href{https://www.nasa.gov/wp-content/uploads/2024/01/starlink-batteries-reliability-lessons-from-10000-leo-satellites-abw-2025.pdf}{NASA PDF} (Battery specific energy)
+  \item Saft LTO Technical Whitepaper: \href{https://saft.com/en/horizon-new-lithium-based-technology-satellite-batteries-improving-mission-performance}{Saft Whitepaper} (LTO DoD / specific energy)
+  \item Terma PCDU Flight Product (BepiColombo MTM): \href{https://satsearch.co/products/terma-power-conditioning-distribution-unit}{satsearch}; \href{https://www.satnow.com/products/power-conditioning-and-distribution-units/terma/134-1195-bepicolombo-mtm-pcdu}{satnow} (PCDU specific power)
+  \item Huasun Solar (HJT): \href{https://www.huasunsolar.com/}{Huasun Official Site}
+  \item Risen Energy HJT 26.61\%: \href{https://www.prnewswire.com/news-releases/risen-energy-achieves-26-61-efficiency-for-hjt-solar-cell-302390000.html}{PR Newswire}
+  \item LONGi HJT 27.81\%: \href{https://www.longi.com/}{LONGi Official Site}
+\end{itemize}
+
+\subsubsection{Commercial / Economic}
+
+\begin{itemize}
+  \item Google Suncatcher (2025 arXiv): \href{https://arxiv.org/html/2511.19468v1}{arXiv HTML} (Communications system mass/cost inference)
+  \item 33FG Research Starlink V2 Mini Analysis: \href{https://research.33fg.com/analysis/starlink-v2-mini-optimized-lighter-satellites-more-bandwidth-per-launch}{33FG Research} (HJT array areal density range)
+  \item AwesomeAgents.ai GB300 NVL72 Hardware Cost: \href{https://awesomeagents.ai/hardware/nvidia-gb300-nvl72/}{AwesomeAgents.ai} (Compute payload ground cost anchor)
+  \item SpaceX AI1 Public Release (2026-06-08). Multi-source relay: Inkl / Tom's Hardware, Knightli, Indexbox. (Power / orbit / wingspan parameters)
+  \item NVIDIA GTC 2026 Keynote, Space-1 Rubin Platform. (Main text Chapter~4)
+\end{itemize}
+
+\subsubsection{Databases}
+
+\begin{itemize}
+  \item satsearch.co --- Space product database (battery, PCDU, PV panel price lookup)
+  \item NASA NEPP Report Database --- III-V space cell radiation degradation rate statistics
+\end{itemize}
+\endgroup

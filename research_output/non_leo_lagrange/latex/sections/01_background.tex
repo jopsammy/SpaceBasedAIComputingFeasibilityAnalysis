@@ -1,0 +1,51 @@
+% 01_background.tex — LEO 基准回顾与研究背景
+
+\section{引言与 LEO 基准回顾}
+
+\subsection{研究背景}
+
+太空算力（Space Computing）作为一种新兴范式，旨在将高性能计算基础设施部署于地球轨道或更远的深空位置，以利用空间独特的物理优势——无限制的太阳能获取、深空冷背景的散热效率、以及独特的地理覆盖能力。此前的研究（research-space-computing）聚焦于 LEO（低地球轨道，600 km SSO）的太空算力可行性，本报告作为其扩展，系统分析非 LEO 轨道及拉格朗日点的部署前景。
+
+\subsection{LEO 基准参数}
+
+LEO（600 km 太阳同步轨道，SSO）作为基准对比轨道，其关键参数如下 \cite{smad2020}：
+
+\begin{table}[H]
+\centering
+\caption{LEO (600 km SSO) 基准参数}
+\label{tab:leo-baseline}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{维度} & \textbf{参数值} & \textbf{备注} \\
+\midrule
+辐射 -- TID & 10--30~\kradyr & 4 mm Al 屏蔽；SAA 质子主导 \\
+辐射 -- SEU 率 & $10^{-4}$--$10^{-5}$ 次/器件$\cdot$天 & 55 nm CMOS 基准 \\
+热 -- 地球 IR 回载 & $\sim$240~\wpm & — \\
+热 -- 地球反照 & $\sim$480~\wpm{}（最大）& — \\
+热 -- 热循环 & $\sim$5,840 次/年 & $\sim$90 分钟周期，$\sim$40\% 阴影 \\
+$\Delta v$ -- 地面 $\rightarrow$ LEO & $\sim$9.4~\kms & 理论值 \\
+$\Delta v$ -- 相对 LEO & 1.00x 基准 & — \\
+通信 RTT & 5--10 ms & 单跳 \\
+日照占比 & $\sim$60\% & 含储能桥接 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{本报告评估框架}
+
+本报告对以下七个轨道/点位进行系统性评估：
+
+\begin{itemize}
+    \item \textbf{MEO（中地球轨道）}：以 GPS 星座约 20,200 km 轨道为代表
+    \item \textbf{GEO（地球同步轨道）}：约 35,786 km 赤道同步轨道
+    \item \textbf{HEO（大椭圆轨道）}：以 Molniya 轨道为代表（近地点$\sim$1,177 km，远地点$\sim$39,319 km）
+    \item \textbf{地日 L1、L2}：距地球约 1.5 M km 的日地平动点
+    \item \textbf{地月 L4、L5}：月球轨道 $\pm 60^{\circ}$ 三角平动点，距地球约 384,400 km
+    \item \textbf{地月 L1、L2}：距月球约 58,000--65,000 km 的月地平动点
+\end{itemize}
+
+评估维度覆盖辐射环境、热环境、\deltav 发射成本、太阳能供电、通信延迟、在轨维护可行性和全生命周期成本（TCO）七大工程维度，以及应用场景适配度和演进路径两个战略维度。
+
+\subsection{数据来源与方法}
+
+本报告数据来源包括：NASA 技术报告（NTRS）、同行评审期刊论文（\textit{Space Weather}、\textit{Advances in Space Research}、\textit{Open Astronomy} 等）、ESA 官方文档、产业分析报告及 SMAD（Space Mission Analysis and Design）标准参考书。拉格朗日点数据以 JWST 在 L2 的实测数据（Rauscher et al. 2025 \cite{jwst_cr_2025}）为最高质量来源。定量建模基于 5 个独立的 Python 脚本（M1--M5），覆盖 \deltav 成本、辐射剂量、热平衡、太阳能可用性和跨轨道综合成本对比。

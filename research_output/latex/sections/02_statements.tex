@@ -1,0 +1,71 @@
+% sections/02_statements.tex -- Q4 双方言论详细对比
+
+\section{双方言论详细对比：Phase 1调研成果}
+
+\subsection{马斯克发言综述（7条一手来源）}
+
+自2024年9月至2026年6月，马斯克通过多种公开渠道系统性阐述了太空AI算力的必然性。表\ref{tab:musk_statements}汇总了全部7条一手言论：
+
+\begin{table}[H]
+\centering
+\caption{马斯克关于太空算力的7条一手公开言论}
+\label{tab:musk_statements}
+\small
+\begin{tabular}{p{0.7cm}p{2.0cm}p{1.8cm}p{4.0cm}p{3.5cm}}
+\toprule
+\textbf{编号} & \textbf{时间} & \textbf{场合} & \textbf{核心论点} & \textbf{量化声明} \\
+\midrule
+发言1 & 2026-06-08 & SpaceX官方视频（AI1发布） & AI卫星设计比星链更简单；轨道AI定位为"人类迈向II型文明的必经之路" & AI1翼展70m、峰值150kW、持续120kW、散热密度1,400\unitWpm{}；1GW/年至2027年 \cite{spacex2026ai1} \\
+\hline
+发言2 & 2025-11-19 & X平台 & 星舰运力支撑轨道AI部署 & 星舰每年300--500GW部署能力 \cite{musk2025starship} \\
+\hline
+发言3a & 2025-10-24 & X平台 & 太阳能AI卫星是实现Kardashev-II文明的唯一途径 & -- \cite{musk2024kardashev} \\
+\hline
+发言3b & 2024-09 & X平台 & 所有能源生产本质上都将来自太阳能 & 德州一角即可供全美用电 \cite{musk2024kardashev} \\
+\hline
+发言3c & 2025-11-02 & X平台 & 月球制造+电磁炮发射 & 100TW/年可能 \cite{musk2025lunar} \\
+\hline
+发言4 & 2025-12 & 美沙投资论坛 & 太空AI不可避免；成本交叉时间预测 & 4--5年内太空算力比地面更便宜 \cite{musk2025us_saudi} \\
+\hline
+发言5 & 2026-05 & SpaceX S-1招股书 & 仅SpaceX能解决轨道AI计算技术挑战 & 2028年开始部署；每年100GW \cite{spacex2026s1} \\
+\hline
+发言6 & 2026-03-21 & Terafab发布会 & 芯片产能是太空算力的供应链基础 & 250亿美元投资、80\%算力产出用于轨道 \cite{musk2026terafab} \\
+\hline
+发言7 & 2026-01 & FCC申请文件 & 百万颗卫星规模的轨道AI部署计划 & 100万颗轨道AI卫星、AI Sat Mini 100kW/颗 \cite{spacex2026fcc} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{黄仁勋发言综述（5条一手来源）}
+
+黄仁勋的公开言论集中在2025年11月至2026年3月，篇幅较短但工程判断密度高。表\ref{tab:huang_statements}汇总了全部5条一手言论：
+
+\begin{table}[H]
+\centering
+\caption{黄仁勋关于太空算力的5条一手公开言论}
+\label{tab:huang_statements}
+\small
+\begin{tabular}{p{0.7cm}p{1.8cm}p{1.8cm}p{4.5cm}p{3.0cm}}
+\toprule
+\textbf{编号} & \textbf{时间} & \textbf{场合} & \textbf{核心论点} & \textbf{量化/工程细节} \\
+\midrule
+发言1 & 2026-03-16 & GTC 2026 Keynote & 发布Space-1 Vera Rubin太空计算平台；散热是根本瓶颈 & Rubin GPU太空推理性能比H100提升25倍；与6家太空企业合作 \cite{huang2026gtc} \\
+\hline
+发言2 & 2026-03-20 & All-In Podcast & 散热是太空数据中心最大技术壁垒；"需要数年时间" & 辐射散热需要极大散热面，系统复杂且昂贵 \cite{huang2026allin} \\
+\hline
+发言3 & 2025-11-19 & 美沙投资论坛（与马斯克同台） & 从硬件重量角度切入散热优势：地面冷却占机架约97.5\%重量 & "每个机架2吨，约1.95吨是冷却系统" \cite{musk_huang2025saudi} \\
+\hline
+发言4 & 2026-02-26 & NVIDIA Q4财报电话会 & 当前经济性不理想；太空与地面完全不同 & 涉及冷却、宇宙射线、太阳风暴、微陨石等系统性差异 \cite{huang2026earnings} \\
+\hline
+发言5 & 2026-03-23 & Lex Fridman Podcast & 太空提供持续太阳能+几乎无限空间；"极端协同设计"理念 & 芯片+网络+冷却+算法联合优化 \cite{huang2026lex} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{两人立场的交叉验证}
+
+两人的公开交集通过两个关键事件体现：2025年10月黄仁勋亲手将首台DGX Spark送至SpaceX Starbase交给马斯克；2025年11月沙特-美国投资论坛上两人首次同台讨论太空AI远景——这也是目前最接近"黄仁勋回应马斯克太空计划"的一次公开记录\cite{musk_huang2025saudi}。
+
+值得注意的是：\textbf{未找到黄仁勋直接评论马斯克星链计划或SpaceX轨道算力计划的独立公开言论。} 两人的立场差异主要通过各自独立论述和媒体对比报道呈现，而非相互直接批评。
+
+% end of 02_statements

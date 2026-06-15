@@ -1,0 +1,300 @@
+% appendices/appendix_c_calculation_methods.tex
+
+\section{核心计算方法与公式}
+
+本章为正文中所有计算结论的完整推导过程。正文给出结果和逻辑桥接，本章给出公式、代入值和边界条件，使技术读者可独立复算。
+
+\subsection{斯特藩--玻尔兹曼散热推导}
+\label{sec:sb-derivation}
+
+\subsubsection{基本公式}
+
+在真空轨道环境中，卫星只能通过热辐射散热。斯特藩--玻尔兹曼定律给出了黑体辐射通量与温度的关系：
+
+\begin{equation}
+  \frac{P}{A} = \varepsilon \sigma T^{4}
+  \label{eq:sb-basic}
+\end{equation}
+
+其中：
+\begin{itemize}
+  \item $P$ —— 辐射散热功率 [W]
+  \item $A$ —— 散热器面积 [m$^2$]（注意：双面辐射时 $A$ 为散热器几何面积，有效辐射面积为 $A_{\text{eff}} = 2A$）
+  \item $\varepsilon$ —— 表面辐射率（发射率），无量纲，典型空间热控涂层 $\varepsilon = 0.85\text{--}0.95$
+  \item $\sigma$ —— 斯特藩--玻尔兹曼常数，$5.670374419 \times 10^{-8}$ W m$^{-2}$ K$^{-4}$（CODATA 2018 推荐值）
+  \item $T$ —— 散热器表面绝对温度 [K]
+\end{itemize}
+
+\textbf{注意}：以上公式中 $\sigma$ 取 $5.6704 \times 10^{-8}$ W m$^{-2}$ K$^{-4}$。对双面辐射散热器，实际辐射通量 $P/A_{\text{geo}} = 2\varepsilon\sigma T^{4}$（$A_{\text{geo}}$ 为散热器几何面积）。本报告统一使用几何面积作为 $A$ 的基准口径。
+
+\subsubsection{AI1 工作点反推}
+
+假设AI1散热器取双面辐射配置：
+\begin{itemize}
+  \item 峰值热负荷 $P_{\text{peak}} = 150$ kW（二档，多源交叉验证）
+  \item 散热器几何面积 $A = 110$ m$^2$（一档，由体系反推：$150$ kW / $\sim$1.364 kW/m$^2$）
+  \item 辐射率 $\varepsilon = 0.90$（四档，工程推断：典型空间级白漆/OSR涂层）
+\end{itemize}
+
+双面辐射等效热通量（以几何面积为基准）：
+
+\begin{equation}
+  q_{\text{geo}} = \frac{P_{\text{peak}}}{A} = \frac{150 \times 10^{3}}{110} \approx 1364\ \text{W/m}^{2}
+\end{equation}
+
+该热通量对应单面等效辐射通量 $q_{\text{eff}} = q_{\text{geo}}/2 = 682$ W/m$^2$。
+
+求解散热器表面温度：
+
+\begin{equation}
+  T = \left(\frac{P_{\text{peak}}}{2A\varepsilon\sigma}\right)^{1/4}
+    = \left(\frac{150 \times 10^{3}}{2 \times 110 \times 0.90 \times 5.6704 \times 10^{-8}}\right)^{1/4}
+    \approx 342.5\ \text{K} \approx 69.4^{\circ}\text{C}
+  \label{eq:ai1-temperature}
+\end{equation}
+
+\subsubsection{散热面积缩放}
+
+给定任意目标散热功率 $P_{\text{target}}$，所需散热器几何面积（双面辐射）：
+
+\begin{equation}
+  A = \frac{P_{\text{target}}}{2\varepsilon\sigma T^{4}}
+  \label{eq:area-scaling}
+\end{equation}
+
+在本报告的1 MW持续IT负载目标下（$\sim$8.3颗AI1级卫星），散热器总几何面积约为 $110 \times 8.3 \approx 917$ m$^2$。
+
+\subsubsection{参数敏感性分析}
+
+$T^{4}$ 依赖性导致散热面积对温度高度敏感。表~\ref{tab:sb-sensitivity} 展示了各参数变化对散热面积的影响（以AI1基准为参照）：
+
+\begin{table}[H]
+  \centering
+  \caption{斯特藩--玻尔兹曼参数敏感性（基准：$P$=150 kW, $A$=110 m$^2$, $\varepsilon$=0.90, $T$=342.5 K）}
+  \label{tab:sb-sensitivity}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.6cm}
+    >{\centering\arraybackslash}p{2.8cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{参数变化} & \textbf{散热面积变化} & \textbf{说明} \\
+  \midrule
+  $T$: 342.5 $\to$ 300 K & $A \to$ 186 m$^2$ (+69\%) & 每降低10 K，面积增大约8-10\% \\
+  $T$: 342.5 $\to$ 400 K & $A \to$ 63 m$^2$ (-43\%) & 高温芯片（SiC/GaN）可显著缩小散热面积 \\
+  $\varepsilon$: 0.90 $\to$ 0.85 & $A \to$ 117 m$^2$ (+6\%) & 涂层退化是长期服役的已知风险 \\
+  $\varepsilon$: 0.90 $\to$ 0.95 & $A \to$ 104 m$^2$ (-5\%) & 高发射率涂层（如Vantablack级）改善有限 \\
+  双面$\to$单面辐射 & $A \to$ 220 m$^2$ (+100\%) & 单面辐射直接翻倍散热面积需求 \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsubsection{散热密度边界结论}
+
+当前可行上限约为1,400 W/m$^2$（双面辐射几何面积基准，$T\approx$342.5 K，$\varepsilon\approx$0.90）。翻倍至2,800+ W/m$^2$需要 $T \approx 407$ K——在2035年前单一技术路径上不可行。组合路径（高温芯片+耐久涂层+适度可展开结构）可在2032年前实现40-50\%改善。
+
+\subsection{轨道电源面积与能量预算推导}
+\label{sec:orbit-power}
+
+\subsubsection{轨道力学基础}
+
+对600 km圆轨道（$R_{\oplus} = 6378.137$ km，$\mu = 3.986004418 \times 10^{14}$ m$^3$/s$^2$，WGS84）：
+
+\begin{equation}
+  T_{\text{orbit}} = 2\pi\sqrt{\frac{(R_{\oplus} + h)^{3}}{\mu}}
+  \label{eq:orbit-period}
+\end{equation}
+
+代入 $h = 600$ km：
+
+\begin{equation}
+  T_{\text{orbit}} = 2\pi\sqrt{\frac{(6378.137 + 600)^{3} \times 10^{9}}{3.986004418 \times 10^{14}}}
+                     \approx 5802\ \text{s} \approx 96.7\ \text{min}
+\end{equation}
+
+食时（$\beta = 0$ 最保守近似，轨道平面与太阳矢量共面）：
+
+\begin{equation}
+  t_{\text{eclipse}} = T_{\text{orbit}} \times \frac{\arcsin(R_{\oplus} / (R_{\oplus} + h))}{\pi}
+  \label{eq:eclipse-time}
+\end{equation}
+
+\begin{equation}
+  t_{\text{eclipse}} \approx 5802 \times \frac{\arcsin(6378.137 / 6978.137)}{\pi}
+                     \approx 2128\ \text{s} \approx 35.5\ \text{min}
+\end{equation}
+
+日照时长：
+
+\begin{equation}
+  t_{\text{sunlight}} = T_{\text{orbit}} - t_{\text{eclipse}} \approx 3674\ \text{s} \approx 61.2\ \text{min}
+  \label{eq:sunlight-time}
+\end{equation}
+
+\subsubsection{电池容量需求}
+
+食影段负载能量需求：
+
+\begin{equation}
+  E_{\text{load, eclipse}} = P_{\text{sustained}} \times t_{\text{eclipse}}
+                            = 120\ \text{kW} \times \frac{2128}{3600}\ \text{h}
+                            \approx 71.0\ \text{kWh}
+  \label{eq:eload}
+\end{equation}
+
+电池名义容量（含DoD和放电效率约束）：
+
+\begin{equation}
+  E_{\text{battery, nominal}} = \frac{E_{\text{load, eclipse}}}{\text{DoD} \times \eta_{\text{discharge}}}
+  \label{eq:battery-capacity}
+\end{equation}
+
+代入基准值（DoD = 0.40，$\eta_{\text{discharge}}$ = 0.95）：
+
+\begin{equation}
+  E_{\text{battery, nominal}} = \frac{71.0}{0.40 \times 0.95} \approx 186.8\ \text{kWh}
+\end{equation}
+
+电池质量：
+
+\begin{equation}
+  M_{\text{battery}} = \frac{E_{\text{battery, nominal}} \times 1000}{\rho_{\text{specific}}}
+                      = \frac{186,800}{190} \approx 983\ \text{kg}
+  \label{eq:battery-mass}
+\end{equation}
+
+其中 $\rho_{\text{specific}} = 190$ Wh/kg为Li-ion NMC pack级比能量（三档，Starlink迁移）。
+
+\subsubsection{回充功率与阵列面积}
+
+回充能量需求（含充放电效率损失）：
+
+\begin{equation}
+  E_{\text{recharge}} = \frac{E_{\text{load, eclipse}}}{\eta_{\text{charge}} \times \eta_{\text{discharge}}}
+                       = \frac{71.0}{0.95 \times 0.95} \approx 78.7\ \text{kWh}
+  \label{eq:recharge-energy}
+\end{equation}
+
+日照段额外回充功率：
+
+\begin{equation}
+  P_{\text{recharge, extra}} = \frac{E_{\text{recharge}}}{t_{\text{sunlight}}}
+                               = \frac{78.7}{61.2/60} \approx 77.2\ \text{kW}
+  \label{eq:recharge-power}
+\end{equation}
+
+PCDU输出需求：
+
+\begin{equation}
+  P_{\text{pcdu, out}} = P_{\text{sustained}} + P_{\text{recharge, extra}}
+                         = 120 + 77.2 \approx 197.2\ \text{kW}
+  \label{eq:pcdu-out}
+\end{equation}
+
+EOL阵列需求功率（扣除母线损耗，$\eta_{\text{bus}} = 0.94$）：
+
+\begin{equation}
+  P_{\text{array, eol}} = \frac{P_{\text{pcdu, out}}}{\eta_{\text{bus}}}
+                          = \frac{197.2}{0.94} \approx 209.8\ \text{kW}
+  \label{eq:array-eol-power}
+\end{equation}
+
+BOL阵列需求功率（从EOL反推到BOL，退化因子 = $\eta_{\text{eol}}/\eta_{\text{bol}}$）：
+
+\begin{equation}
+  P_{\text{array, bol}} = \frac{P_{\text{array, eol}}}{\eta_{\text{eol}}/\eta_{\text{bol}}}
+  \label{eq:array-bol-power}
+\end{equation}
+
+阵列面积（太阳常数 $G = 1361.0$ W/m$^2$，封装修正 $f_{\text{pkg}} = 0.85$）：
+
+\begin{equation}
+  A_{\text{array}} = \frac{P_{\text{array, eol}}}{G \times \eta_{\text{eol}} \times f_{\text{pkg}}}
+  \label{eq:array-area}
+\end{equation}
+
+\paragraph{GaAs主链代入}（$\eta_{\text{bol}} = 0.32$, $\eta_{\text{eol}} = 0.29$）：
+
+\begin{equation}
+  P_{\text{array, bol}} = \frac{209.8}{0.29/0.32} \approx 231.5\ \text{kW}
+\end{equation}
+
+\begin{equation}
+  A_{\text{array, GaAs}} = \frac{209.8 \times 1000}{1361.0 \times 0.29 \times 0.85} \approx 625\ \text{m}^{2}
+\end{equation}
+
+阵列质量（面密度 $\sigma_{\text{array}} = 1.5$ kg/m$^2$，panel-only，展开机构另计）：
+
+\begin{equation}
+  M_{\text{array, GaAs}} = 625 \times 1.5 = 938\ \text{kg}
+\end{equation}
+
+\paragraph{HJT并行路线代入}（$\eta_{\text{bol}} = 0.22$, $\eta_{\text{eol}} = 0.14$）：
+
+\begin{equation}
+  P_{\text{array, bol}} = \frac{209.8}{0.14/0.22} \approx 329.7\ \text{kW}
+\end{equation}
+
+\begin{equation}
+  A_{\text{array, HJT}} = \frac{209.8 \times 1000}{1361.0 \times 0.14 \times 0.85} \approx 1295\ \text{m}^{2}
+\end{equation}
+
+阵列质量（面密度 $\sigma_{\text{array}} = 1.8$ kg/m$^2$）：
+
+\begin{equation}
+  M_{\text{array, HJT}} = 1295 \times 1.8 = 2330\ \text{kg}
+\end{equation}
+
+\subsubsection{PCDU质量}
+
+PCDU额定功率取 $\max(P_{\text{array, eol}}, P_{\text{peak}}) = \max(209.8, 150) = 209.8$ kW（以EOL阵列输出功率为主导，因为阵列需同时满足IT负载+电池回充）：
+
+\begin{equation}
+  M_{\text{pcdu}} = \frac{P_{\text{pcdu, rating}}}{\rho_{\text{pcdu}}}
+                   = \frac{209.8}{0.5} \approx 419.6\ \text{kg}
+  \label{eq:pcdu-mass}
+\end{equation}
+
+其中 $\rho_{\text{pcdu}} = 0.5$ kW/kg为PCDU基准比功率（四档，Terma BepiColombo MTM飞行产品锚点0.54 kW/kg为参考基准；Starlink "simplified power electronics"改善后取0.5 kW/kg）。
+
+PCDU比功率的关键锚点为Terma飞行产品（0.54 kW/kg），此锚点使PCDU质量估计的可靠性显著提升。
+
+\subsection{Bottom-up 计算载荷质量链推导}
+\label{sec:payload-mass}
+
+\subsubsection{地面硬件基线（二档/A1锚点）}
+
+计算载荷质量的新链不依赖任何比功率（kW/t）分母，而是从已公开的NVIDIA地面硬件规格出发：
+
+\begin{table}[H]
+  \centering
+  \caption{地面硬件质量锚点}
+  \label{tab:ground-hardware}
+  \small
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.7cm}
+    >{\raggedright\arraybackslash}p{2.7cm}
+    >{\raggedright\arraybackslash}p{2.3cm}
+    >{\raggedright\arraybackslash}X
+  }
+  \toprule
+  \textbf{来源} & \textbf{硬件单元} & \textbf{质量数据} & \textbf{URL} \\
+  \midrule
+  Lenovo LP2357 Product Guide & GB300 NVL72计算托盘 & 29 kg/托盘（4 GPU + 2 CPU） & \href{https://lenovopress.lenovo.com/lp2357-lenovo-nvidia-gb300-nvl72-rack-scale-ai}{lenovopress 链接} \\
+  NVIDIA PCF Datasheet & HGX B200基板 & 32 kg（8 GPU） & \href{https://images.nvidia.com/aem-dam/Solutions/documents/HGX-B200-PCF-Summary.pdf}{NVIDIA PCF PDF} \\
+  NVIDIA DGX B200 User Guide & DGX B200完整系统 & 142.4 kg/系统 & \href{https://docs.nvidia.com/dgx/dgxb200-user-guide/introduction-to-dgxb200.html}{DGX B200 文档} \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+在150 GPU配置下（B200 TDP 1,000W/GPU），约需38个GB300 NVL72计算托盘：
+\begin{equation}
+  M_{\text{ground baseline}} \approx 38 \times 29 \approx 1002\text{--}1102\ \text{kg}
+\end{equation}
+
+此基线已含per-GPU液冷冷板（地面GB300 NVL72标配direct-to-chip liquid cooling），不含机柜级冷却分配单元（CDU）、风扇（空间不需要）和AC/DC PSU。
+
+\subsubsection{三项空间化增量拆解}
+
+从地面裸硬件到空间化硬件的增量分解为三项（逐

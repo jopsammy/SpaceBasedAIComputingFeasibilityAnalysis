@@ -1,0 +1,64 @@
+% main.tex
+% 太空算力可行性分析——黄仁勋 vs 马斯克立场争议独立验证
+% 简化版（5章，增强可读性）
+
+\documentclass[12pt,a4paper]{article}
+
+% ========== 宏包与自定义命令 ==========
+\input{preamble/packages.tex}
+\input{preamble/macros.tex}
+
+% ========== 参考文献资源 ==========
+\addbibresource{bib/refs.bib}
+
+% ========== 文档信息 ==========
+\title{{\Huge\bfseries 太空算力可行性分析}\\[0.5em]
+       {\large\mdseries 黄仁勋与马斯克立场争议的\\[0.2em]物理--工程--商业三层独立验证}}
+\author{独立研究团队\thanks{基于公开物理定律与工程数据的独立分析，不代表任何机构立场。}}
+\date{\today}
+
+\begin{document}
+
+% ========== 封面 ==========
+\maketitle
+\thispagestyle{empty}
+
+\vspace{2em}
+\begin{center}
+\begin{minipage}{0.85\textwidth}
+\centering
+\textbf{摘要} \\[0.5em]
+2025年底，Elon Musk与Jensen Huang围绕"AI数据中心是否应部署于太空"展开多轮公开辩论。Musk预测4--5年内轨道算力成本将低于地面，Huang则认为散热约束将使这一过程"需要数年"。
+本报告不预设立场，以斯特藩-玻尔兹曼定律、TCO全口径模型和Wright学习曲线为工具链，构建物理--工程--商业三层分析框架，对双方核心主张进行独立交叉验证。结论分三层：物理上可行（1400\,\unitWpm{}散热密度经AI1卫星实测证实），工程上脆弱（GPU在轨AFR缺口、发射频次约束、光伏效率链损耗），商业上不可行（轨道TCO为地面10.5倍，翻转须四项参数同步突破临界值，概率$<$25\%）。整体而言，"黄仁勋的务实保留"比"马斯克的文明必然"更贴近当前技术事实。
+\\[1em]
+\noindent\textbf{关键词}：太空AI算力；辐射冷却；斯特藩-玻尔兹曼定律；TCO模型；GPU在轨可靠性；Wright学习率；发射成本
+\end{minipage}
+\end{center}
+
+\newpage
+
+% ========== 目录 ==========
+\setcounter{tocdepth}{2}
+\tableofcontents
+\newpage
+
+% ========== 正文：5章 ==========
+\input{sections/01_background.tex}
+\newpage
+
+\input{sections/02_science.tex}
+\newpage
+
+\input{sections/03_engineering.tex}
+\newpage
+
+\input{sections/04_commercial.tex}
+\newpage
+
+\input{sections/05_conclusion.tex}
+\newpage
+
+% ========== 参考文献 ==========
+\printbibliography[title={参考文献}]
+
+\end{document}

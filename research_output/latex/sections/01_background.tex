@@ -1,0 +1,74 @@
+% sections/01_background.tex -- 背景
+
+\section{研究背景}
+
+\subsection{太空算力：一场由两位科技领袖引发的全球辩论}
+
+2025年下半年至2026年上半年，太空算力（Orbital AI Compute）从一个边缘科幻概念迅速升级为全球科技界关注的核心议题。这一转变的推手是两位全球最具影响力的科技企业家——NVIDIA CEO黄仁勋与SpaceX CEO埃隆·马斯克——他们围绕"数据中心是否应该搬上太空"展开了一场引人注目的立场分歧。
+
+\subsubsection{马斯克：从文明尺度论述太空AI的必然性}
+
+马斯克自2024年9月起持续通过X（Twitter）平台、公开论坛演讲和SpaceX官方活动，将太空算力嵌套进"卡尔达肖夫文明等级"（Kardashev Scale）叙事框架\cite{musk2024kardashev,musk2025us_saudi}。其核心论点包括：
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{太阳能即文明的终极能源}："一旦你理解了卡尔达肖夫度规，就会明白所有能源生产本质上都将来自太阳能"（2024年9月X帖）\cite{musk2024kardashev}。
+    \item \textbf{轨道AI算力的不可回避性}："如果文明继续发展，太空中的AI是不可避免的"（2025年美沙投资论坛）\cite{musk2025us_saudi}。
+    \item \textbf{星舰提供的运力支撑}：星舰每年应能将约300--500 GW太阳能AI卫星送入轨道（2025年11月X帖）\cite{musk2025starship}。
+    \item \textbf{成本交叉时间表}："太空AI计算将在4--5年内比地面计算更便宜"（2025年美沙投资论坛）\cite{musk2025us_saudi}。
+\end{enumerate}
+
+2026年6月8日，SpaceX发布AI1卫星详细参数：翼展70米、峰值150kW、持续120kW算力、LEO轨道（$\sim$600km），首批2颗原型计划2027年初发射\cite{spacex2026ai1}。与此同时，SpaceX向FCC提交了部署多达100万颗轨道AI数据中心卫星的申请\cite{spacex2026fcc}，并在S-1招股书中将轨道AI算力定位为"仅SpaceX能解决的壁垒级难题"\cite{spacex2026s1}。
+
+\subsubsection{黄仁勋：从硬件工程视角的务实保留}
+
+黄仁勋的太空算力论述始于2025年11月，与马斯克形成鲜明对比。其核心立场是：战略方向上认同太空算力的长期必然性，但在时间线和工程难度上显著更保守。关键论述包括：
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{散热是首要物理瓶颈}："在太空中没有传导，没有对流，只有辐射。所以我们必须想办法在太空中冷却这些系统"（GTC 2026 Keynote）\cite{huang2026gtc}。
+    \item \textbf{辐射散热的面积代价}："太空冷却只能使用辐射散热，需要非常大面积的散热装置，系统复杂且成本高昂"（All-In Podcast 2026）\cite{huang2026allin}。
+    \item \textbf{冷却系统重量占比}："每个机架重2吨，其中约1.95吨是冷却系统"（2025年美沙投资论坛联合对话）\cite{musk_huang2025saudi}。这一数字虽有修辞夸张，但方向正确。
+    \item \textbf{时间线从容但模糊}："这需要数年时间。没关系，我有的是时间"（All-In Podcast）\cite{huang2026allin}。
+\end{enumerate}
+
+2026年3月，NVIDIA发布Space-1 Vera Rubin太空计算平台，包括Rubin GPU（太空推理性能比H100提升25倍）和IGX Thor边缘计算平台，并与六家太空企业建立合作\cite{huang2026gtc}。NVIDIA已从"讨论"进入"硬件部署"阶段，但黄仁勋始终拒绝给出具体的成本交叉时间表。
+
+\subsection{核心分歧的本质}
+
+黄仁勋与马斯克的分歧并非"做不做"，而是"多快能做"和"瓶颈在哪里"：
+
+\begin{table}[H]
+\centering
+\caption{黄仁勋 vs 马斯克：太空算力核心立场对比}
+\label{tab:stance_compare}
+\begin{tabular}{p{2.5cm}p{4.5cm}p{4.5cm}}
+\toprule
+\textbf{维度} & \textbf{黄仁勋（务实派）} & \textbf{马斯克（乐观派）} \\
+\midrule
+分析框架 & 硬件工程视角：芯片、散热、可靠性 & 文明能源视角：Kardashev尺度、太阳能利用率 \\
+\hline
+第一瓶颈 & 废热/辐射散热——需要极大散热面积 & 也承认散热挑战，但倾向于"可以解决" \\
+\hline
+时间线 & "需要数年"，不给具体年份 & 4--5年成本交叉，2027年1 GW部署 \\
+\hline
+经济性判断 & 当前不理想，发射成本和硬件更换是主要制约 & 5年内太空算力将比地面更便宜 \\
+\hline
+当前行动 & Space-1芯片产品、CUDA已在卫星运行 & AI1卫星原型、Terafab芯片厂、FCC百万颗卫星申请 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+这一分歧构成了本报告的核心研究动机：\textbf{从独立技术分析的角度，谁的观点更接近工程现实？} 太空算力的物理极限在哪里？工程约束有多硬？商业上何时（如果可能）可行？
+
+\subsection{研究范围与方法}
+
+本报告基于对黄仁勋与马斯克12条一手言论的系统性调研\cite{musk2024kardashev,musk2025starship,musk2025us_saudi,musk2025lunar,musk2026terafab,spacex2026ai1,spacex2026fcc,spacex2026s1,huang2025saudi,huang2026earnings,huang2026gtc,huang2026allin,huang2026lex}，定义11个关键子问题（Q1--Q11），覆盖三个维度：
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{科学维度}（Q1--Q3）：真空辐射散热物理极限、太空vs地面散热效率对比、LEO轨道热环境复杂性。
+    \item \textbf{工程维度}（Q4--Q6）：发射成本与经济门槛、轨道太阳能供电可用功率、在轨维护可行性与硬件可靠性。
+    \item \textbf{商业与展望维度}（Q7--Q11）：TCO全生命周期对比、GPU能效历史外推、发射成本学习曲线、下一代散热材料突破、"静态今天"vs"近未来外推"对比元分析。
+\end{itemize}
+
+分析方法包括斯特藩-玻尔兹曼定律定量计算（Python脚本验证）、PUE文献荟萃分析、LEO热环境建模、10年TCO多情景比较、GPU架构能效历史外推、发射成本Wright's Law建模等。所有关键计算均由独立Python脚本验证\cite{note_sb_script,note_tco_script,note_launch_script}。
+
+% end of 01_background

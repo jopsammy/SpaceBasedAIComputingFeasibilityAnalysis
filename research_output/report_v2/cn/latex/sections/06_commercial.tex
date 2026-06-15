@@ -1,0 +1,325 @@
+% sections/06_commercial.tex
+% 第6章：商业可行性
+
+\section{商业可行性：三分支 TCO 与场景分层}
+
+物理可行（第4章）且工程可造（第5章）之后，本章回答最后一个问题：商业上是否值得投入？本章以场景分层替代单一数字口径——不存在"正确"的 TCO 数字，只有"在给定假设下"的 TCO 数字。所有成本数字的完整拆分和代入结果见本章表格与附录 D 的脚本路由；每个成本参数的证据档位与裁决记录见附录 B。
+
+\subsection{比较基线：本报告的统一成本模型}
+
+\subsubsection{总成本公式}
+
+\noindent\textbf{需要声明：}本章 TCO 的定位是"统一口径下的可比工程成本模型"，而不是完整财务模型。研发非经常性工程费用（NRE）、卫星制造价值保险、融资成本、地面段专用建设、失效后的补星策略等未被并入主基线。\$764.98M 可理解为按 SpaceX 公开 120kW 持续 IT 口径为星数分母、并完成 LEO 轨道电源链闭合后的 10年-GaAs 基线输出；\$1,341.26M 等数字同理为给定场景假设下的模型结果。
+
+本报告的三分支 TCO 模型采用以下统一公式。所有数值由独立的 Python 建模计算（计算脚本详见附录 D §\ref{sec:script-entry}，后续将开源至 GitHub），读者可独立复算验证：
+
+\begin{equation}
+\text{TCO}_{10\text{年}} = \sum \left(\text{制造成本} + \text{发射成本} + \text{保险} + \text{运维} + \text{退役}\right)
+\end{equation}
+
+其中：
+\begin{itemize}[leftmargin=*]
+    \item 制造成本 = 单星制造成本 $\times$ 单代卫星当量（8.33）$\times$ 总代数
+    \item 发射成本 = 单星总质量 $\times$ 单代卫星当量 $\times$ 发射单价 $\times$ 总代数
+    \item 保险 = 卫星制造价值 $\times$ 3--5\% + 发射成本 $\times$ 8\%（注：当前模型中仅计入发射成本 $\times$ 8\% 作为下界估计；卫星制造价值的保险未纳入，实际保险成本应更高）
+    \item 运维 = \$5M/年 $\times$ 10 年
+    \item 退役 = \$3M/代 $\times$ 总代数
+    \item 单代卫星当量 = 1\;MW 持续 IT / 120\;kW 持续 IT = 8.33 颗
+\end{itemize}
+
+\subsubsection{统一假设}
+
+\begin{table}[H]
+\centering
+\caption{三分支 TCO 模型的统一假设}
+\label{tab:unified_assumptions}
+\begin{tabular}{p{5.0cm}p{4.0cm}p{4.0cm}}
+\toprule
+\textbf{参数} & \textbf{取值} & \textbf{备注} \\
+\midrule
+目标持续 IT 负载   & 1\;MW              & 共同分母 \\
+总窗口             & 10 年              & 所有分支折算到同一窗口 \\
+发射单价           & \$200/kg           & 基准值，敏感性分析覆盖 \$100--500/kg \\
+运维               & \$5M/年            & 地面测控 + 星座管理 \\
+保险               & 发射成本 $\times$ 8\% & 航天保险行业惯例 \\
+退役/再入          & \$3M/代            & 受控再入 \\
+架构基线           & Blackwell（GB300 NVL72） & 统一主线 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{10年-GaAs 主链：完整 TCO 拆解}
+
+10年-GaAs 分支是本报告当前唯一可完整给出 10 年总成本的单代主链。该分支假设：(1) GaAs 光伏路线；(2) 10 年寿命（10yr Li-ion NMC 电池，DoD 25\%）;(3) 单代，不重射。表\ref{tab:gaas10_tco}给出完整子系统级 TCO 拆解。
+
+\begin{table}[H]
+\centering
+\caption{10年-GaAs 主链完整 TCO 拆解（1\;MW 持续 IT / 10 年总窗口 / \$200/kg）}
+\label{tab:gaas10_tco}
+\small
+\begin{tabular}{p{4.5cm}rrr}
+\toprule
+\textbf{子系统/成本项} & \textbf{单星质量 (kg)} & \textbf{单星成本 (\$M)} & \textbf{10年总成本 (\$M)} \\
+\midrule
+\multicolumn{4}{c}{\textit{制造子项（单星 $\$83.61$M $\times$ 8.33 颗 $\times$ 1 代）}} \\
+\quad 计算载荷        & 1,500 & 7.20  & 59.98 \\
+\quad 散热系统        & 550   & 0.66  & 5.50 \\
+\quad 光伏阵列        & 938   & 46.27 & 385.58 \\
+\quad 电池            & 1,573 & 0.06  & 0.50 \\
+\quad PCDU            & 419   & 1.05  & 8.75 \\
+\quad 平台/结构       & 1,743 & 6.27  & 52.25 \\
+\quad 推进            & 350   & 1.30  & 10.83 \\
+\quad 通信/激光链路   & 300   & 2.50  & 20.83 \\
+\quad 系统裕量/冗余/附加   & 1,106 & 18.29 & 152.50 \\
+\midrule
+\textbf{制造小计}     & \textbf{8,479} & \textbf{83.61} & \textbf{696.72} \\
+\midrule
+\multicolumn{4}{c}{\textit{非制造成本项}} \\
+\quad 发射成本        & -- & 1.70  & 14.13 \\
+\quad 保险            & -- & 0.14  & 1.13 \\
+\quad 运维（10年）    & -- & --    & 50.00 \\
+\quad 退役/再入       & -- & --    & 3.00 \\
+\midrule
+\textbf{10年总成本}   & \textbf{--} & \textbf{--} & \textbf{764.98} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{成本结构核心发现}：
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{光伏阵列（\$385.58M，占总成本 50.4\%）是绝对主导项。} 这意味着太空算力的 TCO 对光伏技术路线和价格高度敏感——任何降低空间级 GaAs 阵列成本的技术进步（如量产规模效应、COTS 商用现货策略）都是改善商业前景的最大单一杠杆点。
+    \item \textbf{发射成本仅占 1.8\%}——这颠覆了"发射成本是太空算力经济性的主要障碍"的直觉判断。发射成本单价的进一步下降（如从 \$200/kg 降至 \$100/kg）对总成本的影响仅约 0.9\%。
+    \item \textbf{系统裕量/冗余/附加（\$152.50M，20.0\%）是第二大成本项}，且全部为四档推断。这一成本项涵盖冗余硬件、系统质量裕量与集成附加质量（对应工程章表\ref{tab:full_satellite_breakdown}的1,106\;kg），反映的是 NASA 级航天器（CDR/PDR 审查、冗余设计、环境试验）等级的成本——如果 SpaceX 的 Starlink 量产经验能显著压缩此成本（如从"NASA 级"降至"Starlink 级"），商业前景将有实质性改善。
+    \item \textbf{电池成本极低（\$0.50M，0.07\%）}——这不是计算错误，而是 Starlink 的 NMC 电池 pack（\$200/kWh）本身就是空间电池的事实后果。
+\end{enumerate}
+
+\subsection{对照分支对比}
+
+\subsubsection{5年-GaAs：寿命缩短的代价}
+
+5年-GaAs 分支与主链唯一区别是：服役寿命从 10 年缩短至 5 年，需在 10 年窗口内重射一次（2 代）。其余假设（GaAs 光伏、NMC 电池 DoD 40\%）保持不变。
+
+\begin{table}[H]
+\centering
+\caption{5年-GaAs 对照分支 TCO 总览}
+\label{tab:gaas5_tco}
+\begin{tabular}{p{5.0cm}rr}
+\toprule
+\textbf{项目} & \textbf{10年-GaAs（主链）} & \textbf{5年-GaAs（对照）} \\
+\midrule
+单星质量              & 8.48\;t           & 7.10\;t \\
+单星制造成本          & \$83.61M          & \$75.58M \\
+总代数                & 1                 & 2 \\
+10年总制造成本        & \$696.72M         & \$1,259.69M \\
+10年总发射成本        & \$14.13M          & \$23.68M \\
+10年总成本            & \textbf{\$764.98M} & \textbf{\$1,341.26M} \\
+差异                  & 基准              & +\$576.27M（+75.3\%） \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+5年-GaAs 比主链贵约 75\%，差异几乎全部来自双代重射导致的制造成本翻倍。\textbf{这一对照揭示了一个关键的经济机制：在轨寿命是比发射成本重要得多的经济杠杆。} 将寿命从 5 年延长至 10 年"节省"的成本（\$576M）相当于将发射单价从 \$200/kg 降至约 \$0/kg 的效果——这进一步支持了第5章关于"在轨寿命是比发射成本更重要的经济杠杆"的判断。
+
+\subsubsection{5年-HJT：并行路线的成本约束}
+
+5年-HJT 分支的完整总成本当前仅能给出下界（HJT 阵列采购价格链闭合度低于 GaAs），但经多锚点区间补齐后，可为工程判断提供足够可靠的估计。
+
+\begin{table}[H]
+\centering
+\caption{5年-HJT 成本对比（下界 vs 补齐估计）}
+\label{tab:hjt5_tco}
+\begin{tabular}{p{5.0cm}rr}
+\toprule
+\textbf{项目} & \textbf{下界（仅可确定项）} & \textbf{补齐估计} \\
+\midrule
+单星质量              & 9.13\;t              & 9.13\;t \\
+单星制造成本          & $\ge$\$23.05M       & $\sim$\$55M \\
+总代数                & 2                    & 2 \\
+10年总制造成本        & $\ge$\$384.13M      & $\sim$\$916M \\
+10年总发射成本        & \$30.44M             & \$30.44M \\
+10年总成本            & \textbf{$\ge$\$473.01M} & \textbf{$\sim$\$1,005M} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+补齐估计中 HJT 阵列系统成本取 $\sim$\$15M/颗（源自三个独立锚点的保守综合区间：空间级 HJT 电池 \$2--3/W；Starlink 级阵列系统 \$3,500--4,200/m\textsuperscript{2}；地面 $\to$ 空间 10--15$\times$ 放大）。即使取极端乐观的 \$5M/颗阵列成本，5年-HJT 总成本仍约 \$850M+——依然高于 10年-GaAs 的约\$0.77B（区间\$0.55B--\$1.1B）。
+
+\textbf{结论不会翻转}：HJT 电池本身比 GaAs 便宜 70--100 倍，但 2.07$\times$ 面积放大 + 1.59$\times$ 质量放大 + 双代重射的代价，使其在 AI1 70\;m 翼展约束和 10 年窗口比较分母下，不论成本上还是工程上（第5章几何排除）均不优于 10年-GaAs。
+
+\subsection{三分支 TCO 总览与排序}
+
+\begin{figure}[H]
+\centering
+\input{figures/tco_branches}
+\caption{三分支TCO构成对照——制造成本在所有分支中占绝对主导地位，发射成本占比极小（1.8\%--3.0\%）。右侧第4柱为地面IDC参照（\~\$64.6M/MW/10年），太空/地面TCO倍数约11.8$\times$。}
+\label{fig:tco_branches}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{三分支 TCO 排序（1\;MW 持续 IT / 10 年总窗口 / \$200/kg）}
+\label{tab:tco_ranking}
+\begin{tabularx}{\textwidth}{
+  >{\raggedright\arraybackslash}p{2.9cm}
+  >{\centering\arraybackslash}p{2.3cm}
+  >{\centering\arraybackslash}p{2.7cm}
+  >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{分支} & \textbf{10年总成本} & \textbf{相对 GaAs 主链} & \textbf{可落地性} \\
+\midrule
+10年-GaAs（主链） & \$764.98M   & 基准              & 可落地（70\;m 翼展约束满足） \\
+5年-HJT（补齐）   & $\sim$\$1,005M & +\$240M（+31.4\%）  & \textbf{不可落地}（70\;m 翼展几何排除） \\
+5年-GaAs（对照）  & \$1,341.26M & +\$576M（+75.3\%）  & 可落地（寿命敏感性对照） \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{口径差异的量化影响：发射单价敏感性}
+
+为直观展示"发射成本在总成本中占比很小"这一结论，表\ref{tab:launch_sensitivity}给出 10年-GaAs 主链在不同发射单价下的总成本变化：
+
+\begin{table}[H]
+\centering
+\caption{发射单价敏感性分析（10年-GaAs 主链）}
+\label{tab:launch_sensitivity}
+\begin{tabular}{lcrr}
+\toprule
+\textbf{发射单价} & \textbf{发射成本占比} & \textbf{10年总成本} & \textbf{相对 \$200/kg 变化} \\
+\midrule
+\$100/kg  & 0.9\%  & \$757.92M & $-$0.9\% \\
+\$200/kg  & 1.8\%  & \$764.98M & 基准 \\
+\$500/kg  & 4.4\%  & \$786.17M & +2.8\% \\
+\$1,000/kg & 8.5\% & \$825.53M & +7.9\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+即使在极度乐观的 \$50/kg 情景下，总成本仍约 \$751M——单靠发射成本下降无法翻转商业可行性。真正的主导项始终是制造成本（特别是光伏阵列、系统裕量/冗余和平台结构）。
+
+\subsection{翻转条件分析：哪些参数组合会改变结论方向}
+
+本节回答"在什么假设下，太空算力可以变得比地面更有竞争力"。以地面 1\;MW 级 AI 集群 10 年 TCO 约 \$64.6M（中位估计；GPU硬件约占40--50\%，配套电力/散热约占20--30\%，建筑/运维约占20--30\%；此\$64.6M/MW为NVIDIA DGX/HGX级配置的示意性参照，实际TCO因集群规模、冷却方案、地理位置等差异波动$\pm$15\%）为参照，10年-GaAs 约\$0.77B（区间\$0.55B--\$1.1B，取决于关键假设变动）约为地面的 11.8$\times$。这一倍数用于刻画竞争力量级差距；要接近可比性，需要同时满足以下多个条件：
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{光伏阵列成本下降 10$\times$}：从当前 \$200/W\_BOL 降至 \$20/W\_BOL，将单星制造成本从 \$83.61M 降至约 \$37M。
+    \item \textbf{发射成本降至 <\$100/kg}：使发射成本的节省不再被制造成本主导。
+    \item \textbf{在轨寿命稳定达到 10 年}：避免双代重射的成本翻倍效应。
+    \item \textbf{量产压缩 AIT 成本 5$\times$}：从"NASA 级"航天器集成测试降至"Starlink 量产级"。
+\end{enumerate}
+
+这四个条件的\emph{同时}满足概率在 2035 年前被评估为低。基于独立假设下的贝叶斯链条推导（详见第7章\;\S 7.3--\S 7.4），四个参数各自在 10 年内改善至目标值的独立概率分别为：寿命 $\geq$7 年（$\sim$70\%）、光伏阵列成本 <\$50/W\_BOL（$\sim$40\%）、AIT 压缩至 Starlink 级（$\sim$50\%）、发射成本 <\$100/kg（$\sim$60\%）。独立联合概率约为 8.4\%。考虑 SpaceX 在多个参数上的同步推进存在正相关性，经主观调整后联合概率上修至约 15--20\%。取保守上界 <25\% 为基准——这不是任何单参数的技术难度问题，而是四个独立参数的同步改善概率天然低于单参数的改善概率。
+
+\subsection{训练与推理的商业分化}
+
+上述分析采用了“1\;MW 持续 IT\,”作为统一比较分母，隐含将全部算力视为同质化计算负载。但 AI 计算的实际负载可明确区分为训练（training）与推理（inference）两类——它们在互联带宽、延迟容忍度和地理分布上的需求截然不同。将这一区分纳入商业分析后，可以更清楚地看到不同场景之间的成本差异。
+
+\subsubsection{训练场景：轨道算力竞争力更弱}
+
+大规模分布式训练（如 LLM 预训练）对计算节点之间的互联有极高要求：
+\begin{itemize}[leftmargin=*]
+    \item \textbf{高带宽低延迟互联是刚需。} 当前地面数据中心采用 NVLink/NVSwitch 级别的节点间互联（$\sim$900\;GB/s 双向带宽，$\mu$s 级延迟），训练效率对通信延迟高度敏感——All-Reduce 集合通信的每一步都受最慢链路约束。
+    \item \textbf{星间激光链路无法匹配训练需求。} LEO 星座的星间激光链路存在毫秒级传播延迟（同轨道面相邻星 $\sim$0.5\;ms，跨轨道面 $\sim$2--10\;ms），且拓扑随轨道运动持续变化——等效互联带宽和稳定性远低于地面固定拓扑的光纤/铜缆互联。
+    \item \textbf{分布式训练效率将显著低于地面。} 在星间链路约束下，多星分布式训练的有效算力利用率（MFU）可能仅相当于地面数据中心的一小部分。即使不计成本差异，轨道训练的实际产出算力也会因互联瓶颈而大幅缩水。
+    \item \textbf{通信基础设施进一步限制。} 地面网关带宽、星间链路总容量和数据上下传带宽共同构成多层瓶颈——大规模训练数据集的上传本身就是一项带宽密集型任务。
+\end{itemize}
+
+\textbf{训练场景定性结论}：在训练场景下，轨道算力的商业竞争力比同质化 TCO 比较所呈现的（$\sim$11.8$\times$ 地面）更弱。如果计入训练效率的折扣（MFU 仅为地面的 1/2--1/3），有效训练成本将是地面的 $>$12$\times$——甚至更高。
+
+\subsubsection{推理场景：全球低延迟有相对优势，但规模有限}
+
+推理负载与训练有本质区别：
+\begin{itemize}[leftmargin=*]
+    \item \textbf{LEO 全球覆盖 $\sim$20--30\;ms 延迟有真实优势。} 对于需要全球低延迟响应的推理任务（如实时语音助手、自动驾驶远程决策、边缘 AI 服务），LEO 卫星可以在无需铺设全球光纤的条件下提供统一的低延迟推理节点。
+    \item \textbf{但优势场景限于边缘推理，而非大规模推理农场。} 当前推理市场的主体是数据中心内的高吞吐批量推理（batch inference），对延迟不敏感但对成本极度敏感——轨道算力在此场景下没有优势。真正的优势场景是\emph{低延迟边缘推理}，其市场规模远小于批量推理。
+    \item \textbf{单星推理容量有限，难以承接大规模推理需求。} 单个 120\;kW IT 卫星的推理吞吐量有限，需要大量卫星协同才能匹配地面推理农场的规模——而这又回到了星间互联瓶颈和成本叠加的问题。
+\end{itemize}
+
+\textbf{推理场景定性结论}：推理场景下轨道算力的竞争力相对强于训练场景（估计约 8--10$\times$ 地面成本，而非 11.8$\times$），但仍有显著差距。优势仅限于特定利基（全球低延迟边缘推理），不具备普适商业替代性。
+
+\subsubsection{训练/推理分化的定性方向对比}
+
+\begin{table}[H]
+\centering
+\caption{训练与推理场景的轨道算力竞争力对比}
+\label{tab:train_vs_infer}
+\begin{tabular}{p{2.5cm}p{4.5cm}p{4.5cm}}
+\toprule
+\textbf{维度} & \textbf{训练} & \textbf{推理} \\
+\midrule
+互联需求     & 极高（NVLink/NVSwitch 级） & 低（节点独立） \\
+星间链路适配 & 不匹配（ms 级延迟 + 拓扑变化） & 可接受 \\
+有效算力利用率 & 显著折扣（MFU $<$ 地面 1/2） & 接近名义值 \\
+延迟优势     & 无需求 & 有需求（全球 $\sim$20--30\;ms） \\
+目标市场     & 大模型预训练/微调 & 全球低延迟边缘推理 \\
+vs 地面成本   & $>$12$\times$（计入 MFU 折扣） & 8--10$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{核心结论}：区分训练与推理之后，训练场景是轨道算力竞争力最弱的子场景（互联瓶颈 + MFU 折扣 + 通信约束三重叠加）；推理场景虽有全球低延迟的独特优势，但优势利基的规模有限，且绝对成本差距仍在 8--10$\times$。任何未区分训练/推理的“太空算力商业可行性”讨论都容易高估轨道算力的实际竞争力。
+
+\subsection{GPU故障率的TCO敏感性分析}
+
+前述 TCO 分析隐含假设 150 颗 Blackwell GPU 在 10 年窗口内全部存活、始终提供 1\;MW 持续 IT 负载。但在轨硬件的实际情况远比地面数据中心严酷——在轨 GPU 一旦故障，受控维修在当前技术条件下不可行。本节将 GPU 故障率纳入 TCO 模型，修正“有效算力”的口径。
+
+\subsubsection{故障模型与假设}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{年故障率}：假设 GPU 在轨年故障率为 5\%、10\%、15\% 三档（地面数据中心 GPU 年故障率通常在 1\%--3\%，空间辐射环境下故障率预计显著高于地面）。
+    \item \textbf{不替换策略}：在轨维修不可行，故障 GPU 永久失效，星座不发射替换卫星（替换将显著增加 TCO，本质等同于双代/多代重射的分支分析）。
+    \item \textbf{衰减计算}：等效存活 GPU 数 = $150 \times (1 - \text{年故障率})^{10}$。等效持续 IT = 标称 1\;MW $\times$（存活 GPU 数 / 150）。
+\end{itemize}
+
+\subsubsection{敏感性计算结果}
+
+\begin{table}[H]
+\centering
+\small
+\caption{GPU 年故障率对有效 TCO 的敏感性}
+\label{tab:gpu_failure_sensitivity}
+\begin{tabularx}{\textwidth}{
+  >{\raggedright\arraybackslash}p{1.9cm}
+  >{\centering\arraybackslash}p{2.4cm}
+  >{\centering\arraybackslash}p{2.3cm}
+  >{\centering\arraybackslash}p{2.7cm}
+  >{\centering\arraybackslash}X
+}
+\toprule
+\textbf{年故障率} & \textbf{10年存活GPU数} & \textbf{等效持续IT (MW)} & \textbf{有效\$M/有效MW} & \textbf{vs地面倍数} \\
+\midrule
+0\%（基线） & 150   & 1.00 & $\sim$\$765M/MW  & $\sim$11.8$\times$ \\
+5\%         & $\sim$90 & 0.60 & $\sim$\$1,275M/MW & $\sim$20$\times$ \\
+10\%        & $\sim$52 & 0.35 & $\sim$\$2,186M/MW & $\sim$34$\times$ \\
+15\%        & $\sim$30 & 0.20 & $\sim$\$3,825M/MW & $\sim$60$\times$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\smallskip
+\textit{注：地面基线取 1\;MW 级 AI 集群 10 年 TCO 约 \$64.6M（中位估计）。有效\$M/有效MW 为 10年总成本 \$764.98M 除以对应的等效持续 IT（标称 1\;MW $\times$ 存活比例）。vs地面倍数为有效\$M/有效MW 除以地面基线 \$64.6M/MW。}
+
+\subsubsection{解读与结论}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{年故障率 5\% 时有效算力约为标称值的 60\%}——\$764.98M 买到的不是 1\;MW 恒定算力，而是逐年衰减的等效算力。等效持续 IT 仅约 0.60\;MW，有效\$M/MW 升至约 \$1,275M（地面 $\sim$20$\times$）。
+    \item \textbf{年故障率 10\% 时等效算力降至约 35\% 标称值}——十年后存活 GPU 数仅约 52 颗。有效单位算力成本升至地面约 34$\times$。
+    \item \textbf{年故障率 15\% 时十年后仅约 30 颗 GPU 存活}——等效持续 IT 仅约 0.20\;MW。有效单位算力成本飙升至地面约 60$\times$。
+    \item \textbf{故障率是比发射成本强得多的 TCO 放大器。} 对比发射单价敏感性（表\ref{tab:launch_sensitivity}）：发射单价从 \$200/kg 升至 \$1,000/kg 仅使总成本增加 7.9\%；而年故障率从 5\% 升至 15\%，有效单位算力成本增加 3$\times$（从 $\sim$\$1,275M/MW 至 $\sim$\$3,825M/MW）。
+\end{enumerate}
+
+\textbf{核心结论}：年故障率 5\% 时有效算力约为标称值的 60\%，15\% 时仅约 20\%。故障率越高，有效单位算力成本越高。GPU 在轨故障率的真实水平仍是本报告未闭合的 Key-Open-Issue（详见第7章），但其对 TCO 的杠杆效应已经清晰：即使取最乐观的 5\% 年故障率，有效 TCO 也已达地面约 20$\times$——远超名义 TCO 比较所呈现的 11.8$\times$。
+
+\subsection{商业可行性的最终判断}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{10年-GaAs 主链 TCO 约 \$765M}——这是当前可完整给出的、证据最充分的主链结果。制造成本占总成本约91.1\%，远高于发射、保险、运维与退役之和；光伏阵列绝对主导（占总成本 50.4\%）。
+    \item \textbf{发射成本占比小（1.8\%），不应被过度关注。} 将发射成本从 \$200/kg 降至 \$50/kg 对总成本的改善远不如将光伏阵列成本降低 2$\times$ 或将寿命延长 2$\times$。
+    \item \textbf{商业竞争力距离较远（$\sim$12$\times$ 地面）}，且改善需要多参数\emph{同步}进步而非单一突破。多参数同步改善的概率不足以支撑近期明确的商业可行性承诺。
+    \item \textbf{单一数字不足以覆盖全部情景}：不同场景（10年/5年、GaAs/HJT）下的商业结论差异显著，判断需与具体假设一同阅读。
+\end{enumerate}
+
+（本章全部成本数字的拆分和代入值见本章各表；各成本参数的来源档位与裁决记录见附录 B；Python 脚本复算入口见附录 D\;\S 脚本路由。）
+
+\endinput

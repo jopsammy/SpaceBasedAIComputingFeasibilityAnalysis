@@ -1,0 +1,73 @@
+% !TEX program = xelatex
+% main.tex — 唯一的编译入口（仅做组装，不塞内容）
+% 非 LEO 轨道与拉格朗日点太空算力可行性分析 调研报告
+
+\documentclass[12pt,a4paper]{article}
+
+% === Preamble 组装 ===
+\input{preamble/packages}
+\input{preamble/macros}
+
+% === 参考文献资源 ===
+\addbibresource{bib/refs.bib}
+
+% === 文档元信息 ===
+\title{非 LEO 轨道与拉格朗日点太空算力\\可行性分析调研报告}
+\author{}
+\date{2026年6月}
+
+\begin{document}
+
+% 标题页
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+
+    {\Huge\bfseries 非 LEO 轨道与拉格朗日点\\太空算力可行性分析调研报告\par}
+
+    \vspace{0.8cm}
+
+    {\Large 内部研究报告\par}
+
+    \vspace{2cm}
+
+    {\Large 曾庆明\par}
+
+    \vspace{2cm}
+
+    {\large 2026年6月\par}
+
+    \vfill
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\footnotetext[1]{联系邮箱：\href{jop.sammy@163.com}{jop.sammy@163.com} \quad ORCID：\href{https://orcid.org/0009-0007-4382-0040}{0009-0007-4382-0040}}
+\end{titlepage}
+
+% 摘要
+\begin{abstract}
+\input{sections/00_abstract}
+\end{abstract}
+
+\vspace{1em}
+\noindent\textbf{关键词：} 太空算力；非LEO轨道；拉格朗日点；辐射效应；散热；\deltav 成本；总电离剂量（TID）；单粒子效应（SEE）
+
+\newpage
+
+% 目录
+\tableofcontents
+\newpage
+
+% === 正文章节（每节一个 \input） ===
+\input{sections/01_background}
+\input{sections/02_environment}
+\input{sections/03_meo}
+\input{sections/04_geo}
+\input{sections/05_heo}
+\input{sections/06_lagrange}
+\input{sections/07_matrix}
+\input{sections/08_conclusion}
+
+% === 参考文献 ===
+\printbibliography[heading=bibintoc,title={参考文献}]
+
+\end{document}

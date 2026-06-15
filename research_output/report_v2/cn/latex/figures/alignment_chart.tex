@@ -1,0 +1,27 @@
+% 口径对齐示意图 — 第3章用
+% 展示不同口径（时间窗、功率、架构、成本）之间的对应关系与不可直接比较的警示
+% 性冷淡风：灰/石板蓝/深岩灰配色
+\begin{tikzpicture}[node distance=0.8cm, auto]
+  % 定义样式
+  \tikzstyle{block} = [rectangle, draw=gray!60, fill=cyan!18!gray!8, text width=2.35cm, align=center, rounded corners, minimum height=2.55cm, font=\small, text=black!85]
+  \tikzstyle{arrow} = [thick,draw=gray!50,->,>=stealth]
+  \tikzstyle{warn}  = [font=\small\bfseries, text=black!60]
+
+  % 四个主要口径块
+  \node [block] (time) {\textbf{时间窗}\\[4pt]5年 vs 10年\\含/不含重射};
+  \node [block, right=of time] (power) {\textbf{功率口径}\\[4pt]峰值150 kW\\持续120 kW\\IT负载1 MW};
+  \node [block, right=of power] (arch) {\textbf{架构代际}\\[4pt]Blackwell 基线\\Rubin 对照};
+  \node [block, right=of arch] (cost) {\textbf{成本边界}\\[4pt]制造/发射/\\运维/退役};
+
+  % 连接箭头
+  \draw [arrow] (time) -- (power);
+  \draw [arrow] (power) -- (arch);
+  \draw [arrow] (arch) -- (cost);
+
+  % 底部标注
+  \node [text width=10.6cm, align=center, font=\small, anchor=north] at ($(time.south)!0.5!(cost.south)+(0,-1.0cm)$) {
+    \textbf{\textcolor{black!70}{不同口径假设下的数字不可直接比较。}}\\[4pt]
+    本报告所有比较均基于统一基线：\\
+    Blackwell架构、10年窗口、1 MW持续IT、\$200/kg发射。
+  };
+\end{tikzpicture}

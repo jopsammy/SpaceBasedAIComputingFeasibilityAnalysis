@@ -1,0 +1,348 @@
+{
+  "meta": {
+    "task": "Task 7 (close-stage-two-evidence-gaps: cost documents update)",
+    "trace_id": "cs2eg-task7-cost-update-20260614-01",
+    "created_at": "2026-06-14",
+    "scope": "Blackwell + GaAs/HJT 成本模型关键采购价格层；不含发射价格；已吸收Task V2所有参数裁决(V1-V37)。",
+    "evidence_regime": "Task V1 four-tier system",
+    "v_ruling_reference": "current-note.md Task V2 section, V1-V37 all decided",
+    "authoritative_markdown": "research_output/workspace/data/stage2_procurement_price_sources.md"
+  },
+  "status_summary": {
+    "scenario_parameter_count": 5,
+    "non_procurement_count": 1,
+    "replace_required_count": 0,
+    "blocked_count": 0,
+    "new_items_added": 2,
+    "branch_split_items": 3
+  },
+  "items": [
+    {
+      "item_id": "compute_payload_cost_per_kw",
+      "model_key": "compute_cost_per_kw_usd",
+      "route": "Blackwell",
+      "unit": "USD/kW",
+      "values": {
+        "light": 38000.0,
+        "baseline": 60000.0,
+        "conservative": 100000.0
+      },
+      "evidence_grade": "三档 (V12 ruling: 1.5-3x mass production premium, SpaceX COTS strategy)",
+      "source_type": "情景参数",
+      "allowed_usage": "main_model",
+      "replacement_required": false,
+      "notes": "SpaceX COTS策略：商用硅基+自加防护+系统容错；H100原型17-33x → 量产压缩至1.5-3x。地面GB300 NVL72 ~$25-33k/kW为二档；空间量产溢价1.5-3x→$38-100k/kW为三档。不是NVIDIA官方单芯片报价。",
+      "anchors": [
+        {
+          "type": "web_reference",
+          "ref": "https://awesomeagents.ai/hardware/nvidia-gb300-nvl72/",
+          "summary": "GB300 NVL72 单柜估计 3-4 MUSD，~120 kW 量级→~25-33k USD/kW。"
+        },
+        {
+          "type": "web_reference",
+          "ref": "https://culled.org/articles/ai-in-space-satellite-h100-beginning/",
+          "summary": "H100空间原型：17-33x量产价→1.5-3x COTS策略压缩。"
+        },
+        {
+          "type": "web_reference",
+          "ref": "https://www.163.com/dy/article/KUECPBRA05568W0A.html",
+          "summary": "SpaceX COTS策略：商用现货+自研防护+系统级容错代替专用宇航级。"
+        },
+        {
+          "type": "web_reference",
+          "ref": "https://guomans.com/insights/aerospace-nvidia-orbital-ai-data-centers-space-computing",
+          "summary": "国曼：NVIDIA轨道AI数据中心，空间计算背景。"
+        }
+      ]
+    },
+    {
+      "item_id": "thermal_cost_per_m2",
+      "model_key": "thermal_cost_per_m2_usd",
+      "route": "Blackwell",
+      "unit": "USD/m^2",
+      "values": {
+        "light": 5000.0,
+        "baseline": 6000.0,
+        "conservative": 8000.0
+      },
+      "evidence_grade": "四档 (V13 ruling: 降级, no system-level direct anchor)",
+      "source_type": "情景参数",
+      "allowed_usage": "sensitivity_only",
+      "replacement_required": false,
+      "v_ruling_note": "源出原paper内部假设($3.5M/1MW)，循环引用风险。材料级锚点$250-1850/m²但不含集成。",
+      "notes": "由既有商业稿散热总包与 1400 W/m^2 物理锚点反算；三档值和既有商业稿、物理通量反算能够自洽。但缺少系统级直接报价锚点，V13裁决降为四档。",
+      "anchors": [
+        {
+          "type": "local_markdown",
+          "ref": "research_output/latex/sections/05_commercial.tex",
+          "summary": "1 MW 轨道散热系统基准成本 3.5 MUSD。"
+        },
+        {
+          "type": "local_markdown",
+          "ref": "research_output/workspace/data/stefan_boltzmann_results.txt",
+          "summary": "散热通量工作点约 1400 W/m^2。"
+        }
+      ]
+    },
+    {
+      "item_id": "gaas_array_cost_per_bol_w",
+      "model_key": "array_cost_per_bol_w_usd",
+      "route": "GaAs",
+      "unit": "USD/W_BOL",
+      "values": {
+        "advanced": 180.0,
+        "baseline": 200.0,
+        "heritage": 250.0
+      },
+      "evidence_grade": "三档 (V14 ruling: adopted)",
+      "source_type": "情景参数",
+      "allowed_usage": "main_model",
+      "replacement_required": false,
+      "v_ruling_note": "AzurSpace 4G32存在、旧口径200-400 USD/W、satsearch零售面板",
+      "notes": "AzurSpace 4G32 32% class radiation-hardened证明技术路线成立；旧口径200-400 USD/W为二档；satsearch零售面板列表价折算后明显偏高(小批量零售)；当前值代表规模化工程情景，偏乐观的星座级采购口径。",
+      "anchors": [
+        {
+          "type": "local_markdown",
+          "ref": "research_output/latex/sections/04_engineering.tex",
+          "summary": "空间光伏成本旧口径 200-400 USD/W。"
+        },
+        {
+          "type": "web_reference",
+          "ref": "https://www.azurspace.com/en/products/space-products/",
+          "summary": "4G32 32% class, radiation-hardened。"
+        },
+        {
+          "type": "web_reference",
+          "ref": "https://satsearch.co/products/endurosat-3u-deployable-solar-array",
+          "summary": "小型空间级面板零售列表价显著高于 200 USD/W。"
+        }
+      ]
+    },
+    {
+      "item_id": "platform_structure_cost_per_kg",
+      "model_key": "platform_cost_per_kg_usd",
+      "route": "Blackwell",
+      "unit": "USD/kg",
+      "values": {
+        "light": 2800.0,
+        "baseline": 3600.0,
+        "conservative": 5000.0
+      },
+      "evidence_grade": "四档 (V15 ruling: 降级, no large-sat $/kg anchor)",
+      "source_type": "情景参数",
+      "allowed_usage": "sensitivity_only",
+      "replacement_required": false,
+      "v_ruling_note": "源出原paper内部假设($30M/1MW平台包)，循环引用。小卫星COTS bus ~$20k/kg但口径不同。",
+      "notes": "由既有 1 MW 平台包成本与单星平台质量反算；缺少大卫星级别的$/kg直接锚点。小卫星COTS bus ~$20k/kg量级但与AI1>1吨卫星口径不匹配。V15裁决降为四档。",
+      "anchors": [
+        {
+          "type": "local_markdown",
+          "ref": "research_output/latex/sections/05_commercial.tex",
+          "summary": "1 MW 轨道平台包 30.0 MUSD。"
+        },
+        {
+          "type": "local_markdown",
+          "ref": "research_output/workspace/data/stage2_mass_cost_results.md",
+          "summary": "基准平台/结构质量约 1147 kg。"
+        }
+      ]
+    },
+    {
+      "item_id": "battery_cost_per_kwh_nmc",
+      "model_key": "battery_cost_per_kwh_nmc_usd",
+      "route": "GaAs/HJT shared (Li-ion NMC branch)",
+      "unit": "USD/kWh",
+      "values": {
+        "fixed": 200.0
+      },
+      "evidence_grade": "三档 (V36 ruling: Starlink direct migration, zero premium)",
+      "source_type": "可迁移证据 (Starlink工程实践)",
+      "allowed_usage": "main_model",
+      "replacement_required": false,
+      "notes": "Starlink采购Panasonic 21700 NMC电芯亿颗级→cell ~$80-120/kWh; SpaceX自研pack集成(筛选/BMS/灌封/热管理) ×1.5-2.5→pack ~$150-250/kWh→取$200固定。零溢价：Starlink NMC pack本身就是空间电池(pack级230Wh/kg, 5000等效全循环, LEO 5年)，无需地面→空间二次溢价。巨大量产单向降本。",
+      "anchors": [
+        {
+          "type": "web_reference",
+          "ref": "https://ciclibattery.com/battery-power-online-space-batteries-how-spacex-designs-batteries-for-satellites/",
+          "summary": "SpaceX首席电池工程师Ray Barsa 2025演讲：Starlink NMC 21700电芯, pack级230 Wh/kg, max DOD ~50%, 目标5000等效全循环"
+        },
+        {
+          "type": "web_reference",
+          "ref": "https://www.nasa.gov/wp-content/uploads/2024/01/starlink-batteries-reliability-lessons-from-10000-leo-satellites-abw-2025.pdf",
+          "summary": "NASA 2025 Workshop: Starlink电池可靠性, >100 MWh在轨容量"
+        }
+      ]
+    },
+    {
+      "item_id": "battery_cost_per_kwh_lto",
+      "model_key": "battery_cost_per_kwh_lto_usd",
+      "route": "GaAs/HJT shared (LTO 10yr branch)",
+      "unit": "USD/kWh",
+      "values": {
+        "light": 260.0,
+        "baseline": 350.0,
+        "conservative": 400.0
+      },
+      "evidence_grade": "四档 (V37 ruling: proportional compression from ground LTO/NMC ratio)",
+      "source_type": "合理推断 (等比压缩法)",
+      "allowed_usage": "main_model",
+      "replacement_required": false,
+      "notes": "等比压缩法：地面LTO/NMC价格比≈1.3-1.5×(NMC $100-150 vs LTO $150-200/kWh) → V36 NMC空间$200 × (1.3-2.0) = $260-400。1.3×覆盖纯材料差价(钛酸锂阳极比石墨贵3-5×但pack级被其他组件摊薄)；2.0×覆盖材料差价+LTO全球产量极小(< NMC 1%)+工艺复杂度。取自研pack的Starlink路线(非Saft传统认证)。化学固有溢价：LTO能量密度~100 vs NMC ~190-230 Wh/kg→每kWh需约2×电芯质量→材料成本天然偏高。",
+      "anchors": [
+        {
+          "type": "web_reference",
+          "ref": "https://saft.com/en/horizon-new-lithium-based-technology-satellite-batteries-improving-mission-performance",
+          "summary": "Saft LTO技术白皮书: LTO可80-90% DOD且超长循环寿命; 比能比Li-ion低30-50%"
+        },
+        {
+          "type": "web_reference",
+          "ref": "https://ciclibattery.com/battery-power-online-space-batteries-how-spacex-designs-batteries-for-satellites/",
+          "summary": "同V36 Ray Barsa Starlink NMC锚点"
+        }
+      ]
+    },
+    {
+      "item_id": "pcdu_cost_per_kw",
+      "model_key": "pcdu_cost_per_kw_usd",
+      "route": "GaAs/HJT shared",
+      "unit": "USD/kW",
+      "values": {
+        "light": 3000.0,
+        "baseline": 5000.0,
+        "conservative": 10000.0
+      },
+      "evidence_grade": "四档 (V26 ruling: Terma飞行产品锚点，无公开价格)",
+      "source_type": "情景参数",
+      "allowed_usage": "main_model",
+      "replacement_required": false,
+      "v_ruling_note": "Terma PCDU飞行产品0.54 kW/kg锚点作为比功率参考; 成本无公开价格, $3k-10k/kW为工程估计",
+      "notes": "Terma PCDU飞行产品(BepiColombo MTM)证明高功率PCDU存在且可做，比功率0.54 kW/kg；但成本无公开价格，$3k-10k/kW为基于飞行件复杂度的工程估计。V26裁决四档。",
+      "anchors": [
+        {
+          "type": "web_reference",
+          "ref": "https://satsearch.co/products/terma-power-conditioning-distribution-unit",
+          "summary": "Terma PCDU产品页面，比功率参考。"
+        },
+        {
+          "type": "web_reference",
+          "ref": "https://www.satnow.com/products/power-conditioning-and-distribution-units/terma/134-1195-bepicolombo-mtm-pcdu",
+          "summary": "BepiColombo MTM PCDU飞行产品规格。"
+        }
+      ]
+    },
+    {
+      "item_id": "propulsion_total_cost_per_sat",
+      "model_key": "propulsion_cost_usd",
+      "route": "Blackwell",
+      "unit": "USD/satellite",
+      "branches": {
+        "5yr": {
+          "values": {
+            "light": 500000,
+            "baseline": 800000,
+            "conservative": 1200000
+          },
+          "notes": "0.6次方缩放: AI1推力≈10×Starlink, 成本=10^0.6×($125k-250k)≈4.0×≈$500k-1M. 标准电推设计, 常规高压贮箱."
+        },
+        "10yr": {
+          "values": {
+            "light": 800000,
+            "baseline": 1300000,
+            "conservative": 2400000
+          },
+          "notes": "电推剥蚀限制: 10年需2×工质吞吐量→1:1冗余推力器(成本×2)或磁屏蔽无剥蚀技术(研发+单价飙升)→成本+60-100%."
+        }
+      },
+      "evidence_grade": "四档 (V27 ruling: 0.6次方缩放法则, 用户纠正线性错误)",
+      "source_type": "合理推断",
+      "allowed_usage": "main_model",
+      "replacement_required": false,
+      "notes": "0.6次方法则(six-tenths rule): Capacity扩大N倍→成本=N^0.6×基准. Starlink推进$125-250k来自雪球分析(霍尔推进器占整星25%, 整星$0.5-1M), 非SpaceX官方. User纠正原线性缩放错误.",
+      "anchors": [
+        {
+          "type": "web_reference",
+          "ref": "https://orbionspace.com/thrusters/",
+          "summary": "Orbion霍尔推力器产品规格参考"
+        }
+      ]
+    },
+    {
+      "item_id": "comms_total_cost_per_sat",
+      "model_key": "comms_cost_usd",
+      "route": "Blackwell",
+      "unit": "USD/satellite",
+      "values": {
+        "light": 1500000.0,
+        "baseline": 2500000.0,
+        "conservative": 4000000.0
+      },
+      "evidence_grade": "四档 (V28 ruling: Google Suncatcher修正值)",
+      "source_type": "情景参数",
+      "allowed_usage": "main_model",
+      "replacement_required": false,
+      "v_ruling_note": "Google Suncatcher: 天基AI集群需tens of Tbps ISL; COTS DWDM+近距编队1.6Tbps; 推导高带宽通信系统成本放大",
+      "notes": "Google Suncatcher论文：天基AI集群需要tens of Tbps星间链路。COTS DWDM技术+近距编队可支持~1.6 Tbps单链路，但AI1集群总带宽需求远超传统通信卫星。高带宽要求驱动通信子系统成本显著放大。",
+      "anchors": [
+        {
+          "type": "web_reference",
+          "ref": "https://arxiv.org/html/2511.19468v1",
+          "summary": "Google Suncatcher: 天基AI集群ISL需求tens of Tbps"
+        }
+      ]
+    },
+    {
+      "item_id": "ait_cost_ratio",
+      "model_key": "ait_cost_ratio",
+      "route": "Blackwell",
+      "unit": "ratio",
+      "branches": {
+        "5yr": {
+          "values": {
+            "light": 0.12,
+            "baseline": 0.18,
+            "conservative": 0.25
+          },
+          "notes": "I&T占硬件20-40%(SpaceNexus 2026), Starlink免测50-80%→取下界"
+        },
+        "10yr": {
+          "values": {
+            "light": 0.20,
+            "baseline": 0.28,
+            "conservative": 0.40
+          },
+          "notes": "全环境测试覆盖→取中位"
+        }
+      },
+      "evidence_grade": "四档 (V29 ruling: 独立文献支撑+寿命分支)",
+      "source_type": "系统级工程系数",
+      "allowed_usage": "system_cost_coefficient",
+      "replacement_required": false,
+      "notes": "集成测试成本系数, 非单件采购价. SpaceNexus 2026文献: I&T占硬件成本20-40%. Starlink量产压缩: 'disposable 5-year LEO birds, reducing qualification by 50-80%'."
+    },
+    {
+      "item_id": "hjt_route_cost_chain",
+      "model_key": "route_hjt_cost_chain",
+      "route": "HJT parallel mature route",
+      "unit": "n/a",
+      "values": {
+        "ground_hjt_per_w": "0.14-0.24 USD/W",
+        "space_hjt_per_w_light": 2.0,
+        "space_hjt_per_w_baseline": 3.0,
+        "space_hjt_per_w_conservative": 5.0,
+        "ground_to_space_multiplier": "10-15x"
+      },
+      "evidence_grade": "三档 (V16 ruling: HJT cost chain adopted)",
+      "source_type": "可迁移证据",
+      "allowed_usage": "main_model_sensitivity",
+      "replacement_required": false,
+      "notes": "地面量产HJT $0.14-0.24/W为二档(pmarketresearch等交叉验证). 东方日升50μm空间级HJT 14-21 RMB/W(≈$2-3/W)为三档. 地面→空间放大约10-15x. HJT现在是GaAs的并行成熟路线，不再禁止入主模型。",
+      "anchors": [
+        {
+          "type": "web_reference",
+          "ref": "https://www.cea.fr/cea-tech/liten/english/Pages/Medias/News/2025/major-breakthrough-for-photovoltaic-technology-space.aspx",
+          "summary": "HJT 在空间辐照条件下 >14% efficiency after irradiation，97% performance recovery。"
+        }
+      ]
+    }
+  ]
+}

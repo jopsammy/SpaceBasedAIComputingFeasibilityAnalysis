@@ -1,0 +1,159 @@
+% 07_matrix.tex — 综合对比与阈值矩阵
+
+\section{综合对比与可行性翻转分析}
+
+\subsection{跨轨道综合成本指数（M5 模型）}
+
+基于 M1--M5 五个独立 Python 建模脚本，整合发射成本（30\%）、散热面积（20\%）、光伏需求（15\%）、辐射威胁（25\%）和硬件寿命（10\%）五个维度的加权综合指数。指数值越低表示综合可行性越优，LEO 设为基准 1.00。
+
+\begin{table}[H]
+\centering
+\caption{跨轨道综合成本指数排名（M5 模型输出）}
+\label{tab:m5-ranking}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\textbf{排名} & \textbf{轨道} & \textbf{综合指数} & \textbf{评级} & \textbf{发射} & \textbf{散热} & \textbf{辐射} \\
+\midrule
+\textbf{1} & \textbf{GEO}     & \textbf{0.83} & A & 1.53x & 1,040 & 7.7/100 \\
+2 & 地月 L1             & 0.94 & A & 1.37x & 1,046 & 13.1/100 \\
+3 & 地月 L4/L5          & 0.94 & A & 1.40x & 1,038 & 13.1/100 \\
+4 & 地月 L2             & 0.95 & A & 1.40x & 1,046 & 13.1/100 \\
+5 & 地日 L1             & 0.99 & A & 1.36x & 1,038 & 16.7/100 \\
+6 & 地日 L2             & 0.99 & A & 1.36x & 1,038 & 16.7/100 \\
+7 & LEO (基准)          & 1.00 & A & 1.00x & 482  & 10.0/100 \\
+8 & MEO                 & 1.47 & B & 1.31x & 1,040 & 35.0/100 \\
+9 & HEO                 & 2.52 & C & 1.60x & 1,015 & 50.0/100 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\textbf{核心发现}：6 个非 LEO 轨道的综合指数低于或等于 LEO。GEO 以 0.83 排名第一（比 LEO 优 17\%），因为其散热效率（1,040 vs 482~\wpm）和光伏面积需求（3,315 vs 8,844 m\textsuperscript{2}）的优势充分抵消了 $\sim$1.5x 的发射成本溢价。
+
+\begin{figure}[H]
+\centering
+\input{figures/m5_ranking}
+\caption{跨轨道综合成本指数排名（M5 模型）。指数越低越优，LEO 为基准 1.00。}
+\label{fig:m5-ranking}
+\end{figure}
+
+\subsection{辐射威胁排序：TID vs SEE}
+
+\begin{table}[H]
+\centering
+\caption{各轨道辐射威胁排序（M2 模型输出）}
+\label{tab:m2-ranking}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\textbf{轨道} & \textbf{TID中值} & \textbf{SEU (log10)} & \textbf{TIDvsLEO} & \textbf{寿命(yr)} & \textbf{威胁分} & \textbf{主威胁} \\
+\midrule
+HEO  & 125.0~\kradyr & 5.50 & 6.25x & 0.8  & 50.0 & \textbf{TID+SEE双杀} \\
+MEO  & 10.0~\kradyr  & 5.00 & 0.50x & 10.0 & 35.0 & \textbf{SEE主导} \\
+地日 L1/L2 & 3.5~\kradyr & 2.50 & 0.17x & 28.6 & 16.7 & \textbf{SEE主导} \\
+地月 L4/L5 & 10.0~\kradyr & 1.35 & 0.50x & 10.0 & 13.1 & 混合偏SEE \\
+GEO  & 6.5~\kradyr  & 0.74 & 0.33x & 15.4 & 7.7  & 混合型 \\
+LEO  & 20.0~\kradyr & 0.00 & 1.00x & 5.0  & 10.0 & \textbf{TID主导} \\
+\bottomrule
+\end{tabular}%
+}
+
+\smallskip
+\noindent 威胁分 = TID(40\%) + SEU(60\%)，TID 失效阈值 100~\kradyr。寿命基于 TID 中值 / 100~\kradyr 估算。
+\end{table}
+
+\subsection{TID 悖论深度分析}
+
+"TID 悖论"是本调研最重要的发现：
+
+\begin{observation}[TID悖论]
+深空（地日 L1/L2）在适度屏蔽（$\sim$2.5 mm Al）后的年 TID 仅为 2--5~\kradyr，而穿越 SAA 的 LEO 轨道（SSO、高倾角）年 TID 为 10--30~\kradyr——深空 TID 反而更低。但深空 SEU 率比 LEO 高 100--1000 倍。
+\end{observation}
+
+物理原因：LEO 的 TID 主要由内范艾伦带捕获质子贡献（SAA 区域），深空无此来源。但深空无地磁场偏转 GCR 重离子，导致 SEU 率比 LEO 高出 2--3 个数量级 \cite{jahan_radiation_2026}。
+
+\textbf{对算力硬件的工程判断}：在拉格朗日点部署算力的辐射挑战是 \textbf{SEE 挑战，不是 TID 挑战}。只要 SEE 被充分应对（TMR + 快速 scrubbing + SEL 保护），TID 甚至不是制约因素（屏蔽后 $<$5~\kradyr，10 年仅 50 krad，FDSOI 22nm 工艺在 400 krad 下 Vth 漂移仅 0.052 V——接近免疫 \cite{jahan_radiation_2026}）。
+
+\begin{figure}[H]
+\centering
+\input{figures/tid_vs_seu}
+\caption{TID vs SEU 二维分布图。横轴为 TID 中值（\kradyr），纵轴为 SEU 相对 LEO 的对数风险。地日 L1/L2 位于左下角"TID 悖论区"——TID 极低但 SEE 风险高。HEO 位于右上角"双杀区"——TID 与 SEE 均极高。}
+\label{fig:tid-vs-seu}
+\end{figure}
+
+\subsection{SEE 防护开销量化}
+
+\begin{table}[H]
+\centering
+\caption{SEE 防护策略开销量化}
+\label{tab:see-cost}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{防护策略} & \textbf{面积/功耗开销} & \textbf{适用范围} & \textbf{深空约束} \\
+\midrule
+TMR (全模块)     & $\sim$200\% & 全部逻辑路径 & 不可缩减 \\
+TMR (选择性)     & $\sim$56\% LUT + 28\% 寄存器 & 关键路径 & 需验证覆盖率 \\
+EDAC (SECDED)    & 12.5\% 内存 & SRAM/DRAM & MBU 可能突破 \\
+Scrubbing        & $\sim$1--5\% 系统功耗 & FPGA 配置内存 & 间隔需缩至秒级 \\
+SEL 保护        & 电路级 & 电源管理 & 必需 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+在 L2 环境中（SEU 率 100--1000x LEO），TMR + EDAC + scrubbing 的综合开销估计为面积 $\sim$200--300\%、功耗 $\sim$150--200\%，相较于无防护的 COTS 硬件 \cite{kchaou_tmr_2026}。
+
+\subsection{"慢死 vs 猝死"判断}
+
+\begin{observation}[SEE 比 TID 更难应对]
+TID 可通过工艺选择一次性解决（FDSOI、GaN、SOI），而 SEE 防护（TMR + scrubbing）是\textbf{持续性的面积/功耗/复杂度惩罚}，无法通过单次工程决策消除。此外，SEE 率受太阳活动 10x+ 调制，SPE 不可预测——裕度设计困难。结论：SEE（猝死）比 TID（慢死）更难应对。
+\end{observation}
+
+\subsection{可行性翻转阈值矩阵}
+
+表~\ref{tab:flip-threshold} 汇总各轨道实现"TCO 与地面可比"的临界条件。硬件成本降低（抗辐射溢价缩减）是所有轨道的共同瓶颈——硬件成本占 TCO 的 50--70\%。
+
+\begin{table}[H]
+\centering
+\caption{各轨道可行性翻转阈值矩阵}
+\label{tab:flip-threshold}
+\small
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{轨道} & \textbf{发射成本临界值} & \textbf{硬件溢价临界值} & \textbf{寿命临界值} & \textbf{翻转概率(2035)} \\
+\midrule
+LEO    & $<$\$100/kg & $<$3x 地面 & $>$7 年  & 中低 (25--40\%) \\
+MEO    & $<$\$80/kg  & $<$2x 地面 & $>$10 年 & \textbf{极低 ($<$10\%)} \\
+GEO    & $<$\$120/kg & $<$3x 地面 & $>$5 年  & 中低 (20--35\%) \\
+HEO    & $<$\$60/kg  & $<$2x 地面 & $>$12 年 & \textbf{极低 ($<$5\%)}  \\
+L1/L2  & $<$\$100/kg & $<$2.5x 地面 & $>$8 年  & 低 (10--20\%) \\
+L4/L5  & $<$\$100/kg & $<$2.5x 地面 & $>$7 年  & 低 (15--25\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{关键判断}：GEO 拥有最宽松的翻转条件——15 年寿命已获产业验证，RSGS 可进一步延寿。\textbf{GEO 是唯一可能率先实现经济可行的非 LEO 轨道}。MEO 和 HEO 的翻转条件极为苛刻，在 2035 年前几乎不可能。
+
+\subsection{1 MW 散热与光伏面积需求}
+
+\begin{table}[H]
+\centering
+\caption{1 MW 算力散热面积与光伏面积需求（M3/M4 模型）}
+\label{tab:area-requirement}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{轨道} & \textbf{350K散热 m\textsuperscript{2}} & \textbf{光伏面积 m\textsuperscript{2}} & \textbf{储能需求} & \textbf{日照占比} \\
+\midrule
+LEO       & 3,115 & 8,844 & 有 & 60\%   \\
+MEO       & 1,439 & 3,528 & 无 & 95\%   \\
+GEO       & 1,442 & 3,315 & 极少 & 98\%   \\
+HEO       & 1,477 & 4,407 & 有 & 85\%   \\
+地日 L1/L2 & 1,445 & 3,184 & \textbf{零} & \textbf{100\%} \\
+地月 L4/L5 & 1,445 & 3,184 & \textbf{零} & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{零储能轨道}：地日 L1/L2 和地月 L4/L5 享受连续日照，无需储能电池——简化设计、降低质量。

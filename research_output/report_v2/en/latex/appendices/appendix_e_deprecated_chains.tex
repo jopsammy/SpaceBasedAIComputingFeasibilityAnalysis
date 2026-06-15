@@ -1,0 +1,217 @@
+% appendices/appendix_e_deprecated_chains.tex
+
+\section{Deprecated Derivation Chains and Parameter Constraints}
+
+This chapter records derivation paths that were superseded during the analysis process, parameter values that were corrected, and the applicable physical boundaries or transfer ranges of each parameter. When comparing against previous versions or external references, readers should note that the following numbers are no longer valid.
+
+\subsection{kW/t Back-Calculation Chain Deprecation}
+\label{sec:deprecated-kwt}
+
+\subsubsection{Deprecated Content}
+
+The previous-era derivation path computed payload mass using the following formula:
+
+\begin{equation}
+  M_{\mathrm{payload}} = \frac{P_{\mathrm{sustained}}}{s_{\mathrm{kW/t}}}
+                       = \frac{150\ \mathrm{kW}}{(70/55/45)\ \mathrm{kW/t}}
+  \label{eq:deprecated-kwt}
+\end{equation}
+
+Three-scenario values: 2,143~kg (70 kW/t) / 2,727~kg (55 kW/t) / 3,333~kg (45 kW/t). This derivation chain was permanently deprecated in the third round of this report (\path{close-stage-two-evidence-gaps}, Task~2).
+
+\subsubsection{Three Root Causes}
+
+\begin{enumerate}
+  \item \textbf{Denominator sourced from B1-level second-hand relay (not official NVIDIA/SpaceX)}:
+  70/55/45 kW/t originates from second-hand media relay or speculation about ``SpaceX AI1 specific power'', not from official NVIDIA GPU specifications nor from official SpaceX public documentation. Under the four-tier evidence system, B1-level relay does not possess sufficient evidentiary strength to independently support key model inputs.
+
+  \item \textbf{Fundamental ambiguity in the domain of definition}:
+  What mass the ``t'' (ton) in the denominator corresponds to has never been locked down by primary-source material. If it corresponds to all-up satellite mass, then compute payload mass = all-up satellite mass---which is physically impossible (would exclude the existence of power, thermal, structure, propulsion, and all other subsystems). If it corresponds to the compute payload subsystem, then the specific power value of 70 kW/t needs independent verification, but no public anchor is available for verification.
+
+  \item \textbf{Circular reference risk}:
+  Two usages simultaneously appeared in previous-era materials: (a) back-calculating compute payload mass from 70 kW/t; (b) using the back-calculated mass to prove 70 kW/t is reasonable. This logically forms a closed loop---first assuming the denominator, then using the calculation result to verify that same denominator. Circular reference is a fundamental defect in an evidence chain.
+
+  Supplementary judgment: The above three root causes are not issues ``only discovered in the third round.'' The kW/t back-calculation chain used ``B1-level second-hand relay'' as its source from the first round (\texttt{produce-stage-two-difference-analysis}), and was flagged as ``denominator definition suspect / P0 Gap~2'' in the second round (\texttt{refine-stage-two-blackwell-hjt-model}). The first two rounds retained the chain as a temporary placeholder ``pending an alternative''---this was an explicit execution judgment, not a missed detection. After Task~2 of the third round completed the bottom-up mass chain reconstruction, a verifiable alternative existed, and the deprecation formally took effect.
+\end{enumerate}
+
+\subsubsection{Replacement Path}
+
+\begin{center}
+  \fbox{
+    \begin{minipage}{0.85\textwidth}
+      \textbf{kW/t back-calculation $\longrightarrow$ bottom-up ground hardware anchor + three space-hardening increments}
+
+      New chain methodology detailed in Appendix~C~\S C.3. New values (V30 per-parameter adjudication): optimistic 1,200~kg / baseline 1,500~kg / conservative 2,000~kg.
+      Evidentiary strength upgraded from B1 second-hand relay to Tier~2 (ground hardware A1 anchor) + Tier~3 (space-hardening increment inference).
+    \end{minipage}
+  }
+\end{center}
+
+Previous-era analysis numbers (2,143/2,727/3,333~kg) are archived in this appendix solely as deprecation reasons. Compute payload mass in the main text uses the V30 adjudicated values (1,200/1,500/2,000~kg).
+
+\subsection{Derivation Path Replacement Relationship Table}
+\label{sec:replacement-table}
+
+\begin{table}[H]
+  \centering
+  \caption{Derivation Path Replacement Relationship Master Table (1/2)}
+  \label{tab:chain-replacement-a}
+  \scriptsize
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.1cm}
+    >{\raggedright\arraybackslash}p{2.8cm}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}p{2.2cm}
+  }
+  \toprule
+  \textbf{Previous-Era Path / Value} & \textbf{Deprecation Reason} & \textbf{This Report's Method / Value} & \textbf{This Report's Method Section} \\
+  \midrule
+  \path{compute_specific_power_kw_per_t} = 70/55/45 kW/t & B1-level second-hand relay, domain-of-definition ambiguity, circular reference & Direct read of \path{components[compute_payload].scenario_mass_kg}, no longer via kW/t denominator & Appendix~C~\S C.3 \\
+  \addlinespace
+  Compute Payload Mass = 2,143/2,727/3,333~kg & Derived from kW/t back-calculation chain; denominator deprecated & 1,200/1,500/2,000~kg (V30 bottom-up adjudication) & Appendix~C~\S C.3.3 \\
+  \addlinespace
+  \path{battery_cost_per_kwh} = \$400/kWh & $\sim$225$\times$ order-of-magnitude contradiction with public space-grade battery list prices & NMC: \$200/kWh fixed (V36 Starlink transfer); LTO: \$260/350/400/kWh (V37 proportional compression) & Appendix~B~\S B.2 \\
+  \addlinespace
+  HJT ``can only be downgraded'' / ``prohibited from entry into primary model'' & Route positioning contradicted by Task~3 evidence package (17 URLs + 12 physical chain closures) & ``Parallel maturation route''---physical chain fully comparable, cost chain closure separately noted & Appendix~B~\S B.4 \\
+  \addlinespace
+  \path{stage2_mass_cost_results.md} & Previous-era aggregate model results based on kW/t chain & \path{stage2_economic_branches_blackwell.md}: three-branch per-item expansion, each subsystem independent mass + cost, per-item traceable & --- \\
+  \addlinespace
+  \path{stage2_power_system_results.md} & Did not include HJT parallel route, did not include battery branching & \path{stage2_power_system_results_blackwell_hjt.md}: Blackwell primary line, GaAs/HJT parallel, battery three-branch & --- \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Derivation Path Replacement Relationship Master Table (2/2)}
+  \label{tab:chain-replacement-b}
+  \scriptsize
+  \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{2.1cm}
+    >{\raggedright\arraybackslash}p{2.8cm}
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}p{2.2cm}
+  }
+  \toprule
+  \textbf{Previous-Era Path / Value} & \textbf{Deprecation Reason} & \textbf{This Report's Method / Value} & \textbf{This Report's Method Section} \\
+  \midrule
+  \path{stage2_architecture_reconciliation.md} & Rubin downgraded to branch-line trace, no longer enters primary model & No direct replacement; Rubin architecture efficiency remapping retained only as external reference direction, does not enter primary model & --- \\
+  \addlinespace
+  PCDU Specific Power = 10.0~kW/kg & Terma flight product anchor revealed overestimation by $\sim$18$\times$ (originally 150kW/10.0=15kg, corrected to 209.8kW/0.5$\approx$420kg) & 1.0/0.5/0.2~kW/kg (V25, Tier~4) & Appendix~C~\S C.2.5 \\
+  \addlinespace
+  Bus Coefficient = 0.18/0.22/0.28 & Starlink V2 Mini mass rough decomposition reference ratio $\sim$0.38; original values too low & 0.25/0.35/0.45 (V21, Tier~4) & Appendix~B~\S B.3 \\
+  \addlinespace
+  Propulsion Mass = 180/220/350~kg & Starlink V2 Mini propulsion fraction reference suggests upside room & 200/350/500~kg (V22, Tier~4) & Same as above \\
+  \addlinespace
+  Communications Mass = 150/180/300~kg & 4 rounds of search + Google Suncatcher confirms high bandwidth demand & 200/300/450~kg (V23, Tier~4) & Same as above \\
+  \addlinespace
+  Battery DoD = single 40\% (no lifetime/chemistry split) & Research team held that one-size-fits-all should not be applied; required split by electrochemistry measurements & 5yr NMC 40\% / 10yr Li-ion 25\% / 10yr LTO 80\% (V10, Tier~3+4) & Appendix~B~\S B.2; Appendix~C~\S C.2.2 \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{Superseded Parameters and Current Value Comparison}
+\label{sec:superseded-params}
+
+The following parameters or formulations were superseded or corrected during the analysis process. The purpose of listing them is: (1) to enable readers to know which numbers are no longer valid when comparing against previous versions or external studies; (2) to exhibit key divergence points identified and corrected during the analysis process.
+
+\begin{enumerate}
+  \item \textbf{The kW/t back-calculation chain (70/55/45 kW/t) has been deprecated.} This chain used second-hand relay as denominator and had domain-of-definition ambiguity and circular reference risk (see \S E.1 for details). Current compute payload mass is instead derived directly from the ground hardware anchor (Appendix~C~\S C.3).
+
+  \item \textbf{Previous-era compute payload mass values (2,143/2,727/3,333~kg) have been replaced.} Current values are 1,200/1,500/2,000~kg (V30 bottom-up adjudication); the previous three values are archived solely as deprecation reasons in \S E.1.
+
+  \item \textbf{The JSON parameter \path{compute_specific_power_kw_per_t} has been removed.} In the Python scripts, compute payload mass is now read directly from the payload mass field in JSON, without going through the kW/t intermediate quantity.
+
+  \item \textbf{The battery cost item\_id \path{battery_cost_per_kwh} has been split into two items.}\\
+        Current item\_ids are \path{battery_cost_per_kwh_nmc} (NMC \$200/kWh, Tier~3) and \path{battery_cost_per_kwh_lto} (LTO \$260/350/400/kWh, Tier~4). The previous unified value \$400/kWh had a $\sim$225$\times$ contradiction with the satsearch price anchor and has been deprecated.
+
+  \item \textbf{HJT route positioning has been corrected from the previous-era ``downgraded / prohibited'' to ``parallel maturation route.''} HJT and GaAs physical chains are fully comparable (Appendix~C~\S C.2.4), with cost chain closure separately noted. HJT does not satisfy the AI1 70m wingspan geometric constraint (70m $\times$ 18.5m not realizable) and therefore is not a feasible primary route---this is a conclusion from the geometric constraint, not a negation of the technology route.
+
+  \item \textbf{The following result documents have been superseded:}
+  \begin{itemize}
+    \item \path{stage2_mass_cost_results.md}\\
+      $\to$ \path{stage2_economic_branches_blackwell.md}
+    \item \path{stage2_power_system_results.md}\\
+      $\to$ \path{stage2_power_system_results_blackwell_hjt.md}
+    \item \path{stage2_architecture_reconciliation.md} (Rubin downgraded to branch-line trace, no longer enters primary model)
+  \end{itemize}
+
+  \item \textbf{Parameters marked as ``external reference only'' do not constitute primary chain closure conclusions.} This applies to LTO battery cost (Tier~4), HJT full TCO (currently only directional estimate provided), and all 14 Tier~4 parameters including bus coefficient / propulsion mass / communications mass / PCDU cost, etc.
+
+  \item \textbf{The HJT backfill estimate $\sim$\$1,005M is a directional indicator, not a closed precise TCO.} This value indicates the directional conclusion that HJT cost does not outperform GaAs; the main text labels it as ``backfill estimate'' and separately declares the degree of closure.
+\end{enumerate}
+
+\subsection{Parameter Four-Tier Classification and DoD Boundary Constraints}
+\label{sec:dod-boundary}
+
+\subsubsection{Parameter Four-Tier Classification Constraints}
+
+All 47 parameters were re-classified item-by-item in Task~4, with the following statistics:
+
+\begin{table}[H]
+  \centering
+  \caption{Parameter Four-Tier Classification Statistics}
+  \label{tab:param-tier-boundary}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{lclp{6cm}}
+  \toprule
+  \textbf{Tier} & \textbf{Count} & \textbf{Fraction} & \textbf{Citation Convention in Main Text} \\
+  \midrule
+  Tier~1 (Physical Derivation Chain) & 5 & 11\% & Can be directly cited as main-text conclusions; no additional uncertainty statement required \\
+  Tier~2 (Authoritative Source) & 7 & 15\% & Can be cited; recommend noting source type (multi-source cross-verified or single authoritative source) \\
+  Tier~3 (Transferable Evidence) & 17 & 36\% & Can be cited; must include transfer limitation note (``this value comes from XX transfer, basis is YY'') \\
+  Tier~4 (Reasonable Inference) & 14 & 30\% & Can be cited; must include inference basis and failure risk statement; does not enter executive summary \\
+  Prohibited from Model Entry & 1 & 2\% & Does not enter main-text analysis; related analysis uses the replacement new value \\
+  Deprecated & 3 & 6\% & Archived only in this appendix; does not enter main text \\
+  \midrule
+  \textbf{Total} & \textbf{47} & \textbf{100\%} & \\
+  \bottomrule
+  \end{tabular}%
+  }
+\end{table}
+
+Tier~4 parameters accounting for 30\% (affecting $\sim$35\% of manufacturing cost items) is an objective consequence of the limited public disclosure of AI1 information, not an execution deficiency. All 14 Tier~4 parameters carry inference basis and failure risk statements (see internal parameter adjudication document for details), but should not be cited as confirmed figures.
+
+\subsubsection{DoD Boundary Constraints}
+
+The system boundary of DoD (Depth of Discharge) was defined in Task~5:
+
+\begin{itemize}
+  \item DoD is an independent parameter of the battery energy storage subsystem, determining the battery nominal capacity $E_{\text{battery}} = P_{\text{sustained}} \times t_{\text{eclipse}} / (\text{DoD} \times \eta_{\text{discharge}})$, thereby affecting battery mass and cost.
+  \item The relationship between DoD and GaAs/HJT is an indirect coupling: the photovoltaic array must meet battery recharge requirements, but DoD itself does not vary with the PV route. The battery configuration of the same satellite does not change with the PV cell chemistry system. DoD is uniformly expressed in the report as ``the DoD value of the battery subsystem (shared across GaAs and HJT routes).''
+  \item DoD indirectly affects all-up satellite mass and launch cost through the mass chain (DoD$\downarrow$ $\to$ $E_{\text{battery}}$ $\uparrow$ $\to$ $M_{\text{battery}}$ $\uparrow$ $\to$ $M_{\text{power}}$ $\uparrow$ $\to$ $M_{\text{total}}$ $\uparrow$ $\to$ $C_{\text{launch}}$ $\uparrow$); this is the penetrating impact of the battery subsystem on the entire satellite.
+\end{itemize}
+
+\subsection{Parameter Tier Reading Guide}
+\label{sec:reading-guide}
+
+All key numbers in this report carry evidence tier labels (Tiers~1--4, plus ``Prohibited from Model Entry'' and ``Deprecated''). The following is a reference guide for readers to judge the reliability of each number when reading the main text.
+
+\begin{description}
+  \item[Tier~1 (Physical Derivation Chain)] Can be accepted directly. Source is physical law or engineering necessity constraint (e.g., S-B equation-derived radiator area, orbital-mechanics-derived eclipse time). No additional uncertainty statement required.
+
+  \item[Tier~2 (Authoritative Source)] Can be accepted, but recommend attention to source type. A single authoritative source (e.g., AzurSpace 4G32 BOL efficiency) and multi-source cross-validation (e.g., three media outlets' consistent relay of AI1 power parameters) have differing evidentiary strength, which has been noted in the main text.
+
+  \item[Tier~3 (Transferable Evidence)] Can be referenced, but the transfer process has limitations. Typical example: Starlink battery data transferred to AI1 scenario---the physical logic of the transfer holds (both are LEO space batteries), but mission profile differences (communications vs.\ compute) may introduce bias. In the main text, Tier~3 parameters all carry transfer basis and limitation statements.
+
+  \item[Tier~4 (Reasonable Inference)] Used only to fill model completeness; must not independently serve as conclusion support. Involves 14 parameters (radiator areal density, bus coefficient, propulsion/communications mass and cost, etc.), each annotated with inference basis and primary failure risks. Tier~4 parameters are not used as core conclusions in the main-text executive summary.
+
+  \item[Prohibited from Model Entry / Deprecated] Refuted by public evidence or unsupported, or derivation path permanently superseded by this report. Archived only in this appendix; does not appear in main-text analysis.
+\end{description}
+
+Tier~4 accounts for 30\% of the current 47 parameters (14/47), affecting $\sim$35\% of manufacturing cost items. This is an objective consequence of the limited public disclosure of AI1 information: under public evidence constraints, all 14 parameters lack the conditions for upgrade to higher tiers, but each has been embedded with inference basis and failure risk statements (see internal parameter adjudication document for details). Readers citing numbers from this report should pay special attention to the inferential nature of these 14 parameters.
+
+\subsection{Key Parameter Constraint Conditions}
+\label{sec:param-constraints}
+
+The following constraint conditions arise from physical boundaries or the applicable range of transfer sources; extrapolation beyond range may lead to biased conclusions:
+
+\begin{itemize}
+  \item \textbf{Radiator Areal Density (4.0/5.0/6.5~kg/m$^2$)}: Applicable to rigid panel designs. If AI1 adopts non-conventional solutions such as deployable film radiators or droplet radiators, actual areal density may deviate by more than 50\%.
+
+  \item \textbf{Bus Coefficient (0.25/0.35/0.45)}: Based on Starlink V2 Mini mass rough decomposition (ratio $\sim$0.38), applicable to $\sim$8t-class satellites. Must not be linearly extrapolated to hundred-tonne-class or distributed-fragmented-cluster architectures.
+
+  \item \textbf{GaAs Array Areal Density (1.5~kg/m$^2$, panel-only)}: Includes cells + cover glass + interconnects + substrate only; excludes deployment mechanisms (hinges/motors/hold-down release). Deployment mechanism mass is accounted separately in the model.
+
+  \item \textbf{HJT Route Overall Positioning}: Physical chain closure is comparable to GaAs, but does not satisfy the AI1 70m wingspan geometric constraint (required $\sim$18.5m average width not realizable). Its role in the report is as a parallel technology reference, used to demonstrate the opportunity cost of not adopting GaAs.
+\end{itemize}

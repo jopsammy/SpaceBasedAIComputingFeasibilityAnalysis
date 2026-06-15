@@ -1,0 +1,56 @@
+\contentsline {section}{\numberline {1}引言与 LEO 基准回顾}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}研究背景}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}LEO 基准参数}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}本报告评估框架}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}数据来源与方法}{5}{subsection.1.4}%
+\contentsline {section}{\numberline {2}轨道环境全景对比}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}辐射环境全景}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}热环境对比}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}$\Delta v$发射成本对比}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}通信延迟全景}{6}{subsection.2.4}%
+\contentsline {section}{\numberline {3}MEO（中地球轨道）深度分析}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}辐射环境：SEE 主导}{7}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}热环境：大幅优于 LEO}{7}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}通信与覆盖}{7}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}太空算力部署评估}{8}{subsection.3.4}%
+\contentsline {section}{\numberline {4}GEO（地球同步轨道）深度分析}{8}{section.4}%
+\contentsline {subsection}{\numberline {4.1}辐射环境：混合型威胁}{8}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}热环境：近乎理想}{8}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}在轨维护：GEO 的独特战略优势}{9}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}太空算力部署评估}{9}{subsection.4.4}%
+\contentsline {section}{\numberline {5}HEO（大椭圆轨道）深度分析}{10}{section.5}%
+\contentsline {subsection}{\numberline {5.1}轨道特征}{10}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}辐射环境：最劣轨道类型}{10}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}热环境：大幅值热循环}{10}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}通信延迟：极度不稳定}{10}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}太空算力部署评估}{10}{subsection.5.5}%
+\contentsline {section}{\numberline {6}拉格朗日点深度分析}{11}{section.6}%
+\contentsline {subsection}{\numberline {6.1}地日 L1/L2：深空算力的双面性}{11}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}辐射环境：TID 悖论的核心}{11}{subsubsection.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.2}热环境：天然冷端与连续日照}{12}{subsubsection.6.1.2}%
+\contentsline {subsubsection}{\numberline {6.1.3}通信延迟：最大不可消除劣势}{12}{subsubsection.6.1.3}%
+\contentsline {subsubsection}{\numberline {6.1.4}太空算力部署评估}{12}{subsubsection.6.1.4}%
+\contentsline {subsection}{\numberline {6.2}地月 L4/L5：最稳定的深空算力平台}{12}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}独特的引力稳定性}{12}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2}环境参数}{13}{subsubsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.3}太空算力部署评估}{13}{subsubsection.6.2.3}%
+\contentsline {subsection}{\numberline {6.3}地月 L1/L2：Gateway 生态的算力潜力}{13}{subsection.6.3}%
+\contentsline {section}{\numberline {7}综合对比与可行性翻转分析}{14}{section.7}%
+\contentsline {subsection}{\numberline {7.1}跨轨道综合成本指数（M5 模型）}{14}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}辐射威胁排序：TID vs SEE}{15}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}TID 悖论深度分析}{15}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}SEE 防护开销量化}{16}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}"慢死 vs 猝死"判断}{17}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}可行性翻转阈值矩阵}{17}{subsection.7.6}%
+\contentsline {subsection}{\numberline {7.7}1 MW 散热与光伏面积需求}{17}{subsection.7.7}%
+\contentsline {section}{\numberline {8}结论与演进路径}{18}{section.8}%
+\contentsline {subsection}{\numberline {8.1}主要结论}{18}{subsection.8.1}%
+\contentsline {subsubsection}{\numberline {8.1.1}1. LEO 并非太空算力的最优轨道}{18}{subsubsection.8.1.1}%
+\contentsline {subsubsection}{\numberline {8.1.2}2. TID 悖论：深空辐射挑战的本质是 SEE}{18}{subsubsection.8.1.2}%
+\contentsline {subsubsection}{\numberline {8.1.3}3. MEO 和 HEO 不推荐部署太空算力}{18}{subsubsection.8.1.3}%
+\contentsline {subsubsection}{\numberline {8.1.4}4. 通信延迟是不可消除的硬约束}{18}{subsubsection.8.1.4}%
+\contentsline {subsection}{\numberline {8.2}非 LEO 太空算力优先级排序}{19}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}演进时间线}{19}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}关键先行事件}{19}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}最终判断}{20}{subsection.8.5}%
+\contentsline {section}{参考文献}{20}{subsection.8.5}%

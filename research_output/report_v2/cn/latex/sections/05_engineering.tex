@@ -1,0 +1,461 @@
+% sections/05_engineering.tex
+% 第5章：工程可行性
+
+\section{工程可行性：质量、电源、寿命与运力}
+
+科学可行（第4章结论）意味着散热在物理定律层面不构成绝对禁令。但这距离"能造出来并持续运行"还有显著距离。本章回答四个核心工程问题：(1) 一颗能承载 1,500\;kg 计算载荷的 AI1 级卫星总重多少？(2) 需要什么样的光伏和储能系统来持续供电？(3) 在轨能运行多久，故障了怎么办？(4) 现有的发射运力能否支撑规模化部署？
+
+\subsection{计算载荷质量：从 kW/t 反推到 bottom-up 硬件锚点}
+
+\subsubsection{首先声明："千瓦每吨"反推法已永久废弃}
+
+在进入本报告的 bottom-up 质量链之前，必须首先声明：此前部分行业分析中使用的"150\;kW / 70\;kW/t = 2.14\;t"等计算载荷质量反推方法，已因以下三重根本性问题被永久废弃：
+
+\begin{enumerate}
+    \item \textbf{分母来源不可靠}：70/55/45\;kW/t 来自二手媒体转述（非 NVIDIA 或 SpaceX 官方规格），属于 B1 级不可靠来源。
+    \item \textbf{定义域存在根本性歧义}：分母中的"t"从未被一手资料锁定为"整星质量"还是"计算载荷质量"。若为整星，则"计算载荷质量 = 整星质量"在物理上不可能（排除了电源、热控、结构等所有其他子系统）；若为计算载荷，则 70\;kW/t 需要独立验证而无公开锚点。
+    \item \textbf{循环引用风险}：此前分析同时用"从 70\;kW/t 反推质量"和"用质量证明 70\;kW/t 合理"，在逻辑上构成闭环。
+\end{enumerate}
+
+因此，本报告\emph{永久废弃} 70/55/45\;kW/t 反推链，此前分析中的 2,143/2,727/3,333\;kg 数值不再作为任何结论的支撑。废弃推导链的完整说明、替换路径和禁线清单见附录 E\;\S E.1。
+
+\subsubsection{计算方法：地面硬件锚点 + 三项空间化增量}
+
+本报告采用的方法以\emph{NVIDIA 官方公开的地面 GPU 硬件规格}为锚点（而非间接的"千瓦每吨"转述），系统性地分解从"地面裸硬件"到"太空化硬件"所需的增量。
+
+\textbf{地面硬件基线（二档权威资料，A1 级锚点）}：
+
+\begin{table}[H]
+\centering
+\caption{地面计算硬件基线——NVIDIA Blackwell 架构各形态的公开质量数据}
+\label{tab:ground_hardware_baseline}
+\small
+\begin{tabular}{p{5.0cm}p{3.0cm}p{5.5cm}}
+\toprule
+\textbf{硬件形态} & \textbf{已知质量} & \textbf{来源} \\
+\midrule
+GB300 NVL72 计算托盘（4 GPU + 2 CPU） & 29\;kg & Lenovo LP2357 产品指南\cite{lenovo2025gb300} \\
+HGX B200 基板（8 GPU）               & 32\;kg & NVIDIA PCF 规格书 \\
+DGX B200 完整系统（8 GPU，含机箱/PSU） & 142.4\;kg & NVIDIA DGX B200 用户指南 \\
+B200 TDP                             & 1,000\;W/GPU & 三来源交叉一致（150 GPU $\approx$ 150\;kW 峰值） \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+基于上述硬件规格，$\sim$150 个 B200 GPU 的地面裸硬件基准质量约 1,000--1,100\;kg（含 per-GPU 液冷冷板）【二档·权威资料】。
+
+\textbf{三项空间化增量拆解}：将地面硬件送入太空并维持其在轨运行，需要增加以下三项质量（本报告将每一项独立分解，使其可分别验证）：
+
+\begin{table}[H]
+\centering
+\caption{空间化增量——从地面裸硬件到太空化硬件的质量增加（三项分解）}
+\label{tab:space_adaptation}
+\small
+\begin{tabular}{p{2.2cm}p{2.0cm}p{2.0cm}p{2.0cm}p{3.8cm}}
+\toprule
+\textbf{增量项} & \textbf{乐观} & \textbf{基准} & \textbf{保守} & \textbf{关键锚点} \\
+\midrule
+辐射防护     & +30--50\;kg & +80--120\;kg  & +200--300\;kg  & ACT Polymer 3D 打印屏蔽（比全铝机箱轻 70\%）；NASA Shields-1 飞行验证【三档】 \\
+热管理改造   & $-$50$\sim$+50\;kg & +100--200\;kg & +250--400\;kg  & JAXA HFE7200 单相机械泵流体回路热真空舱验证【三档】 \\
+结构/真空    & +80--150\;kg & +150--250\;kg & +300--500\;kg  & 发射振动加固（行业经验）、真空兼容（释气材料替换）、微重力结构减重【三档/四档】 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{空间化后总计算载荷质量}：
+
+\begin{table}[H]
+\centering
+\caption{计算载荷质量三场景取值}
+\label{tab:compute_payload_mass}
+\begin{tabularx}{\textwidth}{
+  >{\raggedright\arraybackslash}p{2.5cm}
+  >{\centering\arraybackslash}p{2.1cm}
+  >{\centering\arraybackslash}p{2.1cm}
+  >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{场景} & \textbf{总增量} & \textbf{+ 地面基线} & \textbf{= 总质量} \\
+\midrule
+乐观（轻量化） & +60--250\;kg  & +1,000--1,100\;kg & \textbf{1,200\;kg} \\
+基准            & +330--570\;kg & +1,000--1,100\;kg & \textbf{1,500\;kg} \\
+保守            & +750--1,200\;kg & +1,000--1,100\;kg & \textbf{2,000\;kg} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{逻辑桥接}：地面已知的 GB300 NVL72 硬件质量（二档 A1 锚点）是整条质量链的"地基"。地基之上逐层叠加三项可分别验证的增量——辐射防护（NASA 有飞行数据）、热管理改造（JAXA 有热真空舱试验）、结构加固（航天工程行业惯例）——每项给出乐观/基准/保守区间。最终得到计算载荷质量三值 1,200/1,500/2,000\;kg，证据强度从此前推导路径的"B1 二手转述 + 循环引用"提升至"二档硬件锚点 + 三档可迁移证据"。
+
+\subsubsection{三项增量：已包含/未包含项清单}
+
+三项空间化增量覆盖的子系统如下。每一项在基准场景中已明确包含的组件和已知未逐项列明但已被保守场景吸收的项分列于下：
+
+\medskip
+\noindent\textbf{辐射防护（基准 +80--120\;kg）}：
+\begin{itemize}[leftmargin=*]
+    \item \textbf{已包含}：GPU/CPU 芯片级屏蔽（ACT Polymer 3D 打印或等效轻量化材料）、关键电子器件局部加固、敏感存储单元冗余防护。
+    \item \textbf{未逐项列明但已被保守场景吸收}：整星统一屏蔽舱体结构（保守场景 +200--300\;kg 的区间上限已覆盖此方案）；宇航级 EEE 器件筛选的增量质量（已自然包含在保守上限内）。
+\end{itemize}
+
+\noindent\textbf{热管理改造（基准 +100--200\;kg）}：
+\begin{itemize}[leftmargin=*]
+    \item \textbf{已包含}：机械泵流体回路（含泵组、管路、工质）、冷板及热界面材料、辐射散热面结构与展开机构；JAXA HFE7200 验证级热真空舱测试表明此类系统在空间环境下的基本热—机械行为可预测。
+    \item \textbf{未逐项列明但已被保守场景吸收}：冗余泵/备份回路（1-of-1 条件下故障即不可维修，实际设计可能需 2-of-3 冗余——保守场景上限已为此留出裕量）；微重力下两相流不确定性所需的额外测试硬件（保守上限已覆盖）。
+\end{itemize}
+
+\noindent\textbf{结构/真空适应（基准 +150--250\;kg）}：
+\begin{itemize}[leftmargin=*]
+    \item \textbf{已包含}：发射振动与声振环境加固、释气材料替换（真空兼容）、微重力结构适应性调整、Starship 发射载荷接口适配。
+    \item \textbf{未逐项列明但已被保守场景吸收}：微陨石/空间碎片（MMOD）防护增强结构（保守上限已覆盖）；展开机构与锁定装置的冗余设计（保守上限已覆盖）；在轨结构健康监测传感器网络（保守上限已覆盖）。
+\end{itemize}
+
+\noindent\textbf{综合判断}：若将所有上述"未逐项列明"项视为需要独立计入的增量，只会增大单星计算载荷质量，进而拉高整星质量与 TCO——换言之，当前质量模型在其保守场景中已吸收了这些不确定项，缺失这些项只会使商业结论\emph{进一步向保守方向强化}。本报告不将"已知未列明项"单独加回以保持模型简洁，但在此显式记录其存在与吸收路径，供独立审查追溯。
+
+\subsection{电源系统路线对照}
+
+电源系统是单星质量最大、成本最高的子系统之一。本章给出两条技术路线——\textbf{GaAs（砷化镓）主链}和\textbf{HJT（异质结硅）并行路线}——的完整物理链比较，并基于 AI1 的 70\;m 翼展约束判定路线的工程可落地性。
+
+\subsubsection{GaAs 主链电源系统}
+
+GaAs III-V 族多结太阳电池是当前航天器光伏的事实标准，具备最高的 AM0 转换效率和最翔实的在轨退化数据。本报告以 AzurSpace 4G32 空间级三结 GaAs 电池为锚点：
+
+\begin{table}[H]
+\centering
+\caption{GaAs 主链电源系统参数（基准场景）}
+\label{tab:gaas_power}
+\small
+\begin{tabular}{p{4.0cm}p{4.5cm}p{4.0cm}}
+\toprule
+\textbf{参数} & \textbf{数值} & \textbf{证据档位} \\
+\midrule
+BOL 效率           & 32\%            & 二档·AzurSpace 4G32 产品规格页\cite{azur2025space} \\
+EOL 效率（10年）    & 29\%            & 二档·NASA NEPP III-V 空间电池 LEO 10年退化统计（退化率 $\sim$9.4\%） \\
+阵列面密度（panel-only） & 1.5\;kg/m\textsuperscript{2} & 三档·行业区间 1.5--2.5\;kg/m\textsuperscript{2}（含 cells + cover glass + interconnects + honeycomb），取低端 \\
+阵列面积           & 625\;m\textsuperscript{2}    & 一档·物理公式推导（$150\;\text{kW}/(1361\times0.32)$ BOL + EOL 退化 + 母线效率 + 回充功率） \\
+阵列质量           & 938\;kg          & 一档导出：$625\;\text{m}^2 \times 1.5\;\text{kg/m}^2$ \\
+电池（10yr Li-ion） & 1,573\;kg        & 三档·DoD 25\%、190\;Wh/kg、Starlink 迁移（详见下节电池三分支） \\
+PCDU 质量          & 419\;kg          & 四档·0.5\;kW/kg 基准（Terma BepiColombo MTM 飞行产品锚点 0.54\;kW/kg） \\
+电源总质量          & \textbf{2,930\;kg} & \\
+电源总成本          & \textbf{\$47.36M}  & 三档（阵列 \$200/W\_BOL）+ 三档（电池 \$200/kWh）+ 四档（PCDU \$5k/kW） \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+阵列面积 625\;m\textsuperscript{2} 是从 AI1 的 120\;kW 持续功率出发、经轨道光电能量平衡公式链独立推导的结果（详见附录 C\;\S C.2）。在 70\;m 翼展约束下，平均宽度约 $625/70 \approx 8.9\;\text{m}$——这在当前柔性太阳能阵列展开技术（ROSA 已飞行验证，Starlink V2 Mini 116\;m\textsuperscript{2}/30\;m 翼展 $\approx$ 3.9\;m 宽度）的基础上放大 2--3 倍，属于工程合理范围。
+
+\subsubsection{HJT 并行路线电源系统}
+
+HJT（异质结硅）电池是地面光伏量产的主流技术之一。本报告将 HJT 定位为"并行成熟路线"（而非替代方案或探索性路线）——其物理链完全可比较，但受 AI1 部署约束限制。
+
+\begin{table}[H]
+\centering
+\caption{HJT 并行路线电源系统参数}
+\label{tab:hjt_power}
+\small
+\begin{tabular}{p{4.0cm}p{4.5cm}p{4.0cm}}
+\toprule
+\textbf{参数} & \textbf{数值} & \textbf{证据档位} \\
+\midrule
+BOL 效率           & 22\%              & 二档·华晟量产 $>$26\% $\times$ AM0 修正 0.85 保守取 22\%；隆基 27.81\% 地面纪录 \\
+EOL 效率（10年）    & 14\%              & 二档·CEA/INES 独立辐照实验：$>$14\% after $10^{14}\;e^{-}/\text{cm}^2$ 1MeV；ISFH Caltec 独立验证 97\% self-curing recovery \\
+阵列面密度（panel-only） & 1.8\;kg/m\textsuperscript{2} & 三档·Starlink V2 Mini 面板级反推 $\sim$1.7--2.6\;kg/m\textsuperscript{2} \\
+阵列面积           & 1,295\;m\textsuperscript{2}  & 一档·物理公式推导（同 GaAs 公式，代入 HJT BOL/EOL 效率） \\
+阵列质量           & 2,330\;kg          & 一档导出：$1,295\;\text{m}^2 \times 1.8\;\text{kg/m}^2$ \\
+电源总质量          & \textbf{3,733\;kg}  & 比 GaAs 重 1,393\;kg（+59.6\%） \\
+电源总成本          & \textbf{\$16.09M}  & 三档补齐估计（阵列约\$14.55M + 电池\$0.04M + PCDU\$1.50M；闭合度低于 GaAs 主链） \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{GaAs vs HJT 对比与 70\;m 翼展约束分析}
+
+\begin{table}[H]
+\centering
+\caption{GaAs vs HJT 电源路线全面对比}
+\label{tab:gaas_vs_hjt}
+\begin{tabularx}{\textwidth}{
+  >{\raggedright\arraybackslash}p{2.5cm}
+  >{\centering\arraybackslash}p{2.1cm}
+  >{\centering\arraybackslash}p{2.1cm}
+  >{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{维度} & \textbf{GaAs 主链} & \textbf{HJT 并行} & \textbf{差异} \\
+\midrule
+阵列面积          & 625\;m\textsuperscript{2}   & 1,295\;m\textsuperscript{2}  & HJT 额外 +670\;m\textsuperscript{2} \\
+阵列质量          & 938\;kg            & 2,330\;kg           & HJT 额外 +1,392\;kg \\
+电源总质量         & 2,930\;kg          & 3,733\;kg           & HJT 额外 +803\;kg（+27.4\%） \\
+70m 翼展反求宽度   & $\sim$8.9\;m       & $\sim$18.5\;m       & \textbf{翼展展开/收纳难度显著更高} \\
+部署可行性         & 可行（ROSA 已飞行验证，2--3$\times$ 放大合理） & 在当前公开展开技术先例下显著不利（$\sim$18.5\;m 远超 ROSA/Starlink 已验证宽度） & -- \\
+电池组件成本       & 高（空间级 III-V）  & 低（地面 HJT 量产）    & HJT 便宜 70--100$\times$（电池级） \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{关键几何约束推论}：在当前公开的 AI1 翼展约束（70\;m）和现有展开技术先例下，HJT 路线显著不利——HJT 在同等功率需求下需要 $\sim$1,295\;m\textsuperscript{2} 阵列面积，按 70\;m 翼展反求需要 $\sim$18.5\;m 平均宽度，远超当前柔性薄膜阵列展开技术（ROSA 已飞行验证、Starlink V2 Mini 116\;m\textsuperscript{2}/30\;m 翼展 $\approx$ 3.9\;m 宽度）的飞行验证先例。在 Starship 8\;m 直径整流罩约束下，$\sim$18.5\;m 平均展开宽度的收纳设计面临重大工程挑战。
+
+该推论还产生了一个强有力的交叉验证：70\;m $\times\sim$8.9\;m $\approx$ 623\;m\textsuperscript{2}，与 GaAs 主链独立物理推导的 625\;m\textsuperscript{2}\textbf{精确吻合（误差 < 1\%）}——两个独立来源的数字（SpaceX 的设计参数 vs 本报告的物理推导）互相锁定，构成强交叉验证（详见附录 C\;\S C.2）。
+
+\textbf{结论}：(1) 在当前公开证据约束下，AI1 卫星使用 GaAs（或等价 III-V 族多结）太阳电池路线的工程理由最充分。(2) HJT 并行路线的物理链成立，但翼展展开/收纳难度显著高于柔性薄膜电池，在当前 AI1 约束下保留为技术潜力对照，暂不作为当前可落地主路线。(3) 即使 HJT 电池本身比 GaAs 便宜 70--100 倍，2.07$\times$ 面积放大 + 1.59$\times$ 质量放大 + 翼展收纳难度升高的综合代价使其在 AI1 约束下总体优势有限。
+
+\subsubsection{HJT 用于 10 年空间设计的材料学补充说明}
+
+除翼展约束外，HJT（硅基异质结）在空间 10 年辐照退化方面与 GaAs 存在本质性差异，这进一步解释了本报告将 GaAs 作为主链、HJT 仅作为技术潜力对照的证据学依据：
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{GaAs III-V 族多结电池的退化机制明确且数据充分}：GaAs 空间电池的主要退化机制为位移损伤（displacement damage），NASA NEPP 数据库包含 30+ 年飞行数据和大量地面等效辐照实验。10 年 LEO（600 km, 52°倾角）累积剂量下，典型退化率约 5--10\%（BOL 32\% $\to$ EOL $\sim$29\%）。退化模型经多代卫星验证，预测区间可信。
+    \item \textbf{HJT 硅基电池的退化路径与 GaAs 有本质不同}：
+    \begin{enumerate}
+        \item \textbf{带隙敏感度}：硅的带隙（1.12 eV）远低于 GaAs（1.42 eV），对高能质子/电子的电离损伤更敏感。相同累积剂量下，硅基电池的开路电压（$V_{oc}$）退化速率显著高于 III-V 族多结电池。
+        \item \textbf{异质结界面退化}：HJT 的 a-Si:H/c-Si 异质结界面对质子辐照特别敏感——界面态密度（$D_{it}$）随质子剂量增加而升高，导致表面复合速度增加和填充因子退化。这是 III-V 族多结电池不需要面对的额外退化通道。
+        \item \textbf{自修复效应的温度依赖}：HJT 的 self-curing recovery（低温退火恢复）在 60--80°C 退火条件下有效，已有 CEA/INES 辐照实验等文献支持。但 LEO 轨道昼夜循环温度在 -50°C 至 +70°C 之间波动，卫星光伏阵列实际工作温度约 50--70°C（取决于太阳指向和散热设计），可能处于自修复温度窗口的边缘甚至下方，恢复效率存在不确定性。
+    \end{enumerate}
+    \item \textbf{10 年累积退化差距并非线性}：CEA/INES 独立实验数据提示，在等效 10 年 LEO 剂量下，HJT 效率可能从 BOL 22\% 退化至远低于 14\%（本报告的保守 EOL 估计）。而 GaAs 从 32\% 退化至 29\% 的置信度更高——不是因为 GaAs "更好"，而是其退化数据（30+ 年飞行累积）远超 HJT 在空间辐照环境下的验证数据（尚无公开的长期空间飞行退化序列）。
+    \item \textbf{结论}：本报告将 HJT 标记为"并行成熟路线但当前不可作为主链"的判断，不仅有翼展几何约束的工程依据，还有辐照退化数据差距的材料学依据。这一判断可以在 HJT 获得足够空间飞行退化数据后更新，但当前证据水平下不应被解释为对 HJT 的"否定"，而是对 GaAs "数据最充分"这一事实的承认。
+\end{enumerate}
+
+\subsubsection{电池三分支}
+
+电池不是任意占位项——其容量由轨道食影时长（35.5\;min $\times$ 120\;kW = 71.0\;kWh 需求）、允许的放电深度（DoD）和系统效率共同决定。DoD 对电池质量和成本高度敏感：DoD 每降低 10pp（百分点），电池容量需求增加约 33\%（$1/\text{DoD\_new} : 1/\text{DoD\_old}$ 的关系）。
+
+\begin{table}[H]
+\centering
+\caption{电池三分支——不同化学体系与寿命需求下的电池配置}
+\label{tab:battery_branches}
+\footnotesize
+\begin{tabular}{p{1.6cm}p{1.2cm}p{0.9cm}p{1.1cm}p{1.4cm}p{1.2cm}p{2.3cm}}
+\toprule
+\textbf{分支} & \textbf{化学} & \textbf{DoD} & \textbf{比能量} & \textbf{名义容量} & \textbf{电池质量} & \textbf{成本} \\
+\midrule
+5yr NMC          & Li-ion NMC & 40\%  & 190\;Wh/kg & 186.4\;kWh  & 981\;kg   & \$200/kWh $\to$ \$0.04M \\
+10yr Li-ion NMC  & Li-ion NMC & 25\%  & 190\;Wh/kg & 293.0\;kWh  & 1,542\;kg & \$200/kWh $\to$ \$0.06M \\
+10yr LTO          & LTO         & 80\%  & 100\;Wh/kg & 91.6\;kWh   & 916\;kg   & \$260/350/400/kWh $\to$ \$0.03--0.04M \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+关键发现：
+
+\begin{enumerate}
+    \item \textbf{DoD 的非线性影响}：5yr NMC（40\% DoD）电池 981\;kg。若降至 25\%（10yr Li-ion 方案），电池立即增至 1,542\;kg（+57\%）。这不是成本优化问题——是物理约束：电化学循环寿命决定了可用放电深度，可用放电深度决定了电池质量，而电池质量在整星总质量中不可忽略。
+    \item \textbf{10yr LTO 的意外优势}：LTO 以 80\% 的高 DoD 给出了 916\;kg 的最轻电池方案（比 10yr Li-ion 约轻 40\%），但代价是单价更高（\$350/kWh vs \$200/kWh）且全球产量极小。这使电池选择从"选哪个更好"变为"不同任务需求导向不同分支"。
+    \item \textbf{Starlink 零溢价原则}：NMC \$200/kWh 直接来自 Starlink 的量产采购价——SpaceX 的首席电池工程师 Ray Barsa 在公开演讲中确认 Starlink NMC pack 本身就是空间电池（pack 级 230\;Wh/kg，$\sim$5,000 等效全循环），不需要额外"空间认证"溢价\cite{barsa2026starlink_battery}。
+\end{enumerate}
+
+\medskip
+\noindent\textbf{电池循环寿命独立标注}
+
+电池三分支的质量和成本已在表\ref{tab:battery_branches}中给出，但其中 10yr NMC 方案的循环寿命假设需要独立检验：
+
+\smallskip
+\noindent\textbf{轨道循环计数}：AI1 LEO 轨道周期 $\approx$96.7\;min，即每天约 14.9 圈、每年约 5,439 圈。10 年累计约 54,386 圈——每圈一次充放电（食影段供电 + 日照段回充），在 25\% DoD 条件下等效为约 13,597 次等效全循环（$54{,}386 \times 0.25$）。
+
+\smallskip
+\noindent\textbf{与 Starlink 公开数据的差距}：SpaceX 首席电池工程师 Ray Barsa 在公开演讲中披露 Starlink NMC pack 的循环寿命约为 $\sim$5,000 等效全循环。13,597 vs 5,000——差距约 2.7$\times$。换言之，\textbf{10yr NMC 方案需要在当前 Starlink 公开飞行数据的基础上将循环寿命延长约 2.7 倍}，而这超出了 NMC 体系在 25\% DoD 下已被飞行验证的公开循环次数。
+
+\smallskip
+\noindent\textbf{风险标注}：本报告的 TCO 模型以 10yr NMC 作为电池主链假设（成本 \$0.06M），但该方案需独立电池循环寿命验证。当前 Starlink 公开数据（$\sim$5,000 循环）不足以直接支撑 13,600 循环的 10 年寿命假设——这一差距不自动意味着"不可行"，但构成了需要后续飞行数据闭合的关键技术风险。
+
+\smallskip
+\noindent\textbf{LTO 备选方案提示}：表\ref{tab:battery_branches}中的 10yr LTO 方案（916\;kg，80\% DoD）在循环寿命维度上更稳健——LTO 化学体系有 $>$10,000 次循环的公开记录，接近 10 年 AI1 任务需求（80\% DoD 下等效约 43,509 次，但 LTO 循环寿命可覆盖）。若 NMC 10 年寿命假设后续被独立验证否定，切换至 LTO 方案的电池成本变化在 \$0.02M 量级（TCO 的千分之三），不触发 TCO 重算。本报告将 LTO 记录于此供独立审查参考，但\emph{不更改} TCO 模型中的电池成本参数。
+
+\subsubsection{电源系统总结}
+
+GaAs 主链电源系统总质量 2,930\;kg，在单星 8,484\;kg 总质量中占约 34.5\%。电源总成本 \$47.36M 占单星制造成本 \$83.61M 的约 56.6\%——\textbf{其中光伏阵列 \$46.27M 占绝对主导地位}。这意味着即使电池成本和 PCDU 成本降至零，电源系统的成本结构也不会有根本性改变——光伏阵列才是成本的核心驱动力。
+
+\subsubsection{功率口径澄清：120 kW持续 vs 150 kW峰值}
+
+SpaceX AI1 公开材料中同时出现了两个功率数字——120\;kW（持续 IT 负载）和 150\;kW（"150 kW of GPU power"）。\textbf{从 LEO 轨道能量平衡的物理约束出发，这两个数字无法同时成立}——120\;kW 持续 IT 对应的阵列 EOL 输出需求约为 210\;kW，而 150\;kW 峰值仅能支撑约 86\;kW 的持续 IT。本节正面澄清这一物理口径逻辑，并说明本报告为何仍以 120/150\;kW 作为计算输入。
+
+\textbf{从 120 kW 持续 IT 到 $\sim$210 kW 阵列 EOL（正向物理推导）}：对于 LEO 轨道（周期 $\approx$96.7\;min，食影 $\approx$35.5\;min，日照 $\approx$61.2\;min），太阳阵列在每个轨道周期内必须同时为 IT 负载供电（日照段）和为电池充电（使电池能在食影段维持同等 IT 负载）。计入 DC-DC 转换效率（$\sim$0.95）、电池充放电往返效率（$\sim$0.92）和 BOL$\to$EOL 退化裕量（$\sim$9.4\%），120\;kW 持续 IT 对应的阵列 EOL 输出需求约为 210\;kW——\textbf{约为公开的 150\;kW 峰值的 1.4 倍}。完整能量链推导见附录 C\;\S C.2。
+
+\textbf{从 150 kW 反求最大持续 IT（反向推导）}：若严格以 150\;kW 作为阵列峰值输出（BOL 日照面）的约束上限，则最大持续 IT 负载由轨道能量平衡严格限制：
+
+\begin{equation}
+P_{\text{sustained\_max}} = P_{\text{array\_peak}} \times \frac{t_{\text{sunlight}}}{t_{\text{orbit}}} \;\big/\; (1 + r_{\text{recharge}})
+\label{eq:sustained_from_peak}
+\end{equation}
+
+其中 $t_{\text{sunlight}}/t_{\text{orbit}} = 61.2/96.7 \approx 0.633$，$r_{\text{recharge}}$ 聚合了电池充放电损耗和 DC-DC 转换效率导致的额外能量开销（$\approx$0.101，即有效开销比简单日照/食影比高出约 10\%）。代入：
+
+\begin{equation}
+P_{\text{sustained\_max}} \approx 150 \times 0.633 \;/\; 1.101 \approx 86\;\text{kW}
+\label{eq:max_sustained_86}
+\end{equation}
+
+\textbf{三数字的物理口径对照}：
+
+\medskip
+\noindent
+\begin{tabular}{p{3.0cm}p{3.0cm}p{5.5cm}}
+\toprule
+\textbf{数字} & \textbf{物理含义} & \textbf{所处物理边界} \\
+\midrule
+150\;kW & IT 峰值功率（$\sim$150 GPU $\times$ 1,000\;W TDP） & GPU 直流输入端，BOL，不含任何系统损耗 \\
+120\;kW & 持续 IT 负载（SpaceX 官方口径） & 轨道平均值，经电源系统供电后的 IT 实际可用功率 \\
+$\sim$210\;kW & 阵列 EOL 输出（本报告物理推导） & 光伏阵列直流输出端，EOL，含退化+回充裕量+转换损耗 \\
+\bottomrule
+\end{tabular}
+\medskip
+
+\begin{figure}[H]
+\centering
+\input{figures/power_chain}
+\caption{150/120/210\;kW 三功率数字的物理口径分层——三者分别位于光伏阵列EOL输出端、电源系统输出端（持续IT）和GPU直流输入端（峰值），跨越完整能量转换链，不可混淆为同一物理口径。}
+\label{fig:power_chain}
+\end{figure}
+
+\medskip
+
+\textbf{裁决}：
+
+(1) \textbf{120/150\;kW 在 LEO 物理中不成立}。120\;kW 持续 IT 的正向物理需求是 $\sim$210\;kW 阵列 EOL 输出，而非 150\;kW。150\;kW 峰值功率在 LEO 轨道能量平衡约束下仅能支撑 $\sim$86\;kW 的持续 IT——与 SpaceX 公开的 120\;kW 持续负载存在显著缺口。这不是微调级别的差异，而是跨越光伏阵列$\to$电池$\to$PCDU$\to$GPU 完整能量链后$\sim$1.4$\times$的系统性偏差。
+
+(2) 本报告以 SpaceX 官方口径（120/150\;kW）作为计算输入，以保持外部讨论的可对照性；电源闭合与TCO计算则按 LEO 轨道能量平衡展开。若取 150\;kW 峰值对应 $\sim$86\;kW 的物理上限，则 1\;MW 持续 IT 部署需 $\sim$12 颗卫星（而非基于 120\;kW 的 $\sim$8.3 颗），TCO 约上升 40\%；若取 120\;kW 持续 IT 对应的 $\sim$210\;kW 物理需求，则阵列面积和电源质量约增加 40\%，同样推高 TCO。两种校正都将商业结果进一步推向更高成本区间。
+
+(3) 150\;kW 是 GPU 直流输入端的峰值描述，$\sim$210\;kW 是光伏阵列 EOL 输出端的需求——二者跨越了完整的能量转换链，不可混淆为同一物理口径。
+
+\subsubsection{误读校验：若150kW被误解为阵列峰值}
+
+下表演示不同口径解释下的成本影响。若将150kW严格理解为阵列峰值，TCO将明显上升。
+
+\medskip
+\noindent
+\begin{tabular}{p{3.8cm}>{\centering\arraybackslash}p{2.3cm}>{\centering\arraybackslash}p{2.3cm}>{\centering\arraybackslash}p{3.5cm}}
+\toprule
+\textbf{情景} & \textbf{单星持续IT} & \textbf{1MW所需卫星数} & \textbf{10年TCO方向} \\
+\midrule
+报告主线：官方持续IT口径 & 120 kW & 8.33颗 & \$0.765B \\
+若150kW被误解为阵列峰值 & $\approx$86 kW & $\approx$11.6颗 & $\approx$\$1.05B \\
+若维持120kW持续IT（本报告做法） & 120 kW & 8.33颗 & 阵列EOL$\approx$210kW已纳入光伏/PCDU模型 \\
+\bottomrule
+\end{tabular}
+\medskip
+
+该表说明两点：(1) 若将公开材料中的150\;kW理解为"光伏阵列可持续输出上限"，则在LEO轨道日照/食影约束下，该功率只能支撑约86\;kW持续IT负载，1\;MW部署所需卫星数上升至约11.6颗，TCO将上升至约\$1.05B；(2) 若维持120\;kW持续IT，工程上必须提供$\sim$210\;kW阵列EOL输出——这正是本报告对光伏面积、PCDU和阵列成本的计算基础。
+
+\subsection{整星质量拆解（10年-GaAs 基准）}
+
+基于前两节的子系统逐项分析，10年-GaAs 基准场景的整星质量与成本拆解如表\ref{tab:full_satellite_breakdown}所示。每个子系统的质量来源和证据档位已在本章前述各节中说明；成本来源的完整裁决记录见附录 B 对应参数行。
+
+\begin{figure}[H]
+\centering
+\input{figures/satellite_decomposition}
+\caption{AI1级卫星9子系统构成（10年-GaAs基准）——按功能分组着色，各块标注质量和占比。}
+\label{fig:satellite_decomposition}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{10年-GaAs 基准单星质量与成本完整拆解（9 子系统）}
+\label{tab:full_satellite_breakdown}
+\small
+\begin{tabular}{p{3.2cm}rrp{3.8cm}}
+\toprule
+\textbf{子系统} & \textbf{质量 (kg)} & \textbf{制造成本 (\$M)} & \textbf{证据档位} \\
+\midrule
+计算载荷          & 1,500 & 7.20  & 二档（地面硬件 A1）+ 三档（空间化增量） \\
+散热系统          & 550   & 0.66  & 四档（面密度 4.0/5.0/6.5\;kg/m\textsuperscript{2} $\times$ 110\;m\textsuperscript{2}） \\
+光伏阵列          & 938   & 46.27 & 二档（AzurSpace 效率）+ 三档（面密度/成本） \\
+电池              & 1,573 & 0.06  & 三档（Starlink 直接迁移：10yr Li-ion, DoD 25\%, \$200/kWh） \\
+功率电子/配电     & 419   & 1.05  & 四档（Terma 飞行产品锚点 0.54\;kW/kg $\to$ 0.5\;kW/kg 基准） \\
+平台/结构         & 1,743 & 6.27  & 四档（平台系数 0.25/0.35/0.45，Starlink V2 Mini 参考 $\sim$0.38） \\
+推进              & 350   & 1.30  & 四档（Starlink 比例外推 + 0.6 次方缩放） \\
+通信/激光链路     & 300   & 2.50  & 四档（Google Suncatcher tens of Tbps ISL 需求推导） \\
+系统裕量/冗余/附加 & 1,106 & 18.29 & 四档（NASA CDR/PDR 级 + Starlink 量产压缩）\tablefootnote{本行涵盖：冗余硬件组件、系统质量裕量（mass growth allowance）、集成附加质量（线缆/连接器/可测试性安装结构）。AIT（装配/集成/测试）本身是过程而非质量，1,106\;kg为上述硬件的物理质量估计。} \\
+\midrule
+\textbf{合计}     & \textbf{8,479} & \textbf{83.61} & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{质量链关键观察}：(1) 光伏阵列（55.3\%）+ 系统裕量/冗余（21.9\%）合计占制造成本的 77.2\%。(2) 电池成本极低（0.1\%），颠覆了"空间电池一定贵"的传统认知。(3) 四档参数涉及约 35\% 的制造成本——这是 AI1 信息公开不足的结构性后果，不是分析缺陷（完整证据档位分布见附录 B）。
+
+\subsection{在轨寿命、故障率与维修不可行性}
+
+\subsubsection{5 年 vs 10 年：寿命对总成本的杠杆效应}
+
+本报告第6章将详细展示：5 年寿命（需重射一次）使 10 年总窗口的制造成本近似翻倍——从 10年-GaAs 的 \$696.72M 升至 5年-GaAs 的 \$1,259.69M。这背后的工程含义是：\textbf{在轨寿命是比发射成本更重要的经济杠杆}——将寿命从 5 年延长至 10 年（一次性投入）的收益，远大于将发射单价从 \$200/kg 降至 \$100/kg。
+
+\subsubsection{轨道 GPU 故障率估计}
+
+地面数据中心 GPU 的年故障率通常在 1--3\%。轨道环境的故障率显著更高：
+
+\begin{itemize}[leftmargin=*]
+    \item 宇宙射线（单粒子翻转/闩锁，SEU/SEL）：高能粒子穿透芯片可能引起比特翻转、逻辑错误甚至永久性损伤。NVIDIA H100 已针对航空电子环境进行了部分辐射加固测试但非全面的空间认证\cite{newspace2025h100}。
+    \item 太阳风暴与地磁暴：增强的辐射带粒子通量可导致短时间内故障率飙升。
+    \item 微陨石与空间碎片（MMOD）：物理撞击可能破坏散热面、光伏阵列或通信天线。
+    \item 热循环疲劳：每 96.7 分钟经历一次 +70\unitC{} 到 $-$50\unitC{} 的热循环，每年约 5,400 次循环，加速焊点和热界面材料老化。
+\end{itemize}
+
+综合以上因素，本报告采用轨道 GPU 年故障率 5--15\% 的估计（比地面高 3--5 倍）。这是四档推断——需要 Rubin Space-1 在轨数据才能闭合为更精确的值。
+
+\subsubsection{在轨维修的不可行性}
+
+地面数据中心可以通过派人更换故障 GPU 在几小时内恢复运行。在 600\;km LEO 轨道上，物理维修在技术上困难且在经济上不可行：
+
+\begin{itemize}[leftmargin=*]
+    \item 当前不存在可操作的轨道 GPU 更换服务。NASA Katalyst Swift 卫星救援任务（\$30M 预算）证明轨道服务技术上正在推进，但面向的是单次紧急救援而非规模化硬件更换\cite{nasa2026katalyst}。
+    \item 在轨维修的经济性在 2030 年前难以成立——维修任务本身的发射成本和维修航天器的研制成本远高于"直接发射一颗新卫星"。
+    \item \textbf{务实推论}：在当前阶段，轨道 AI 卫星应被设计为"不可维修的一次性资产"——一旦关键硬件故障超过冗余裕量，整星报废并通过大气再入处置。这一推论直接影响第6章的 TCO 建模（重射成本 + 退役成本）。
+\end{itemize}
+
+\subsection{发射运力现实检验}
+
+\subsubsection{单星质量对应的装载数}
+
+使用本报告的整星质量值（10年-GaAs 基准 8,484\;kg）和 Starship 官方"100+ 吨全复用"运力口径：
+
+\begin{table}[H]
+\centering
+\small
+\caption{基于整星质量的 Starship 装载数上限}
+\label{tab:launch_manifest}
+\begin{tabularx}{\textwidth}{
+  >{\raggedright\arraybackslash}p{2.9cm}
+  >{\centering\arraybackslash}p{2.7cm}
+  >{\centering\arraybackslash}p{2.6cm}
+  >{\centering\arraybackslash}X
+}
+\toprule
+\textbf{部署方式} & \textbf{单次有效载荷} & \textbf{扣除适配器/留裕后} & \textbf{装载数（颗/发）} \\
+\midrule
+整星发射（10年-GaAs）   & 8,484\;kg $\times$ 11.8 颗 & $\sim$10--11 颗 & \textbf{$\sim$9--10} \\
+整星发射（5年-GaAs）    & 7,103\;kg $\times$ 14.0 颗 & $\sim$12--13 颗 & \textbf{$\sim$11--13} \\
+仅计算载荷组件（在轨集成） & 1,500\;kg $\times$ 66.7 颗 & $\sim$53--60 颗   & \textbf{$\sim$53--60} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+在当前可直接核对的官方全复用运力口径下，\textbf{马斯克所称的"80--100 颗/发"\emph{不能自动成立}}：80 颗要求单星质量 $\leq$ 1.25\;t，100 颗要求 $\leq$ 1.0\;t——而本报告所有整星情景（7.10--9.13\;t）均远高于此。这一差距的一个数量级揭示了"整星发射"与"仅发射计算载荷"两个不同部署概念之间的巨大量级差异。
+
+\subsubsection{马斯克"300--500\;GW/年"声明的定量检验}
+
+以 69 次/年（FAA 当前批准的 Starship 年发射上限）、10 颗/发、120\;kW/颗持续 IT 计算：
+
+\begin{equation}
+69\;\text{次/年} \times 10\;\text{颗/次} \times 0.12\;\text{MW/颗} \times 1/1000\;\text{GW/MW} \approx 0.083\;\text{GW/年}
+\end{equation}
+
+要达到 300\;GW/年，约需 3,600 倍的发射频次提升或 3,600 倍的单次运力提升——在当前物理和监管约束下，这一声明的偏差约 3 个数量级。即使将 FAA 批准上限从 69 次/年提升至数百次/年、Starship 运力从 100+ 吨提升至 200+ 吨、单星质量因技术进步大幅下降，三个参数的组合改善也无法闭合三个数量级的差距。
+
+\textbf{逻辑桥接}：FAA 批准的 69 次/年 $\times$ 本报告整星质量 8.48\;t $\times$ $\sim$10 颗/发 $\to$ 年运力约 5,850\;t/年（约 83\;MW 持续 IT/年）。马斯克声称的 300--500\;GW/年意味着年运力约 3,600,000\;t/年——超出当前批准上限约 615 倍。（完整推导和 Starship 学习曲线分析见附录 C\;\S C.2 和附录 D 对应路由行）
+
+\subsection{工程可行性的最终判断}
+
+\begin{enumerate}
+    \item \textbf{可以造，但重（约8.5\;t/颗）且贵（约\$83.6M/颗）}。bottom-up 质量链以 NVIDIA 官方硬件规格为锚点，证据强度显著优于 kW/t 反推法。
+    \item \textbf{光伏阵列（GaAs，625\;m\textsuperscript{2}，\$46.27M）是单星最大成本项（55.3\%）}，也是电力和成本约束的交汇点。70\;m 翼展约束使 HJT 在当前公开展开技术先例下显著不利。
+    \item \textbf{在轨寿命是比发射成本更重要的经济杠杆}。5 $\to$ 10 年寿命延长对 TCO 的影响远超发射单价减半。轨道 GPU 故障率（5--15\%/年）和在轨维修不可行性构成可靠性风险。
+    \item \textbf{马斯克的部署规模声明（300--500\;GW/年、80--100 颗/发）与当前公开可核对的运力约束相差约 3 个数量级}。这不是"能否实现"的问题，而是"对应什么时间尺度"的问题。
+\end{enumerate}
+
+\bigskip
+\noindent\textbf{关于载荷质量锚点的声明：}本报告将 1,500 kg 计算载荷质量视为当前证据下可追溯的基准锚点，而非已由 SpaceX 一手资料锁定的最终实值。若未来证明完整机内互联、冗余供电、液冷附属件、MMOD 防护和系统级结构增量高于本文吸收区间，则整星质量与 TCO还将上修。
+
+\bigskip
+\noindent\textbf{关于部署规模判断边界的声明：}上述"约3个数量级差距"的判断，限定于"当前 FAA 年发射上限 + 当前公开 Starship 全复用运力口径 + 本报告整星质量模型 + 整星直接发射架构"这一联合边界。若讨论对象改为更远期时间窗、在轨组装、模块化分发或显著更轻的下一代平台，则需按新的架构边界单独建模。
+
+（本章各子系统质量/成本的证据裁决见附录 B 对应参数行；bottom-up 质量链完整公式见附录 C\;\S C.3；电源系统公式链见附录 C\;\S C.2；废弃链说明见附录 E\;\S E.1。）
+
+\endinput

@@ -1,0 +1,887 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{spacex2026ai1}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=54d3a21ee5b8a15d2004b7350bf67e6d}{%
+           family={{SpaceX}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{fullhash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{fullhashraw}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{bibnamehash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{authorbibnamehash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{authornamehash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{authorfullhash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{authorfullhashraw}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{6}
+      \field{note}{Tier 3→Upgraded: X.com @SpaceX official post (2026-06-09); 30-min video + interview (participants: Musk + Ian Dahl + Dan Huot); multiple Chinese and English tech media independently compiled and verified (Tom's Hardware/Frandroid/Zhidx/Cailian Press)}
+      \field{title}{AI1 Satellite First Detailed Disclosure — SpaceX Official Technical Interview Video (30 min)}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://x.com/SpaceX/status/2064099405758906727
+      \endverb
+      \verb{url}
+      \verb https://x.com/SpaceX/status/2064099405758906727
+      \endverb
+      \keyw{spacex,ai1,satellite}
+    \endentry
+    \entry{faa2025boca}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=42fa02a45678e5d2e51dea62f7ed634e}{%
+           family={{FAA}},
+           familyi={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{42fa02a45678e5d2e51dea62f7ed634e}
+      \strng{fullhash}{42fa02a45678e5d2e51dea62f7ed634e}
+      \strng{fullhashraw}{42fa02a45678e5d2e51dea62f7ed634e}
+      \strng{bibnamehash}{42fa02a45678e5d2e51dea62f7ed634e}
+      \strng{authorbibnamehash}{42fa02a45678e5d2e51dea62f7ed634e}
+      \strng{authornamehash}{42fa02a45678e5d2e51dea62f7ed634e}
+      \strng{authorfullhash}{42fa02a45678e5d2e51dea62f7ed634e}
+      \strng{authorfullhashraw}{42fa02a45678e5d2e51dea62f7ed634e}
+      \field{extraname}{1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{title}{Boca Chica Starship 25/yr Environmental Assessment Approval}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.faa.gov/media/94341
+      \endverb
+      \verb{url}
+      \verb https://www.faa.gov/media/94341
+      \endverb
+      \keyw{faa,boca-chica,starship}
+    \endentry
+    \entry{faa2026ksc}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=42fa02a45678e5d2e51dea62f7ed634e}{%
+           family={{FAA}},
+           familyi={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{42fa02a45678e5d2e51dea62f7ed634e}
+      \strng{fullhash}{42fa02a45678e5d2e51dea62f7ed634e}
+      \strng{fullhashraw}{42fa02a45678e5d2e51dea62f7ed634e}
+      \strng{bibnamehash}{42fa02a45678e5d2e51dea62f7ed634e}
+      \strng{authorbibnamehash}{42fa02a45678e5d2e51dea62f7ed634e}
+      \strng{authornamehash}{42fa02a45678e5d2e51dea62f7ed634e}
+      \strng{authorfullhash}{42fa02a45678e5d2e51dea62f7ed634e}
+      \strng{authorfullhashraw}{42fa02a45678e5d2e51dea62f7ed634e}
+      \field{extraname}{2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{2}
+      \field{note}{Tier 3·via secondary media; original source FAA KSC LC-39A decision record, FAA official direct release URL not found; secondary source airpronews.com}
+      \field{title}{KSC LC-39A Starship 44/yr Decision Record}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://airpronews.com/2026/02/23/faa-approves-spacex-starship-launches-at-kennedy-space-center/
+      \endverb
+      \verb{url}
+      \verb https://airpronews.com/2026/02/23/faa-approves-spacex-starship-launches-at-kennedy-space-center/
+      \endverb
+      \keyw{faa,ksc,starship}
+    \endentry
+    \entry{spacex2026fcc}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=54d3a21ee5b8a15d2004b7350bf67e6d}{%
+           family={{SpaceX}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{fullhash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{fullhashraw}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{bibnamehash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{authorbibnamehash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{authornamehash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{authorfullhash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{authorfullhashraw}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \field{extraname}{2}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{1}
+      \field{note}{Tier 2→Upgraded: FCC official Public Notice DA-26-113 (2026-02-04); ICFS File No. SAT-LOA-20260108-00016; application for authorization to operate up to 1 million orbital AI data center satellites, orbital range 500--2000 km; secondary source jaredwatkins.com replaced}
+      \field{title}{FCC Filing: One Million Orbital AI Data Center Satellites}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://docs.fcc.gov/public/attachments/DA-26-113A1.pdf
+      \endverb
+      \verb{url}
+      \verb https://docs.fcc.gov/public/attachments/DA-26-113A1.pdf
+      \endverb
+      \keyw{spacex,fcc,mega-constellation}
+    \endentry
+    \entry{spacex2026s1}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=54d3a21ee5b8a15d2004b7350bf67e6d}{%
+           family={{SpaceX}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{fullhash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{fullhashraw}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{bibnamehash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{authorbibnamehash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{authornamehash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{authorfullhash}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \strng{authorfullhashraw}{54d3a21ee5b8a15d2004b7350bf67e6d}
+      \field{extraname}{3}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{note}{Tier 2→Upgraded: SEC EDGAR S-1 original filing (Filed 2026-05-20, Accession No. 0001628280-26-036936); IPO valuation \$1.75--2T; orbital AI computing positioned as ``a barrier-level challenge only SpaceX can solve''; 2028 deployment start, 100 GW/year target; secondary source 36kr.com replaced}
+      \field{title}{SpaceX IPO S-1/A Prospectus}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm
+      \endverb
+      \verb{url}
+      \verb https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm
+      \endverb
+      \keyw{spacex,ipo,s1}
+    \endentry
+    \entry{musk2026terafab}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=20beef4c22071f18682739a2ea621b0d}{%
+           family={Musk},
+           familyi={M\bibinitperiod},
+           given={Elon},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{20beef4c22071f18682739a2ea621b0d}
+      \strng{fullhash}{20beef4c22071f18682739a2ea621b0d}
+      \strng{fullhashraw}{20beef4c22071f18682739a2ea621b0d}
+      \strng{bibnamehash}{20beef4c22071f18682739a2ea621b0d}
+      \strng{authorbibnamehash}{20beef4c22071f18682739a2ea621b0d}
+      \strng{authornamehash}{20beef4c22071f18682739a2ea621b0d}
+      \strng{authorfullhash}{20beef4c22071f18682739a2ea621b0d}
+      \strng{authorfullhashraw}{20beef4c22071f18682739a2ea621b0d}
+      \field{extraname}{1}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{3}
+      \field{note}{Tier 2→Upgraded: X.com @SpaceX official post (2026-03-22); Austin, Texas, SpaceX+Tesla+xAI tripartite joint venture; Musk himself followed up at https://x.com/elonmusk/status/2035526376468394305; secondary source t.cj.sina.cn replaced}
+      \field{title}{Terafab Mega Chip Factory Launch Event}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://x.com/SpaceX/status/2035519125284380672
+      \endverb
+      \verb{url}
+      \verb https://x.com/SpaceX/status/2035519125284380672
+      \endverb
+      \keyw{musk,terafab,chip}
+    \endentry
+    \entry{huang2026gtc}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=a2fe9051fe051f819bd739ef3e340377}{%
+           family={{NVIDIA}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{a2fe9051fe051f819bd739ef3e340377}
+      \strng{fullhash}{a2fe9051fe051f819bd739ef3e340377}
+      \strng{fullhashraw}{a2fe9051fe051f819bd739ef3e340377}
+      \strng{bibnamehash}{a2fe9051fe051f819bd739ef3e340377}
+      \strng{authorbibnamehash}{a2fe9051fe051f819bd739ef3e340377}
+      \strng{authornamehash}{a2fe9051fe051f819bd739ef3e340377}
+      \strng{authorfullhash}{a2fe9051fe051f819bd739ef3e340377}
+      \strng{authorfullhashraw}{a2fe9051fe051f819bd739ef3e340377}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{3}
+      \field{note}{NVIDIA official press release + Keynote video transcript + Chinese tech media comprehensive coverage; Space-1 Vera Rubin module: Rubin GPU space inference performance 25× improvement over H100; 6 space partners}
+      \field{title}{NVIDIA GTC 2026 Keynote: Space-1 Vera Rubin Space Computing Platform Launch}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://nvidianews.nvidia.com/news/space-computing
+      \endverb
+      \verb{url}
+      \verb https://nvidianews.nvidia.com/news/space-computing
+      \endverb
+      \keyw{nvidia,gtc,vera-rubin,space-1}
+    \endentry
+    \entry{huang2026allin}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=1818b19b7a9d0a0da545a165cc463a14}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Jensen},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{fullhash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{fullhashraw}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{bibnamehash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{authorbibnamehash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{authornamehash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{authorfullhash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{authorfullhashraw}{1818b19b7a9d0a0da545a165cc463a14}
+      \field{extraname}{1}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{3}
+      \field{note}{Tier 3·via secondary media; original source All-In Podcast (recorded 2026-03-19 / released 03-20), official YouTube/podcast exact URL not found; verified by multiple independent media (Cailian Press/IT Home/BGR/36Kr)}
+      \field{title}{All-In Podcast: Space Data Center Heat Dissipation is the Biggest Challenge}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.bgr.com/2119054/why-ai-data-centers-not-in-space-yet-nvidia-ceo-jensen-huang/
+      \endverb
+      \verb{url}
+      \verb https://www.bgr.com/2119054/why-ai-data-centers-not-in-space-yet-nvidia-ceo-jensen-huang/
+      \endverb
+      \keyw{huang,podcast,cooling}
+    \endentry
+    \entry{huang2026lex}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=1818b19b7a9d0a0da545a165cc463a14}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Jensen},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{fullhash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{fullhashraw}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{bibnamehash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{authorbibnamehash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{authornamehash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{authorfullhash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{authorfullhashraw}{1818b19b7a9d0a0da545a165cc463a14}
+      \field{extraname}{2}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{3}
+      \field{note}{Tier 2→Upgraded: Lex Fridman Podcast official Transcript page (published 2026-03-23); YouTube: https://www.youtube.com/watch?v=vif8NQcjVf0; nearly 3-hour in-depth interview, confirming space provides continuous solar power + nearly unlimited physical space; ``extreme co-design'' philosophy; secondary source podchemy.com replaced}
+      \field{title}{Lex Fridman Podcast \#494: Space Computing Advantages and Extreme Co-Design}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://lexfridman.com/jensen-huang-transcript
+      \endverb
+      \verb{url}
+      \verb https://lexfridman.com/jensen-huang-transcript
+      \endverb
+      \keyw{huang,lex-fridman,co-design}
+    \endentry
+    \entry{musk2024kardashev}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=20beef4c22071f18682739a2ea621b0d}{%
+           family={Musk},
+           familyi={M\bibinitperiod},
+           given={Elon},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{20beef4c22071f18682739a2ea621b0d}
+      \strng{fullhash}{20beef4c22071f18682739a2ea621b0d}
+      \strng{fullhashraw}{20beef4c22071f18682739a2ea621b0d}
+      \strng{bibnamehash}{20beef4c22071f18682739a2ea621b0d}
+      \strng{authorbibnamehash}{20beef4c22071f18682739a2ea621b0d}
+      \strng{authornamehash}{20beef4c22071f18682739a2ea621b0d}
+      \strng{authorfullhash}{20beef4c22071f18682739a2ea621b0d}
+      \strng{authorfullhashraw}{20beef4c22071f18682739a2ea621b0d}
+      \field{extraname}{2}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{9}
+      \field{note}{X/Twitter original post, + Oct 24, 2025 follow-up post (Kardashev-II path)}
+      \field{title}{Once You Understand the Kardashev Scale, You Realize That All Energy Production Will Essentially Come from Solar Power}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://x.com/elonmusk/status/1839439841337225277
+      \endverb
+      \verb{url}
+      \verb https://x.com/elonmusk/status/1839439841337225277
+      \endverb
+      \keyw{musk,kardashev,solar}
+    \endentry
+    \entry{musk_huang2025saudi}{online}{}{}
+      \name{author}{2}{}{%
+        {{hash=20beef4c22071f18682739a2ea621b0d}{%
+           family={Musk},
+           familyi={M\bibinitperiod},
+           given={Elon},
+           giveni={E\bibinitperiod}}}%
+        {{hash=1818b19b7a9d0a0da545a165cc463a14}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Jensen},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{ec89c0228cac769bd8cd49377ff39bc7}
+      \strng{fullhash}{ec89c0228cac769bd8cd49377ff39bc7}
+      \strng{fullhashraw}{ec89c0228cac769bd8cd49377ff39bc7}
+      \strng{bibnamehash}{ec89c0228cac769bd8cd49377ff39bc7}
+      \strng{authorbibnamehash}{ec89c0228cac769bd8cd49377ff39bc7}
+      \strng{authornamehash}{ec89c0228cac769bd8cd49377ff39bc7}
+      \strng{authorfullhash}{ec89c0228cac769bd8cd49377ff39bc7}
+      \strng{authorfullhashraw}{ec89c0228cac769bd8cd49377ff39bc7}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{11}
+      \field{note}{Upgraded: 2025 U.S.-Saudi Investment Forum official YouTube live recording (2025-11-19, Washington D.C.); host Abdullah Alswaha (Saudi Minister of Communications and Information Technology); Gulf News/Datawhale/Futu NiuNiu Chinese compilation}
+      \field{title}{2025 U.S.-Saudi Investment Forum Fireside Chat: Musk and Jensen Huang Rare Joint Appearance}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.youtube.com/live/E2bU6n7F9hM
+      \endverb
+      \verb{url}
+      \verb https://www.youtube.com/live/E2bU6n7F9hM
+      \endverb
+      \keyw{musk,huang,joint,saudi}
+    \endentry
+    \entry{huang2026earnings}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=1818b19b7a9d0a0da545a165cc463a14}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Jensen},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{fullhash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{fullhashraw}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{bibnamehash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{authorbibnamehash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{authornamehash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{authorfullhash}{1818b19b7a9d0a0da545a165cc463a14}
+      \strng{authorfullhashraw}{1818b19b7a9d0a0da545a165cc463a14}
+      \field{extraname}{3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{2}
+      \field{note}{Tier 2→Upgraded: NVIDIA official FY2026 Q4 Earnings Call press release + investor relations webcast (2026-02-25); secondary source bgr.com replaced}
+      \field{title}{NVIDIA FY2026 Q4 Earnings Call: A Sober Assessment of Space Data Center Economics}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026
+      \endverb
+      \verb{url}
+      \verb https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026
+      \endverb
+      \keyw{huang,earnings,economics}
+    \endentry
+    \entry{lenovo2025gb300}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=57040fe2fe7a0a1e9ab043ae1f5d9845}{%
+           family={{Lenovo}},
+           familyi={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{57040fe2fe7a0a1e9ab043ae1f5d9845}
+      \strng{fullhash}{57040fe2fe7a0a1e9ab043ae1f5d9845}
+      \strng{fullhashraw}{57040fe2fe7a0a1e9ab043ae1f5d9845}
+      \strng{bibnamehash}{57040fe2fe7a0a1e9ab043ae1f5d9845}
+      \strng{authorbibnamehash}{57040fe2fe7a0a1e9ab043ae1f5d9845}
+      \strng{authornamehash}{57040fe2fe7a0a1e9ab043ae1f5d9845}
+      \strng{authorfullhash}{57040fe2fe7a0a1e9ab043ae1f5d9845}
+      \strng{authorfullhashraw}{57040fe2fe7a0a1e9ab043ae1f5d9845}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Lenovo NVIDIA GB300 NVL72 Rack Scale AI Product Guide}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://lenovopress.lenovo.com/lp2357-lenovo-nvidia-gb300-nvl72-rack-scale-ai
+      \endverb
+      \verb{url}
+      \verb https://lenovopress.lenovo.com/lp2357-lenovo-nvidia-gb300-nvl72-rack-scale-ai
+      \endverb
+      \keyw{lenovo,gb300,nvl72}
+    \endentry
+    \entry{nasalaunch2018}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=1f99771bc3e23e6097509a331544ab65}{%
+           family={{NASA}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{fullhash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{fullhashraw}{1f99771bc3e23e6097509a331544ab65}
+      \strng{bibnamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorbibnamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authornamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorfullhash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorfullhashraw}{1f99771bc3e23e6097509a331544ab65}
+      \field{extraname}{1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{20200001093}
+      \field{title}{The Recent Large Reduction in Space Launch Cost}
+      \field{type}{techreport}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://ntrs.nasa.gov/api/citations/20200001093/downloads/20200001093.pdf
+      \endverb
+      \verb{url}
+      \verb https://ntrs.nasa.gov/api/citations/20200001093/downloads/20200001093.pdf
+      \endverb
+      \keyw{nasa,launch,cost}
+    \endentry
+    \entry{33fg2026starship}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=094a9534f24497ae6fd2b96cfe4f1c9c}{%
+           family={{33fg Research}},
+           familyi={3\bibinitperiod}}}%
+      }
+      \strng{namehash}{094a9534f24497ae6fd2b96cfe4f1c9c}
+      \strng{fullhash}{094a9534f24497ae6fd2b96cfe4f1c9c}
+      \strng{fullhashraw}{094a9534f24497ae6fd2b96cfe4f1c9c}
+      \strng{bibnamehash}{094a9534f24497ae6fd2b96cfe4f1c9c}
+      \strng{authorbibnamehash}{094a9534f24497ae6fd2b96cfe4f1c9c}
+      \strng{authornamehash}{094a9534f24497ae6fd2b96cfe4f1c9c}
+      \strng{authorfullhash}{094a9534f24497ae6fd2b96cfe4f1c9c}
+      \strng{authorfullhashraw}{094a9534f24497ae6fd2b96cfe4f1c9c}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A World With 10,000 Starships}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://research.33fg.com/analysis/a-world-with-10000-starships
+      \endverb
+      \verb{url}
+      \verb https://research.33fg.com/analysis/a-world-with-10000-starships
+      \endverb
+      \keyw{starship,wrights-law,scaling}
+    \endentry
+    \entry{nasa2024sst}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=1f99771bc3e23e6097509a331544ab65}{%
+           family={{NASA}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{fullhash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{fullhashraw}{1f99771bc3e23e6097509a331544ab65}
+      \strng{bibnamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorbibnamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authornamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorfullhash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorfullhashraw}{1f99771bc3e23e6097509a331544ab65}
+      \field{extraname}{2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Includes deployable radiators (§7.2.7), heat pipes (§7.2.8), fluid loops (§7.3.4)}
+      \field{title}{State of the Art of Small Spacecraft Technology: 7.0 Thermal Control}
+      \field{type}{techreport}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.nasa.gov/wp-content/uploads/2025/02/7-soa-thermal-2024.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.nasa.gov/wp-content/uploads/2025/02/7-soa-thermal-2024.pdf
+      \endverb
+      \keyw{nasa,sst,thermal}
+    \endentry
+    \entry{nasa1993thermal}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=0f4ee85e17d272aef770ab55835f811c}{%
+           family={Hertzberg},
+           familyi={H\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {NASA}%
+      }
+      \strng{namehash}{0f4ee85e17d272aef770ab55835f811c}
+      \strng{fullhash}{0f4ee85e17d272aef770ab55835f811c}
+      \strng{fullhashraw}{0f4ee85e17d272aef770ab55835f811c}
+      \strng{bibnamehash}{0f4ee85e17d272aef770ab55835f811c}
+      \strng{authorbibnamehash}{0f4ee85e17d272aef770ab55835f811c}
+      \strng{authornamehash}{0f4ee85e17d272aef770ab55835f811c}
+      \strng{authorfullhash}{0f4ee85e17d272aef770ab55835f811c}
+      \strng{authorfullhashraw}{0f4ee85e17d272aef770ab55835f811c}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{19930007720}
+      \field{title}{Thermal Management in Space}
+      \field{type}{techreport}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{1993}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://ntrs.nasa.gov/api/citations/19930007720/downloads/19930007720.pdf
+      \endverb
+      \verb{url}
+      \verb https://ntrs.nasa.gov/api/citations/19930007720/downloads/19930007720.pdf
+      \endverb
+      \keyw{nasa,thermal,management}
+    \endentry
+    \entry{clawson2002thermal}{incollection}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=91d039ffa2428dda7f21216ec129c78d}{%
+           family={Clawson},
+           familyi={C\bibinitperiod},
+           given={J.\bibnamedelimi F.},
+           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {The Aerospace Press}%
+      }
+      \strng{namehash}{99b34f53e33a53ff03e7c3c2454b1299}
+      \strng{fullhash}{99b34f53e33a53ff03e7c3c2454b1299}
+      \strng{fullhashraw}{99b34f53e33a53ff03e7c3c2454b1299}
+      \strng{bibnamehash}{99b34f53e33a53ff03e7c3c2454b1299}
+      \strng{authorbibnamehash}{99b34f53e33a53ff03e7c3c2454b1299}
+      \strng{authornamehash}{99b34f53e33a53ff03e7c3c2454b1299}
+      \strng{authorfullhash}{99b34f53e33a53ff03e7c3c2454b1299}
+      \strng{authorfullhashraw}{99b34f53e33a53ff03e7c3c2454b1299}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Spacecraft Thermal Control Handbook}
+      \field{chapter}{2}
+      \field{title}{Spacecraft Thermal Environments}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2002}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb http://matthewwturner.com/uah/IPT2008_summer/baselines/LOW%20Files/Thermal/Spacecraft%20Thermal%20Control%20Handbook/02.pdf
+      \endverb
+      \verb{url}
+      \verb http://matthewwturner.com/uah/IPT2008_summer/baselines/LOW%20Files/Thermal/Spacecraft%20Thermal%20Control%20Handbook/02.pdf
+      \endverb
+      \keyw{thermal,spacecraft,leo}
+    \endentry
+    \entry{nasa2021tm4527}{report}{}{}
+      \name{author}{3}{}{%
+        {{hash=188b24b93bcfeae0453a5ece74ec9865}{%
+           family={Anderson},
+           familyi={A\bibinitperiod},
+           given={B.\bibnamedelimi J.},
+           giveni={B\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=65cf7d28b30ad6cac48093ae4ce26ffb}{%
+           family={Justus},
+           familyi={J\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+        {{hash=e1f895685f40f32c7a85601422bdb0d9}{%
+           family={Batts},
+           familyi={B\bibinitperiod},
+           given={G.\bibnamedelimi W.},
+           giveni={G\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {NASA}%
+      }
+      \strng{namehash}{efe41f9dab1e2c5de2d8e15cade35d00}
+      \strng{fullhash}{efe41f9dab1e2c5de2d8e15cade35d00}
+      \strng{fullhashraw}{efe41f9dab1e2c5de2d8e15cade35d00}
+      \strng{bibnamehash}{efe41f9dab1e2c5de2d8e15cade35d00}
+      \strng{authorbibnamehash}{efe41f9dab1e2c5de2d8e15cade35d00}
+      \strng{authornamehash}{efe41f9dab1e2c5de2d8e15cade35d00}
+      \strng{authorfullhash}{efe41f9dab1e2c5de2d8e15cade35d00}
+      \strng{authorfullhashraw}{efe41f9dab1e2c5de2d8e15cade35d00}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{NASA/TM-4527/SSP 30425}
+      \field{title}{Guidelines for the Selection of Near-Earth Thermal Environment Parameters for Spacecraft Design}
+      \field{type}{techreport}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.researchgate.net/publication/24297836_Guidelines_for_the_Selection_of_Near-Earth_Thermal_Environment_Parameters_for_Spacecraft_Design
+      \endverb
+      \verb{url}
+      \verb https://www.researchgate.net/publication/24297836_Guidelines_for_the_Selection_of_Near-Earth_Thermal_Environment_Parameters_for_Spacecraft_Design
+      \endverb
+      \keyw{nasa,thermal,environment,leo}
+    \endentry
+    \entry{ijisrt2025pcm}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=a4315b3ef9d5d91a9eff2207105173de}{%
+           family={{IJISRT}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{a4315b3ef9d5d91a9eff2207105173de}
+      \strng{fullhash}{a4315b3ef9d5d91a9eff2207105173de}
+      \strng{fullhashraw}{a4315b3ef9d5d91a9eff2207105173de}
+      \strng{bibnamehash}{a4315b3ef9d5d91a9eff2207105173de}
+      \strng{authorbibnamehash}{a4315b3ef9d5d91a9eff2207105173de}
+      \strng{authornamehash}{a4315b3ef9d5d91a9eff2207105173de}
+      \strng{authorfullhash}{a4315b3ef9d5d91a9eff2207105173de}
+      \strng{authorfullhashraw}{a4315b3ef9d5d91a9eff2207105173de}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{IJISRT25SEP1484}
+      \field{title}{Finite Element Analysis of PCM-Enhanced Passive Thermal Regulation for CubeSats}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://eprint.innovativepublication.org/id/eprint/3178/1/IJISRT25SEP1484.pdf
+      \endverb
+      \verb{url}
+      \verb https://eprint.innovativepublication.org/id/eprint/3178/1/IJISRT25SEP1484.pdf
+      \endverb
+      \keyw{pcm,cubesat,thermal}
+    \endentry
+    \entry{azur2025space}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=f0e87efce61bb26348c2ee5f0e4e5e2d}{%
+           family={{AZUR SPACE}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{f0e87efce61bb26348c2ee5f0e4e5e2d}
+      \strng{fullhash}{f0e87efce61bb26348c2ee5f0e4e5e2d}
+      \strng{fullhashraw}{f0e87efce61bb26348c2ee5f0e4e5e2d}
+      \strng{bibnamehash}{f0e87efce61bb26348c2ee5f0e4e5e2d}
+      \strng{authorbibnamehash}{f0e87efce61bb26348c2ee5f0e4e5e2d}
+      \strng{authornamehash}{f0e87efce61bb26348c2ee5f0e4e5e2d}
+      \strng{authorfullhash}{f0e87efce61bb26348c2ee5f0e4e5e2d}
+      \strng{authorfullhashraw}{f0e87efce61bb26348c2ee5f0e4e5e2d}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Tier 3·via secondary media; original source AZUR SPACE official product page, exact azurspace.com URL not found; secondary source jaredwatkins.com compilation}
+      \field{title}{4G32C Four-Junction Space Solar Cell Product Page}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.jaredwatkins.com/research/energy/solar/azur-space/
+      \endverb
+      \verb{url}
+      \verb https://www.jaredwatkins.com/research/energy/solar/azur-space/
+      \endverb
+      \keyw{solar,azur,space}
+    \endentry
+    \entry{barsa2026starlink_battery}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=0a52a432d4ac2677f1d874888ac74571}{%
+           family={Barsa},
+           familyi={B\bibinitperiod},
+           given={Ray},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{0a52a432d4ac2677f1d874888ac74571}
+      \strng{fullhash}{0a52a432d4ac2677f1d874888ac74571}
+      \strng{fullhashraw}{0a52a432d4ac2677f1d874888ac74571}
+      \strng{bibnamehash}{0a52a432d4ac2677f1d874888ac74571}
+      \strng{authorbibnamehash}{0a52a432d4ac2677f1d874888ac74571}
+      \strng{authornamehash}{0a52a432d4ac2677f1d874888ac74571}
+      \strng{authorfullhash}{0a52a432d4ac2677f1d874888ac74571}
+      \strng{authorfullhashraw}{0a52a432d4ac2677f1d874888ac74571}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{1}
+      \field{note}{NASA Aerospace Battery Workshop 2025. 230 Wh/kg pack design, NMC 2170 cells, $\sim$5,000 equivalent full cycles target, \$200/kWh volume procurement cost.}
+      \field{title}{Starlink Batteries: Reliability Lessons from 10,000 LEO Satellites}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://www.nasa.gov/wp-content/uploads/2024/01/starlink-batteries-reliability-lessons-from-10000-leo-satellites-abw-2025.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.nasa.gov/wp-content/uploads/2024/01/starlink-batteries-reliability-lessons-from-10000-leo-satellites-abw-2025.pdf
+      \endverb
+      \keyw{starlink,battery,nmc,spacex,leo}
+    \endentry
+    \entry{newspace2025h100}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=c7e098290ed9d999c6c85701c84c2d95}{%
+           family={{New Space Economy}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{c7e098290ed9d999c6c85701c84c2d95}
+      \strng{fullhash}{c7e098290ed9d999c6c85701c84c2d95}
+      \strng{fullhashraw}{c7e098290ed9d999c6c85701c84c2d95}
+      \strng{bibnamehash}{c7e098290ed9d999c6c85701c84c2d95}
+      \strng{authorbibnamehash}{c7e098290ed9d999c6c85701c84c2d95}
+      \strng{authornamehash}{c7e098290ed9d999c6c85701c84c2d95}
+      \strng{authorfullhash}{c7e098290ed9d999c6c85701c84c2d95}
+      \strng{authorfullhashraw}{c7e098290ed9d999c6c85701c84c2d95}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{11}
+      \field{title}{Radiation Protection in NVIDIA H100 GPU}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://newspaceeconomy.ca/2025/11/03/an-analysis-of-radiation-protection-in-the-nvidia-h100-gpu/
+      \endverb
+      \verb{url}
+      \verb https://newspaceeconomy.ca/2025/11/03/an-analysis-of-radiation-protection-in-the-nvidia-h100-gpu/
+      \endverb
+      \keyw{nvidia,h100,radiation}
+    \endentry
+    \entry{nasa2026katalyst}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=1f99771bc3e23e6097509a331544ab65}{%
+           family={{NASA}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{fullhash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{fullhashraw}{1f99771bc3e23e6097509a331544ab65}
+      \strng{bibnamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorbibnamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authornamehash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorfullhash}{1f99771bc3e23e6097509a331544ab65}
+      \strng{authorfullhashraw}{1f99771bc3e23e6097509a331544ab65}
+      \field{extraname}{3}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Tier 3·via secondary media; original source NASA Katalyst mission official release, exact NASA.gov URL not found; secondary source archeonis.com}
+      \field{title}{Katalyst Swift Satellite Rescue Mission (\$30M)}
+      \field{urlday}{11}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://archeonis.com/space-tech/nasa-katalyst-space-swift-satellite-rescue-mission
+      \endverb
+      \verb{url}
+      \verb https://archeonis.com/space-tech/nasa-katalyst-space-swift-satellite-rescue-mission
+      \endverb
+      \keyw{nasa,satellite,rescue}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -1,0 +1,109 @@
+% 06_lagrange.tex — 拉格朗日点分析
+
+\section{拉格朗日点深度分析}
+
+本节分析六个拉格朗日点（地日 L1/L2、地月 L4/L5、地月 L1/L2）在太空算力部署中的可行性，重点关注其独特的物理环境优势与工程约束。
+
+\subsection{地日 L1/L2：深空算力的双面性}
+
+地日 L1（太阳方向 $\sim$1.5 M km）和 L2（反太阳方向 $\sim$1.5 M km）是已获充分飞行验证的深空位置：SOHO/ACE/DSCOVR 在 L1 长期运行；JWST 在 L2 提供了最高质量的环境实测数据。
+
+\subsubsection{辐射环境：TID 悖论的核心}
+
+\begin{table}[H]
+\centering
+\caption{地日 L1/L2 辐射环境 vs LEO}
+\label{tab:l1l2-rad}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{参数} & \textbf{L1/L2 值} & \textbf{vs LEO} & \textbf{来源} \\
+\midrule
+TID (未屏蔽) & 50--100~\kradyr & 2--5x & NASA MSFC 火星任务报告 \cite{nasa_photonics_mars_2014} \\
+TID (2.5mm Al 屏蔽) & \textbf{2--5~\kradyr} & \textbf{低于} LEO！& 同上 \\
+SEU 率 & $\sim$100--1000x LEO & 大幅更劣 & JWST NIRSpec 实测 \cite{jwst_cr_2025} \\
+磁层屏蔽 & 无 & 完全暴露 & — \\
+SPE 暴露 & 直接暴露 & 需预警+保护 & — \\
+GCR 通量 & $\sim$4--6 ions/cm\textsuperscript{2}/s & 远高于 LEO & JWST NIRSpec 实测 (2025) \cite{jwst_cr_2025} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\textbf{这是本调研最重要的发现之一}：穿越 SAA 的 LEO 轨道（如 SSO、高倾角 ISS 轨道）年 TID 可达 10--30~\kradyr，而深空 L1/L2 在适度屏蔽下仅 $\sim$2--5~\kradyr。原因是 LEO 的 TID 主要由内范艾伦带捕获质子（SAA 区域）贡献，深空无此来源 \cite{nasa_photonics_mars_2014}。
+
+但这绝不意味着深空对电子器件更友好：\textbf{SEU/SET 率高出 100--1000 倍}（GCR 重离子全通量），SPE 直接暴露需要额外防护策略（预警 + 关机/降频 + 冗余 + 厚重局部屏蔽）。对算力硬件而言，\textbf{SEE 防护（EDAC、TMR、scrubbing）远比 TID 防护更为关键}。
+
+\subsubsection{热环境：天然冷端与连续日照}
+
+L2 的热环境以 JWST 为参考：五层遮阳罩实现热端 $\sim$358 K / 冷端 $\sim$40 K 的分割，温差约 260 K。关键热参数：
+
+\begin{itemize}
+    \item 连续日照（无地球阴影）$\rightarrow$ 太阳能板 24/7 供电
+    \item 无热循环（0 次/年 vs LEO 5,840 次/年）$\rightarrow$ 零热机械疲劳
+    \item 散热器效率 $\sim$1,700~\wpm（vs LEO $\sim$1,113~\wpm）$\rightarrow$ 高 $\sim$50\%
+    \item 冷端 $\sim$40 K：对传统 CMOS 需主动加热维持 250--350 K 工作窗口；\textbf{对超导/量子计算可能是天然优势}
+\end{itemize}
+
+\subsubsection{通信延迟：最大不可消除劣势}
+
+L1/L2 的 RTT $\sim$10 秒（单向光程 $\sim$5 秒），是 LEO 的 1000--2000x。这排除了实时交互式计算。可接受的应用模式仅限于"批处理式"计算（提交$\rightarrow$等待$\rightarrow$取结果），需部署高度自主的调度/管理系统。
+
+\subsubsection{太空算力部署评估}
+
+\textbf{地日 L2}（综合指数 0.99，与 LEO 持平）：
+\begin{itemize}
+    \item \textbf{优势}：连续日照 + 天然冷端（$\sim$40 K）+ JWST 已验证环境
+    \item \textbf{劣势}：RTT 10 s 排除交互式推理；不可维护；SEU 率 100--1000x LEO
+    \item \textbf{最独特利基}：L2 量子-经典协同计算。超导量子比特需 $\sim$10 mK，L2 的 40 K 被动预冷可大幅降低稀释制冷机功耗。这是唯一值得 L2 成本溢价的场景
+    \item \textbf{不是经典 CMOS 计算的优势轨道}——RTT 10 s 排除交互式推理，不可维护排除长期经济部署
+\end{itemize}
+
+\subsection{地月 L4/L5：最稳定的深空算力平台}
+
+\subsubsection{独特的引力稳定性}
+
+地月 L4/L5 在限制性三体问题中\textbf{引力稳定}（地球-月球质量比 $>$ 24.96，满足稳定性条件）。在日地月四体系统中，太阳摄动使航天器约 700 天后漂移，但仍远优于 L1/L2 的不稳定鞍点（特征时间 $\sim$23 天）。理论上零站位保持燃料（实际 $\sim$0--1 m/s/年）。
+
+\subsubsection{环境参数}
+
+\begin{table}[H]
+\centering
+\caption{地月 L4/L5 关键参数 vs LEO}
+\label{tab:l4l5-params}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{参数} & \textbf{L4/L5 值} & \textbf{vs LEO} & \textbf{备注} \\
+\midrule
+距地球 & $\sim$384,400 km & — & 月球轨道半径 \\
+TID (屏蔽) & 5--15~\kradyr{}（估计）& 与 LEO 低端相当 & 置信度较低\textsuperscript{*} \\
+SEU (相对) & $\sim$10--50x LEO (估计) & 介于 LEO 和深空之间 & 置信度较低\textsuperscript{*} \\
+磁层屏蔽 & 弱/部分 & — & 月球轨道穿越磁尾 \\
+地球 IR/反照 & $\sim$0~\wpm & LEO $\sim$720 $\rightarrow$ $\sim$0 & 大幅更优 \\
+食/热循环 & $\sim$0 次/年 & 大幅更优 & — \\
+RTT & $\sim$2,560 ms & $\sim$256--512x LEO & 4x 优于 L1/L2 \\
+站位保持 & $\sim$0 m/s/年 & — & \textbf{核心优势} \\
+\bottomrule
+\end{tabular}%
+}
+
+\smallskip
+\noindent\textsuperscript{*}地月 L4/L5 缺乏精确在轨测量数据，TID 和 SEU 为基于地磁场衰减和 GCR 通量的估计值，置信度较低。
+\end{table}
+
+\subsubsection{太空算力部署评估}
+
+\textbf{地月 L4/L5 是"最有想象力的长期资产"}（综合指数 0.94，优于 LEO）：
+\begin{itemize}
+    \item \textbf{引力稳定} = 永续平台潜力。零站位保持需求使 L4/L5 适合数十年尺度的长期部署
+    \item RTT 2.6 s 虽远逊于 LEO，但 4x 优于地日 L1/L2
+    \item \textbf{深空通信/导航骨干枢纽}：随着 Artemis 月球基地和 LunaNet 架构推进，L4/L5 可充当月球-火星通信网络的计算节点
+    \item \textbf{核心挑战}：当前缺乏在轨基础设施（无任务经验），初期部署成本可能被低估
+\end{itemize}
+
+\subsection{地月 L1/L2：Gateway 生态的算力潜力}
+
+地月 L1/L2 距月球约 58,000--65,000 km，是 Artemis/Gateway 计划的关键区域。RTT 约 2.2--3.0 秒（比地日 L1/L2 好约 4x）。不稳定轨道需站位保持：地月 L2 NRHO $\sim$5 m/s/年（较优），传统 halo 则需 28--66 m/s/年。综合指数约 0.94--0.95，与地月 L4/L5 相近。
+
+\textbf{关键场景}：月球背面中继 + 边缘推理（鹊桥模式）、Gateway NRHO 生态协同。与 Artemis 计划的深度绑定既是优势（基础设施共享）也是风险（计划变更可能影响部署时间表）。
