@@ -172,8 +172,9 @@ graph LR
 ---
 
 <p align="center">
-  <sub>本研究由<a href="https://github.com/jopsammy/AC-skill-deploy-ac-v6-components">伊兹莎深度研究框架</a>完成 · 由<a href="https://github.com/jopsammy/acp-traetune-kerrigan-s-tex-marp-necklace">凯瑞甘排版项链</a>完成 · 基于<a href="https://github.com/jopsammy/AC-skill-deploy-ac-v6-components">TRAE 特调 AC 范式组件框架</a></sub><br/>
-  <sub>研究框架将在 8 月前开源</sub>
+  <sub>本研究由伊兹莎深度研究框架完成 · 由<a href="https://github.com/jopsammy/acp-traetune-kerrigan-s-tex-marp-necklace">凯瑞甘排版项链</a>完成 · 基于<a href="https://github.com/jopsammy/AC-skill-deploy-ac-v6-components">TRAE 特调 AC 范式组件框架</a></sub><br/>
+  <sub>Research by Izsha Deep Research Framework · Typeset by <a href="https://github.com/jopsammy/acp-traetune-kerrigan-s-tex-marp-necklace">Kerrigan TeX/Marp Necklace</a> · Built on <a href="https://github.com/jopsammy/AC-skill-deploy-ac-v6-components">TRAE AC-v6 Components</a></sub><br/>
+  <sub>研究框架将在 8 月前开源 · Research framework will be open-sourced before August</sub>
 </p>
 
 <div align="center">
